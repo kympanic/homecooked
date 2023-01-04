@@ -15,9 +15,11 @@ class User(db.Model, UserMixin):
     shop_name = db.Column(db.String(255), unique=True)
     profile_img = db.Column(db.String(255), unique=True)
     phone_number = db.Column(db.Integer, nullable=False, unique=True)
-    zipcode = db.Column(db.Integer, nullable=False, unique=True)
+    zipcode = db.Column(db.Integer, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+# relationship
+    products = db.relationship('Product', back_populates = 'user_products', cascade = 'all, delete')
 
     @property
     def password(self):
