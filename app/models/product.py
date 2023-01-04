@@ -14,7 +14,7 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
     profile_img = db.Column(db.String(255))
-    avg_rating = db.Column(db.Numeric, nullable=False)
+    # avg_rating = db.Column(db.Numeric, nullable=False)
     price = db.Column(db.Numeric, nullable=False)
 
     #relationships
@@ -22,17 +22,23 @@ class Product(db.Model):
     product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
 
 
+
 def to_dict(self):
-        return {
-            'id': self.id,
-            'userId': self.user_id,
-            'name': self.name,
-            'description': self.description,
-            'imageURL': self.image_url,
-            'profileImg': self.profile_img,
-            'avgRating': self.avg_rating,
-            'price': self.price,
-        }
+    my_list_ratings = [review.to_dict()['rating'] for review in self.product_reviews]
+
+    total = sum(my_list_ratings)
+    avg = total / len(my_list_ratings)
+
+    return {
+        'id': self.id,
+        'userId': self.user_id,
+        'name': self.name,
+        'description': self.description,
+        'imageURL': self.image_url,
+        'profileImg': self.profile_img,
+        'avgRating': avg,
+        'price': self.price,
+    }
 
 def __repr__(self):
-        return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}, avg_rating: {self.avg_rating}>"
+    return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}, avg_rating: {self.avg_rating}>"
