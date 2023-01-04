@@ -19,7 +19,7 @@ class Product(db.Model):
 
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
-
+    product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
 
 
 def to_dict(self):
@@ -34,5 +34,5 @@ def to_dict(self):
             'price': self.price,
         }
 
-# def __repr__(self):
-#         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}, avg_rating: {self.avg_rating}>"
+def __repr__(self):
+        return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}, avg_rating: {self.avg_rating}>"
