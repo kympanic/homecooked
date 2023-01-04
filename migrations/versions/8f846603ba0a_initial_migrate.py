@@ -1,8 +1,8 @@
-"""empty message
+"""initial migrate
 
-Revision ID: eb864432324a
+Revision ID: 8f846603ba0a
 Revises: 
-Create Date: 2023-01-04 11:24:06.403108
+Create Date: 2023-01-04 15:38:44.342366
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eb864432324a'
+revision = '8f846603ba0a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,14 +40,14 @@ def upgrade():
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('profile_img', sa.String(length=255), nullable=True),
-    sa.Column('price', sa.Numeric(precision=4, scale=2), nullable=False),
+    sa.Column('price', sa.String(length=40), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('rating', sa.Numeric(precision=4, scale=2), nullable=False),
+    sa.Column('rating', sa.String(length=10), nullable=False),
     sa.Column('body', sa.String(length=255), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),

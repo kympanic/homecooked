@@ -9,7 +9,7 @@ class Review(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    rating = db.Column(db.Numeric(4,2), nullable=False)
+    rating = db.Column(db.String(10), nullable=False)
     body = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)

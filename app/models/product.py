@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-
+from ..utils import Print
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -14,7 +14,7 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
     profile_img = db.Column(db.String(255))
-    price = db.Column(db.Numeric(4,2), nullable=False)
+    price = db.Column(db.String(40), nullable=False)
 
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
@@ -23,10 +23,17 @@ class Product(db.Model):
 
 
     def to_dict(self):
-        my_list_ratings = [review.to_dict()['rating'] for review in self.product_reviews]
 
-        total = sum(my_list_ratings)
-        avg = total / len(my_list_ratings)
+        #conversion to get average rating on products
+        my_list_ratings = [review.to_dict()['rating'] for review in self.product_reviews]
+        #convert to float from string
+        converted_ratings = [float(x) for x in my_list_ratings]
+        #get the average
+        total = sum(converted_ratings)
+        avg = total / len(converted_ratings)
+
+        #conversion to float from string for PRICE
+        converted_price = float(self.price)
 
         return {
             'id': self.id,
@@ -36,7 +43,7 @@ class Product(db.Model):
             'imageURL': self.image_url,
             'profileImg': self.profile_img,
             'avgRating': avg,
-            'price': self.price,
+            'price': converted_price,
         }
 
     def __repr__(self):
