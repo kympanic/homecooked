@@ -11,7 +11,7 @@ def seed_users():
     marnie = User(
         username='marnie', email='marnie@aa.io',shop_name="Poo Poo Shop", profile_img='https://www.pexels.com/photo/silhouette-photo-of-woman-holding-lights-3792581/',phone_number = 1800456696,zipcode=233456, password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', shop_name="Moo Moo Shop", profile_img='https://www.shutterstock.com/image-photo/happy-laughing-baby-wearing-yellow-260nw-390443464.jpg',phone_number = 1800456696,zipcode=233456, password='password')
+        username='bobbie', email='bobbie@aa.io', shop_name="Moo Moo Shop", profile_img='https://www.shutterstock.com/image-photo/happy-laughing-baby-wearing-yellow-260nw-390443464.jpg',phone_number = 1800456396,zipcode=233456, password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
