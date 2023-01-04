@@ -1,14 +1,17 @@
 from app.models import db, User, environment, SCHEMA
 
-
+#  shop_name = db.Column(db.String(255), unique=True)
+#     profile_img = db.Column(db.String(255), unique=True)
+#     phone_number = db.Column(db.Integer(10), nullable=False, unique=True)
+#     zipcode
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', shop_name="Yummy Shop", profile_img = 'https://www.pexels.com/photo/man-smiling-behind-wall-220453/',phone_number = 876539333, zipcode = 124555, password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io',shop_name="Poo Poo Shop", profile_img='https://www.pexels.com/photo/silhouette-photo-of-woman-holding-lights-3792581/',phone_number = 1800456696,zipcode=233456, password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', shop_name="Moo Moo Shop", profile_img='https://www.shutterstock.com/image-photo/happy-laughing-baby-wearing-yellow-260nw-390443464.jpg',phone_number = 1800456696,zipcode=233456, password='password')
 
     db.session.add(demo)
     db.session.add(marnie)
@@ -27,5 +30,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM users")
-        
+
     db.session.commit()
