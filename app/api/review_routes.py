@@ -1,6 +1,8 @@
 from flask import Blueprint, request
-from ..models import Review, db
+from ..models import Review, User, db
 from ..utils import Print
+from flask_login import current_user
+
 
 reviews_routes = Blueprint('reviews', __name__)
 
@@ -8,7 +10,13 @@ reviews_routes = Blueprint('reviews', __name__)
 # PUT api/reviews/:id
 @reviews_routes.route('/reviews/<int:id>', methods=['PUT'])
 def update_review():
+
     review_data = request.json
+
+    #check if review id belongs to current user
+    if review_data["user_id"] != current_user.id:
+        return {"error": "You are not authorized to update this review"}, 401
+
     review = Review.query.get(review_data['id'])
     review.body = review_data['body']
 
@@ -36,7 +44,19 @@ def update_review():
 
 # User can delete a review that they posted
 # DELETE api/reviews/:id
+@reviews_routes.route('/reviews/<int:id>', methods=['DELETE'])
+def delete_review():
+    review_data = request.json
 
+    if review_data["user_id"] != current_user.id:
+        return {"error": "You are not authorized to delete this review"}, 401
+
+    review = Review.query.get(id)
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return {"message": "Successfully deleted"}
 
 # tweet_routes = Blueprint('tweets', __name__)
 
