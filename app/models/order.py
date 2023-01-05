@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-
+from .product_orders import product_orders
 
 class Order(db.Model):
     __tablename__ = 'orders'
@@ -15,7 +15,8 @@ class Order(db.Model):
 
     #relationships
     orders = db.relationship('User',back_populates = 'user_orders')
-    order_products = db.relationship('Product',back_populates = 'product_orders')
+    products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
+    payments = db.relationship('Payment', back_populates='payment_orders')
 
 def to_dict(self):
         return {

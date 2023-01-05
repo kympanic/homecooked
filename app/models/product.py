@@ -1,5 +1,7 @@
 from .db import db, environment, SCHEMA
+from .product_orders import product_orders
 from ..utils import Print
+
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -19,7 +21,8 @@ class Product(db.Model):
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
     product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
-    product_orders = db.relationship('Order', back_populates = 'order_products', cascade='all,delete')
+    product_orders = db.relationship('Order', secondary=product_orders, back_populates = 'products_with_order', cascade='all,delete')
+    
 
 
     def to_dict(self):

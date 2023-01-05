@@ -14,7 +14,9 @@ class Payment(db.Model):
     expiration = db.Column(db.DateTime, nullable=False)
     
     #relationships
-    
+    user_payments = db.relationship('User', back_populates = 'user_credit_cards')
+    payment_orders = db.relationship('Order', back_populates='payments')
+
     #validate account number to be only numbers
     
     def to_dict(self):
