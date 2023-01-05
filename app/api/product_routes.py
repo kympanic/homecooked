@@ -11,5 +11,4 @@ def get_all_products():
     Print(products)
 
     res = {product.id: product.to_dict() for product in products}
-    Print(res)
     return res
