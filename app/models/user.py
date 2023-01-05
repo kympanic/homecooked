@@ -12,7 +12,17 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    shop_name = db.Column(db.String(255), unique=True)
+    profile_img = db.Column(db.String(255))
+    phone_number = db.Column(db.Integer, nullable=False, unique=True)
+    zipcode = db.Column(db.Integer, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    # relationship
+    products = db.relationship('Product', back_populates = 'user_products', cascade = 'all, delete')
+    user_reviews = db.relationship('Review', back_populates='user', cascade = 'all, delete')
+    user_orders = db.relationship('Order', back_populates='orders', cascade = 'all, delete')
+    user_credit_cards = db.relationship('Payment', back_populates='user_payments', cascade='all,delete')
 
     @property
     def password(self):
@@ -29,5 +39,9 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'shopName': self.shop_name,
+            'profileImg': self.profile_img,
+            'phoneNumber': self.phone_number,
+            'zipcode': self.zipcode
         }
