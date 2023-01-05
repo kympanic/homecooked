@@ -19,7 +19,7 @@ class Product(db.Model):
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
     product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
-
+    product_orders = db.relationship('Order', back_populates = 'order_products', cascade='all,delete')
 
 
     def to_dict(self):
