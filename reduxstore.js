@@ -36,7 +36,7 @@ const store = {
 		1: {
 			id: 1,
 			userId: 1,
-			productId: 2,
+			productId: 1,
 			body: "It was good",
 			rating: 4.5,
 		},
