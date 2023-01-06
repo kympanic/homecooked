@@ -1,24 +1,41 @@
-const GET_PRODUCTS = "/products/getallproducts";
+const LOAD_PRODUCTS = "/products/getallproducts";
 
-export const getAllProducts = (payload) => ({
-	type: GET_PRODUCTS,
+export const loadProducts = (payload) => ({
+	type: LOAD_PRODUCTS,
 	payload,
 });
+
+export const createProductThunk = (data) => async (dispatch) => {
+	const newProduct = JSON.stringify(data);
+	console.log(newProduct, "THIS IS THE STRINGIFIED DATA");
+
+	const res = await fetch("/api/products", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: newProduct,
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		dispatch(loadProducts(data));
+	}
+};
 
 export const getAllProductsThunk = () => async (dispatch) => {
 	const res = await fetch("/api/products");
 
-	console.log(res, "this is the data");
 	if (res.ok) {
 		const payload = await res.json();
-		dispatch(getAllProducts(payload));
+		dispatch(loadProducts(payload));
 	}
 };
 
 const productReducer = (state = {}, action) => {
 	let newState = { ...state };
 	switch (action.type) {
-		case GET_PRODUCTS:
+		case LOAD_PRODUCTS:
 			return { ...newState, ...action.payload };
 		default:
 			return state;

@@ -1,11 +1,31 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { createProductThunk } from "../../store/products";
 const ProductForm = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [price, setPrice] = useState("");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const newProduct = {
+			name,
+			description,
+			image_url: imageUrl,
+			price,
+		};
+
+		dispatch(createProductThunk(newProduct)).then(() => history.push("/"));
+
+		setName("");
+		setDescription("");
+		setImageUrl("");
+		setPrice("");
+	};
 
 	return (
 		<div className="upload-page-background">
@@ -13,8 +33,7 @@ const ProductForm = () => {
 				<h2>Create your Delicious Meal</h2>
 			</div>
 			<div className="upload-form-container">
-				<form>
-					{/* onSubmit={handleSubmit} */}
+				<form onSubmit={handleSubmit}>
 					<div>
 						<label htmlFor="name">Name:</label>
 						<input
