@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import Product, db
+from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
 
@@ -72,3 +72,32 @@ def delete_product(id):
     db.session.commit()
 
     return {"msg": "Successfully deleted the product"}
+
+# User can retrieve all reviews for a specific product id
+# GET api/products/:id/reviews
+@product_routes.route('/<int:id>/reviews', methods = ['GET'])
+def get_reviews(id):
+    #get reviews by product id
+    reviews = Review.query.filter(Review.product_id == id).all()
+    Print(reviews)
+
+    res = {review.id: review.to_dict() for review in reviews}
+    Print(res)
+    return res
+
+# User can post a review on a food item
+# POST api/products/:id/reviews
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_review(id):
+    # form = ReviewForm()
+    review_text = request.json
+
+    if review_text["user_id"] != current_user.id:
+        return {"error": "You are not authorized to create a review"}, 401
+
+    new_review = Review(**review_text)
+    db.session.add(new_review)
+    db.session.commit()
+
+    return {new_review.id: new_review.to_dict()}
