@@ -1,14 +1,15 @@
 from flask import Blueprint, request
 from ..models import Review, User, db
 from ..utils import Print
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
-reviews_routes = Blueprint('reviews', __name__)
+review_routes = Blueprint('reviews', __name__)
 
 # User can update a review that they created
 # PUT api/reviews/:id
-@reviews_routes.route('/reviews/<int:id>', methods=['PUT'])
+@review_routes.route('/<int:id>', methods=['PUT', 'PATCH'])
+@login_required
 def update_review():
 
     review_data = request.json
@@ -25,26 +26,12 @@ def update_review():
     return {review.id : review.to_dict()}
 
 
-# @bp.route("/orders/<int:id>/items", methods=["POST"])
-# @login_required
-# def add_to_order(id):
-#     form = MenuItemAssignmentForm()
-#     form.menu_item_ids.choices = [(item.id, '')
-#                                   for item in MenuItem.query.all()]
-#     from pprint import pprint
-#     pprint(form.menu_item_ids.choices)
-#     if form.validate_on_submit():
-#         order = Order.query.get(id)
-#         for menu_item_id in form.menu_item_ids.data:
-#             detail = OrderDetail(order=order, menu_item_id=menu_item_id)
-#             db.session.add(detail)
-#         db.session.commit()
-#     return redirect(url_for('.index'))
 
 
 # User can delete a review that they posted
 # DELETE api/reviews/:id
-@reviews_routes.route('/reviews/<int:id>', methods=['DELETE'])
+@review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_review():
     review_data = request.json
 
@@ -70,17 +57,7 @@ def delete_review():
 #     return res
 
 
-# @tweet_routes.route('', methods=["POST"])
-# def create_new_tweet():
-#     tweet_text = request.json
 
-#     # ** is Python's spread ('...' in JS)
-#     new_tweet = Tweet(**tweet_text, user_id=current_user.id)
-
-#     db.session.add(new_tweet)
-#     db.session.commit()
-
-#     return {new_tweet.id: new_tweet.to_dict()}
 
 
 # @tweet_routes.route('', methods=["PATCH", "PUT"])
