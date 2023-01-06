@@ -32,35 +32,6 @@ def edit_review(id):
 
     return {review.id : review.to_dict()}
 
-    # rating = db.Column(db.String(10), nullable=False)
-    # body = db.Column(db.String(255), nullable=False)
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    # product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
-
-
-# def edit_product(id):
-#     product = Product.query.get(id)
-#     data = request.json
-
-#     Print(data)
-
-#     if product.user_id != current_user.id:
-#         return {'error': "You are not authorized to edit this product"}, 401
-
-#     if data.get('name'):
-#         product.name = data['name']
-#     if data.get('description'):
-#         product.description = data['description']
-#     if data.get('image_url'):
-#         product.image_url = data['image_url']
-#     if data.get('price'):
-#         product.price = data['price']
-
-#     db.session.add(product)
-#     db.session.commit()
-
-#     return {product.id: product.to_dict()}
-
 
 
 # User can delete a review that they posted
@@ -106,18 +77,3 @@ def delete_review(id):
 #     db.session.commit()
 
 #     return {tweet.id: tweet.to_dict()}
-
-
-# @tweet_routes.route('/<int:id>', methods=["DELETE"])
-# def delete_tweet(id):
-#     data = request.json
-
-#     if data["user_id"] != current_user.id:
-#         return {"error": "You are not authorized to delete this tweet"}, 401
-
-#     tweet = Tweet.query.get(id)
-
-#     db.session.delete(tweet)
-#     db.session.commit()
-
-#     return {"msg": "Successfully deleted"}
