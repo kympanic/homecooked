@@ -35,12 +35,16 @@ def get_reviews(id):
 
 # User can post a review on a food item
 # POST api/products/:id/reviews
-@product_routes.route('/<int:id>/reviews')
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def create_review(id):
     # form = ReviewForm()
     review_text = request.json
-    new_review = Review(**review_text, user_id=current_user.id)
+
+    if review_text["user_id"] != current_user.id:
+        return {"error": "You are not authorized to create a review"}, 401
+
+    new_review = Review(**review_text)
     db.session.add(new_review)
     db.session.commit()
 

@@ -10,21 +10,56 @@ review_routes = Blueprint('reviews', __name__)
 # PUT api/reviews/:id
 @review_routes.route('/<int:id>', methods=['PUT', 'PATCH'])
 @login_required
-def update_review():
+def edit_review(id):
 
-    review_data = request.json
+    data = request.json
 
     #check if review id belongs to current user
-    if review_data["user_id"] != current_user.id:
+    if data["user_id"] != current_user.id:
         return {"error": "You are not authorized to update this review"}, 401
 
-    review = Review.query.get(review_data['id'])
-    review.body = review_data['body']
+    review = Review.query.get(id)
+    if data.get('rating'):
+        review.rating = data['rating']
+    if data.get('body'):
+        review.body = data['body']
+    if data.get('user_id'):
+        review.user_id = data['user_id']
+    if data.get('product_id'):
+        review.product_id = data['product_id']
 
     db.session.commit()
 
     return {review.id : review.to_dict()}
 
+    # rating = db.Column(db.String(10), nullable=False)
+    # body = db.Column(db.String(255), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    # product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+
+
+# def edit_product(id):
+#     product = Product.query.get(id)
+#     data = request.json
+
+#     Print(data)
+
+#     if product.user_id != current_user.id:
+#         return {'error': "You are not authorized to edit this product"}, 401
+
+#     if data.get('name'):
+#         product.name = data['name']
+#     if data.get('description'):
+#         product.description = data['description']
+#     if data.get('image_url'):
+#         product.image_url = data['image_url']
+#     if data.get('price'):
+#         product.price = data['price']
+
+#     db.session.add(product)
+#     db.session.commit()
+
+#     return {product.id: product.to_dict()}
 
 
 
@@ -32,7 +67,7 @@ def update_review():
 # DELETE api/reviews/:id
 @review_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_review():
+def delete_review(id):
     review_data = request.json
 
     if review_data["user_id"] != current_user.id:
