@@ -1,9 +1,26 @@
 const LOAD_PRODUCTS = "/products/getallproducts";
+const DELETE_PRODUCT = "/products/deleteproduct";
 
-export const loadProducts = (payload) => ({
+const loadProducts = (payload) => ({
 	type: LOAD_PRODUCTS,
 	payload,
 });
+
+const deleteProduct = (payload) => {
+	return {
+		type: DELETE_PRODUCT,
+		payload,
+	};
+};
+
+export const getAllProductsThunk = () => async (dispatch) => {
+	const res = await fetch("/api/products");
+
+	if (res.ok) {
+		const payload = await res.json();
+		dispatch(loadProducts(payload));
+	}
+};
 
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);
@@ -23,12 +40,36 @@ export const createProductThunk = (data) => async (dispatch) => {
 	}
 };
 
-export const getAllProductsThunk = () => async (dispatch) => {
-	const res = await fetch("/api/products");
+export const editProductThunk = (data) => async (dispatch) => {
+	const editedProduct = JSON.stringify(data);
+
+	const res = await fetch("/api/products", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: editedProduct,
+	});
 
 	if (res.ok) {
-		const payload = await res.json();
-		dispatch(loadProducts(payload));
+		const data = await res.json();
+		dispatch(loadProducts(data));
+	}
+};
+
+export const deleteProductThunk = (data) => async (dispatch) => {
+	const body = JSON.stringify(data);
+
+	const res = await fetch(`/api/products/${data.id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body,
+	});
+
+	if (res.ok) {
+		dispatch(deleteProduct(data.id));
 	}
 };
 
@@ -37,6 +78,9 @@ const productReducer = (state = {}, action) => {
 	switch (action.type) {
 		case LOAD_PRODUCTS:
 			return { ...newState, ...action.payload };
+		case DELETE_PRODUCT:
+			delete newState[action.payload];
+			return newState;
 		default:
 			return state;
 	}
