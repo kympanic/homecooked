@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 
 product_routes = Blueprint('products', __name__)
 
+#User can retrieve all products currently in the db
 @product_routes.route('')
 def get_all_products():
     products = Product.query.all()
@@ -14,7 +15,7 @@ def get_all_products():
     
     return res
 
-
+#User can get a specific product depending on id
 @product_routes.route('/<int:id>')
 def get_product_by_id(id):
     product = Product.query.get(id)
@@ -22,6 +23,7 @@ def get_product_by_id(id):
     res = {product.id: product.to_dict()}
     return res
 
+#Logged in user can create a new product
 @product_routes.route('',methods=['POST'])
 @login_required
 def  add_product():
@@ -35,6 +37,7 @@ def  add_product():
 
     return {new_product.id: new_product.to_dict()}
 
+#Logged in user can edit a product only if they are owner of the product
 @product_routes.route('/<int:id>', methods = ["PATCH", "PUT"])
 @login_required
 def edit_product(id):
@@ -59,7 +62,9 @@ def edit_product(id):
 
     return {product.id: product.to_dict()}
 
+#User can delete from product id if they own the product
 @product_routes.route('/<int:id>', methods = ["DELETE"])
+@login_required
 def delete_product(id):
     data = request.json
     

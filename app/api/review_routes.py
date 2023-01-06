@@ -32,8 +32,6 @@ def edit_review(id):
 
     return {review.id : review.to_dict()}
 
-
-
 # User can delete a review that they posted
 # DELETE api/reviews/:id
 @review_routes.route('/<int:id>', methods=['DELETE'])
@@ -51,29 +49,3 @@ def delete_review(id):
 
     return {"message": "Successfully deleted"}
 
-# tweet_routes = Blueprint('tweets', __name__)
-
-
-# @tweet_routes.route('')
-# def get_all_tweets():
-#     tweets = Tweet.query.all()
-
-#     res = {tweet.id: tweet.to_dict() for tweet in tweets}
-
-#     return res
-
-
-
-
-
-# @tweet_routes.route('', methods=["PATCH", "PUT"])
-# def edit_tweet():
-#     tweet_data = request.json
-
-#     tweet = Tweet.query.get(tweet_data['id'])
-
-#     tweet.text = tweet_data['text']
-
-#     db.session.commit()
-
-#     return {tweet.id: tweet.to_dict()}
