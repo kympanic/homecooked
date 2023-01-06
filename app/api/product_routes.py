@@ -55,7 +55,6 @@ def edit_product(id):
     if data.get('price'):
         product.price = data['price']
     
-    db.session.add(product)
     db.session.commit()
 
     return {product.id: product.to_dict()}
