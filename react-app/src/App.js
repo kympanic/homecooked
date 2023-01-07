@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import ProductForm from "./components/ProductForm";
 import EditProductForm from "./components/EditProductForm";
 import { getAllProductsThunk } from "./store/products";
+import { getAllUsersThunk } from "./store/users";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
@@ -25,6 +26,10 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllProductsThunk());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(getAllUsersThunk());
 	}, [dispatch]);
 
 	if (!loaded) {
