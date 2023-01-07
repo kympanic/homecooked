@@ -6,10 +6,12 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
-// import ProductForm from "./components/ProductForm";
+import { getAllProductsThunk } from "./store/products";
+import { getAllUsersThunk } from "./store/users";
+import ProductForm from "./components/ProductForm";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
-// import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
 function App() {
