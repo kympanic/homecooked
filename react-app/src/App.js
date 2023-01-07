@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import ProductForm from "./components/ProductForm";
-import EditProductForm from "./components/EditProductForm";
+import EditPage from "./components/EditPage";
 import { getAllProductsThunk } from "./store/products";
 import { getAllUsersThunk } from "./store/users";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -53,7 +53,7 @@ function App() {
 					<ProductForm />
 				</ProtectedRoute>
 				<ProtectedRoute path="/products/:productId/edit">
-					<EditProductForm />
+					<EditPage />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />

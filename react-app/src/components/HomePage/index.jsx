@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "../Modals/Modal.button.css";
-import ModalDeleteProduct from "../Modals/ModalDeleteProduct";
+
 const HomePage = () => {
 	const products = useSelector((state) => Object.values(state.products));
-	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div>
@@ -16,13 +13,6 @@ const HomePage = () => {
 						<p>{product.description}</p>
 						<p>{product.avgRating} stars</p>
 						<p>{product.price}</p>
-						<button
-							className={styles.primaryBtn}
-							onClick={() => setIsOpen(true)}
-						>
-							Delete
-						</button>
-						{isOpen && <ModalDeleteProduct setIsOpen={setIsOpen} />}
 					</li>
 				))}
 			</div>

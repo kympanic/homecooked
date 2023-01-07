@@ -1,14 +1,26 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
-const ModalDeleteProduct = ({ setIsOpen }) => {
+import { deleteProductThunk } from "../../../store/products";
+
+const ModalDeleteProduct = ({ setIsOpen, product }) => {
+	const dispatch = useDispatch();
+	console.log(product, "these are passed down");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setIsOpen(false);
+		dispatch(deleteProductThunk(product));
+	};
+
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Dialog</h5>
+						<h5 className={styles.heading}>Delete Confirmation</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -23,7 +35,7 @@ const ModalDeleteProduct = ({ setIsOpen }) => {
 						<div className={styles.actionsContainer}>
 							<button
 								className={styles.submitBtn}
-								onClick={() => setIsOpen(false)}
+								onClick={handleSubmit}
 							>
 								Submit
 							</button>
