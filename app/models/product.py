@@ -15,7 +15,6 @@ class Product(db.Model):
     name = db.Column(db.String(40), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
-    profile_img = db.Column(db.String(255))
     price = db.Column(db.String(40), nullable=False)
 
     #relationships
@@ -33,7 +32,10 @@ class Product(db.Model):
         converted_ratings = [float(x) for x in my_list_ratings]
         #get the average
         total = sum(converted_ratings)
-        avg = total / len(converted_ratings)
+        if total == 0:
+            avg = 3.0
+        else:
+            avg = total / len(converted_ratings)
 
         #conversion to float from string for PRICE
         converted_price = float(self.price)
@@ -44,7 +46,6 @@ class Product(db.Model):
             'name': self.name,
             'description': self.description,
             'imageURL': self.image_url,
-            'profileImg': self.profile_img,
             'avgRating': avg,
             'price': converted_price,
         }
