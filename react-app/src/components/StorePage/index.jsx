@@ -10,6 +10,7 @@ const StorePage = () => {
 	const products = useSelector((state) => Object.values(state.products));
 
 	const selectedProducts = [];
+
 	products.map((product) => {
 		if (product?.userId === userId) {
 			selectedProducts.push(product);
