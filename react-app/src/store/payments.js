@@ -85,3 +85,19 @@ export const deletePaymentThunk = (data) => async (dispatch) => {
 		dispatch(deletePayment(data.id));
 	}
 };
+
+
+const paymentReducer = (state = {}, action) => {
+	let newState = { ...state };
+	switch (action.type) {
+		case LOAD_PAYMENT:
+			return { ...newState, ...action.payload };
+		case DELETE_PAYMENT:
+			delete newState[action.payload];
+			return newState;
+		default:
+			return state;
+	}
+};
+
+export default paymentReducer;
