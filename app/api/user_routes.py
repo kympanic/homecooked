@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Order
+from app.models import User, Order, db
 from flask_login import current_user
 from ..utils import Print
 
@@ -32,10 +32,11 @@ def get_all_orders_by_specific_user(id):
     if id != current_user.id:
         return {"error": "You are not authorized to view this information"}, 401
     orders = Order.query.all()
-    users_orders = {}
+    users_orders = dict()
     
     for order in orders:
+        Print(order)
         if order.user_id == id:
-            users_orders.update({order.id: order})
-    Print(users_orders)
+            users_orders[order.id] = order.to_dict()
+    
     return users_orders

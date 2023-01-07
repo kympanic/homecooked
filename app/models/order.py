@@ -18,7 +18,7 @@ class Order(db.Model):
     products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
     payments = db.relationship('Payment', back_populates='payment_orders')
 
-def to_dict(self):
+    def to_dict(self):
         return {
             'id': self.id,
             'userId': self.user_id,
