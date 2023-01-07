@@ -6,8 +6,10 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
-import ProductForm from "./components/ProductForm";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+// import ProductForm from "./components/ProductForm";
+import CartPage from "./components/CartPage"
+import ProfilePage from "./components/ProfilePage"
+// import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -36,11 +38,15 @@ function App() {
 					<SignUpForm />
 				</Route>
 				<Route path="/users/:userId" exact={true}>
+					<ProfilePage />
+				</Route>
+				<Route path="/store/:userId" exact={true}>
 					<StorePage />
 				</Route>
-				<ProtectedRoute path="/uploadProduct">
-					<ProductForm />
-				</ProtectedRoute>
+				<Route path="/cart" exact={true}>
+					<CartPage />
+				</Route>
+
 				<Route path="/" exact={true}>
 					<HomePage />
 				</Route>
