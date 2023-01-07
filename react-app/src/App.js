@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import ProductForm from "./components/ProductForm";
+import EditProductForm from "./components/EditProductForm";
+import { getAllProductsThunk } from "./store/products";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
@@ -19,6 +21,10 @@ function App() {
 			await dispatch(authenticate());
 			setLoaded(true);
 		})();
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(getAllProductsThunk());
 	}, [dispatch]);
 
 	if (!loaded) {
@@ -40,6 +46,9 @@ function App() {
 				</Route>
 				<ProtectedRoute path="/uploadProduct">
 					<ProductForm />
+				</ProtectedRoute>
+				<ProtectedRoute path="/products/:productId/edit">
+					<EditProductForm />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />

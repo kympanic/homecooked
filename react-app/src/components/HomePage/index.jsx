@@ -4,15 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsThunk } from "../../store/products";
 
 const HomePage = () => {
-	const dispatch = useDispatch();
-
 	const products = useSelector((state) => Object.values(state.products));
-
-	console.log(products, "this is the products");
-
-	useEffect(() => {
-		dispatch(getAllProductsThunk());
-	}, [dispatch]);
 
 	return (
 		<div>

@@ -44,7 +44,6 @@ def edit_product(id):
     product = Product.query.get(id)
     data = request.json
 
-    Print(data)
 
     if product.user_id != current_user.id:
         return {'error': "You are not authorized to edit this product"}, 401

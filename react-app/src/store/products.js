@@ -24,7 +24,6 @@ export const getAllProductsThunk = () => async (dispatch) => {
 
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);
-	console.log(newProduct, "THIS IS THE STRINGIFIED DATA");
 
 	const res = await fetch("/api/products", {
 		method: "POST",
@@ -43,7 +42,8 @@ export const createProductThunk = (data) => async (dispatch) => {
 export const editProductThunk = (data) => async (dispatch) => {
 	const editedProduct = JSON.stringify(data);
 
-	const res = await fetch("/api/products", {
+	console.log("is it getting to here?======>", data);
+	const res = await fetch(`/api/products/${data.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

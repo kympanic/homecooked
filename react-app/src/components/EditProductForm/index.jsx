@@ -1,13 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { createProductThunk } from "../../store/products";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { editProductThunk } from "../../store/products";
 
-//Form to create a new Product
-
-const ProductForm = () => {
-	const dispatch = useDispatch();
+const EditProductForm = () => {
+	const { productId } = useParams();
 	const history = useHistory();
+
+	const sessionUser = useSelector((state) => state.session.user);
+	const selectedProduct = useSelector((state) => state.products[productId]);
+
+	const userId = sessionUser.id;
+
+	//TODO
+	//check to see if the logged in user is the owner of the product.
+	//if not, user is redirected to homepage
+
+	const dispatch = useDispatch();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
@@ -15,14 +24,16 @@ const ProductForm = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newProduct = {
+		const editedProduct = {
+			id: productId,
 			name,
 			description,
 			image_url: imageUrl,
 			price,
+			user_id: userId,
 		};
 
-		dispatch(createProductThunk(newProduct)).then(() => history.push("/"));
+		dispatch(editProductThunk(editedProduct)).then(() => history.push("/"));
 
 		setName("");
 		setDescription("");
@@ -33,7 +44,7 @@ const ProductForm = () => {
 	return (
 		<div className="upload-page-background">
 			<div>
-				<h2>Create your Delicious Meal</h2>
+				<h2>Something not right? Edit your food information here</h2>
 			</div>
 			<div className="upload-form-container">
 				<form onSubmit={handleSubmit}>
@@ -43,6 +54,7 @@ const ProductForm = () => {
 							type="text"
 							name="name"
 							value={name}
+							placeholder={selectedProduct?.name}
 							onChange={(e) => setName(e.target.value)}
 						/>
 					</div>
@@ -52,6 +64,7 @@ const ProductForm = () => {
 							type="url"
 							name="imageUrl"
 							value={imageUrl}
+							placeholder={selectedProduct?.imageUrl}
 							onChange={(e) => setImageUrl(e.target.value)}
 						/>
 					</div>
@@ -61,6 +74,7 @@ const ProductForm = () => {
 							type="text"
 							name="description"
 							value={description}
+							placeholder={selectedProduct?.description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
 					</div>
@@ -70,6 +84,7 @@ const ProductForm = () => {
 							type="text"
 							name="price"
 							value={price}
+							placeholder={selectedProduct?.price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</div>
@@ -83,4 +98,4 @@ const ProductForm = () => {
 	);
 };
 
-export default ProductForm;
+export default EditProductForm;
