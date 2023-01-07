@@ -4,9 +4,9 @@ def seed_orders():
     order1 = Order(
         user_id=1, payment_id=1, products_with_order= [])
     order2 = Order(
-        user_id=2, payment_id=2)
+        user_id=2, payment_id=2, products_with_order= [])
     order3 = Order(
-        user_id=3, payment_id=3)
+        user_id=3, payment_id=3, products_with_order= [])
 
     db.session.add(order1)
     db.session.add(order2)
