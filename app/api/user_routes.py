@@ -42,11 +42,7 @@ def user_products(id):
 def get_all_orders_by_specific_user(id):
     if id != current_user.id:
         return {"error": "You are not authorized to view this information"}, 401
-    orders = Order.query.all()
-    users_orders = dict()
-    
-    for order in orders:
-        if order.user_id == id:
-            users_orders[order.id] = order.to_dict()
+    orders = Order.query.filter(Order.user_id == id).all()
+    users_orders = {order.id: order.to_dict() for order in orders}
     
     return users_orders
