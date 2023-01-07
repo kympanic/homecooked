@@ -56,7 +56,7 @@ export const createPaymentThunk = (data) => async (dispatch) => {
 export const editPaymentThunk = (data) => async (dispatch) => {
 	const editedPayment = JSON.stringify(data);
 
-	const res = await fetch("/api/payments", {
+	const res = await fetch(`/api/payments/{data.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
@@ -67,5 +67,21 @@ export const editPaymentThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadPayment(data));
+	}
+};
+
+export const deletePaymentThunk = (data) => async (dispatch) => {
+	const body = JSON.stringify(data);
+
+	const res = await fetch(`/api/payments/${data.id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body,
+	});
+
+	if (res.ok) {
+		dispatch(deletePayment(data.id));
 	}
 };
