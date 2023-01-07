@@ -23,6 +23,7 @@ class Payment(db.Model):
         
         #store account number as ONLY the last four digits
         last_four_account_numbers = int(self.account_number[-4:])
+
         
         return {
             'id': self.id,

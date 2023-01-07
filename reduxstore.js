@@ -67,8 +67,8 @@ const store = {
 			id: 1,
 			userId: 1,
 			provider: "Visa",
-			accountNumber: "XXXX-XXXX-2222",
-			expiration: "12/24",
+			accountNumber: "2222",
+			expiration: "12/2024",
 		},
 	},
 };

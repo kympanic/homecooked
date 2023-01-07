@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Product
+from app.models import User, Product, Order, db
+from flask_login import current_user
+from ..utils import Print
 from ..utils import Print
 user_routes = Blueprint('users', __name__)
 
@@ -33,3 +35,14 @@ def user_products(id):
     res = {product.id: product.to_dict() for product in products}
 
     return res
+
+
+@user_routes.route('/<int:id>/orders')
+@login_required
+def get_all_orders_by_specific_user(id):
+    if id != current_user.id:
+        return {"error": "You are not authorized to view this information"}, 401
+    orders = Order.query.filter(Order.user_id == id).all()
+    users_orders = {order.id: order.to_dict() for order in orders}
+    
+    return users_orders
