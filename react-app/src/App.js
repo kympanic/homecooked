@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 // import ProductForm from "./components/ProductForm";
 import CartPage from "./components/CartPage"
 import ProfilePage from "./components/ProfilePage"
+// import ReviewForm from "./components/ReviewForm";
 // import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
@@ -43,9 +44,11 @@ function App() {
 				<Route path="/store/:userId" exact={true}>
 					<StorePage />
 				</Route>
+
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
+
 
 				<Route path="/" exact={true}>
 					<HomePage />

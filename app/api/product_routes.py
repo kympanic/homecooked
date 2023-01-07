@@ -12,7 +12,7 @@ def get_all_products():
     products = Product.query.all()
 
     res = {product.id: product.to_dict() for product in products}
-    
+
     return res
 
 #User can get a specific product depending on id
@@ -57,7 +57,7 @@ def edit_product(id):
         product.image_url = data['image_url']
     if data.get('price'):
         product.price = data['price']
-    
+
     db.session.commit()
 
     return {product.id: product.to_dict()}
@@ -67,7 +67,7 @@ def edit_product(id):
 @login_required
 def delete_product(id):
     data = request.json
-    
+
     product = Product.query.get(id)
     if product.user_id != current_user.id:
         return {'error': "You are not authorized to delete this product"}, 401
@@ -100,6 +100,9 @@ def create_review(id):
 
     if review_text["user_id"] != current_user.id:
         return {"error": "You are not authorized to create a review"}, 401
+
+    # need to check if user has an existing review
+    
 
     new_review = Review(**review_text)
     db.session.add(new_review)

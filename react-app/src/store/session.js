@@ -44,21 +44,21 @@ export const removeItem = (itemId) => {
 
 export const reset = () => {
 	return {
-		type: RESET,
+		type: RESET_CART,
 	};
 };
 
 // SELECTORS
 export const getCartItemById = (id) => (store) => store.session.cart.id;
 // NEED TO CHANGE *** BELOW
-export const getAllCartItems = ({ cart, product }) => {
-	return Object.values(cart.order).map((id) => {
-		return {
-			...cart.items[id],
-			...product[id],
-		};
-	});
-};
+// export const getAllCartItems = ({ cart, product }) => {
+// 	return Object.values(cart.order).map((id) => {
+// 		return {
+// 			...cart.items[id],
+// 			...product[id],
+// 		};
+// 	});
+// };
 
 
 
@@ -191,7 +191,7 @@ export function cartReducer(state = initialState2, action) {
 			delete newState.items[action.itemId];
 			newState.order = newState.order.filter((id) => id !== action.itemId);
 			return newState;
-		case RESET:
+		case RESET_CART:
 			return initialState2;
 		default:
 			return state;

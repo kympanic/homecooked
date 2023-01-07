@@ -66,7 +66,7 @@ export const editReviewThunk = (review) => async (dispatch) => {
 		body: JSON.stringify,
 	});
 	 if (response.ok) {
-			const newData = await res.json();
+			const newData = await response.json();
 			dispatch(getReviewsActionCreator(newData));
 			return newData;
 		}
