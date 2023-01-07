@@ -21,9 +21,13 @@ def create_paymentinfo():
     
     exp_year = int(paymentInfo["expiration"][-4:])
     exp_month = int(paymentInfo["expiration"][:2])
+    
 
     paymentInfo["expiration"] = datetime.date(exp_year, exp_month, 1)
-    
+    #this ONLY works if: 
+    #the date coming in is a string!
+    #the format of that string is MMYYYY
+    #put a dash between MM/YYYY or something else, it doesn't matter if there's anything between them since it looks at the first two and last four characters
     
     # ** is Python's spread ('...' in JS)
     #take a string from expiration date and turn it into a datetime object here

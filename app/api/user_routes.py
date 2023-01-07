@@ -35,7 +35,6 @@ def get_all_orders_by_specific_user(id):
     users_orders = dict()
     
     for order in orders:
-        Print(order)
         if order.user_id == id:
             users_orders[order.id] = order.to_dict()
     
