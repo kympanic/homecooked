@@ -31,7 +31,7 @@ export const deleteReviewActionCreator = (reviewId) => {
 //THUNKS
 // GET all reviews by productId
 export const getReviewsThunk = (productId) => async (dispatch) => {
-	const response = await csrfFetch(`/api/products/${productId}/reviews`);
+	const response = await fetch(`/api/products/${productId}/reviews`);
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(getReviewsActionCreator(data));
@@ -41,7 +41,7 @@ export const getReviewsThunk = (productId) => async (dispatch) => {
 
 // CREATE A REVIEW based on productId
 export const createReviewThunk = (productId, review) => async (dispatch) =>{
-    const response = await csrfFetch(`/api/products/${productId}/reviews`, {
+    const response = await fetch(`/api/products/${productId}/reviews`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -58,12 +58,12 @@ export const createReviewThunk = (productId, review) => async (dispatch) =>{
 
 // EDIT A REVIEW
 export const editReviewThunk = (review) => async (dispatch) => {
-	const response = await csrfFetch(`/api/reviews/${review.id}`, {
+	const response = await fetch(`/api/reviews/${review.id}`, {
 		method: "PUT",
 		headers: {
-			"Content-Type": "application/json"
+			"Content-Type": "application/json",
 		},
-		body: JSON.stringify
+		body: JSON.stringify,
 	});
 	 if (response.ok) {
 			const newData = await res.json();
@@ -75,9 +75,9 @@ export const editReviewThunk = (review) => async (dispatch) => {
 
 // DELETE a REVIEW
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews/${reviewId}`,{
-         method: "DELETE",
-        });
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+		method: "DELETE",
+	});
         if(response.ok){
             dispatch(deleteReviewActionCreator(reviewId))
         }}
