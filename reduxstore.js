@@ -9,7 +9,7 @@ const store = {
 			shop_logo_img: "www.fecalmatter.edu",
 			shop_splash_img: "www.excrement.gov",
 			phone_number: 5102998877,
-			zipcode: 94455,
+			zipcode: '94455',
 		},
 		cart: [
 			{
@@ -32,7 +32,7 @@ const store = {
 			shop_logo_img: "www.fecalmatter.edu",
 			shop_splash_img: "www.excrement.gov",
 			phone_number: 5102998877,
-			zipcode: 94455,
+			zipcode: '94455',
 			//avgProductReview, could add via sql alchemy via rel b/w products table
 		},
 	},
