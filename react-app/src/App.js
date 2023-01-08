@@ -8,7 +8,8 @@ import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import { getAllProductsThunk } from "./store/products";
 import { getAllUsersThunk } from "./store/users";
-import ProductForm from "./components/ProductForm";
+// import ProductForm from "./components/ProductForm";
+import AddProductForm from "./components/Forms/AddProductForm";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -53,8 +54,11 @@ function App() {
 				<Route path="/store/:userId" exact={true}>
 					<StorePage />
 				</Route>
+				<Route path="/cart" exact={true}>
+					<CartPage />
+				</Route>
 				<ProtectedRoute path="/uploadProduct">
-					<ProductForm />
+					<AddProductForm />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />
