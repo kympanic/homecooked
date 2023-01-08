@@ -3,7 +3,7 @@ from flask_login import login_required
 from app.models import User, Product, Order, db
 from flask_login import current_user
 from ..utils import Print
-from ..utils import Print
+
 user_routes = Blueprint('users', __name__)
 
 
@@ -16,6 +16,14 @@ def users():
     users = User.query.all()
     return {'users': [user.to_dict() for user in users]}
 
+@user_routes.route('/stores')
+def users_with_stores():
+    # Query for all users that have an extant store page and return them in a list of user dictionaries
+    
+    users = User.query.filter(User.shop_name != None).all()
+    res = {user.id: user.to_dict() for user in users}
+    
+    return res
 
 @user_routes.route('/<int:id>')
 @login_required

@@ -14,8 +14,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     shop_name = db.Column(db.String(255), unique=True)
     profile_img = db.Column(db.String(255))
+    shop_logo_img = db.Column(db.String(255))
+    shop_splash_img = db.Column(db.String(255))
     phone_number = db.Column(db.Integer, nullable=False, unique=True)
-    zipcode = db.Column(db.Integer, nullable=False,)
+    zipcode = db.Column(db.String, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # relationship
@@ -42,6 +44,8 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'shopName': self.shop_name,
             'profileImg': self.profile_img,
+            'shopLogoImg': self.shop_logo_img,
+            'shopSplashImg': self.shop_splash_img,
             'phoneNumber': self.phone_number,
             'zipcode': self.zipcode
         }
