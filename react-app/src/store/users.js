@@ -6,7 +6,7 @@ const loadUsers = (payload) => ({
 });
 
 export const getAllUsersThunk = () => async (dispatch) => {
-	const res = await fetch("/api/users/");
+	const res = await fetch("/api/users");
 
 	if (res.ok) {
 		const payload = await res.json();

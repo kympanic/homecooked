@@ -130,12 +130,11 @@ const ModalAddProduct = ({ setIsOpen }) => {
 export default ModalAddProduct;
 
 //button usage
-{
-	/* <button
+
+/* <button
 className={styles.primaryBtn}
 onClick={() => setIsOpen(true)}
 >
 Create Product
 </button>
 {isOpen && <ModalAddProduct setIsOpen={setIsOpen} />} */
-}
