@@ -1,37 +1,61 @@
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { createReviewThunk } from "../../store/reviews";
 
 
-const ReviewForm = () => {
+const CreateReview = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
     const { productId } = useParams()
 	console.log(productId, "productId")
 
+	const reviews = useSelector((state) => state.reviews)
+	const userId = useSelector((state) => state.session.user.id)
+	console.log(userId, "userId")
 	const [rating, setRating] = useState("");
 	const [body, setBody] = useState("");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const payload = {
-            productId,
+			user_id: userId,
+            product_id: productId,
 			rating,
 			body
 		};
 
-		dispatch(createReviewThunk(productId, payload)).then(() => history.push("/"));
+		dispatch(createReviewThunk(productId, payload))
 		// if (createdReview) {
 		// 	go back to route
 		history.push(`/products/${productId}`);
 			// hideForm();
 		// }
-	};
-
 		setRating("");
 		setBody("");
+	};
 
+useEffect(() => {
+		const newErrors = [];
+		if (!body) {
+			newErrors.push("Review is required");
+		}
+		if (!rating) {
+			newErrors.push("Rating field is required");
+		}
+		// if(stars < 1.0 || stars > 5.0)
+		// {
+		// 	newErrors.push("Stars field needs to be a decimal number between 1.0 and 5.0");
+		// }
+		// setValidationErrors(newErrors);
+	}, [body, rating]);
+
+	const handleCancelClick = (e) => {
+		e.preventDefault();
+		history.push(`/products/${productId}`);
+
+		// hideForm();
+	};
 
 
 	return (
@@ -62,7 +86,13 @@ const ReviewForm = () => {
 
 					<div>
 						<button type="submit">Submit</button>
-						<Link to={"/"}>Cancel</Link>
+						<button
+							className="small-btn"
+							type="button"
+							onClick={handleCancelClick}
+						>
+							Cancel
+						</button>
 					</div>
 				</form>
 			</div>
@@ -70,4 +100,4 @@ const ReviewForm = () => {
 	);
 };
 
-export default ReviewForm;
+export default CreateReview;

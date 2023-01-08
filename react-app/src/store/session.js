@@ -2,7 +2,7 @@
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
-const GET_CART = "session/GET_CART";
+// const GET_CART = "session/GET_CART";
 const ADD_ITEM = "session/ADD_ITEM";
 const UPDATE_COUNT = "session/UPDATE_COUNT";
 const REMOVE_ITEM = "session/REMOVE_ITEM"
