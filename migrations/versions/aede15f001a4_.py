@@ -1,20 +1,8 @@
 """empty message
 
-<<<<<<< HEAD:migrations/versions/b34960464ed8_.py
-Revision ID: b34960464ed8
+Revision ID: aede15f001a4
 Revises: 
-Create Date: 2023-01-04 23:56:19.825430
-=======
-<<<<<<<< HEAD:migrations/versions/26944fe60ae3_.py
-Revision ID: 26944fe60ae3
-Revises: 
-Create Date: 2023-01-05 20:03:48.322471
-========
-Revision ID: 330fec533990
-Revises: 
-Create Date: 2023-01-04 20:58:07.244008
->>>>>>>> megha_routes:migrations/versions/330fec533990_.py
->>>>>>> 0491278c1a189eb160123d71ff88821d50e3e8e1:migrations/versions/26944fe60ae3_.py
+Create Date: 2023-01-07 19:04:42.670994
 
 """
 from alembic import op
@@ -22,15 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<< HEAD:migrations/versions/b34960464ed8_.py
-revision = 'b34960464ed8'
-=======
-<<<<<<<< HEAD:migrations/versions/26944fe60ae3_.py
-revision = '26944fe60ae3'
-========
-revision = '330fec533990'
->>>>>>>> megha_routes:migrations/versions/330fec533990_.py
->>>>>>> 0491278c1a189eb160123d71ff88821d50e3e8e1:migrations/versions/26944fe60ae3_.py
+revision = 'aede15f001a4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,8 +24,10 @@ def upgrade():
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('shop_name', sa.String(length=255), nullable=True),
     sa.Column('profile_img', sa.String(length=255), nullable=True),
+    sa.Column('shop_logo_img', sa.String(length=255), nullable=True),
+    sa.Column('shop_splash_img', sa.String(length=255), nullable=True),
     sa.Column('phone_number', sa.Integer(), nullable=False),
-    sa.Column('zipcode', sa.Integer(), nullable=False),
+    sa.Column('zipcode', sa.String(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
