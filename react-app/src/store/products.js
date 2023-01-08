@@ -22,6 +22,8 @@ export const getAllProductsThunk = () => async (dispatch) => {
 	}
 };
 
+//Need to do getSingleProductsThunk
+
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);
 
