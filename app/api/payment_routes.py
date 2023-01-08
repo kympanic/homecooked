@@ -14,6 +14,8 @@ def get_paymentinfo_by_id(id):
     
     return paymentInfo.to_dict()
 
+
+
 @payment_routes.route('', methods=["POST"])
 @login_required
 def create_paymentinfo():

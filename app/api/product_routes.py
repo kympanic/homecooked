@@ -2,7 +2,8 @@ from flask import Blueprint, request
 from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
-
+from app.forms import AddProductForm
+from werkzeug.datastructures import ImmutableMultiDict
 
 product_routes = Blueprint('products', __name__)
 
@@ -23,19 +24,29 @@ def get_product_by_id(id):
     res = {product.id: product.to_dict()}
     return res
 
+#URL ROUTE IN FLASK
 #Logged in user can create a new product
+#Receiving data from the React form in the frotned
+#ImmutableMulti dict - saves the multiple values of a key in form of a list
 @product_routes.route('',methods=['POST'])
 @login_required
 def  add_product():
-    product_data = request.json
-    Print(product_data)
+    form = AddProductForm()
 
-    new_product = Product(**product_data, user_id = current_user.id)
-
-    db.session.add(new_product)
-    db.session.commit()
-
-    return {new_product.id: new_product.to_dict()}
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        product = Product(
+            user_id=form.data['user_id'],
+            name=form.data['name'],
+            description=form.data['description'],
+            image_url=form.data['image_url'],
+            price=form.data['price']
+        )
+        db.session.add(product)
+        db.session.commit()
+        return {product.id: product.to_dict()}
+    return {'errors': form.errors}
+    
 
 #Logged in user can edit a product only if they are owner of the product
 @product_routes.route('/<int:id>', methods = ["PATCH", "PUT"])
