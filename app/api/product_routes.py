@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
-from app.forms import AddProductForm, EditProductForm
+from app.forms import ProductForm
 from werkzeug.datastructures import ImmutableMultiDict
 
 product_routes = Blueprint('products', __name__)
@@ -31,7 +31,7 @@ def get_product_by_id(id):
 @product_routes.route('',methods=['POST'])
 @login_required
 def  add_product():
-    form = AddProductForm()
+    form = ProductForm()
 
     Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -51,7 +51,7 @@ def  add_product():
 def edit_product(id):
     
     product = Product.query.get(id)
-    form = AddProductForm()
+    form = ProductForm()
     
     Print(form.data)
  
