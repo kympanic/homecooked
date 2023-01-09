@@ -8,7 +8,6 @@ import "./storepage.css";
 import styles from "../Modals/App.module.css";
 
 const StorePage = () => {
-	//getting info for the specific vendor on the page
 	const { userId } = useParams();
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
@@ -17,6 +16,7 @@ const StorePage = () => {
 
 	const history = useHistory();
 
+	console.log(vendor, "THIS IS TEH VENDOR");
 	let userProducts = [];
 	for (let i = 0; i < products.length; i++) {
 		if ((products[i].userId = userId)) {
@@ -31,7 +31,7 @@ const StorePage = () => {
 		}
 	}
 
-	console.log(userProducts, "THESE ARE THE PRODUCTS FOR THE USER");
+	// console.log(userProducts, "THESE ARE THE PRODUCTS FOR THE USER");
 
 	console.log(userReviews, "THESE ARE THE REVIEWS FOR THE USER");
 	//state for modal to create product show and not show
@@ -75,10 +75,7 @@ const StorePage = () => {
 			</div>
 
 			{isOpen && (
-				<ModalAddProduct
-					setIsOpen={setIsOpen}
-					userReviews={userReviews}
-				/>
+				<ModalAddProduct setIsOpen={setIsOpen} userReviews={userId} />
 			)}
 		</div>
 	);

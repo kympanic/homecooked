@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 
-class AddProductForm(FlaskForm):
+class EditProductForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
     description=StringField('description', validators=[DataRequired()])

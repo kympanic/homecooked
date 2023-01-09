@@ -6,7 +6,6 @@ import { deleteProductThunk } from "../../../store/products";
 
 const ModalDeleteProduct = ({ setIsOpen, product }) => {
 	const dispatch = useDispatch();
-	console.log(product, "these are passed down");
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

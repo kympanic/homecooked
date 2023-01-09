@@ -6,6 +6,7 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
+import EditPage from "./components/EditPage";
 import AddProductForm from "./components/Forms/AddProductForm";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
@@ -55,7 +56,10 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
-				<ProtectedRoute path="/uploadProduct">
+				<ProtectedRoute path="/products/:productId/edit" exact={true}>
+					<EditPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/uploadProduct" exact={true}>
 					<AddProductForm />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
