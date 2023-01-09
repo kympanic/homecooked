@@ -10,11 +10,12 @@ import EditPage from "./components/EditPage";
 import AddProductForm from "./components/Forms/AddProductForm";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
-import { getAllUsersThunk } from "./store/users";
-import { getAllProductsThunk } from "./store/products";
-import { getAllReviewsThunk } from "./store/reviews";
+
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
+import { getAllProductsThunk } from "./store/products";
+import { getAllReviewsThunk } from "./store/reviews";
+import { getAllUsersThunk } from "./store/users";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -31,8 +32,7 @@ function App() {
 		dispatch(getAllProductsThunk());
 		dispatch(getAllReviewsThunk());
 		dispatch(getAllUsersThunk());
-	}, [dispatch]);
-
+	});
 	if (!loaded) {
 		return null;
 	}
@@ -50,9 +50,9 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
-				<Route path="/store/:userId" exact={true}>
+				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
-				</Route>
+				</ProtectedRoute>
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>

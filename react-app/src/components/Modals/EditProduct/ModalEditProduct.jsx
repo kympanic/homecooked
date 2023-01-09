@@ -4,16 +4,15 @@ import { useDispatch } from "react-redux";
 import { editProductThunk } from "../../../store/products";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+// import { useParams } from "react-router-dom";
 
 const ModalEditProduct = ({ setIsOpen, product }) => {
-	const userId = useSelector((state) => state.session.user.id);
-
 	const dispatch = useDispatch();
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [price, setPrice] = useState("");
-
+	const [errors, setErrors] = useState([]);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedProduct = {
@@ -22,9 +21,15 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 			description,
 			image_url: imageUrl,
 			price,
-			user_id: userId,
+			user_id: product.userId,
 		};
-		dispatch(editProductThunk(editedProduct));
+
+		//error handling
+		let data = dispatch(editProductThunk(editedProduct));
+
+		if (data) {
+			setErrors(data);
+		}
 		setIsOpen(false);
 	};
 
@@ -95,6 +100,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 							</div>
 						</form>
 					</div>
+
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
 							<button

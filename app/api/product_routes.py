@@ -33,15 +33,12 @@ def get_product_by_id(id):
 def  add_product():
     form = AddProductForm()
 
+    Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        product = Product(
-            user_id=form.data['user_id'],
-            name=form.data['name'],
-            description=form.data['description'],
-            image_url=form.data['image_url'],
-            price=form.data['price']
-        )
+        product = Product()
+        form.populate_obj(product)
+
         db.session.add(product)
         db.session.commit()
         return {product.id: product.to_dict()}
@@ -54,34 +51,21 @@ def  add_product():
 def edit_product(id):
     
     product = Product.query.get(id)
-    form = EditProductForm()
+    form = AddProductForm()
+    
+    Print(form.data)
+ 
+    if form.data["user_id"] != current_user.id:
+        return {'error': "You are not authorized to edit this product"}, 401
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if form.data.get('name'):
-            product.name = form.data['name']
-        if form.data.get('description'):
-            product.description = form.data['description']
-        if form.data.get('image_url'):
-            product.image_url = form.data['image_url']
-        if form.data.get('price'):
-            product.price = form.data['price']
+        form.populate_obj(product)
+      
         db.session.commit()
 
     return {product.id: product.to_dict()}
 
-    # data = request.json
-
-
-    # if product.user_id != current_user.id:
-    #     return {'error': "You are not authorized to edit this product"}, 401
-
-    # if data.get('name'):
-    #     product.name = data['name']
-    # if data.get('description'):
-    #     product.description = data['description']
-    
-    # db.session.commit()
 
 #User can delete from product id if they own the product
 @product_routes.route('/<int:id>', methods = ["DELETE"])

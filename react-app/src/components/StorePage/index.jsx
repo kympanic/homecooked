@@ -2,21 +2,25 @@ import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import ReviewSwiper from "../ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsersThunk } from "../../store/users";
+import { getAllReviewsThunk } from "../../store/reviews";
 
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
 
 const StorePage = () => {
 	const { userId } = useParams();
+	const dispatch = useDispatch();
+
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
 	const reviews = useSelector((state) => Object.values(state?.reviews));
-	const sessionUserId = useSelector((state) => state.session.user.id);
+	const sessionUserId = useSelector((state) => state?.session.user.id);
 
 	const history = useHistory();
 
-	console.log(vendor, "THIS IS TEH VENDOR");
+	// console.log(vendor, "THIS IS TEH VENDOR");
 	let userProducts = [];
 	for (let i = 0; i < products.length; i++) {
 		if ((products[i].userId = userId)) {
@@ -33,7 +37,7 @@ const StorePage = () => {
 
 	// console.log(userProducts, "THESE ARE THE PRODUCTS FOR THE USER");
 
-	console.log(userReviews, "THESE ARE THE REVIEWS FOR THE USER");
+	// console.log(userReviews, "THESE ARE THE REVIEWS FOR THE USER");
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -71,12 +75,10 @@ const StorePage = () => {
 				</div>
 			</div>
 			<div className="sample-review-container">
-				<ReviewSwiper />
+				<ReviewSwiper reviews={reviews} />
 			</div>
 
-			{isOpen && (
-				<ModalAddProduct setIsOpen={setIsOpen} userReviews={userId} />
-			)}
+			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 		</div>
 	);
 };

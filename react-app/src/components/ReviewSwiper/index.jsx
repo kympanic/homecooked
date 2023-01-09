@@ -1,14 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
-import { getAllReviewsThunk } from "../../store/reviews";
-const ReviewSwiper = ({ userId }) => {
-	const dispatch = useDispatch();
-	const reviews = useSelector((state) => Object.state?.reviews);
-
-	useEffect(() => {
-		dispatch(getAllReviewsThunk());
-	}, [dispatch]);
+const ReviewSwiper = ({ reviews }) => {
+	console.log(reviews, "this is the reviews");
+	// const reviews = useSelector((state) => Object.state?.reviews);
 
 	// let userReviews = [];
 	// for (let i = 0; i < reviews?.length; i++) {

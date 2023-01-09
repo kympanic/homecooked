@@ -25,10 +25,7 @@ const EditPage = () => {
 					Delete
 				</button>
 				{isOpenDelete && (
-					<ModalDeleteProduct
-						setIsOpen={setIsOpenDelete}
-						product={product}
-					/>
+					<ModalDeleteProduct setIsOpen={setIsOpenDelete} />
 				)}
 			</div>
 			<div>

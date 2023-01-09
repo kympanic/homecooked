@@ -39,11 +39,12 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			price,
 		};
 
-		dispatch(createProductThunk(newProduct));
+		let data = dispatch(createProductThunk(newProduct));
 		setIsOpen(false);
-		// if (data) {
-		// 	setErrors(data);
-		// }
+		if (data) {
+			setErrors(data);
+		}
+		console.log(errors, "THESE ARE THE ERRORS");
 	};
 
 	return (
