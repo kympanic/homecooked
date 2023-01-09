@@ -17,9 +17,6 @@ const StorePage = () => {
 
 	const history = useHistory();
 
-	console.log(products, "THIS IS ALL THE PRODUCTS");
-	console.log(reviews, "THESE ARE THE REVIEWS");
-
 	let userProducts = [];
 	for (let i = 0; i < products.length; i++) {
 		if ((products[i].userId = userId)) {
@@ -77,7 +74,12 @@ const StorePage = () => {
 				<ReviewSwiper />
 			</div>
 
-			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
+			{isOpen && (
+				<ModalAddProduct
+					setIsOpen={setIsOpen}
+					userReviews={userReviews}
+				/>
+			)}
 		</div>
 	);
 };
