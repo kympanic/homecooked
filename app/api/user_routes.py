@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Product, Order, db
+from app.models import User, Product, Order, Review, db
 from flask_login import current_user
 from ..utils import Print
 
@@ -8,22 +8,16 @@ user_routes = Blueprint('users', __name__)
 
 
 @user_routes.route('/')
-@login_required
+
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
     """
     users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
-
-@user_routes.route('/stores')
-def users_with_stores():
-    # Query for all users that have an extant store page and return them in a list of user dictionaries
-    
-    users = User.query.filter(User.shop_name != None).all()
     res = {user.id: user.to_dict() for user in users}
-    
     return res
+
+
 
 @user_routes.route('/<int:id>')
 @login_required
@@ -54,3 +48,13 @@ def get_all_orders_by_specific_user(id):
     users_orders = {order.id: order.to_dict() for order in orders}
     
     return users_orders
+
+@user_routes.route('/stores')
+def users_with_stores():
+    # Query for all users that have an extant store page and return them in a list of user dictionaries
+    
+    users = User.query.filter(User.shop_name != None).all()
+    res = {user.id: user.to_dict() for user in users}
+    
+    return res
+
