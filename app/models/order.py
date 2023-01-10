@@ -7,38 +7,25 @@ class Order(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     payment_id = db.Column(db.Integer, db.ForeignKey('payments.id'), nullable=False)
 
-
     #relationships
-    orders = db.relationship('User',back_populates = 'user_orders')
-    payments = db.relationship('Payment', back_populates='payment_orders')
+    user = db.relationship('User',back_populates = 'user_orders')
     products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
+    payment = db.relationship('Payment', back_populates='payment_orders')
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.user_id,
             'paymentId': self.payment_id,
-            'productsWithOrder': [product.to_dict_basic()['id'] for product in self.products_with_order]
+            'user': self.user.to_dict_basic(),
+            'payment': self.payment.to_dict_basic()
         }
-
-    def __repr__(self):
-        return f'<Order id: {self.id} userId: {self.user_id} paymentId: {self.payment_id}>'
 
     def to_dict_basic(self):
         return {
-            "id": self.id,
+            'products': [product.to_dict_basic() for product in self.products_with_order],
         }
-
-    # js_orders = []
-
-    # print('*\n'*50)
-
-    # for product in self.products_with_order:
-    #     js_orders.append(product.to_dict())
-
-    # print(js_orders)

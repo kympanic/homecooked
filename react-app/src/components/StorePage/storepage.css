@@ -1,0 +1,45 @@
+.store-page {
+	margin-left: 14%;
+	margin-right: 14%;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
+.splash-img-container {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.splash-img-container img {
+	width: 100%;
+}
+
+.header-container {
+	display: flex;
+	height: 350px;
+	border: black solid 2px;
+}
+
+.header-left {
+	width: 70%;
+	height: 100%;
+	text-align: right;
+}
+
+.header-right {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	justify-content: center;
+}
+
+.sample-review-container {
+	margin-top: 10px;
+	border: 2px red solid;
+	height: 150px;
+}

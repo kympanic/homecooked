@@ -7,15 +7,15 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', shop_name="Yummy Shop", profile_img = 'https://www.pexels.com/photo/man-smiling-behind-wall-220453/',phone_number = 876539333, zipcode = 124555, password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io',shop_name="Poo Poo Shop", profile_img='https://www.pexels.com/photo/silhouette-photo-of-woman-holding-lights-3792581/',phone_number = 1800456696,zipcode=233456, password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', shop_name="Moo Moo Shop", profile_img='https://www.shutterstock.com/image-photo/happy-laughing-baby-wearing-yellow-260nw-390443464.jpg',phone_number = 1800456396,zipcode=233456, password='password')
-
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+        username='Demo', email='demo@aa.io', shop_name="Demo Shop", profile_img = 'https://www.pexels.com/photo/man-smiling-behind-wall-220453/', shop_logo_img = 'https://media.tenor.com/ytbz1Epg7Q8AAAAC/predator-arnold.gif', shop_splash_img = 'https://media.istockphoto.com/id/535786572/photo/grilled-striploin-steak.jpg?b=1&s=612x612&w=0&k=20&c=4MAcTyBrF7XkcltOt9WpTXwM6-uuf7qWUP6-j7srefc=', phone_number = 876539333, zipcode = '92551', password='password')
+    wednesdayaddams = User(
+        username='wednesdayaddams', email='wednesdayadams@aa.io',shop_name="Trick or Treat?", profile_img='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/profile+pictures/Jenna_Ortega_Merlina_Addams.webp', shop_logo_img = 'https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/healthy-halloween-snacks-1.jpeg', shop_splash_img ='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/Adams-Family-Snap-Guide-2.jpeg', phone_number = 1800456696,zipcode='92555', password='password')
+    homersimpson = User(
+        username='homersimpson', email='homersimpson@aa.io', shop_name='Doh! Donuts', profile_img='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/profile+pictures/Simpsons_SO28_Gallery_11-fb0b632.jpeg', shop_logo_img = 'https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/252637901_436135504594462_5886281448989624379_n.jpeg', shop_splash_img = 'https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/135742229_247761436765204_8875221857717925711_n.jpeg', phone_number = 2159976207,zipcode="92557", password='password')
+    ricksanchez = User(
+        username='ricksanchez', email='ricksanchez@aa.io', profile_img='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/profile+pictures/ricksanchez.webp', phone_number=5085994721, zipcode='92507', password='password')
+    
+    db.session.add_all([demo,wednesdayaddams,homersimpson,ricksanchez])
     db.session.commit()
 
 

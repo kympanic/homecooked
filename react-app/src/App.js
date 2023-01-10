@@ -6,13 +6,16 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
-// import ProductForm from "./components/ProductForm";
-import CartPage from "./components/CartPage"
-import ProfilePage from "./components/ProfilePage"
-import CreateReview from "./components/ReviewForm";
-// import ProtectedRoute from "./components/auth/ProtectedRoute";
+import CartPage from "./components/CartPage";
+import ProfilePage from "./components/ProfilePage";
+import PageNotFound from "./components/PageNotFound";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import SingleReview from "./components/SingleReview.js";
+import { getAllUsersThunk } from "./store/users";
+
+import TestEditProductPage from "./components/TestEditProductPage";
+import TestEditReviewPage from "./components/TestEditReviewPage";
+import TestPaymentPage from "./components/TestPaymentPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -25,6 +28,10 @@ function App() {
 		})();
 	}, [dispatch]);
 
+	useEffect(() => {
+		dispatch(getAllUsersThunk());
+	});
+
 	if (!loaded) {
 		return null;
 	}
@@ -33,6 +40,9 @@ function App() {
 		<BrowserRouter>
 			<NavBar />
 			<Switch>
+				<Route path="/" exact={true}>
+					<HomePage />
+				</Route>
 				<Route path="/login" exact={true}>
 					<LoginForm />
 				</Route>
@@ -42,24 +52,23 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
-				<Route path="/store/:userId" exact={true}>
-					<StorePage />
-				</Route>
-
-				<Route path="/reviews/:reviewId" exact={true}>
-					<SingleReview />
-				</Route>
-
-				<Route path="/products/:productId/review" exact={true}>
-					<CreateReview />
-				</Route>
-
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
-
-				<Route path="/" exact={true}>
-					<HomePage />
+				<ProtectedRoute path="/store/:userId" exact={true}>
+					<StorePage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/payments/:paymentId">
+					<TestPaymentPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/products/:productId/edit" exact={true}>
+					<TestEditProductPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/reviews/:reviewId/edit" exact={true}>
+					<TestEditReviewPage />
+				</ProtectedRoute>
+				<Route path="/">
+					<PageNotFound />
 				</Route>
 			</Switch>
 		</BrowserRouter>

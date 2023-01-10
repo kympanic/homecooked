@@ -1,110 +1,102 @@
-
 //Actions
-const GET_REVIEWS = "reviews/GET_REVIEWS";
-const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
+const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
 
-//ACTION CREATORS
-// GET
-export const getReviewsActionCreator = (reviews) => {
+const loadReviews = (payload) => {
 	return {
-		type: GET_REVIEWS,
-		reviews,
+		type: LOAD_REVIEWS,
+		payload,
 	};
 };
-//POST
-export const createReviewActionCreator = (review) =>{
-    return {
-        type: CREATE_REVIEW,
-        review
-    }
-}
 
-// DELETE
-export const deleteReviewActionCreator = (reviewId) => {
+const deleteReview = (payload) => {
 	return {
 		type: DELETE_REVIEW,
-		reviewId,
+		payload,
 	};
 };
 
 //THUNKS
-// GET all reviews by productId
-export const getReviewsThunk = (productId) => async (dispatch) => {
-	const response = await fetch(`/api/products/${productId}/reviews`);
+
+// GET all reviews
+export const getAllReviewsThunk = () => async (dispatch) => {
+	const response = await fetch(`/api/reviews`);
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(getReviewsActionCreator(data));
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
+
+//GET specific review by reviewId
+export const getReviewByReviewIdThunk = (reviewId) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/${reviewId}`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
 		return data;
 	}
 };
 
 // CREATE A REVIEW based on productId
-export const createReviewThunk = (productId, review) => async (dispatch) =>{
-    const response = await fetch(`/api/products/${productId}/reviews`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(review),
-		});
+export const createReviewThunk = (data) => async (dispatch) => {
+	const newReview = JSON.stringify(data);
 
-        if(response.ok){
-            const data = await response.json();
-            dispatch(createReviewActionCreator(data))
-            return data;
-        }
-}
+	const response = await fetch(`/api/products/${data.product_id}/reviews`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: newReview,
+	});
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
 
 // EDIT A REVIEW
 export const editReviewThunk = (review) => async (dispatch) => {
+	const editedReview = JSON.stringify(review);
 	const response = await fetch(`/api/reviews/${review.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify,
+		body: editedReview,
 	});
-	 if (response.ok) {
-			const newData = await response.json();
-			dispatch(getReviewsActionCreator(newData));
-			return newData;
-		}
-}
-
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
 
 // DELETE a REVIEW
-export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
+export const deleteReviewThunk = (data) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/${data.id}`, {
 		method: "DELETE",
 	});
-        if(response.ok){
-            dispatch(deleteReviewActionCreator(reviewId))
-        }}
-
+	if (response.ok) {
+		dispatch(deleteReview(data.id));
+	}
+};
 
 //REDUCER
 const initialState = {};
-const reviewReducer = (state=initialState, action) =>{
-    let newState = {...state}
-    switch(action.type){
-    case GET_REVIEWS:
-			const allReviews = {};
-			action.reviews.forEach((review) => {
-				allReviews[review.id] = review;
-			});
-			return {
-				...state,
-				...allReviews,
-			};
-    case CREATE_REVIEW:
-        newState[action.review.id] = action.review
-        return newState
-    case DELETE_REVIEW:
-        delete newState[action.reviewId]
-        return newState;
-    default:
-    return state;
-}}
+const reviewReducer = (state = initialState, action) => {
+	let newState = { ...state };
+	switch (action.type) {
+		case LOAD_REVIEWS:
+			return { ...newState, ...action.payload };
+		case DELETE_REVIEW:
+			delete newState[action.reviewId];
+			return newState;
+		default:
+			return state;
+	}
+};
 
 export default reviewReducer;

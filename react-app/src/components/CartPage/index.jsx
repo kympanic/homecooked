@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { useSelector, useDispatch } from "react-redux";
 // import { getAllCartItems, reset } from "../../store/cart";
 // // import CartItem from "./CartItem";
@@ -46,3 +47,14 @@
 
 
 // export default CartPage;
+=======
+const CartPage = () => {
+	return (
+		<div>
+			<h1>Cart Page</h1>
+		</div>
+	);
+};
+
+export default CartPage;
+>>>>>>> 42291acd5b681c2fa8da1256ab25aad66a8cc025

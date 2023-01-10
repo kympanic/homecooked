@@ -14,14 +14,16 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     shop_name = db.Column(db.String(255), unique=True)
     profile_img = db.Column(db.String(255))
+    shop_logo_img = db.Column(db.String(255))
+    shop_splash_img = db.Column(db.String(255))
     phone_number = db.Column(db.Integer, nullable=False, unique=True)
-    zipcode = db.Column(db.Integer, nullable=False,)
+    zipcode = db.Column(db.String, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    # relationship
+    #relationships
     products = db.relationship('Product', back_populates = 'user_products', cascade = 'all, delete')
     user_reviews = db.relationship('Review', back_populates='user', cascade = 'all, delete')
-    user_orders = db.relationship('Order', back_populates='orders', cascade = 'all, delete')
+    user_orders = db.relationship('Order', back_populates='user', cascade = 'all, delete')
     user_credit_cards = db.relationship('Payment', back_populates='user_payments', cascade='all,delete')
 
     @property
@@ -42,6 +44,21 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'shopName': self.shop_name,
             'profileImg': self.profile_img,
+            'shopLogoImg': self.shop_logo_img,
+            'shopSplashImg': self.shop_splash_img,
+            'phoneNumber': self.phone_number,
+            'zipcode': self.zipcode,
+            'products': [product.to_dict_basic() for product in self.products],
+            'reviews':[review.to_dict_basic() for review in self.user_reviews],
+            'orders': [order.to_dict_basic() for order in self.user_orders],
+            'creditCards': [payment.to_dict_basic() for payment in self.user_credit_cards],
+        }
+
+    def to_dict_basic(self):
+        return {
+            'username': self.username,
+            'email': self.email,
+            'shopName': self.shop_name,
             'phoneNumber': self.phone_number,
             'zipcode': self.zipcode
         }

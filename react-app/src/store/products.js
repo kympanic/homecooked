@@ -19,6 +19,17 @@ export const getAllProductsThunk = () => async (dispatch) => {
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(loadProducts(payload));
+		return payload;
+	}
+};
+
+export const getSingleProduct = (id) => async (dispatch) => {
+	const res = await fetch(`/api/products/${id}`);
+
+	if (res.ok) {
+		const payload = await res.json();
+		dispatch(loadProducts(payload));
+		return payload;
 	}
 };
 
@@ -42,7 +53,7 @@ export const createProductThunk = (data) => async (dispatch) => {
 export const editProductThunk = (data) => async (dispatch) => {
 	const editedProduct = JSON.stringify(data);
 
-	const res = await fetch("/api/products", {
+	const res = await fetch(`/api/products/${data.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
