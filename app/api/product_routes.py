@@ -2,13 +2,8 @@ from flask import Blueprint, request, redirect
 from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
-<<<<<<< HEAD
-from app.forms import ReviewForm
-
-=======
-from app.forms import ProductForm
+from app.forms import ProductForm, ReviewForm
 from werkzeug.datastructures import ImmutableMultiDict
->>>>>>> 40e34eb1a8305c79b1f31de3e667e96db931bde5
 
 product_routes = Blueprint('products', __name__)
 
@@ -63,24 +58,11 @@ def edit_product(id):
     if form.data["user_id"] != current_user.id:
         return {'error': "You are not authorized to edit this product"}, 401
 
-<<<<<<< HEAD
-    if data.get('name'):
-        product.name = data['name']
-    if data.get('description'):
-        product.description = data['description']
-    if data.get('image_url'):
-        product.image_url = data['image_url']
-    if data.get('price'):
-        product.price = data['price']
-
-    db.session.commit()
-=======
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(product)
       
         db.session.commit()
->>>>>>> 40e34eb1a8305c79b1f31de3e667e96db931bde5
 
     return {product.id: product.to_dict()}
 
