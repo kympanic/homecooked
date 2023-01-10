@@ -25,7 +25,12 @@ const TestEditProductPage = () => {
 		<div>
 			<p>Name: {product?.name}</p>
 			<p>Description: {product?.description}</p>
-			<p>Image Placeholder :{product?.imageUrl}</p>
+			<p>Image:</p>
+			<img
+				src={product?.imageURL}
+				alt={product?.name}
+				style={{ width: "300px" }}
+			/>
 			<p>$ {product?.price}</p>
 			<div>
 				<button
