@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Product, Order, Review, db
+from app.models import User, Product, Order, Review,Payment, db
 from flask_login import current_user
 from ..utils import Print
 
@@ -66,5 +66,13 @@ def get_all_reviews_by_specific_user(id):
     reviews = Review.query.filter(Review.user_id == id).all()
 
     res = {review.id: review.to_dict() for review in reviews}
-    Print(res)
+    return res
+
+#GET ALL PAYMENTS FOR USER DEPENDING ON USERID
+@user_routes.route("/<int:id>/payments")
+@login_required
+def get_all_payments_by_specific_user(id):
+    payments = Payment.query.filter(Payment.user_id == id).all()
+
+    res={payment.id: payment.to_dict() for payment in payments}
     return res
