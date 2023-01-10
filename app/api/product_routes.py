@@ -13,7 +13,7 @@ def get_all_products():
     products = Product.query.all()
 
     res = {product.id: product.to_dict() for product in products}
-    
+    Print(res)
     return res
 
 #User can get a specific product depending on id

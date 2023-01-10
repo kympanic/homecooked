@@ -9,11 +9,9 @@ import HomePage from "./components/HomePage";
 import EditPage from "./components/EditPage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
-
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllProductsThunk } from "./store/products";
-import { getAllReviewsThunk } from "./store/reviews";
 import { getAllUsersThunk } from "./store/users";
 
 function App() {
@@ -29,7 +27,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllProductsThunk());
-		dispatch(getAllReviewsThunk());
+
 		dispatch(getAllUsersThunk());
 	});
 	if (!loaded) {
@@ -49,14 +47,14 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
-				<ProtectedRoute path="/store/:userId" exact={true}>
-					<StorePage />
-				</ProtectedRoute>
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
 				<ProtectedRoute path="/products/:productId/edit" exact={true}>
 					<EditPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/store/:userId" exact={true}>
+					<StorePage />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />

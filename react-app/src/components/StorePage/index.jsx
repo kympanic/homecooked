@@ -3,7 +3,6 @@ import ReviewSwiper from "../ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsersThunk } from "../../store/users";
 import { getAllReviewsThunk } from "../../store/reviews";
 
 import "./storepage.css";
@@ -12,13 +11,16 @@ import styles from "../Modals/App.module.css";
 const StorePage = () => {
 	const { userId } = useParams();
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
 	const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
-	const history = useHistory();
+	useEffect(() => {
+		dispatch(getAllReviewsThunk());
+	}, [dispatch]);
 
 	// console.log(vendor, "THIS IS TEH VENDOR");
 	let userProducts = [];
