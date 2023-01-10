@@ -12,6 +12,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
+	const [category, setCategory] = useState("");
 	const [price, setPrice] = useState("");
 
 	const updateName = (e) => {
@@ -28,6 +29,9 @@ const ModalAddProduct = ({ setIsOpen }) => {
 		setPrice(e.target.value);
 	};
 
+	const updateCategory = (e) => {
+		setCategory(e.target.value);
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -37,6 +41,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			description,
 			image_url: imageUrl,
 			price,
+			category,
 		};
 
 		let data = dispatch(createProductThunk(newProduct));
@@ -101,6 +106,15 @@ const ModalAddProduct = ({ setIsOpen }) => {
 									name="price"
 									onChange={updatePrice}
 									value={price}
+								/>
+							</div>
+							<div>
+								<label>Category: </label>
+								<input
+									type="text"
+									name="category"
+									onChange={updateCategory}
+									value={category}
 								/>
 							</div>
 						</form>

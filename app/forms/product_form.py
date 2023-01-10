@@ -10,4 +10,5 @@ class ProductForm(FlaskForm):
     description=StringField('description', validators=[DataRequired()])
     image_url=StringField('image_url')
     price=StringField('price', validators=[DataRequired()])
+    category=StringField('category', validators =[DataRequired()])
     

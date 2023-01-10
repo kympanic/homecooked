@@ -81,10 +81,9 @@ def delete_product(id):
 def get_reviews(id):
     #get reviews by product id
     reviews = Review.query.filter(Review.product_id == id).all()
-    Print(reviews)
 
     res = {review.id: review.to_dict() for review in reviews}
-    Print(res)
+    
     return res
 
 # POST REVIEW ON PRODUCT BASED ON PRODUCT ID

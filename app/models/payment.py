@@ -11,7 +11,7 @@ class Payment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     provider = db.Column(db.String(255), nullable=False)
     account_number = db.Column(db.String(16), nullable=False, unique=True)
-    expiration = db.Column(db.DateTime, nullable=False)
+    expiration = db.Column(db.String(6), nullable=False)
     
     #relationships
     user_payments = db.relationship('User', back_populates = 'user_credit_cards')

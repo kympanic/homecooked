@@ -8,5 +8,5 @@ class PaymentForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired()])
     provider = StringField('provider', validators=[DataRequired()])
     account_number=StringField('account_number', validators=[DataRequired()])
-    expiration=DateField('expiration', validators=[DataRequired()])
+    expiration=StringField('expiration', validators=[DataRequired()])
     
