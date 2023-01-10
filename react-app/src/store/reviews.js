@@ -4,8 +4,6 @@ const CREATE_REVIEW = "reviews/CREATE_REVIEW";
 const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
 
-//GET
-
 const loadReviews = (payload) => ({
 	type: LOAD_REVIEWS,
 	payload,
