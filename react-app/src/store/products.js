@@ -23,18 +23,15 @@ export const getAllProductsThunk = () => async (dispatch) => {
 	}
 };
 
-export const getProductsByUserIdThunk = (userId) => async (dispatch) => {
-	const response = await fetch(`/api/users/${userId}/products`);
+export const getSingleProduct = (id) => async (dispatch) => {
+	const res = await fetch(`/api/products/${id}`);
 
-	if (response.ok) {
-		const data = await response.json();
-		console.log(data, "IS IT GETTING HERE");
-		dispatch(loadProducts(data));
-		return data;
+	if (res.ok) {
+		const payload = await res.json();
+		dispatch(loadProducts(payload));
+		return payload;
 	}
 };
-
-//Need to do getSingleProductsThunk
 
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);

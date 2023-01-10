@@ -14,8 +14,31 @@ export const getAllUsersThunk = () => async (dispatch) => {
 	}
 };
 
-//Need to create a edituserthunk and edituserapi route to be used in the shop edit page.
-//Also will be used in the profile edit page
+export const getUserThunk = (userId) => async (dispatch) => {
+	const res = await fetch(`/api/users/${userId}`);
+
+	if (res.ok) {
+		const payload = await res.json();
+		dispatch(loadUsers(payload));
+	}
+};
+
+export const editUserThunk = (data) => async (dispatch) => {
+	const editedUser = JSON.stringify(data);
+
+	const res = await fetch(`/api/users/${data.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: editedUser,
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		dispatch(loadUsers(data));
+	}
+};
 
 const userReducer = (state = {}, action) => {
 	let newState = { ...state };
