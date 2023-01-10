@@ -22,7 +22,6 @@ class Order(db.Model):
             'userId': self.user_id,
             'paymentId': self.payment_id,
             'user': self.user.to_dict_basic(),
-            'products': [product.to_dict_basic() for product in self.products_with_order],
             'payment': self.payment.to_dict_basic()
         }
 
@@ -30,4 +29,5 @@ class Order(db.Model):
         return {
             'userId': self.user_id,
             'paymentId': self.payment_id,
+            'products': [product.to_dict_basic() for product in self.products_with_order],
         }
