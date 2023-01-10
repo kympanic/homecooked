@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField
+from wtforms import StringField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, InputRequired
-from app.models import User, Review
+
 
 
 
@@ -12,6 +12,7 @@ def rating_check(form, field):
 class ReviewForm(FlaskForm):
     body = TextAreaField('review', validators=[DataRequired()])
     rating = StringField('rating', [InputRequired(), rating_check])
+    user_id= IntegerField('user_id', validators=[DataRequired()])
 
 
     # id = db.Column(db.Integer, primary_key=True)
