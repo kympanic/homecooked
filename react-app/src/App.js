@@ -59,9 +59,6 @@ function App() {
 				<ProtectedRoute path="/products/:productId/edit" exact={true}>
 					<EditPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/uploadProduct" exact={true}>
-					<AddProductForm />
-				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />
 				</Route>
