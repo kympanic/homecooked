@@ -32,7 +32,7 @@ class Review(db.Model):
         return {
             'rating': self.rating,
             'body': self.body,
-            'userId': self.user_id,
+            'reviewId': self.id
         }
     def __repr__(self):
         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>"

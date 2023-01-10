@@ -27,7 +27,5 @@ class Order(db.Model):
 
     def to_dict_basic(self):
         return {
-            'userId': self.user_id,
-            'paymentId': self.payment_id,
             'products': [product.to_dict_basic() for product in self.products_with_order],
         }
