@@ -12,9 +12,9 @@ payment_routes = Blueprint('payments', __name__)
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
-    payments = Payment.query.filter(Payment.user_id == id).all()
-  
-    res = {payment.id: payment.to_dict() for payment in payments}
+    payment = Payment.query.get(id)
+
+    res = {payment.id: payment.to_dict()}
     
     return res
 
