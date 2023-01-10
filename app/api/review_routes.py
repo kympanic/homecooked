@@ -6,7 +6,6 @@ from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
-
 #GET ALL THE REVIEWS 
 @review_routes.route('')
 def get_all_reviews():
@@ -24,8 +23,7 @@ def get_review_by_review_id(id):
     Print(res)
     return res
 
-# User can update a review that they created
-# PUT api/reviews/:id
+#EDIT REVIEW BASED ON REVIEWID
 @review_routes.route('/<int:id>', methods=['PUT', 'PATCH'])
 @login_required
 def edit_review(id):
@@ -51,7 +49,6 @@ def delete_review(id):
 
     if review.user_id != current_user.id:
         return {"error": "You are not authorized to delete this review"}, 401
-
 
     db.session.delete(review)
     db.session.commit()

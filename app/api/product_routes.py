@@ -24,8 +24,7 @@ def get_product_by_id(id):
     res = {product.id: product.to_dict()}
     return res
 
-
-#CREATE NEW PRODUCT
+#POST NEW PRODUCT
 #ImmutableMulti dict - saves the multiple values of a key in form of a list
 @product_routes.route('',methods=['POST'])
 @login_required
@@ -44,15 +43,12 @@ def  add_product():
     return {'errors': form.errors}
     
 
-#EDIT A PRODUCT
+#EDIT A PRODUCT BASED ON ID
 @product_routes.route('/<int:id>', methods = ["PATCH", "PUT"])
 @login_required
 def edit_product(id):
-    
     product = Product.query.get(id)
     form = ProductForm()
-    
-    Print(form.data)
  
     if form.data["user_id"] != current_user.id:
         return {'error': "You are not authorized to edit this product"}, 401
@@ -66,23 +62,21 @@ def edit_product(id):
     return {product.id: product.to_dict()}
 
 
-#User can delete from product id if they own the product
+#DELETE A PRODUCT 
 @product_routes.route('/<int:id>', methods = ["DELETE"])
 @login_required
 def delete_product(id):
-
     product = Product.query.get(id)
+
     if product.user_id != current_user.id:
         return {'error': "You are not authorized to delete this product"}, 401
-
 
     db.session.delete(product)
     db.session.commit()
 
     return {"msg": "Successfully deleted the product"}
 
-# User can retrieve all reviews for a specific product id
-# GET api/products/:id/reviews
+# GET REVIEWS BASED ON PRODUCT ID
 @product_routes.route('/<int:id>/reviews', methods = ['GET'])
 def get_reviews(id):
     #get reviews by product id
@@ -93,9 +87,7 @@ def get_reviews(id):
     Print(res)
     return res
 
-
-# User can post a review on a food item
-# POST api/products/:id/reviews
+# POST REVIEW ON PRODUCT BASED ON PRODUCT ID
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def create_review(id):
