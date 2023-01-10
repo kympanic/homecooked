@@ -22,6 +22,8 @@ export const getAllProductsThunk = () => async (dispatch) => {
 	}
 };
 
+//Need to do getSingleProductsThunk
+
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);
 
@@ -42,7 +44,7 @@ export const createProductThunk = (data) => async (dispatch) => {
 export const editProductThunk = (data) => async (dispatch) => {
 	const editedProduct = JSON.stringify(data);
 
-	const res = await fetch("/api/products", {
+	const res = await fetch(`/api/products/${data.id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

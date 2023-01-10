@@ -10,9 +10,12 @@ payment_routes = Blueprint('payments', __name__)
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
+    
     paymentInfo = Payment.query.get(id)
     
     return paymentInfo.to_dict()
+
+
 
 @payment_routes.route('', methods=["POST"])
 @login_required

@@ -6,13 +6,14 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
-// import ProductForm from "./components/ProductForm";
-import CartPage from "./components/CartPage"
-import ProfilePage from "./components/ProfilePage"
+import EditPage from "./components/EditPage";
+import AddProductForm from "./components/Forms/AddProductForm";
+import CartPage from "./components/CartPage";
+import ProfilePage from "./components/ProfilePage";
+
 import CreateReview from "./components/ReviewForm";
-// import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import SingleReview from "./components/SingleReview.js";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -25,6 +26,11 @@ function App() {
 		})();
 	}, [dispatch]);
 
+	useEffect(() => {
+		dispatch(getAllProductsThunk());
+		dispatch(getAllReviewsThunk());
+		dispatch(getAllUsersThunk());
+	});
 	if (!loaded) {
 		return null;
 	}
@@ -42,9 +48,9 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
-				<Route path="/store/:userId" exact={true}>
+				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
-				</Route>
+				</ProtectedRoute>
 
 				<Route path="/reviews/:reviewId" exact={true}>
 					<SingleReview />
@@ -57,7 +63,9 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
-
+				<ProtectedRoute path="/products/:productId/edit" exact={true}>
+					<EditPage />
+				</ProtectedRoute>
 				<Route path="/" exact={true}>
 					<HomePage />
 				</Route>

@@ -7,6 +7,19 @@ from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
+@review_routes.route('')
+def get_all_reviews():
+    reviews = Review.query.all()
+
+    Print(reviews)
+
+    res = {review.id: review.to_dict() for review in reviews}
+    
+    return res
+
+
+
+
 # User can update a review that they created
 # PUT api/reviews/:id
 @review_routes.route('/<int:id>', methods=['PUT', 'PATCH'])

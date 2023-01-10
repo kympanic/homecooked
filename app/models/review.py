@@ -27,5 +27,5 @@ class Review(db.Model):
             'productId': self.product_id
         }
 
-# def __repr__(self):
-#         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}, avg_rating: {self.avg_rating}>"
+def __repr__(self):
+        return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>"
