@@ -8,6 +8,7 @@ import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import EditProductPage from "./components/EditProductPage";
 import EditReviewPage from "./components/EditReviewPage";
+import PaymentTestPage from "./components/PaymentTestPage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -48,12 +49,15 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
+				<ProtectedRoute path="/paymentsTest">
+					<PaymentTestPage />
+				</ProtectedRoute>
 				<ProtectedRoute path="/products/:productId/edit" exact={true}>
 					<EditProductPage />
 				</ProtectedRoute>
-				<ProfilePage path="/reviews/:reviewId/edit" exact={true}>
+				<ProtectedRoute path="/reviews/:reviewId/edit" exact={true}>
 					<EditReviewPage />
-				</ProfilePage>
+				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>

@@ -21,7 +21,7 @@ const StorePage = () => {
 	useEffect(() => {
 		dispatch(getReviewsByUserIdThunk(userId));
 		dispatch(getProductsByUserIdThunk(userId));
-	}, [dispatch]);
+	}, [dispatch, userId]);
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);

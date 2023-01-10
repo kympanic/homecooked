@@ -44,7 +44,7 @@ def  add_product():
     return {'errors': form.errors}
     
 
-#Logged in user can edit a product only if they are owner of the product
+#EDIT A PRODUCT
 @product_routes.route('/<int:id>', methods = ["PATCH", "PUT"])
 @login_required
 def edit_product(id):
@@ -70,7 +70,6 @@ def edit_product(id):
 @product_routes.route('/<int:id>', methods = ["DELETE"])
 @login_required
 def delete_product(id):
-    data = request.json
 
     product = Product.query.get(id)
     if product.user_id != current_user.id:

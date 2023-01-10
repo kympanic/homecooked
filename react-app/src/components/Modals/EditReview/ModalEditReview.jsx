@@ -1,50 +1,42 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { editReviewThunk } from "../../../store/reviews";
 import { useState } from "react";
-import { createReviewThunk } from "../../../store/reviews";
 
-const ModalAddReview = ({ setIsOpen, product }) => {
+const ModalEditReview = ({ setIsOpen, review }) => {
 	const dispatch = useDispatch();
-	const userId = useSelector((state) => state.session.user.id);
-
-	// const [errors, setErrors] = useState([]);
 	const [body, setBody] = useState("");
 	const [rating, setRating] = useState("");
+	const [errors, setErrors] = useState([]);
 
-	const updateBody = (e) => {
-		setBody(e.target.value);
-	};
-	const updateRating = (e) => {
-		setRating(e.target.value);
-	};
-
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const newReview = {
-			user_id: userId,
-			product_id: product.id,
+		const editedReview = {
+			id: review.id,
 			body,
 			rating,
+			user_id: review.userId,
+			product_id: review.productId,
 		};
 
-		console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
-		await dispatch(createReviewThunk(newReview));
+		//error handling
+		let data = dispatch(editReviewThunk(editedReview));
+
+		if (data) {
+			setErrors(data);
+		}
 		setIsOpen(false);
-		// if (data) {
-		// 	const listoferrors = Object.values(data);
-		// 	console.log(listoferrors, "WOAH DATA");
-		// 	setErrors(listoferrors);
-		// }
 	};
+
+	//inside of modalContent div, customize your own info
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Food is in the Oven!</h5>
+						<h5 className={styles.heading}>Edit Your Meal!</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -53,32 +45,35 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
 					<div className={styles.modalContent}>
-						<form>
-							{/* <div>
+						<form onSubmit={handleSubmit}>
+							<div>
 								{errors.map((error, ind) => (
 									<div key={ind}>{error}</div>
 								))}
-							</div> */}
+							</div>
 							<div>
-								<label>Comment: </label>
+								<label htmlFor="body">Body:</label>
 								<input
 									type="text"
 									name="body"
-									onChange={updateBody}
 									value={body}
+									placeholder={review.body}
+									onChange={(e) => setBody(e.target.value)}
 								/>
 							</div>
 							<div>
-								<label>Rating: </label>
+								<label htmlFor="rating">Your 1-5 Rating:</label>
 								<input
 									type="text"
 									name="rating"
-									onChange={updateRating}
 									value={rating}
+									placeholder={review.rating}
+									onChange={(e) => setRating(e.target.value)}
 								/>
 							</div>
 						</form>
 					</div>
+
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
 							<button
@@ -101,4 +96,4 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 	);
 };
 
-export default ModalAddReview;
+export default ModalEditReview;

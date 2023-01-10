@@ -48,6 +48,16 @@ export const getReviewsByUserIdThunk = (userId) => async (dispatch) => {
 	}
 };
 
+//GET specific review by reviewId
+export const getReviewByReviewIdThunk = (reviewId) => async (dispatch) => {
+	const response = await fetch(`/api/reviews/${reviewId}`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
+
 // CREATE A REVIEW based on productId
 export const createReviewThunk = (data) => async (dispatch) => {
 	const newReview = JSON.stringify(data);
@@ -86,8 +96,6 @@ export const editReviewThunk = (review) => async (dispatch) => {
 
 // DELETE a REVIEW
 export const deleteReviewThunk = (data) => async (dispatch) => {
-	const body = JSON.stringify(data);
-
 	const response = await fetch(`/api/reviews/${data.id}`, {
 		method: "DELETE",
 	});

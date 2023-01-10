@@ -3,8 +3,6 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { editProductThunk } from "../../../store/products";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
 
 const ModalEditProduct = ({ setIsOpen, product }) => {
 	const dispatch = useDispatch();
@@ -50,6 +48,11 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form onSubmit={handleSubmit}>
+							<div>
+								{errors.map((error, ind) => (
+									<div key={ind}>{error}</div>
+								))}
+							</div>
 							<div>
 								<label htmlFor="name">Name:</label>
 								<input
