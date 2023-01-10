@@ -48,6 +48,19 @@ class Product(db.Model):
             'price': converted_price,
             'category': self.category
         }
+    def to_dict_basic(self):
 
+        converted_price = float(self.price)
+        
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'name': self.name,
+            'description': self.description,
+            'imageURL': self.image_url,
+            'price': converted_price,
+            'category': self.category
+        }
+    
     def __repr__(self):
         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>, avgRating: {self.to_dict()['avgRating']}, category: {self.category}"
