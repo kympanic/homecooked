@@ -14,6 +14,10 @@ import { authenticate } from "./store/session";
 import { getAllProductsThunk } from "./store/products";
 import { getAllUsersThunk } from "./store/users";
 
+import CreateReview from "./components/ReviewForm";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import { authenticate } from "./store/session";
+
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();

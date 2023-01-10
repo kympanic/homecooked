@@ -2,6 +2,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import products from "./products";
+<<<<<<< HEAD
+import reviews from "./reviews";
+import payments from "./payments"
+
+const rootReducer = combineReducers({
+	session,
+	products,
+	reviews,
+	payments
+=======
 import users from "./users";
 import reviews from "./reviews";
 const rootReducer = combineReducers({
@@ -9,6 +19,7 @@ const rootReducer = combineReducers({
 	products,
 	users,
 	reviews,
+>>>>>>> 40e34eb1a8305c79b1f31de3e667e96db931bde5
 });
 
 let enhancer;

@@ -1,8 +1,8 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
-from app.forms import ProductForm
+from app.forms import ProductForm, ReviewForm
 from werkzeug.datastructures import ImmutableMultiDict
 
 product_routes = Blueprint('products', __name__)
@@ -13,7 +13,11 @@ def get_all_products():
     products = Product.query.all()
 
     res = {product.id: product.to_dict() for product in products}
+<<<<<<< HEAD
     Print(res)
+=======
+
+>>>>>>> dev-Test
     return res
 
 #User can get a specific product depending on id
@@ -72,7 +76,7 @@ def edit_product(id):
 @login_required
 def delete_product(id):
     data = request.json
-    
+
     product = Product.query.get(id)
     if product.user_id != current_user.id:
         return {'error': "You are not authorized to delete this product"}, 401
@@ -106,8 +110,23 @@ def create_review(id):
     if review_text["user_id"] != current_user.id:
         return {"error": "You are not authorized to create a review"}, 401
 
+    # need to check if user has an existing review
+
+
     new_review = Review(**review_text)
     db.session.add(new_review)
     db.session.commit()
 
     return {new_review.id: new_review.to_dict()}
+
+##form POST review
+# @product_routes.route('/<int:id>/reviews', method=['POST'])
+# @login_required
+# def createReview(id):
+#         form = ReviewForm()
+#         review = Review()
+#         form.populate_obj(review)
+
+#         db.session.add(review)
+#         db.session.commit()
+#         return redirect(f'/products/{id}')

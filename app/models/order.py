@@ -23,4 +23,19 @@ class Order(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'paymentId': self.payment_id,
+            # 'productsWithOrder': [product.to_dict_basic() for product in self.products_with_order]
         }
+
+    # def to_dict_basic(self):
+    #     return {
+    #         "id": self.id,
+    #     }
+
+    # js_orders = []
+
+    # print('*\n'*50)
+
+    # for product in self.products_with_order:
+    #     js_orders.append(product.to_dict())
+
+    # print(js_orders)
