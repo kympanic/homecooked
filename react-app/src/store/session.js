@@ -19,26 +19,26 @@ const removeUser = () => ({
 });
 
 // Cart Actions
-export const addItem = (itemId) => {
+export const addItem = (productId) => {
 	return {
 		type: ADD_ITEM,
-		itemId,
+		productId,
 	};
 };
 
-export const updateCount = (itemId, count) => {
-	if (count < 1) return removeItem(itemId);
+export const updateCount = (productId, count) => {
+	if (count < 1) return removeItem(productId);
 	return {
 		type: UPDATE_COUNT,
-		itemId,
+		productId,
 		count,
 	};
 };
 
-export const removeItem = (itemId) => {
+export const removeItem = (productId) => {
 	return {
 		type: REMOVE_ITEM,
-		itemId,
+		productId,
 	};
 };
 
@@ -49,7 +49,7 @@ export const reset = () => {
 };
 
 // SELECTORS
-export const getCartItemById = (id) => (store) => store.session.cart.id;
+export const getCartItemById = (productId) => (store) => store.session.cart.productId;
 // NEED TO CHANGE *** BELOW
 // export const getAllCartItems = ({ cart, product }) => {
 // 	return Object.values(cart.order).map((id) => {
@@ -161,7 +161,7 @@ export default function reducer(state = initialState, action) {
 
 // CART REDUCER
 const initialState2 = {
-	items: {},
+	products: {},
 	order: [],
 };
 export function cartReducer(state = initialState2, action) {
@@ -169,9 +169,9 @@ export function cartReducer(state = initialState2, action) {
 		case ADD_ITEM:
 			return {
 				...state,
-				items: {
-					...state.items,
-					[action.itemId]: { id: action.itemId, count: 1 },
+				products: {
+					...state.products,
+					[action.productId]: { id: action.productId, count: 1 },
 				},
 				order: [...state.order, action.itemId],
 			};

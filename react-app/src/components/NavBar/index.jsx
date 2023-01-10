@@ -1,8 +1,12 @@
 import React from "react";
+import {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = () => {
+const NavBar = ({cart}) => {
+	const [cartCount, setCartCount] = useState(0)
 	return (
 		<nav>
 			<ul>
@@ -28,6 +32,13 @@ const NavBar = () => {
 
 				<li>
 					<LogoutButton />
+				</li>
+				<li>
+					<h3>Cart</h3>
+
+				<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
+
+
 				</li>
 			</ul>
 		</nav>

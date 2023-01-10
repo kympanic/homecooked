@@ -15,21 +15,24 @@ class Order(db.Model):
 
     #relationships
     orders = db.relationship('User',back_populates = 'user_orders')
-    products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
     payments = db.relationship('Payment', back_populates='payment_orders')
+    products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.user_id,
             'paymentId': self.payment_id,
-            # 'productsWithOrder': [product.to_dict_basic() for product in self.products_with_order]
+            'productsWithOrder': [product.to_dict_basic()['id'] for product in self.products_with_order]
         }
 
-    # def to_dict_basic(self):
-    #     return {
-    #         "id": self.id,
-    #     }
+    def __repr__(self):
+        return f'<Order id: {self.id} userId: {self.user_id} paymentId: {self.payment_id}>'
+
+    def to_dict_basic(self):
+        return {
+            "id": self.id,
+        }
 
     # js_orders = []
 
