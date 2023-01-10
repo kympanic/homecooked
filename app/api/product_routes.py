@@ -3,7 +3,6 @@ from ..models import Product, db, Review
 from ..utils import Print
 from flask_login import login_required, current_user
 from app.forms import ProductForm, ReviewForm
-from werkzeug.datastructures import ImmutableMultiDict
 
 product_routes = Blueprint('products', __name__)
 
@@ -25,7 +24,6 @@ def get_product_by_id(id):
     return res
 
 #POST NEW PRODUCT
-#ImmutableMulti dict - saves the multiple values of a key in form of a list
 @product_routes.route('',methods=['POST'])
 @login_required
 def  add_product():
@@ -75,16 +73,6 @@ def delete_product(id):
     db.session.commit()
 
     return {"msg": "Successfully deleted the product"}
-
-# GET REVIEWS BASED ON PRODUCT ID
-@product_routes.route('/<int:id>/reviews', methods = ['GET'])
-def get_reviews(id):
-    #get reviews by product id
-    reviews = Review.query.filter(Review.product_id == id).all()
-
-    res = {review.id: review.to_dict() for review in reviews}
-    
-    return res
 
 # POST REVIEW ON PRODUCT BASED ON PRODUCT ID
 @product_routes.route('/<int:id>/reviews', methods=['POST'])

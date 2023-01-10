@@ -19,7 +19,7 @@ class Product(db.Model):
 
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
-    product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
+    product_reviews = db.relationship('Review', back_populates ='product', cascade='all,delete')
     product_orders = db.relationship('Order', secondary=product_orders, back_populates = 'products_with_order', cascade='all,delete')
     
     def to_dict(self):
@@ -38,6 +38,8 @@ class Product(db.Model):
         #conversion to float from string for PRICE
         converted_price = float(self.price)
 
+        Print(self.user_products)
+
         return {
             'id': self.id,
             'userId': self.user_id,
@@ -46,12 +48,16 @@ class Product(db.Model):
             'imageURL': self.image_url,
             'avgRating': avg,
             'price': converted_price,
-            'category': self.category
+            'category': self.category,
+            'user': self.user_products.to_dict_basic(),
+            'reviews': [review.to_dict_basic() for review in self.product_reviews],
+            'orders': [payment.to_dict_basic() for payment in self.product_orders]
         }
+
     def to_dict_basic(self):
 
         converted_price = float(self.price)
-        
+
         return {
             'id': self.id,
             'userId': self.user_id,

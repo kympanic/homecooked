@@ -15,7 +15,7 @@ class Payment(db.Model):
     
     #relationships
     user_payments = db.relationship('User', back_populates = 'user_credit_cards')
-    payment_orders = db.relationship('Order', back_populates='payments')
+    payment_orders = db.relationship('Order', back_populates='payment')
     
     def to_dict(self):
         
@@ -23,8 +23,21 @@ class Payment(db.Model):
         last_four_account_numbers = int(self.account_number[-4:])
 
         return {
-            'id': self.id,
+            # 'id': self.id,
             'userId': self.user_id,
+            'provider': self.provider,
+            'accountNumber': last_four_account_numbers,
+            'expiration': self.expiration,
+            'user': self.user_payments.to_dict_basic(),
+            'orders': [order.to_dict_basic() for order in self.payment_orders]
+        }
+    
+    def to_dict_basic(self):
+
+        last_four_account_numbers = int(self.account_number[-4:])
+
+        return{
+            'paymentId': self.id,
             'provider': self.provider,
             'accountNumber': last_four_account_numbers,
             'expiration': self.expiration

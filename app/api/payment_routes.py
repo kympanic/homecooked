@@ -8,7 +8,7 @@ from app.forms import PaymentForm
 
 payment_routes = Blueprint('payments', __name__)
 
-#GET Payment info by user ID
+#GET PAYMENT INFO BY PAYMENTID
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
@@ -21,8 +21,7 @@ def get_paymentinfo_by_id(id):
     
     return res
 
-
-#POST Payment info
+#POST PAYMENT
 @payment_routes.route('', methods=["POST"])
 @login_required
 def create_paymentinfo():
@@ -54,7 +53,6 @@ def edit_paymentinfo(id):
         db.session.commit()
 
     return {payment.id: payment.to_dict()}
-
 
 @payment_routes.route('/<int:id>', methods=["DELETE"])
 @login_required

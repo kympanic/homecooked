@@ -14,7 +14,7 @@ class Review(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
 
     #relationships
-    products = db.relationship('Product', back_populates = 'product_reviews')
+    product = db.relationship('Product', back_populates = 'product_reviews')
     user = db.relationship('User', back_populates = 'user_reviews')
 
     def to_dict(self):
@@ -23,8 +23,16 @@ class Review(db.Model):
             'rating': self.rating,
             'body': self.body,
             'userId': self.user_id,
-            'productId': self.product_id
+            'productId': self.product_id,
+            'product': self.product.to_dict_basic(),
+            'user': self.user.to_dict_basic()
         }
 
+    def to_dict_basic(self):
+        return {
+            'rating': self.rating,
+            'body': self.body,
+            'userId': self.user_id,
+        }
     def __repr__(self):
         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>"

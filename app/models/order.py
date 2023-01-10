@@ -12,28 +12,22 @@ class Order(db.Model):
     payment_id = db.Column(db.Integer, db.ForeignKey('payments.id'), nullable=False)
 
     #relationships
-    orders = db.relationship('User',back_populates = 'user_orders')
+    user = db.relationship('User',back_populates = 'user_orders')
     products_with_order = db.relationship('Product', secondary=product_orders, back_populates = 'product_orders', cascade='all,delete')
-    payments = db.relationship('Payment', back_populates='payment_orders')
+    payment = db.relationship('Payment', back_populates='payment_orders')
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.user_id,
             'paymentId': self.payment_id,
-            # 'productsWithOrder': [product.to_dict_basic() for product in self.products_with_order]
+            'user': self.user.to_dict_basic(),
+            'products': [product.to_dict_basic() for product in self.products_with_order],
+            'payment': self.payment.to_dict_basic()
         }
 
-    # def to_dict_basic(self):
-    #     return {
-    #         "id": self.id,
-    #     }
-
-    # js_orders = []
-
-    # print('*\n'*50)
-
-    # for product in self.products_with_order:
-    #     js_orders.append(product.to_dict())
-
-    # print(js_orders)
+    def to_dict_basic(self):
+        return {
+            'userId': self.user_id,
+            'paymentId': self.payment_id,
+        }
