@@ -16,15 +16,12 @@ class Payment(db.Model):
     #relationships
     user_payments = db.relationship('User', back_populates = 'user_credit_cards')
     payment_orders = db.relationship('Order', back_populates='payments')
-
-    #validate account number to be only numbers
     
     def to_dict(self):
         
         #store account number as ONLY the last four digits
         last_four_account_numbers = int(self.account_number[-4:])
 
-        
         return {
             'id': self.id,
             'userId': self.user_id,

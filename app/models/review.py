@@ -7,7 +7,6 @@ class Review(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.String(10), nullable=False)
     body = db.Column(db.String(255), nullable=False)
@@ -27,5 +26,5 @@ class Review(db.Model):
             'productId': self.product_id
         }
 
-def __repr__(self):
+    def __repr__(self):
         return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>"

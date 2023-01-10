@@ -9,7 +9,6 @@ class Product(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(40), nullable=False, unique=True)
@@ -22,8 +21,6 @@ class Product(db.Model):
     product_reviews = db.relationship('Review', back_populates ='products', cascade='all,delete')
     product_orders = db.relationship('Order', secondary=product_orders, back_populates = 'products_with_order', cascade='all,delete')
     
-
-
     def to_dict(self):
 
         #conversion to get average rating on products
