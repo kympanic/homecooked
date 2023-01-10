@@ -58,10 +58,18 @@ def users_with_stores():
     
     return res
 
-# @user_routes.route('/<int:id>/reviews')
-# def get_all_reviews_by_specific_user(id):
-#     reviews = Review.query.filter(Review.user_id == id).all()
 
-#     res = {review.id: review.to_dict() for review in reviews}
-#     Print(res)
-#     return res
+@user_routes.route('/<int:id>/reviews')
+def get_all_reviews_by_specific_user(id):
+    reviews = Review.query.filter(Review.user_id == id).all()
+
+    res = {review.id: review.to_dict() for review in reviews}
+    return res
+
+@user_routes.route('/<int:id>/products')
+def get_all_products_by_specific_user(id):
+    products = Product.query.filter(Product.user_id == id).all()
+
+    Print(products)
+    res = {product.id: product.to_dict() for product in products}
+    return res

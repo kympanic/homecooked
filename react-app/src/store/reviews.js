@@ -17,9 +17,30 @@ const deleteReview = (payload) => {
 };
 
 //THUNKS
+
+// GET all reviews
+export const getAllReviewsThunk = () => async (dispatch) => {
+	const response = await fetch(`/api/reviews`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
+
 // GET all reviews by productId
-export const getReviewsThunk = (productId) => async (dispatch) => {
+export const getReviewsByProductIdThunk = (productId) => async (dispatch) => {
 	const response = await fetch(`/api/products/${productId}/reviews`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(loadReviews(data));
+		return data;
+	}
+};
+
+//GET all reviews by userId
+export const getReviewsByUserIdThunk = (userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/reviews`);
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(loadReviews(data));
@@ -39,15 +60,6 @@ export const createReviewThunk = (data) => async (dispatch) => {
 		body: newReview,
 	});
 
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(loadReviews(data));
-		return data;
-	}
-};
-// GET all reviews
-export const getAllReviewsThunk = () => async (dispatch) => {
-	const response = await fetch(`/api/reviews`);
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(loadReviews(data));

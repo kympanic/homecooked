@@ -1,14 +1,6 @@
-const ReviewSwiper = ({ reviews }) => {
-	console.log(reviews, "this is the reviews");
-	// const reviews = useSelector((state) => Object.state?.reviews);
-
-	// let userReviews = [];
-	// for (let i = 0; i < reviews?.length; i++) {
-	// 	if ((reviews[i].userId = 1)) {
-	// 		userReviews.push(reviews[i]);
-	// 	}
-	// }
-
+const ReviewSwiper = ({ reviews, products }) => {
+	console.log(reviews, "THIS HAS PASSED DOWN TO SWIPER REVIEWS");
+	console.log(products, "THIS HAS PASSED DOWN TO SWIPER PRODUCTS");
 	return <div>This is the review swiper</div>;
 };
 

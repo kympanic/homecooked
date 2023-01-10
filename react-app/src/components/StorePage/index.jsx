@@ -3,8 +3,8 @@ import ReviewSwiper from "../ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReviewsThunk } from "../../store/reviews";
-
+import { getReviewsByUserIdThunk } from "../../store/reviews";
+import { getProductsByUserIdThunk } from "../../store/products";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
 
@@ -19,27 +19,10 @@ const StorePage = () => {
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
 	useEffect(() => {
-		dispatch(getAllReviewsThunk());
+		dispatch(getReviewsByUserIdThunk(userId));
+		dispatch(getProductsByUserIdThunk(userId));
 	}, [dispatch]);
 
-	// console.log(vendor, "THIS IS TEH VENDOR");
-	let userProducts = [];
-	for (let i = 0; i < products.length; i++) {
-		if ((products[i].userId = userId)) {
-			userProducts.push(products[i]);
-		}
-	}
-
-	let userReviews = [];
-	for (let i = 0; i < reviews.length; i++) {
-		if ((reviews[i].userId = userId)) {
-			userReviews.push(reviews[i]);
-		}
-	}
-
-	// console.log(userProducts, "THESE ARE THE PRODUCTS FOR THE USER");
-
-	// console.log(userReviews, "THESE ARE THE REVIEWS FOR THE USER");
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -77,7 +60,7 @@ const StorePage = () => {
 				</div>
 			</div>
 			<div className="sample-review-container">
-				<ReviewSwiper reviews={reviews} />
+				<ReviewSwiper reviews={reviews} products={products} />
 			</div>
 
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}

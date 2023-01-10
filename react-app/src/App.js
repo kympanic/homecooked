@@ -12,7 +12,6 @@ import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import { getAllProductsThunk } from "./store/products";
 import { getAllUsersThunk } from "./store/users";
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(getAllProductsThunk());
 		dispatch(getAllUsersThunk());
 	});
 	if (!loaded) {

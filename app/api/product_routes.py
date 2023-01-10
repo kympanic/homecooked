@@ -94,6 +94,7 @@ def get_reviews(id):
     Print(res)
     return res
 
+
 # User can post a review on a food item
 # POST api/products/:id/reviews
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
