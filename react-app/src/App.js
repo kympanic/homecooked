@@ -49,7 +49,7 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
-				<ProtectedRoute path="/paymentsTest">
+				<ProtectedRoute path="/payments/:paymentId">
 					<PaymentTestPage />
 				</ProtectedRoute>
 				<ProtectedRoute path="/products/:productId/edit" exact={true}>
