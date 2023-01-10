@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Product, Order, Review,Payment, db
 from flask_login import current_user
+from app.forms import OrderForm
 from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
@@ -38,7 +39,7 @@ def user_products(id):
 
 #NEEDS TO BE TESTED
 #GET ALL ORDERS FOR A USER DEPENDING ON USERID
-@user_routes.route('/<int:id>/orders')
+@user_routes.route('/<int:id>/orders', methods=['GET'])
 @login_required
 def get_all_orders_by_specific_user(id):
 
@@ -50,6 +51,22 @@ def get_all_orders_by_specific_user(id):
     users_orders = {order.id: order.to_dict() for order in orders}
     
     return users_orders
+
+@user_routes.route('/<int:id>/orders',methods=['POST'])
+@login_required
+def  add_order():
+    form = OrderForm()
+
+    Print(form.data)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        order = Order()
+        form.populate_obj(order)
+
+        db.session.add(order)
+        db.session.commit()
+        return {order.id: order.to_dict()}
+    return {'errors': form.errors}
 
 #NEEDS TO BE TESTED
 #GET ALL USERS THAT HAVE A STORE
