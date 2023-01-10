@@ -15,6 +15,7 @@ class Product(db.Model):
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
     price = db.Column(db.String(40), nullable=False)
+    category = db.Column(db.String(40), nullable=False)
 
     #relationships
     user_products = db.relationship('User', back_populates = 'products')
@@ -45,7 +46,8 @@ class Product(db.Model):
             'imageURL': self.image_url,
             'avgRating': avg,
             'price': converted_price,
+            'category': self.category
         }
 
     def __repr__(self):
-        return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>, avgRating: {self.to_dict()['avgRating']}"
+        return f"<Product id: {self.id}, description: {self.description}, user_id: {self.user_id}>, avgRating: {self.to_dict()['avgRating']}, category: {self.category}"
