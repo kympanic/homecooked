@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk } from "../../store/products";
 
+//Errors need to be shown properly
 const AddProductForm = () => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPaymentThunk } from "../../store/payments";
 
-const PaymentTestPage = () => {
+//This page is for testing editing and deleting payments
+const TestPaymentPage = () => {
 	const { paymentId } = useParams();
 	const dispatch = useDispatch();
 	const payment = useSelector((state) => state.payments[paymentId]);
@@ -21,4 +22,4 @@ const PaymentTestPage = () => {
 	);
 };
 
-export default PaymentTestPage;
+export default TestPaymentPage;

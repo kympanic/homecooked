@@ -31,7 +31,6 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 		setIsOpen(false);
 	};
 
-	//inside of modalContent div, customize your own info
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />

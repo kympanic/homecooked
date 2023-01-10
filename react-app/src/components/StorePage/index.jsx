@@ -1,5 +1,5 @@
 import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
-import ReviewSwiper from "../ReviewSwiper";
+import ReviewSwiper from "./ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,7 @@ const StorePage = () => {
 				<div className="header-left">
 					<div className="splash-img-container">
 						<img
-							src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/Vendordemosplash.jpeg"
+							src={vendor?.shopSplashImg}
 							alt="vendor-splash-img"
 						/>
 					</div>

@@ -6,7 +6,8 @@ import ModalDeleteReview from "../Modals/DeleteReview/ModalDeleteReview";
 import ModalEditReview from "../Modals/EditReview/ModalEditReview";
 import { getAllReviewsThunk } from "../../store/reviews";
 
-const EditReviewPage = () => {
+//This page is for testing review editing and deleting
+const TestEditReviewPage = () => {
 	const { reviewId } = useParams();
 	const dispatch = useDispatch();
 
@@ -56,4 +57,4 @@ const EditReviewPage = () => {
 	);
 };
 
-export default EditReviewPage;
+export default TestEditReviewPage;

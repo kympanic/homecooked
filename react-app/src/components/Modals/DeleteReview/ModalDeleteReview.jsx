@@ -1,7 +1,6 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-
 import { deleteReviewThunk } from "../../../store/reviews";
 
 const ModalDeleteReview = ({ setIsOpen, review }) => {

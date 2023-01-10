@@ -14,6 +14,9 @@ export const getAllUsersThunk = () => async (dispatch) => {
 	}
 };
 
+//Need to create a edituserthunk and edituserapi route to be used in the shop edit page.
+//Also will be used in the profile edit page
+
 const userReducer = (state = {}, action) => {
 	let newState = { ...state };
 	switch (action.type) {

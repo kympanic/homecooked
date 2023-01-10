@@ -44,7 +44,6 @@ const ModalAddProduct = ({ setIsOpen }) => {
 		if (data) {
 			setErrors(data);
 		}
-		console.log(errors, "THESE ARE THE ERRORS");
 	};
 
 	return (

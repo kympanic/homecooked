@@ -19,17 +19,13 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 			user_id: review.userId,
 			product_id: review.productId,
 		};
-
-		//error handling
 		let data = dispatch(editReviewThunk(editedReview));
-
 		if (data) {
 			setErrors(data);
 		}
 		setIsOpen(false);
 	};
 
-	//inside of modalContent div, customize your own info
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />

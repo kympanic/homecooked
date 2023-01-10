@@ -8,7 +8,8 @@ import styles from "../Modals/App.module.css";
 import { useEffect } from "react";
 import { getAllProductsThunk } from "../../store/products";
 
-const EditProductPage = () => {
+//This page is for testing product editing and deleting. As well as adding a review to a product
+const TestEditProductPage = () => {
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const product = useSelector((state) => state.products[productId]);
@@ -72,4 +73,4 @@ const EditProductPage = () => {
 	);
 };
 
-export default EditProductPage;
+export default TestEditProductPage;

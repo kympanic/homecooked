@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createReviewThunk } from "../../store/reviews";
 
+//Errors need to be shown properly
 const AddReviewForm = () => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
