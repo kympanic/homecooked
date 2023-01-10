@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getPaymentThunk } from "../../store/payments";
@@ -14,7 +14,7 @@ const TestPaymentPage = ({ user }) => {
 
 	useEffect(() => {
 		dispatch(getPaymentThunk(paymentId));
-	}, [dispatch]);
+	}, [dispatch, paymentId]);
 
 	return (
 		<div>
