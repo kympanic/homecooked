@@ -7,17 +7,16 @@ from werkzeug.datastructures import ImmutableMultiDict
 
 product_routes = Blueprint('products', __name__)
 
-#User can retrieve all products currently in the db
+#GET ALL PRODUCTS
 @product_routes.route('')
 def get_all_products():
     products = Product.query.all()
 
     res = {product.id: product.to_dict() for product in products}
-    Print(res)
-
+ 
     return res
 
-#User can get a specific product depending on id
+#GET PRODUCT FROM SPECIFIC ID
 @product_routes.route('/<int:id>')
 def get_product_by_id(id):
     product = Product.query.get(id)
@@ -26,8 +25,7 @@ def get_product_by_id(id):
     return res
 
 
-#Logged in user can create a new product
-#Receiving data from the React form in the frotend
+#CREATE NEW PRODUCT
 #ImmutableMulti dict - saves the multiple values of a key in form of a list
 @product_routes.route('',methods=['POST'])
 @login_required
@@ -101,29 +99,14 @@ def get_reviews(id):
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def create_review(id):
-    # form = ReviewForm()
-    review_text = request.json
+    form = ReviewForm()
 
-    if review_text["user_id"] != current_user.id:
-        return {"error": "You are not authorized to create a review"}, 401
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review()
+        form.populate_obj(review)
 
-    # need to check if user has an existing review
-
-
-    new_review = Review(**review_text)
-    db.session.add(new_review)
-    db.session.commit()
-
-    return {new_review.id: new_review.to_dict()}
-
-##form POST review
-# @product_routes.route('/<int:id>/reviews', method=['POST'])
-# @login_required
-# def createReview(id):
-#         form = ReviewForm()
-#         review = Review()
-#         form.populate_obj(review)
-
-#         db.session.add(review)
-#         db.session.commit()
-#         return redirect(f'/products/{id}')
+        db.session.add(review)
+        db.session.commit()
+        return {review.id: review.to_dict()}
+    return {'errors': form.errors}

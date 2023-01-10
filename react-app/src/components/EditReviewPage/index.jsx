@@ -1,22 +1,20 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import ModalEditProduct from "../Modals/EditProduct/ModalEditProduct";
-import ModalDeleteProduct from "../Modals/DeleteProduct/ModalDeleteProduct";
 import { useState } from "react";
 import styles from "../Modals/App.module.css";
+import ModalDeleteReview from "../Modals/DeleteReview/ModalDeleteReview";
 
-const EditPage = () => {
-	const { productId } = useParams();
-	const product = useSelector((state) => state.products[productId]);
+const EditReviewPage = () => {
+	const { reviewId } = useParams();
+	const review = useSelector((state) => state.reviews[reviewId]);
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
 	return (
 		<div>
-			<p>Name: {product?.name}</p>
-			<p>Description: {product?.description}</p>
-			<p>Image Placeholder :{product?.imageUrl}</p>
-			<p>$ {product?.price}</p>
+			<p>Body: {review?.body}</p>
+			<p>rating: {review?.rating}</p>
+			<div>Buttons Below</div>
 			<div>
 				<button
 					className={styles.primaryBtn}
@@ -25,10 +23,10 @@ const EditPage = () => {
 					Delete
 				</button>
 				{isOpenDelete && (
-					<ModalDeleteProduct setIsOpen={setIsOpenDelete} />
+					<ModalDeleteReview setIsOpen={setIsOpenDelete} />
 				)}
 			</div>
-			<div>
+			{/* <div>
 				<button
 					className={styles.primaryBtn}
 					onClick={() => setIsOpenEdit(true)}
@@ -41,9 +39,9 @@ const EditPage = () => {
 						product={product}
 					/>
 				)}
-			</div>
+			</div> */}
 		</div>
 	);
 };
 
-export default EditPage;
+export default EditReviewPage;

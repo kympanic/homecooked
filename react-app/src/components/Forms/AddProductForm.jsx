@@ -1,6 +1,3 @@
-// In react-app/src/components/Forms
-// Adding a product form in React
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProductThunk } from "../../store/products";

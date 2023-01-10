@@ -7,6 +7,7 @@ from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
+#GET ALL THE REVIEWS 
 @review_routes.route('')
 def get_all_reviews():
     reviews = Review.query.all()
@@ -18,33 +19,25 @@ def get_all_reviews():
     return res
 
 
-
-
 # User can update a review that they created
 # PUT api/reviews/:id
 @review_routes.route('/<int:id>', methods=['PUT', 'PATCH'])
 @login_required
 def edit_review(id):
-
-    data = request.json
-
-    #check if review id belongs to current user
-    if data["user_id"] != current_user.id:
-        return {"error": "You are not authorized to update this review"}, 401
-
     review = Review.query.get(id)
-    if data.get('rating'):
-        review.rating = data['rating']
-    if data.get('body'):
-        review.body = data['body']
-    if data.get('user_id'):
-        review.user_id = data['user_id']
-    if data.get('product_id'):
-        review.product_id = data['product_id']
+    form = ReviewForm()
+    
+ 
+    if form.data["user_id"] != current_user.id:
+        return {'error': "You are not authorized to edit this product"}, 401
 
-    db.session.commit()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        form.populate_obj(review)
+      
+        db.session.commit()
 
-    return {review.id : review.to_dict()}
+    return {review.id: review.to_dict()}
 
 # User can delete a review that they posted
 # DELETE api/reviews/:id

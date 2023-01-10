@@ -6,15 +6,14 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
-import EditPage from "./components/EditPage";
+import EditProductPage from "./components/EditProductPage";
+import EditReviewPage from "./components/EditReviewPage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllProductsThunk } from "./store/products";
 import { getAllUsersThunk } from "./store/users";
-
-import CreateReview from "./components/ReviewForm";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -29,7 +28,6 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllProductsThunk());
-
 		dispatch(getAllUsersThunk());
 	});
 	if (!loaded) {
@@ -53,8 +51,11 @@ function App() {
 					<CartPage />
 				</Route>
 				<ProtectedRoute path="/products/:productId/edit" exact={true}>
-					<EditPage />
+					<EditProductPage />
 				</ProtectedRoute>
+				<ProfilePage path="/reviews/:reviewId/edit" exact={true}>
+					<EditReviewPage />
+				</ProfilePage>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>

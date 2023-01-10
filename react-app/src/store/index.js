@@ -4,6 +4,7 @@ import session from "./session";
 import products from "./products";
 import reviews from "./reviews";
 import payments from "./payments";
+import users from "./users";
 
 const rootReducer = combineReducers({
 	session,

@@ -2,11 +2,11 @@ from app.models import db, Order, environment, SCHEMA
 
 def seed_orders():
     order1 = Order(
-        user_id=1, payment_id=1, products_with_order= ['1'])
+        user_id=1, payment_id=1 )
     order2 = Order(
-        user_id=2, payment_id=2, products_with_order= ['2'])
+        user_id=2, payment_id=2)
     order3 = Order(
-        user_id=3, payment_id=3, products_with_order= ['3'])
+        user_id=3, payment_id=3)
 
 
 # def seed_tweets():

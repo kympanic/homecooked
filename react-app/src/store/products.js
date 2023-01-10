@@ -19,6 +19,7 @@ export const getAllProductsThunk = () => async (dispatch) => {
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(loadProducts(payload));
+		return payload;
 	}
 };
 
