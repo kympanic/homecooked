@@ -7,7 +7,6 @@ import NavBar from "./components/NavBar/index";
 import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import EditPage from "./components/EditPage";
-import AddProductForm from "./components/Forms/AddProductForm";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 
