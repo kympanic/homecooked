@@ -40,8 +40,7 @@ def edit_review(id):
 
     return {review.id: review.to_dict()}
 
-# User can delete a review that they posted
-# DELETE api/reviews/:id
+#DELETE A REVIEW BASED ON REVIEWID
 @review_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_review(id):

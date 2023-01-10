@@ -62,7 +62,7 @@ def edit_product(id):
     return {product.id: product.to_dict()}
 
 
-#DELETE A PRODUCT 
+#DELETE A PRODUCT BASED ON PRODUCT REVIEW
 @product_routes.route('/<int:id>', methods = ["DELETE"])
 @login_required
 def delete_product(id):

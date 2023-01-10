@@ -59,11 +59,12 @@ def users_with_stores():
     res = {user.id: user.to_dict() for user in users}
     
     return res
+    
+#GET ALL REVIEWS FOR USER DEPENDING ON USERID
+@user_routes.route('/<int:id>/reviews')
+def get_all_reviews_by_specific_user(id):
+    reviews = Review.query.filter(Review.user_id == id).all()
 
-# @user_routes.route('/<int:id>/reviews')
-# def get_all_reviews_by_specific_user(id):
-#     reviews = Review.query.filter(Review.user_id == id).all()
-
-#     res = {review.id: review.to_dict() for review in reviews}
-#     Print(res)
-#     return res
+    res = {review.id: review.to_dict() for review in reviews}
+    Print(res)
+    return res
