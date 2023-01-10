@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
 
-
+## ADD CUSTOM ERROR VALIDATORS HERE
 
 class ProductForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired()])

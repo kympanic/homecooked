@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired, ValidationError
 
 ## ADD CUSTOM ERROR VALIDATORS HERE
 
-
 class PaymentForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired()])
     provider = StringField('provider', validators=[DataRequired()])
