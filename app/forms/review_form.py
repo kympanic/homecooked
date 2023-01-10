@@ -1,12 +1,17 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, InputRequired
 from app.models import User, Review
+
+
+
+def rating_check(form, field):
+    if field.data > 5 or field.data < 0 :
+        raise ValidationError('Rating must be greater than 0 and less or equal to 5')
 
 class ReviewForm(FlaskForm):
     body = TextAreaField('review', validators=[DataRequired()])
-    rating = StringField(
-        'rating', validators=[DataRequired(),])
+    rating = StringField('rating', [InputRequired(), rating_check])
 
 
     # id = db.Column(db.Integer, primary_key=True)

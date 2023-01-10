@@ -8,13 +8,14 @@ const CreateReview = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
     const { productId } = useParams()
-	console.log(productId, "productId")
+	// console.log(productId, "productId")
 
 	const reviews = useSelector((state) => state.reviews)
 	const userId = useSelector((state) => state.session.user.id)
-	console.log(userId, "userId")
+	// console.log(userId, "userId")
 	const [rating, setRating] = useState("");
 	const [body, setBody] = useState("");
+	const [errors, setErrors] = useState([]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -26,7 +27,7 @@ const CreateReview = () => {
 		};
 
 		dispatch(createReviewThunk(productId, payload))
-		// if (createdReview) {
+
 		// 	go back to route
 		history.push(`/products/${productId}`);
 			// hideForm();
@@ -54,7 +55,6 @@ useEffect(() => {
 		e.preventDefault();
 		history.push(`/products/${productId}`);
 
-		// hideForm();
 	};
 
 

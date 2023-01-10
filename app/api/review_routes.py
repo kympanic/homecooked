@@ -1,7 +1,8 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from ..models import Review, User, db
 from ..utils import Print
 from flask_login import current_user, login_required
+from app.forms import ReviewForm
 
 
 review_routes = Blueprint('reviews', __name__)
@@ -47,5 +48,15 @@ def delete_review(id):
     db.session.delete(review)
     db.session.commit()
 
-    return {"message": "Successfully deleted"}
+    return {"message": "Successfully deleted"},redirect(f'/reviews')
 
+## update review form
+# @review_routes.route('/<int:id>', method=['PUT'])
+# def updateReview(id):
+#     form = ReviewForm()
+#     if form.validate_on_submit():
+#         review = Review.query.filter_by(id=f'{id}')
+#         review.rating = form.data['rating']
+#         review.body = form.data['body']
+#         db.session.commit()
+#         return redirect(f'/reviews')

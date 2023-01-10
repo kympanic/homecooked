@@ -12,6 +12,7 @@ import ProfilePage from "./components/ProfilePage"
 import CreateReview from "./components/ReviewForm";
 // import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
+import SingleReview from "./components/SingleReview.js";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,10 @@ function App() {
 				</Route>
 				<Route path="/store/:userId" exact={true}>
 					<StorePage />
+				</Route>
+
+				<Route path="/reviews/:reviewId" exact={true}>
+					<SingleReview />
 				</Route>
 
 				<Route path="/products/:productId/review" exact={true}>
