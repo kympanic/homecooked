@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
+import { getAllReviewsThunk } from "./store/reviews";
 
 import TestEditProductPage from "./components/TestEditProductPage";
 import TestEditReviewPage from "./components/TestEditReviewPage";
@@ -32,6 +33,7 @@ function App() {
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 		dispatch(getAllProductsThunk());
+		dispatch(getAllReviewsThunk());
 	});
 
 	if (!loaded) {
@@ -41,6 +43,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<NavBar />
+
 			<Switch>
 				<Route path="/" exact={true}>
 					<HomePage />

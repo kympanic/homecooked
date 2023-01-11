@@ -5,16 +5,16 @@ import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
+import { getSingleProduct } from "../../store/products";
 
 const StorePage = () => {
 	const { userId } = useParams();
+	const dispatch = useDispatch(0);
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => state?.users[userId]?.products);
 	const reviews = useSelector((state) => state?.users[userId]?.reviews);
 	const sessionUserId = useSelector((state) => state?.session.user.id);
-
-	console.log(vendor?.products, "THESE ARE THE PRODUCTS FOR THE VENDOR");
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
