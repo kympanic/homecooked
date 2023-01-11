@@ -13,7 +13,10 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
-import { getAllReviewsThunk } from "./store/reviews";
+
+import TestEditProductPage from "./components/TestEditProductPage";
+import TestEditReviewPage from "./components/TestEditReviewPage";
+import TestPaymentPage from "./components/TestPaymentPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
