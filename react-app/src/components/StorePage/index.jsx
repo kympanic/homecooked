@@ -2,14 +2,12 @@ import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import ReviewSwiper from "./ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
-import { getSingleProduct } from "../../store/products";
 
 const StorePage = () => {
 	const { userId } = useParams();
-	const dispatch = useDispatch(0);
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => state?.users[userId]?.products);
