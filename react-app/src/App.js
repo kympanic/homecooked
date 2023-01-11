@@ -15,10 +15,6 @@ import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
 
-import TestEditProductPage from "./components/TestEditProductPage";
-import TestEditReviewPage from "./components/TestEditReviewPage";
-import TestPaymentPage from "./components/TestPaymentPage";
-
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -62,15 +58,6 @@ function App() {
 				</Route>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/payments/:paymentId">
-					<TestPaymentPage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/products/:productId/edit" exact={true}>
-					<TestEditProductPage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/reviews/:reviewId/edit" exact={true}>
-					<TestEditReviewPage />
 				</ProtectedRoute>
 				<Route path="/">
 					<PageNotFound />
