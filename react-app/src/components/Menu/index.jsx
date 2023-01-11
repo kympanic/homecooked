@@ -21,12 +21,6 @@ const Menu = () => {
 				products.map((el) => (
 					<div key={el.id} className="productBox">
 						<Product id={el.id} vendor={vendor} />
-						{/* {vendor?.id === sessionUserId && (
-							<div>
-								<button>Edit Item for owners only</button>
-								<button>Delete Item for owners only</button>
-							</div>
-						)} */}
 					</div>
 				))}
 		</div>

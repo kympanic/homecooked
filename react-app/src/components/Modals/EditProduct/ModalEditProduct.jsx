@@ -11,6 +11,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 	const [imageUrl, setImageUrl] = useState("");
 	const [price, setPrice] = useState("");
 	const [errors, setErrors] = useState([]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedProduct = {

@@ -43,3 +43,11 @@
 	border: 2px red solid;
 	height: 150px;
 }
+
+.store-menu-container {
+	display: inline-block;
+	max-height: 600px;
+	width: 100%;
+	border: 2px solid red;
+	overflow: auto;
+}

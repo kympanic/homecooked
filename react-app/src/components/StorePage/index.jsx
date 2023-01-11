@@ -1,14 +1,18 @@
 import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import ReviewSwiper from "./ReviewSwiper";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu";
+
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
+import { useEffect } from "react";
+import { getAllProductsThunk } from "../../store/products";
 
 const StorePage = () => {
 	const { userId } = useParams();
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => state?.users[userId]?.products);
@@ -22,6 +26,10 @@ const StorePage = () => {
 	if (vendor?.shopName === null) {
 		history.push("/");
 	}
+
+	useEffect(() => {
+		dispatch(getAllProductsThunk());
+	}, [dispatch, products]);
 
 	return (
 		<div className="store-page">
