@@ -15,9 +15,20 @@ const StorePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
-	const products = useSelector((state) => state?.users[userId]?.products);
-	const reviews = useSelector((state) => state?.users[userId]?.reviews);
+	const products = useSelector((state) => Object.values(state?.products));
+	const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
+
+	const selectedProducts = products.filter((product) => {
+		return product.userId === 1;
+	});
+
+	const selectedReviews = [];
+	selectedProducts.map((product) => {
+		selectedReviews.push(product?.reviews);
+	});
+	console.log(selectedProducts, "ahh");
+	console.log(selectedReviews, "OMGPLEASE");
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +40,7 @@ const StorePage = () => {
 
 	useEffect(() => {
 		dispatch(getAllProductsThunk());
-	}, [dispatch, products]);
+	}, [dispatch]);
 
 	return (
 		<div className="store-page">
@@ -71,6 +82,7 @@ const StorePage = () => {
 				{reviews?.map((review) => (
 					<div className="reviews-container">
 						<div className="reviews-header">
+							<h4>{review?.user?.username}</h4>
 							<>review owner profile image name</>
 						</div>
 						<div className="reviews-content">
