@@ -3,6 +3,7 @@ import ReviewSwiper from "./ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useSelector } from "react-redux";
+import Menu from "../Menu";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
 
@@ -28,6 +29,7 @@ const StorePage = () => {
 				<div className="header-left">
 					<div className="splash-img-container">
 						<img
+							id="shop-splash-img"
 							src={vendor?.shopSplashImg}
 							alt="vendor-splash-img"
 						/>
@@ -53,7 +55,31 @@ const StorePage = () => {
 			<div className="sample-review-container">
 				<ReviewSwiper reviews={reviews} products={products} />
 			</div>
+			<div className="store-menu-container">
+				<Menu />
+			</div>
 
+			<div className="reviews-section">
+				{reviews?.map((review) => (
+					<div className="reviews-container">
+						<div className="reviews-header">
+							<>review owner profile image name</>
+						</div>
+						<div className="reviews-content">
+							<>review score review body</>
+						</div>
+						<div className="reviews-footer">
+							<>product img product name</>
+						</div>
+						<div classname="review-buttons-container">
+							<>
+								if userid of the review = session id then add
+								these buttons
+							</>
+						</div>
+					</div>
+				))}
+			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 		</div>
 	);
