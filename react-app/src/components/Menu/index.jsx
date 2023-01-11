@@ -8,7 +8,7 @@ const Menu = () => {
 	const dispatch = useDispatch();
 	const { userId } = useParams();
 	const products = useSelector((state) => state?.users[userId]?.products);
-	const sessionUserId = useSelector((state) => state?.session.user.id);
+
 	const vendor = useSelector((state) => state?.users[userId]);
 	useEffect(() => {
 		dispatch(getAllProductsThunk());
@@ -20,13 +20,13 @@ const Menu = () => {
 			{products &&
 				products.map((el) => (
 					<div key={el.id} className="productBox">
-						<Product id={el.id} />
-						{vendor?.id === sessionUserId && (
+						<Product id={el.id} vendor={vendor} />
+						{/* {vendor?.id === sessionUserId && (
 							<div>
 								<button>Edit Item for owners only</button>
 								<button>Delete Item for owners only</button>
 							</div>
-						)}
+						)} */}
 					</div>
 				))}
 		</div>

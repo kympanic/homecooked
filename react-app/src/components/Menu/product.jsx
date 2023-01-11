@@ -2,11 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItem, getCartItemById, updateCount } from "../../store/session";
 import "./menuproducts.css";
 
-const Product = ({ id }) => {
+const Product = ({ id, vendor }) => {
 	const dispatch = useDispatch();
 	const prodId = id;
 	const product = useSelector((state) => state.products[prodId]);
 	const cartItem = useSelector(getCartItemById(prodId));
+	const sessionUserId = useSelector((state) => state?.session.user.id);
 	const addToCart = () => {
 		if (cartItem) return dispatch(updateCount(prodId, cartItem.count + 1));
 		dispatch(addItem(prodId));
@@ -35,10 +36,16 @@ const Product = ({ id }) => {
 				<div className="menu-products-content-footer">
 					<div>{product?.description}</div>
 				</div>
-				<div className="menu-products-content-buttons">
-					<button onClick={addToCart}>Add to Cart</button>
-				</div>
-				<div></div>
+				{vendor?.id === sessionUserId ? (
+					<div>
+						<button>Edit Item for owners only</button>
+						<button>Delete Item for owners only</button>
+					</div>
+				) : (
+					<div className="menu-products-content-buttons">
+						<button onClick={addToCart}>Add to Cart</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);
