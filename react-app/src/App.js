@@ -17,7 +17,6 @@ import { getAllProductsThunk } from "./store/products";
 import TestEditProductPage from "./components/TestEditProductPage";
 import TestEditReviewPage from "./components/TestEditReviewPage";
 import TestPaymentPage from "./components/TestPaymentPage";
-import TestOrderPage from "./components/TestOrderPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
