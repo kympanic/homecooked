@@ -29,6 +29,11 @@ const NavBar = () => {
 				<li>
 					<LogoutButton />
 				</li>
+				<li>
+					<NavLink to ="/cart" exact={true}>
+						Cart
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	);
