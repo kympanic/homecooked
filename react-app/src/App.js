@@ -12,10 +12,12 @@ import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
+import { getAllProductsThunk } from "./store/products";
 
 import TestEditProductPage from "./components/TestEditProductPage";
 import TestEditReviewPage from "./components/TestEditReviewPage";
 import TestPaymentPage from "./components/TestPaymentPage";
+import TestOrderPage from "./components/TestOrderPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -30,6 +32,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
+		dispatch(getAllProductsThunk());
 	});
 
 	if (!loaded) {

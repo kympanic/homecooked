@@ -3,25 +3,18 @@ import ReviewSwiper from "./ReviewSwiper";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviewsByUserIdThunk } from "../../store/reviews";
-import { getProductsByUserIdThunk } from "../../store/products";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
 
 const StorePage = () => {
 	const { userId } = useParams();
-	const dispatch = useDispatch();
 	const history = useHistory();
-
 	const vendor = useSelector((state) => state?.users[userId]);
-	const products = useSelector((state) => Object.values(state?.products));
-	const reviews = useSelector((state) => Object.values(state?.reviews));
+	const products = useSelector((state) => state?.users[userId]?.products);
+	const reviews = useSelector((state) => state?.users[userId]?.reviews);
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
-	useEffect(() => {
-		dispatch(getReviewsByUserIdThunk(userId));
-		dispatch(getProductsByUserIdThunk(userId));
-	}, [dispatch, userId]);
+	console.log(vendor?.products, "THESE ARE THE PRODUCTS FOR THE VENDOR");
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
