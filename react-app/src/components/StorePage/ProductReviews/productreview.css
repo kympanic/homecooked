@@ -12,3 +12,11 @@
 .review-profile-img {
 	width: 100px;
 }
+
+.review-content-wrapper {
+	display: inline-block;
+	max-height: 600px;
+	width: 100%;
+	border: 2px solid red;
+	overflow: auto;
+}

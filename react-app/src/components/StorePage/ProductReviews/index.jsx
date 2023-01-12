@@ -30,54 +30,56 @@ const ProductReviews = ({ id }) => {
 				<p>Avg Rating: {product.avgRating}</p>
 				<p></p>
 			</div>
-			{filteredReviews &&
-				filteredReviews.length > 0 &&
-				filteredReviews.map((review) => (
-					<div className="review-content-wrapper">
-						<Link to={`/profile/${review.userId}`}>
-							{review.user.username}
-						</Link>
-						<img
-							className="review-profile-img"
-							src={review.user.profileImg}
-							alt={review.user.username}
-						/>
-						<p>{review.body}</p>
-						{sessionUserId === review.userId && (
-							<div>
-								<button
-									className={styles.primaryBtn}
-									onClick={() => setIsOpenEdit(true)}
-								>
-									Edit Comment
-								</button>
-								{isOpenEdit && (
-									<ModalEditReview
-										setIsOpen={setIsOpenEdit}
-										review={review}
-									/>
-								)}
-								<button
-									className={styles.primaryBtn}
-									onClick={() => setIsOpenDelete(true)}
-								>
-									Delete Comment
-								</button>
-								{isOpenDelete && (
-									<ModalDeleteReview
-										setIsOpen={setIsOpenDelete}
-										review={review}
-									/>
-								)}
-							</div>
-						)}
+			<div className="review-content-wrapper">
+				{filteredReviews &&
+					filteredReviews.length > 0 &&
+					filteredReviews.map((review) => (
+						<div>
+							<Link to={`/profile/${review.userId}`}>
+								{review.user.username}
+							</Link>
+							<img
+								className="review-profile-img"
+								src={review.user.profileImg}
+								alt={review.user.username}
+							/>
+							<p>{review.body}</p>
+							{sessionUserId === review.userId && (
+								<div>
+									<button
+										className={styles.primaryBtn}
+										onClick={() => setIsOpenEdit(true)}
+									>
+										Edit Comment
+									</button>
+									{isOpenEdit && (
+										<ModalEditReview
+											setIsOpen={setIsOpenEdit}
+											review={review}
+										/>
+									)}
+									<button
+										className={styles.primaryBtn}
+										onClick={() => setIsOpenDelete(true)}
+									>
+										Delete Comment
+									</button>
+									{isOpenDelete && (
+										<ModalDeleteReview
+											setIsOpen={setIsOpenDelete}
+											review={review}
+										/>
+									)}
+								</div>
+							)}
+						</div>
+					))}
+				{filteredReviews.length === 0 && (
+					<div>
+						<p> THERE ARE NO REVIEWS YET!</p>
 					</div>
-				))}
-			{filteredReviews.length === 0 && (
-				<div>
-					<p> THERE ARE NO REVIEWS YET!</p>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };
