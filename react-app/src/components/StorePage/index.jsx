@@ -7,8 +7,6 @@ import Menu from "../Menu";
 
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
-import { useEffect } from "react";
-import { getAllProductsThunk } from "../../store/products";
 import ProductReviews from "./ProductReviews";
 const StorePage = () => {
 	const { userId } = useParams();
@@ -19,22 +17,24 @@ const StorePage = () => {
 	const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
-	console.log(typeof userId);
-	console.log(products, "THESE ARE ALL THE PRODUCTS");
-
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
 	});
 
-	// console.log(selectedProducts, "THESE ARE THE FILTERED PRODUCTS");
+	//Getting the average rating for the store
+	let sumOfAverageRatings = selectedProducts.reduce(function (tot, arr) {
+		// return the sum with previous value
+		return tot + parseFloat(arr.avgRating, 2);
+
+		// set initial value as 0
+	}, 0);
+	let storeAvg = (sumOfAverageRatings / selectedProducts.length).toFixed(2);
 
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
 		selectedReviews.push(selectedProducts[product].reviews);
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
-
-	// console.log(convertedReviews, "these are the reviews");
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
@@ -61,8 +61,8 @@ const StorePage = () => {
 						<div>
 							<h1>{vendor.shopName}</h1>
 							<h3>Zipcode: {vendor.zipcode}</h3>
-							<h3>Average Reviews</h3>
-							<h3>Category</h3>
+							<h3>Average Reviews: {storeAvg}</h3>
+							<h3>Category: {vendor.category}</h3>
 							{vendor.id === sessionUserId && (
 								<button
 									className={styles.primaryBtn}
