@@ -50,4 +50,13 @@
 	width: 100%;
 	border: 2px solid red;
 	overflow: auto;
+	margin-top: 150px;
+	margin-bottom: 200px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.store-reviews-title-divider {
+	border-top: 2px solid black;
+	padding-top: 100px;
 }

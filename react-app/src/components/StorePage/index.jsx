@@ -102,7 +102,7 @@ const StorePage = () => {
 			<div className="store-menu-container">
 				<Menu />
 			</div>
-			<div>
+			<div className="store-reviews-title-divider">
 				<h1>Reviews</h1>
 			</div>
 			<div className="reviews-section">
