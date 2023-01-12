@@ -12,10 +12,9 @@ import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
-
-import TestEditProductPage from "./components/TestEditProductPage";
-import TestEditReviewPage from "./components/TestEditReviewPage";
-import TestPaymentPage from "./components/TestPaymentPage";
+import { getAllProductsThunk } from "./store/products";
+import { getAllReviewsThunk } from "./store/reviews";
+import TestMenuPage from "./components/TestMenuPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -30,6 +29,8 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
+		dispatch(getAllProductsThunk());
+		dispatch(getAllReviewsThunk());
 	});
 
 	if (!loaded) {
@@ -58,14 +59,8 @@ function App() {
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/payments/:paymentId">
-					<TestPaymentPage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/products/:productId/edit" exact={true}>
-					<TestEditProductPage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/reviews/:reviewId/edit" exact={true}>
-					<TestEditReviewPage />
+				<ProtectedRoute path="/store/:userId/test">
+					<TestMenuPage />
 				</ProtectedRoute>
 				<Route path="/">
 					<PageNotFound />

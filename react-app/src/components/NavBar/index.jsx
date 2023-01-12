@@ -34,11 +34,9 @@ const NavBar = ({cart}) => {
 					<LogoutButton />
 				</li>
 				<li>
-					<h3>Cart</h3>
-
-				<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-
-
+					<NavLink to ="/cart" exact={true}>
+						Cart
+					</NavLink>
 				</li>
 			</ul>
 		</nav>

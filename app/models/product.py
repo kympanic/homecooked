@@ -31,14 +31,13 @@ class Product(db.Model):
         #get the average
         total = sum(converted_ratings)
         if total == 0:
-            avg = 3.0
+            avg = 3.00
         else:
             avg = total / len(converted_ratings)
 
         #conversion to float from string for PRICE
         converted_price = float(self.price)
-
-        Print(self.user_products)
+        avg = (f'{avg:.2f}')
 
         return {
             'id': self.id,
@@ -55,8 +54,9 @@ class Product(db.Model):
         }
 
     def to_dict_basic(self):
-
+        
         converted_price = float(self.price)
+      
 
         return {
             'id': self.id,

@@ -7,6 +7,7 @@ const ADD_ITEM = "session/ADD_ITEM";
 const UPDATE_COUNT = "session/UPDATE_COUNT";
 const REMOVE_ITEM = "session/REMOVE_ITEM"
 const RESET_CART = "session/RESET_CART"
+const LOAD_CURRENT_ITEM = "session/LOAD_CURRENT_ITEM"
 
 //  User Actions
 const setUser = (user) => ({
@@ -26,8 +27,12 @@ export const addItem = (productId) => {
 	};
 };
 
-export const updateCount = (productId, count) => {
-	if (count < 1) return removeItem(productId);
+export const updateCount = (itemId, count) => {
+	if (count < 1) return {
+		type: UPDATE_COUNT,
+		itemId,
+		count: 1
+	};
 	return {
 		type: UPDATE_COUNT,
 		productId,
@@ -48,17 +53,23 @@ export const reset = () => {
 	};
 };
 
+export const loadCurrentItem = (item) => {
+    return {
+        type: LOAD_CURRENT_ITEM,
+        payload: item
+    }
+}
+
 // SELECTORS
-export const getCartItemById = (productId) => (store) => store.session.cart.productId;
-// NEED TO CHANGE *** BELOW
-// export const getAllCartItems = ({ cart, product }) => {
-// 	return Object.values(cart.order).map((id) => {
-// 		return {
-// 			...cart.items[id],
-// 			...product[id],
-// 		};
-// 	});
-// };
+export const getCartItemById = (id) => (state) => state.cart.items[id];
+
+export const getAllCartItems = ({ cart }) => {
+	return Object.values(cart.order).map((id) => {
+		return {
+			...cart.items[id],
+		};
+	});
+};
 
 
 
@@ -161,7 +172,8 @@ export default function reducer(state = initialState, action) {
 
 // CART REDUCER
 const initialState2 = {
-	products: {},
+
+	items: {},
 	order: [],
 };
 export function cartReducer(state = initialState2, action) {
@@ -182,6 +194,7 @@ export function cartReducer(state = initialState2, action) {
 					...state.items,
 					[action.itemId]: {
 						...state[action.itemId],
+						id: action.itemId,
 						count: action.count,
 					},
 				},
@@ -189,11 +202,13 @@ export function cartReducer(state = initialState2, action) {
 		case REMOVE_ITEM:
 			const newState = { ...state, items: { ...state.items } };
 			delete newState.items[action.itemId];
-			newState.order = newState.order.filter((id) => id !== action.itemId);
+			newState.order = newState.order.filter(
+				(id) => id !== action.itemId
+			);
 			return newState;
 		case RESET_CART:
 			return initialState2;
 		default:
 			return state;
-	}
-}
+    };
+};

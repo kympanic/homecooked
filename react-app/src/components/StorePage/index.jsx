@@ -1,27 +1,23 @@
 import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import ReviewSwiper from "./ReviewSwiper";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviewsByUserIdThunk } from "../../store/reviews";
-import { getProductsByUserIdThunk } from "../../store/products";
+import Menu from "../Menu";
+
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
+import { useEffect } from "react";
+import { getAllProductsThunk } from "../../store/products";
 
 const StorePage = () => {
 	const { userId } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
-
 	const vendor = useSelector((state) => state?.users[userId]);
-	const products = useSelector((state) => Object.values(state?.products));
-	const reviews = useSelector((state) => Object.values(state?.reviews));
+	const products = useSelector((state) => state?.users[userId]?.products);
+	const reviews = useSelector((state) => state?.users[userId]?.reviews);
 	const sessionUserId = useSelector((state) => state?.session.user.id);
-
-	useEffect(() => {
-		dispatch(getReviewsByUserIdThunk(userId));
-		dispatch(getProductsByUserIdThunk(userId));
-	}, [dispatch, userId]);
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
@@ -31,12 +27,17 @@ const StorePage = () => {
 		history.push("/");
 	}
 
+	useEffect(() => {
+		dispatch(getAllProductsThunk());
+	}, [dispatch, products]);
+
 	return (
 		<div className="store-page">
 			<div className="header-container">
 				<div className="header-left">
 					<div className="splash-img-container">
 						<img
+							id="shop-splash-img"
 							src={vendor?.shopSplashImg}
 							alt="vendor-splash-img"
 						/>
@@ -62,7 +63,31 @@ const StorePage = () => {
 			<div className="sample-review-container">
 				<ReviewSwiper reviews={reviews} products={products} />
 			</div>
+			<div className="store-menu-container">
+				<Menu />
+			</div>
 
+			<div className="reviews-section">
+				{reviews?.map((review) => (
+					<div className="reviews-container">
+						<div className="reviews-header">
+							<>review owner profile image name</>
+						</div>
+						<div className="reviews-content">
+							<>review score review body</>
+						</div>
+						<div className="reviews-footer">
+							<>product img product name</>
+						</div>
+						<div classname="review-buttons-container">
+							<>
+								if userid of the review = session id then add
+								these buttons
+							</>
+						</div>
+					</div>
+				))}
+			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 		</div>
 	);

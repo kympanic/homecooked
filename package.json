@@ -1,5 +1,8 @@
+
 {
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^6.2.1"
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9"
   }
 }

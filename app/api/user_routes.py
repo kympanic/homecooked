@@ -27,10 +27,10 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-
+#POST NEW ORDER BY USER ID
 @user_routes.route('/<int:id>/orders',methods=['POST'])
 @login_required
-def  add_order():
+def add_order():
     form = OrderForm()
 
     Print(form.data)

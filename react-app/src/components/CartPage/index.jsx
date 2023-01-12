@@ -1,57 +1,38 @@
-<<<<<<< HEAD
-// import { useSelector, useDispatch } from "react-redux";
-// import { getAllCartItems, reset } from "../../store/cart";
-// // import CartItem from "./CartItem";
+import CartItem from "./cartItem";
+import { useDispatch, useSelector} from 'react-redux'
+import { useState } from "react";
 
-// function CartPage({ item }) {
-// 	const [count, setCount] = useState(item.count);
-// 	const dispatch = useDispatch();
+import { getAllCartItems } from "../../store/session";
 
-// 	useEffect(() => {
-// 		setCount(item.count);
-// 	}, [item.count]);
-
-// 	return (
-// 		<li className="cart-item">
-// 			<div className="cart-item-header">{item.name}</div>
-// 			<div className="cart-item-menu">
-// 				<input
-// 					type="number"
-// 					value={count}
-// 					onChange={(e) => setCount(e.target.value)}
-// 					onBlur={() => dispatch(updateCount(item.id, Number(count)))}
-// 				/>
-// 				<button
-// 					className="cart-item-button"
-// 					onClick={() => dispatch(updateCount(item.id, item.count + 1))}
-// 				>
-// 					+
-// 				</button>
-// 				<button
-// 					className="cart-item-button"
-// 					onClick={() => dispatch(updateCount(item.id, item.count - 1))}
-// 				>
-// 					-
-// 				</button>
-// 				<button
-// 					className="cart-item-button"
-// 					onClick={() => dispatch(removeItem(item.id))}
-// 				>
-// 					Remove
-// 				</button>
-// 			</div>
-// 		</li>
-// 	);
-// }
-
-
-
-// export default CartPage;
-=======
 const CartPage = () => {
+	const dispatch = useDispatch();
+	const cartItems = useSelector(getAllCartItems)
+	const products = useSelector((state) => state.products)
+
+	const totalItems = () => {
+		return;
+	}
+
 	return (
 		<div>
 			<h1>Cart Page</h1>
+			<div>
+				<h2>This has items in it, mapped to a list</h2>
+				<div>
+					{cartItems && cartItems.map((el) =>
+					<div key={el.id} className="cartItemBox">
+						<CartItem id={el.id} qty={el.count} />
+					</div>
+					)}
+				</div>
+			</div>
+			<div>
+				<h2>This takes us to the checkout form</h2>
+				<span>Total Items: Number</span>
+				<span>Total Price: $Number</span>
+				<button>Proceed To Checkout</button>
+
+			</div>
 		</div>
 	);
 };

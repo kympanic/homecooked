@@ -3,26 +3,19 @@ import thunk from "redux-thunk";
 import session from "./session";
 import products from "./products";
 import reviews from "./reviews";
-<<<<<<< HEAD
 import payments from "./payments"
 // import cart from "./cart"
 // import newCartReducer from "./cart";
-=======
-import payments from "./payments";
 import users from "./users";
->>>>>>> 42291acd5b681c2fa8da1256ab25aad66a8cc025
 
 const rootReducer = combineReducers({
 	session,
 	products,
 	reviews,
-<<<<<<< HEAD
 	payments,
 	// cart: newCartReducer
-=======
 	users,
 	payments,
->>>>>>> 42291acd5b681c2fa8da1256ab25aad66a8cc025
 });
 
 let enhancer;
