@@ -50,7 +50,7 @@ const HomePage = () => {
 								{store.shopName}
 							</Link>
 							<div className="secondary-text">
-								Average Rating: {store.avgRatig}
+								Average Rating: {store.avgRating}
 								<FontAwesomeIcon className="star" icon={faStar} />
 							</div>
 							<div className="secondary-text">
