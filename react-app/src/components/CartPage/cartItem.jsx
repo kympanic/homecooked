@@ -22,7 +22,7 @@ const CartItem = ({ id, qty }) => {
             </div>
             <div>{product?.name}</div>
             <div>
-                <span>${product?.price}</span>
+                <span>${(Math.round(product?.price * 100) / 100).toFixed(2)}</span>
             </div>
             <div>{product?.description}</div>
             <div>

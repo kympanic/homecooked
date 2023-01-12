@@ -38,7 +38,7 @@ const Product = ({ id, vendor }) => {
 						<div>{product?.name}</div>
 					</div>
 					<div className="menu-products-content-body">
-						<span>${product?.price}</span>
+						<span>${(Math.round(product?.price * 100) / 100).toFixed(2)}</span>
 						<div>{product?.avgRating}</div>
 						<div>{product?.category}</div>
 					</div>
