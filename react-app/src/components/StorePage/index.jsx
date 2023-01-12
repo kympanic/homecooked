@@ -102,6 +102,9 @@ const StorePage = () => {
 			<div className="store-menu-container">
 				<Menu />
 			</div>
+			<div>
+				<h1>Reviews</h1>
+			</div>
 			<div className="reviews-section">
 				{selectedProducts &&
 					selectedProducts.map((product) => (

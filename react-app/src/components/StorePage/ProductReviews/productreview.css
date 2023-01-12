@@ -3,12 +3,45 @@
 	height: 50px;
 }
 
+.review-box-container {
+	max-height: 800px;
+	overflow: auto;
+	width: 100%;
+	border: 2px solid black;
+}
+
 .review-content-wrapper {
 	margin-bottom: 50px;
 	margin-top: 30px;
-	margin-left: 50px;
+	margin-left: 100px;
+	max-height: 300px;
+	border: 2px red solid;
+	display: inline-block;
+	height: 800px;
+	width: 900px;
+	overflow: auto;
+}
+
+.review-container {
+	display: flex;
+	margin-top: 20px;
 }
 
 .review-profile-img {
 	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+.review-left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-right: 30px;
+}
+.review-right {
+	text-align: center;
+	border: 2px red solid;
+	width: 800px;
 }
