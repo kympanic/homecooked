@@ -32,7 +32,7 @@ const CartItem = ({ id, qty }) => {
                     }} 
                     onBlur={() => dispatch(updateCount(product.id, Number(count)))}
                     min="1" type="number" id="qty" name="qty" value={count} />
-                <button
+               <button
 					className="cart-item-button"
 					onClick={() => dispatch(updateCount(product.id, qty + 1))}
 				>

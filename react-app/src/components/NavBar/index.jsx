@@ -4,9 +4,23 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import { useSelector} from 'react-redux'
 
-const NavBar = ({cart}) => {
-	const [cartCount, setCartCount] = useState(0)
+import { getAllCartItems } from "../../store/session";
+
+const NavBar = () => {
+	const cartItems = useSelector(getAllCartItems)
+
+	const [ totalItems, setTotalItems ] = useState(0);
+
+	useEffect(() => {
+		let itemCount = 0;
+		cartItems.forEach(item => {
+			itemCount += item.count
+		});
+		setTotalItems(itemCount);
+	}, [cartItems, totalItems])
 	return (
 		<nav>
 			<ul>
@@ -36,6 +50,7 @@ const NavBar = ({cart}) => {
 				<li>
 					<NavLink to ="/cart" exact={true}>
 						Cart
+						<div className="cartCounter">{totalItems}</div>
 					</NavLink>
 				</li>
 			</ul>
