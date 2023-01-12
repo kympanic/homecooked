@@ -9,7 +9,7 @@ import "./storepage.css";
 import styles from "../Modals/App.module.css";
 import { useEffect } from "react";
 import { getAllProductsThunk } from "../../store/products";
-
+import ProductReviews from "./ProductReviews";
 const StorePage = () => {
 	const { userId } = useParams();
 	const dispatch = useDispatch();
@@ -19,16 +19,22 @@ const StorePage = () => {
 	const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
-	const selectedProducts = products.filter((product) => {
-		return product.userId === 1;
+	console.log(typeof userId);
+	console.log(products, "THESE ARE ALL THE PRODUCTS");
+
+	const selectedProducts = products?.filter((product) => {
+		return product?.userId === parseInt(userId);
 	});
 
+	// console.log(selectedProducts, "THESE ARE THE FILTERED PRODUCTS");
+
 	const selectedReviews = [];
-	selectedProducts.map((product) => {
-		selectedReviews.push(product?.reviews);
-	});
-	console.log(selectedProducts, "ahh");
-	console.log(selectedReviews, "OMGPLEASE");
+	for (const product in selectedProducts) {
+		selectedReviews.push(selectedProducts[product].reviews);
+	}
+	const convertedReviews = [].concat.apply([], selectedReviews);
+
+	// console.log(convertedReviews, "these are the reviews");
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
@@ -38,9 +44,9 @@ const StorePage = () => {
 		history.push("/");
 	}
 
-	useEffect(() => {
-		dispatch(getAllProductsThunk());
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(getAllProductsThunk());
+	// }, [dispatch]);
 
 	return (
 		<div className="store-page">
@@ -72,30 +78,16 @@ const StorePage = () => {
 				</div>
 			</div>
 			<div className="sample-review-container">
-				<ReviewSwiper reviews={reviews} products={products} />
+				<ReviewSwiper reviews={convertedReviews} />
 			</div>
 			<div className="store-menu-container">
 				<Menu />
 			</div>
-
 			<div className="reviews-section">
-				{reviews?.map((review) => (
+				{selectedProducts?.map((product) => (
 					<div className="reviews-container">
-						<div className="reviews-header">
-							<h4>{review?.user?.username}</h4>
-							<>review owner profile image name</>
-						</div>
 						<div className="reviews-content">
-							<>review score review body</>
-						</div>
-						<div className="reviews-footer">
-							<>product img product name</>
-						</div>
-						<div classname="review-buttons-container">
-							<>
-								if userid of the review = session id then add
-								these buttons
-							</>
+							<ProductReviews id={product?.id} />
 						</div>
 					</div>
 				))}

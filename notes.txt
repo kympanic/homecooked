@@ -1,0 +1,25 @@
+  // <div>
+    // 	<h2>Product reviews component</h2>
+    // 	{!product?.reviews ? (
+    // 		<div>
+    // 			<h3>NO REVIEWS YET</h3>
+    // 		</div>
+    // 	) : (
+    // 		<div>
+    // 			{convertedReviews.forEach((review) => {
+    // 				<p>{review?.body}</p>;
+    // 			})}
+    // 		</div>
+    // 	)}
+    // </div>
+
+
+    <div className="reviews-section">
+				{selectedProducts?.map((product) => (
+					<div className="reviews-container">
+						<div className="reviews-content">
+							<ProductReviews id={product?.id} />
+						</div>
+					</div>
+				))}
+			</div>
