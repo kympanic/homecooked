@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useState, useEffect } from "react";
 import { useSelector} from 'react-redux'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import { getAllCartItems } from "../../store/session";
 
 const NavBar = () => {
@@ -46,6 +47,7 @@ const NavBar = () => {
 				</li>
 				<li>
 					<NavLink to ="/cart" exact={true}>
+					<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
 						Cart
 						<div className="cartCounter">{totalItems}</div>
 					</NavLink>
