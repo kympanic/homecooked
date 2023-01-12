@@ -1,0 +1,33 @@
+.stores-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: space-between;
+    column-gap: 18px;
+    line-height: 20px;
+    margin: 16px 0px 40px 0px;
+    padding: 0 80px 0 80px;
+}
+
+.store-details{
+    display: flex;
+        height: 286px;
+        width: 302px;
+        font-family: Circular,
+            -apple-system,
+            BlinkMacSystemFont,
+            Roboto,
+            Helvetica Neue,
+            sans-serif;
+        border-radius: 10px;
+        /* background-size: contain; */
+        /* background-repeat: no-repeat; */
+        background-size: cover;
+
+}
+
+
+.img-size {
+
+}
