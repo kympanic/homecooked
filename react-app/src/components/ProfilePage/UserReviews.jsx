@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import ModalEditReview from "../Modals/EditReview/ModalEditReview";
-import ModalDeleteReview from "../Modals/DeleteReview/ModalDeleteReview";
+import UserReview from "./UserReview";
 
-const UserReviews = ({user}) => {
-	
+const UserReviews = ({user}) => {	
 	return (
 		<div>
+            {user.reviews && user.reviews.map((el) => 
+            <div key={el.id} className="reviewBox">
+                <UserReview user={user} review={el} />
+            </div>
+            )}
 		</div>
 	);
 };
