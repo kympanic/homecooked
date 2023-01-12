@@ -11,19 +11,10 @@ const zipCodeData = require("zipcode-city-distance");
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const sessionUser = Object.values((state) => state.session.user);
 	const sessionUserZipcode = useSelector(
 		(state) => state.session.user.zipcode
 	);
 	const allStoresArray = useSelector((state) => Object.values(state.users));
-
-	console.log(sessionUser);
-	let zipCodeDistance = zipCodeData.zipCodeDistance(
-		sessionUserZipcode,
-		allStoresArray.zipcode,
-		"M"
-	);
-	console.log(zipCodeDistance, "is this working?");
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
@@ -50,7 +41,7 @@ const HomePage = () => {
 							</div>
 							<Link
 								className="store-link"
-								to={`/users/${store.id}`}
+								to={`/store/${store.id}`}
 							>
 								{store.shopName}
 							</Link>
