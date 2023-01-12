@@ -4,18 +4,20 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import Menu from "../Menu";
-
+import ProductReviews from "./ProductReviews";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
-import ProductReviews from "./ProductReviews";
+const zipCodeData = require("zipcode-city-distance");
+
 const StorePage = () => {
 	const { userId } = useParams();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
-	const reviews = useSelector((state) => Object.values(state?.reviews));
+	// const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
+	const sessionUser = useSelector((state) => state?.session.user);
 
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
@@ -30,6 +32,7 @@ const StorePage = () => {
 	}, 0);
 	let storeAvg = (sumOfAverageRatings / selectedProducts.length).toFixed(2);
 
+	//SelectedReviews for the review-swiper
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
 		selectedReviews.push(selectedProducts[product].reviews);
@@ -60,7 +63,25 @@ const StorePage = () => {
 					{vendor && (
 						<div>
 							<h1>{vendor.shopName}</h1>
-							<h3>Zipcode: {vendor.zipcode}</h3>
+							{vendor.id !== sessionUserId ? (
+								<div>
+									<h3>
+										Distance:{" "}
+										{zipCodeData
+											.zipCodeDistance(
+												sessionUser.zipcode,
+												vendor.zipcode,
+												"M"
+											)
+											.toFixed(2)}{" "}
+										miles
+									</h3>
+								</div>
+							) : (
+								<div>
+									<h3>Zipcode: {vendor.zipcode}</h3>
+								</div>
+							)}
 							<h3>Average Reviews: {storeAvg}</h3>
 							<h3>Category: {vendor.category}</h3>
 							{vendor.id === sessionUserId && (
