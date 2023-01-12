@@ -11,13 +11,10 @@ import UserReviews from "./UserReviews";
 //other users' profiles should be viewable by clicking on their usernames on reviews or on their stores
 
 const ProfilePage = () => {
-	const sessionUserId = useSelector((state) => state?.session.user.id);
+	const sessionUserId = useSelector((state) => state.session.user.id);
 	const { userId } = useParams();
-	const user = useSelector((state) => state?.users[userId]);
-	console.log(user);
-	const { userId } = useParams();
-	const user = useSelector((state) => state?.users[userId]);
-	console.log(user);
+	const user = useSelector((state) => state.users[userId]);
+
 
 	return (
 		<div>
