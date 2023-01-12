@@ -8,6 +8,7 @@ import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
+import PaymentPage from "./components/PaymentPage";
 import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
@@ -56,6 +57,9 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
+				<ProtectedRoute path="/payment" exact={true}>
+					<PaymentPage />
+				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>

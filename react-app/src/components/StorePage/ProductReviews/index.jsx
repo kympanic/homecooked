@@ -50,7 +50,7 @@ const ProductReviews = ({ id }) => {
 									>
 										{review.user.username}
 									</Link>
-									<p>{review.rating}</p>
+									<p>Score: {review.rating}</p>
 								</div>
 								<div className="review-right">
 									<p>{review.body}</p>

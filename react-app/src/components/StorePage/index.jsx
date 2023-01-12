@@ -19,10 +19,20 @@ const StorePage = () => {
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 	const sessionUser = useSelector((state) => state?.session.user);
 
+	//SelectedReviews for the review-swiper
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
 	});
+	const selectedReviews = [];
+	for (const product in selectedProducts) {
+		selectedReviews.push(selectedProducts[product].reviews);
+	}
+	const convertedReviews = [].concat.apply([], selectedReviews);
 
+	console.log(
+		convertedReviews,
+		"these are the converted reviews for the swiper"
+	);
 	//Getting the average rating for the store
 	let sumOfAverageRatings = selectedProducts.reduce(function (tot, arr) {
 		// return the sum with previous value
@@ -31,13 +41,6 @@ const StorePage = () => {
 		// set initial value as 0
 	}, 0);
 	let storeAvg = (sumOfAverageRatings / selectedProducts.length).toFixed(2);
-
-	//SelectedReviews for the review-swiper
-	const selectedReviews = [];
-	for (const product in selectedProducts) {
-		selectedReviews.push(selectedProducts[product].reviews);
-	}
-	const convertedReviews = [].concat.apply([], selectedReviews);
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
