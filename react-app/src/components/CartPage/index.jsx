@@ -32,7 +32,6 @@ const CartPage = () => {
 		<div>
 			<h1>Cart Page</h1>
 			<div>
-				<h2>This has items in it, mapped to a list</h2>
 				<div>
 					{cartItems && cartItems.map((el) => 
 					<div key={el.id} className="cartItemBox">
@@ -42,9 +41,8 @@ const CartPage = () => {
 				</div>
 			</div>
 			<div>
-				<h2>This takes us to the checkout form</h2>
-				<span>Total Items: {totalItems}</span>
-				<span>Total Price: ${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
+				<p>Total Items: {totalItems}</p>
+				<p>Total Price: ${(Math.round(totalPrice * 100) / 100).toFixed(2)}</p>
 				<button>Proceed To Checkout</button>
 				
 			</div>
