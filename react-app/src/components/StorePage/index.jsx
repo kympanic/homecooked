@@ -44,10 +44,6 @@ const StorePage = () => {
 		history.push("/");
 	}
 
-	// useEffect(() => {
-	// 	dispatch(getAllProductsThunk());
-	// }, [dispatch]);
-
 	return (
 		<div className="store-page">
 			<div className="header-container">
@@ -61,20 +57,22 @@ const StorePage = () => {
 					</div>
 				</div>
 				<div className="header-right">
-					<div>
-						<h1>{vendor?.shopName}</h1>
-						<h3>Zipcode: {vendor?.zipcode}</h3>
-						<h3>Average Reviews</h3>
-						<h3>Category</h3>
-						{vendor?.id === sessionUserId && (
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpen(true)}
-							>
-								Create Product
-							</button>
-						)}
-					</div>
+					{vendor && (
+						<div>
+							<h1>{vendor.shopName}</h1>
+							<h3>Zipcode: {vendor.zipcode}</h3>
+							<h3>Average Reviews</h3>
+							<h3>Category</h3>
+							{vendor.id === sessionUserId && (
+								<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpen(true)}
+								>
+									Create Product
+								</button>
+							)}
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="sample-review-container">
@@ -84,13 +82,14 @@ const StorePage = () => {
 				<Menu />
 			</div>
 			<div className="reviews-section">
-				{selectedProducts?.map((product) => (
-					<div className="reviews-container">
-						<div className="reviews-content">
-							<ProductReviews id={product?.id} />
+				{selectedProducts &&
+					selectedProducts.map((product) => (
+						<div className="reviews-container">
+							<div className="reviews-content">
+								<ProductReviews id={product.id} />
+							</div>
 						</div>
-					</div>
-				))}
+					))}
 			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 		</div>

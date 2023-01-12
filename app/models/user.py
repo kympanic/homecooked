@@ -60,5 +60,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'shopName': self.shop_name,
             'phoneNumber': self.phone_number,
+            'profileImg': self.profile_img,
             'zipcode': self.zipcode
         }
