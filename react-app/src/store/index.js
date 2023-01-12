@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 	payments,
 	// cart: newCartReducer
 	users,
-	payments,
+	
 });
 
 let enhancer;

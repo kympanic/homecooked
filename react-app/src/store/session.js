@@ -5,9 +5,9 @@ const REMOVE_USER = "session/REMOVE_USER";
 // const GET_CART = "session/GET_CART";
 const ADD_ITEM = "session/ADD_ITEM";
 const UPDATE_COUNT = "session/UPDATE_COUNT";
-const REMOVE_ITEM = "session/REMOVE_ITEM"
-const RESET_CART = "session/RESET_CART"
-const LOAD_CURRENT_ITEM = "session/LOAD_CURRENT_ITEM"
+const REMOVE_ITEM = "session/REMOVE_ITEM";
+const RESET_CART = "session/RESET_CART";
+const LOAD_CURRENT_ITEM = "session/LOAD_CURRENT_ITEM";
 
 //  User Actions
 const setUser = (user) => ({
@@ -20,30 +20,31 @@ const removeUser = () => ({
 });
 
 // Cart Actions
-export const addItem = (productId) => {
+export const addItem = (itemId) => {
 	return {
 		type: ADD_ITEM,
-		productId,
+		itemId,
 	};
 };
 
 export const updateCount = (itemId, count) => {
-	if (count < 1) return {
-		type: UPDATE_COUNT,
-		itemId,
-		count: 1
-	};
+	if (count < 1)
+		return {
+			type: UPDATE_COUNT,
+			itemId,
+			count: 1,
+		};
 	return {
 		type: UPDATE_COUNT,
-		productId,
+		itemId,
 		count,
 	};
 };
 
-export const removeItem = (productId) => {
+export const removeItem = (itemId) => {
 	return {
 		type: REMOVE_ITEM,
-		productId,
+		itemId,
 	};
 };
 
@@ -54,11 +55,11 @@ export const reset = () => {
 };
 
 export const loadCurrentItem = (item) => {
-    return {
-        type: LOAD_CURRENT_ITEM,
-        payload: item
-    }
-}
+	return {
+		type: LOAD_CURRENT_ITEM,
+		payload: item,
+	};
+};
 
 // SELECTORS
 export const getCartItemById = (id) => (state) => state.cart.items[id];
@@ -70,8 +71,6 @@ export const getAllCartItems = ({ cart }) => {
 		};
 	});
 };
-
-
 
 // THUNKS
 
@@ -155,7 +154,6 @@ export const signUp = (data) => async (dispatch) => {
 	}
 };
 
-
 // USER SESSION REDUCER
 
 export default function reducer(state = initialState, action) {
@@ -169,10 +167,8 @@ export default function reducer(state = initialState, action) {
 	}
 }
 
-
 // CART REDUCER
 const initialState2 = {
-
 	items: {},
 	order: [],
 };
@@ -181,9 +177,9 @@ export function cartReducer(state = initialState2, action) {
 		case ADD_ITEM:
 			return {
 				...state,
-				products: {
-					...state.products,
-					[action.productId]: { id: action.productId, count: 1 },
+				items: {
+					...state.items,
+					[action.itemId]: { id: action.itemId, count: 1 },
 				},
 				order: [...state.order, action.itemId],
 			};
@@ -210,5 +206,5 @@ export function cartReducer(state = initialState2, action) {
 			return initialState2;
 		default:
 			return state;
-    };
-};
+	}
+}

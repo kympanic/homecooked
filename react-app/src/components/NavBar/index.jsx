@@ -2,9 +2,8 @@ import React from "react";
 import {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import { useSelector} from 'react-redux'
 
 import { getAllCartItems } from "../../store/session";

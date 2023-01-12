@@ -26,7 +26,7 @@ const CartPage = () => {
 		});
 		setTotalItems(itemCount);
 		setTotalPrice(price);
-	}, [cartItems, totalItems, totalPrice])
+	}, [cartItems, totalItems, totalPrice, products])
 
 	return (
 		<div>
