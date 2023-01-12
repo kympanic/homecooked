@@ -15,9 +15,10 @@ const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	const sessionUserZipcode = useSelector((state)=> state.session.user.zipcode)
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
-	let zipCodeDistance = zipCodeData.zipCodeDistance('94526', '33014','M');
+	let zipCodeDistance = zipCodeData.zipCodeDistance(sessionUserZipcode, '33014','M');
 
 
 	useEffect(() => {
@@ -50,7 +51,7 @@ const HomePage = () => {
 								{store.shopName}
 							</Link>
 							<div className="secondary-text">
-								Average Rating: {store.avgRating}
+								Average Rating:
 								<FontAwesomeIcon className="star" icon={faStar} />
 							</div>
 							<div className="secondary-text">
