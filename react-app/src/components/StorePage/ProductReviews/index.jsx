@@ -34,7 +34,7 @@ const ProductReviews = ({ id }) => {
 				filteredReviews.length > 0 &&
 				filteredReviews.map((review) => (
 					<div className="review-content-wrapper">
-						<Link to={`/profile/${review.userId}`}>
+						<Link to={`/users/${review.userId}`}>
 							{review.user.username}
 						</Link>
 						<img
