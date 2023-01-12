@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllProductsThunk } from "../../store/products";
 import { useParams } from "react-router-dom";
+import "./menuproducts.css";
 
 const Menu = () => {
 	const dispatch = useDispatch();

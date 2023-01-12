@@ -7,17 +7,34 @@ import Menu from "../Menu";
 
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
-import { useEffect } from "react";
-import { getAllProductsThunk } from "../../store/products";
-
+import ProductReviews from "./ProductReviews";
 const StorePage = () => {
 	const { userId } = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const vendor = useSelector((state) => state?.users[userId]);
-	const products = useSelector((state) => state?.users[userId]?.products);
-	const reviews = useSelector((state) => state?.users[userId]?.reviews);
+	const products = useSelector((state) => Object.values(state?.products));
+	const reviews = useSelector((state) => Object.values(state?.reviews));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
+
+	const selectedProducts = products?.filter((product) => {
+		return product?.userId === parseInt(userId);
+	});
+
+	//Getting the average rating for the store
+	let sumOfAverageRatings = selectedProducts.reduce(function (tot, arr) {
+		// return the sum with previous value
+		return tot + parseFloat(arr.avgRating, 2);
+
+		// set initial value as 0
+	}, 0);
+	let storeAvg = (sumOfAverageRatings / selectedProducts.length).toFixed(2);
+
+	const selectedReviews = [];
+	for (const product in selectedProducts) {
+		selectedReviews.push(selectedProducts[product].reviews);
+	}
+	const convertedReviews = [].concat.apply([], selectedReviews);
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +43,6 @@ const StorePage = () => {
 	if (vendor?.shopName === null) {
 		history.push("/");
 	}
-
-	useEffect(() => {
-		dispatch(getAllProductsThunk());
-	}, [dispatch, products]);
 
 	return (
 		<div className="store-page">
@@ -44,49 +57,39 @@ const StorePage = () => {
 					</div>
 				</div>
 				<div className="header-right">
-					<div>
-						<h1>{vendor?.shopName}</h1>
-						<h3>Zipcode: {vendor?.zipcode}</h3>
-						<h3>Average Reviews</h3>
-						<h3>Category</h3>
-						{vendor?.id === sessionUserId && (
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpen(true)}
-							>
-								Create Product
-							</button>
-						)}
-					</div>
+					{vendor && (
+						<div>
+							<h1>{vendor.shopName}</h1>
+							<h3>Zipcode: {vendor.zipcode}</h3>
+							<h3>Average Reviews: {storeAvg}</h3>
+							<h3>Category: {vendor.category}</h3>
+							{vendor.id === sessionUserId && (
+								<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpen(true)}
+								>
+									Create Product
+								</button>
+							)}
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="sample-review-container">
-				<ReviewSwiper reviews={reviews} products={products} />
+				<ReviewSwiper reviews={convertedReviews} />
 			</div>
 			<div className="store-menu-container">
 				<Menu />
 			</div>
-
 			<div className="reviews-section">
-				{reviews?.map((review) => (
-					<div className="reviews-container">
-						<div className="reviews-header">
-							<>review owner profile image name</>
+				{selectedProducts &&
+					selectedProducts.map((product) => (
+						<div className="reviews-container">
+							<div className="reviews-content">
+								<ProductReviews id={product.id} />
+							</div>
 						</div>
-						<div className="reviews-content">
-							<>review score review body</>
-						</div>
-						<div className="reviews-footer">
-							<>product img product name</>
-						</div>
-						<div classname="review-buttons-container">
-							<>
-								if userid of the review = session id then add
-								these buttons
-							</>
-						</div>
-					</div>
-				))}
+					))}
 			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 		</div>

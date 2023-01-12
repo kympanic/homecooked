@@ -12,5 +12,6 @@ class UserForm(FlaskForm):
     phone_number=StringField('price', validators=[DataRequired()])
     shop_logo_img=StringField('shop_logo_img')
     shop_splash_img=StringField('shop_splash_img')
+    category=StringField('category')
     zipcode=StringField('category', validators =[DataRequired()])
     password=StringField('password',validators=[DataRequired()])

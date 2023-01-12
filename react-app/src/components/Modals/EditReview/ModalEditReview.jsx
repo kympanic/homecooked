@@ -10,6 +10,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 	const [rating, setRating] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	console.log(review, "THIS IS BEING PASSED DOWN TO MODAL EDIT");
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedReview = {
