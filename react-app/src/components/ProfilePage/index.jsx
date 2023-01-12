@@ -15,52 +15,61 @@ const ProfilePage = () => {
 	const { userId } = useParams();
 	const user = useSelector((state) => state?.users[userId]);
 	console.log(user);
+	const { userId } = useParams();
+	const user = useSelector((state) => state?.users[userId]);
+	console.log(user);
 
 	return (
 		<div>
-			<h1>Profile Page</h1>
-			<div>
-				<UserInfo user={user} />
-			</div>
-			{user?.shopName ? (
+			{user && userId && (
 				<div>
-					<ShopOwnerInfo user={user} />
-				</div>
-			) : null}
-			{user?.id === sessionUserId ? (
-				<div>
-					<button>Edit Public Profile</button>
+					<h1>Profile Page</h1>
 					<div>
-						{" "}
-						Note that this is the only means to edit profile image
-						(when have you ever put in a profile image on sign up?)
+						<UserInfo user={user} />
 					</div>
-					<button>Change Password</button>
+					{user.shopName ? (
+						<div>
+							<ShopOwnerInfo user={user} />
+						</div>
+					) : null}
+					{user.id === sessionUserId ? (
+						<div>
+							<button>Edit Public Profile</button>
+							<div>
+								{" "}
+								Note that this is the only means to edit profile
+								image (when have you ever put in a profile image
+								on sign up?)
+							</div>
+							<button>Change Password</button>
+							<div>
+								{" "}
+								Note that this is the only way to change your
+								password.
+							</div>
+						</div>
+					) : null}
+					{user.shopName ? (
+						<div>
+							<Link to={`/store/${userId}`}>
+								Click here to go to "{user?.shopName}"
+							</Link>
+						</div>
+					) : user.id === sessionUserId ? (
+						<div>
+							<button>Become a Vendor</button>
+							<div>
+								{" "}
+								Note that this and a nav bar button are the only
+								way to access this form.{" "}
+							</div>
+						</div>
+					) : null}
 					<div>
-						{" "}
-						Note that this is the only way to change your password.
+						<UserReviews user={user} />
 					</div>
 				</div>
-			) : null}
-			{user?.shopName ? (
-				<div>
-					<Link to={`/store/${userId}`}>
-						Click here to go to "{user?.shopName}"
-					</Link>
-				</div>
-			) : user?.id === sessionUserId ? (
-				<div>
-					<button>Become a Vendor</button>
-					<div>
-						{" "}
-						Note that this and a nav bar button are the only way to
-						access this form.{" "}
-					</div>
-				</div>
-			) : null}
-			<div>
-				<UserReviews user={user} />
-			</div>
+			)}
 		</div>
 	);
 };
