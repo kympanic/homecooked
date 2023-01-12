@@ -5,7 +5,7 @@ const UserReviews = ({user}) => {
 		<div>
             {user.reviews && user.reviews.map((el) => 
             <div key={el.id} className="reviewBox">
-                <UserReview user={user} review={el} />
+                <UserReview key={el.id} user={user} review={el} />
             </div>
             )}
 		</div>
