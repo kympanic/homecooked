@@ -13,7 +13,7 @@ PUBLIC]
 
 
 EDIT PROFILE FORM:
-Identical to Sign Up form, but DOES NOT INCLUDE PASSWORD or SHOP NAME.
+Identical to Sign Up form, but DOES NOT INCLUDE PASSWORD or SHOP NAME. Does include PROFILE IMAGE.
 Modal.
 
 CHANGE PASSWORD FORM:

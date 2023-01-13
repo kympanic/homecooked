@@ -17,7 +17,10 @@ const ShopOwnerInfo = ({user}) => {
             <div>{user?.zipcode}
                 <p>Calculated location based on zip code</p></div>
             <div>Owner of {user?.shopName}</div>
-            <div>Rating: <UserAvgRating user={user} products={products}/></div>
+            {user.products.length > 0 ? (
+                <div>Rating: <UserAvgRating user={user} products={products}/></div>
+            ) : null    
+            }
         </div>
     )
 }

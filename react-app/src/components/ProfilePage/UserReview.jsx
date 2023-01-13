@@ -11,8 +11,6 @@ const UserReview = ({ user, review }) => {
     const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
-    console.log(review)
-    console.log(product)
     return (
         <div>
             

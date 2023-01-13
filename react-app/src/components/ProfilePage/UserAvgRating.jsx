@@ -1,7 +1,6 @@
 const UserAvgRating = ({user, products}) => {
 
     const reviewAvg = products?.filter((product) => {
-      console.log(product)
       return product?.userId === parseInt(user.id);
       }).map(
         (el) => Number(el.avgRating)
