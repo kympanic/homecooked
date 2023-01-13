@@ -21,7 +21,6 @@ const OrderPage = () => {
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [isOpenPaymentAdd, setIsOpenPaymentAdd] = useState(false);
-	const [isOpenPaymentEdit, setIsOpenPaymentEdit] = useState(false);
 	if (sessionUser.id !== parseInt(userId)) {
 		history.push("/");
 	}

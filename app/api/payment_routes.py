@@ -50,16 +50,17 @@ def edit_paymentinfo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(payment)
-        Print("IS IT GETTING HEERE")
         db.session.commit()
 
     return {payment.id: payment.to_dict()}
 
+#DELETE A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_paymentinfo(id):
     payment_info = Payment.query.get(id)
 
+    Print(payment_info)
     if payment_info.user_id != current_user.id:
         return {"error": "You are not authorized to delete this payment information"}, 401
     

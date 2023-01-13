@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import ModalEditPayment from "../../Modals/EditPayment/ModalEditPayment";
+import ModalDeletePayment from "../../Modals/DeletePayment/ModalDeletePayment";
 import styles from "../../Modals/App.module.css";
 
 const OrderPayments = ({ id }) => {
 	const payment = useSelector((state) => state.payments[id]);
 	const sessionUserId = useSelector((state) => state.session.user.id);
 
-	console.log(payment, "THIS IS THE PAYMENT");
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	return (
@@ -28,9 +28,21 @@ const OrderPayments = ({ id }) => {
 						>
 							Edit
 						</button>
+						<button
+							className={styles.primaryBtn}
+							onClick={() => setIsOpenDelete(true)}
+						>
+							Delete
+						</button>
 						{isOpenEdit && (
 							<ModalEditPayment
 								setIsOpen={setIsOpenEdit}
+								payment={payment}
+							/>
+						)}
+						{isOpenDelete && (
+							<ModalDeletePayment
+								setIsOpen={setIsOpenDelete}
 								payment={payment}
 							/>
 						)}
