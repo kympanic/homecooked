@@ -29,10 +29,10 @@ const StorePage = () => {
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
 
-	console.log(
-		convertedReviews,
-		"these are the converted reviews for the swiper"
-	);
+	// console.log(
+	// 	convertedReviews,
+	// 	"these are the converted reviews for the swiper"
+	// );
 	//Getting the average rating for the store
 	let sumOfAverageRatings = selectedProducts.reduce(function (tot, arr) {
 		// return the sum with previous value
@@ -111,7 +111,7 @@ const StorePage = () => {
 			<div className="reviews-section">
 				{selectedProducts &&
 					selectedProducts.map((product) => (
-						<div className="reviews-container">
+						<div key={product.id} className="reviews-container">
 							<div className="reviews-content">
 								<ProductReviews id={product.id} />
 							</div>

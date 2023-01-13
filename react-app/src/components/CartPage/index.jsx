@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { getAllCartItems } from "../../store/session";
-import { NavLink } from "react-router-dom";
+import ModalAddPayment from "../Modals/AddPayment/ModalAddPayment";
+import { useHistory } from "react-router-dom";
+import styles from "../Modals/App.module.css";
 
 const CartPage = () => {
 	const cartItems = useSelector(getAllCartItems);
 	const products = useSelector((state) => state.products);
-
+	const history = useHistory();
 	//hmmm. totalItems and totalPrice need to update whenever the count of any item changes
 	//so we need these to be in a useEffect!
 	//and it'll probably be easiest to handle these values as part of state. ok.
@@ -28,11 +30,14 @@ const CartPage = () => {
 		});
 		setTotalItems(itemCount);
 		setTotalPrice(price);
-	}, [cartItems, totalItems, totalPrice]);
+	}, [cartItems, totalItems, totalPrice, products]);
 
-	console.log(cartItems);
+	// console.log(cartItems);
 
-	const handleSubmit = () => {};
+	const handleNoItems = (e) => {
+		e.preventDefault();
+		history.push("/");
+	};
 
 	return (
 		<div>
@@ -54,15 +59,29 @@ const CartPage = () => {
 				</div>
 			</div>
 			<div>
-				<h2>This takes us to the checkout form</h2>
-				<span>Total Items: {totalItems}</span>
-				<span>
-					Total Price: $
-					{(Math.round(totalPrice * 100) / 100).toFixed(2)}
-				</span>
-				<button onClick={handleSubmit}>Checkout!</button>
+				{cartItems.length === 0 ? (
+					<div>
+						<button onClick={handleNoItems}>
+							Go buy something!
+						</button>
+					</div>
+				) : (
+					<div>
+						<span>Total Items: {totalItems}</span>
+						<span>
+							Total Price: $
+							{(Math.round(totalPrice * 100) / 100).toFixed(2)}
+						</span>
+						<button
+							className={styles.primaryBtn}
+							onClick={() => setIsOpen(true)}
+						>
+							Checkout!
+						</button>
+					</div>
+				)}
+				{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}
 			</div>
-			<div></div>
 		</div>
 	);
 };

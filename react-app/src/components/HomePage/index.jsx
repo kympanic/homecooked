@@ -11,9 +11,9 @@ const zipCodeData = require("zipcode-city-distance");
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const sessionUserZipcode = useSelector(
-		(state) => state.session.user.zipcode
-	);
+	// const sessionUserZipcode = useSelector(
+	// 	(state) => state.session.user.zipcode
+	// );
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
@@ -56,7 +56,7 @@ const HomePage = () => {
 							<div className="secondary-text">
 								Zipcode: {store.zipcode}
 							</div>
-							<div className="secondary-text">
+							{/* <div className="secondary-text">
 								Distance:{" "}
 								{zipCodeData
 									.zipCodeDistance(
@@ -66,7 +66,7 @@ const HomePage = () => {
 									)
 									.toFixed(2)}{" "}
 								miles
-							</div>
+							</div> */}
 							<div>
 								<br></br>
 							</div>

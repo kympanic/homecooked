@@ -8,17 +8,18 @@ from app.forms import PaymentForm
 
 payment_routes = Blueprint('payments', __name__)
 
-#GET PAYMENT INFO BY PAYMENTID
+#GET ALL PAYMENTS INFO BY USERID
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
-    payment = Payment.query.get(id)
-
-    if payment.user_id != current_user.id:
-        return {"error": "You are not authorized to view this payment information"}, 401
+    payments =Payment.query.filter_by(user_id=id).all()
+   
+    Print(payments)
+    # if payments.user_id != current_user.id:
+    #     return {"error": "You are not authorized to view this payment information"}, 401
     
-    res = {payment.id: payment.to_dict()}
-    
+    res = {payment.id: payment.to_dict() for payment in payments}
+ 
     return res
 
 #POST PAYMENT

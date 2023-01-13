@@ -1,11 +1,11 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+import { editPaymentThunk } from "../../../store/payments";
 import { useState } from "react";
-import { createPaymentThunk } from "../../../store/payments";
 import { useHistory } from "react-router-dom";
 
-const ModalAddPayment = ({ setIsOpen }) => {
+const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
 	const history = useHistory();
@@ -15,6 +15,31 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	const [accountNumber, setAccountNumber] = useState("");
 	const [month, setMonth] = useState("");
 	const [year, setYear] = useState("");
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		const editedPayment = {
+			id: payment.id,
+			user_id: userId,
+			provider,
+			account_number: accountNumber,
+			expiration: month.toString() + year.toString(),
+		};
+
+		console.log(payment.id, "THIS IS THE PAYMENT ID");
+		//error handling
+		let data = dispatch(editPaymentThunk(editedPayment));
+
+		console.log(data.errors, "THIS IS THE ERRORS");
+		if (data) {
+			setErrors(data);
+		} else {
+			setIsOpen(false);
+		}
+		const path = `/orders/${userId}`;
+		history.push(path);
+	};
 
 	const updateAccountNumber = (e) => {
 		setAccountNumber(e.target.value);
@@ -30,49 +55,13 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	const updateYear = (e) => {
 		setYear(e.target.value);
 	};
-
-	//make sure to change the provider and account number and expiration into STRINGS!
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		const newPayment = {
-			user_id: userId,
-			provider,
-			account_number: accountNumber,
-			expiration: month.toString() + year.toString(),
-		};
-
-		// console.log(provider, "THIS IS THE PROVIDER");
-		// console.log(accountNumber, "this is the account number");
-		// console.log(month + year, "This is the expiration ");
-
-		let data = dispatch(createPaymentThunk(newPayment));
-		console.log(data, "THIS IS THE DATA FROM CREATE PAYMENT");
-		if (data) {
-			setErrors(data);
-		} else {
-			setIsOpen(false);
-		}
-		const path = `/orders/${userId}`;
-		history.push(path);
-	};
-
-	const handleExistingPayment = (e) => {
-		e.preventDefault();
-
-		const path = `/orders/${userId}`;
-		history.push(path);
-	};
-
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>
-							Add a Payment Method!
-						</h5>
+						<h5 className={styles.heading}>Edit Your Payment!</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -81,22 +70,12 @@ const ModalAddPayment = ({ setIsOpen }) => {
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
 					<div className={styles.modalContent}>
-						<div>
-							<h6>Already saved your payment?</h6>
-							<button
-								className={styles.cancelBtn}
-								onClick={handleExistingPayment}
-							>
-								Use Existing Payment!
-							</button>
-						</div>
-						{""}
-						<form>
-							<div>
+						<form onSubmit={handleSubmit}>
+							{/* <div>
 								{errors.map((error, ind) => (
 									<div key={ind}>{error}</div>
 								))}
-							</div>
+							</div> */}
 							<div>
 								<label>Provider: </label>
 								<select
@@ -157,13 +136,14 @@ const ModalAddPayment = ({ setIsOpen }) => {
 							</div>
 						</form>
 					</div>
+
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
 							<button
 								className={styles.submitBtn}
 								onClick={handleSubmit}
 							>
-								Add Payment
+								Submit
 							</button>
 							<button
 								className={styles.cancelBtn}
@@ -179,4 +159,4 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	);
 };
 
-export default ModalAddPayment;
+export default ModalEditPayment;

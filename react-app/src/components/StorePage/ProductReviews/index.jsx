@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ModalEditReview from "../../Modals/EditReview/ModalEditReview";
@@ -17,7 +17,7 @@ const ProductReviews = ({ id }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
-	console.log(filteredReviews, "these are the filtered reviews");
+	// console.log(filteredReviews, "these are the filtered reviews");
 	return (
 		<div className="review-box-container">
 			<div>
@@ -33,7 +33,7 @@ const ProductReviews = ({ id }) => {
 				{filteredReviews &&
 					filteredReviews.length > 0 &&
 					filteredReviews.map((review) => (
-						<div>
+						<div key={review.id}>
 							<div className="review-container">
 								<div className="review-left">
 									<img
