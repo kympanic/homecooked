@@ -16,7 +16,9 @@ const HomePage = () => {
 	if (sessionUser) {
 		sessionUserZipcode = sessionUser.zipcode;
 	}
+
 	console.log(sessionUserZipcode, "this should be fine if null");
+
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
