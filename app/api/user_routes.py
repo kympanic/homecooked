@@ -50,12 +50,10 @@ def add_order():
 def edit_user(id):
     user = User.query.get(id)
     form = UserForm()
-    
-    if form.data["user_id"] != current_user.id:
-        return {'error': "You are not authorized to edit this information"}, 401
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    if form.is_submitted():
+        Print(form.data)
         form.populate_obj(user)
         db.session.commit()
 

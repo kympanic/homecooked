@@ -7,6 +7,8 @@ import Menu from "../Menu";
 import ProductReviews from "./ProductReviews";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
+import ModalAddShopSplashImage from "../Modals/AddShopForms/ModalAddShopSplashImage";
+import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
@@ -44,6 +46,8 @@ const StorePage = () => {
 
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
+	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
+	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
 
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
@@ -88,12 +92,26 @@ const StorePage = () => {
 							<h3>Average Reviews: {storeAvg}</h3>
 							<h3>Category: {vendor.category}</h3>
 							{vendor.id === sessionUserId && (
-								<button
+								<div>
+									<button
+										className={styles.primaryBtn}
+										onClick={() => setIsOpen(true)}
+									>
+										Create Product
+									</button>
+									<button
 									className={styles.primaryBtn}
-									onClick={() => setIsOpen(true)}
-								>
-									Create Product
-								</button>
+									onClick={() => setIsOpenShopSplashImg(true)}
+									>
+										Add or Edit a Splash Image
+									</button>
+									<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpenAddShop(true)}
+									>
+										Edit your Store
+									</button>
+								</div>	
 							)}
 						</div>
 					)}
@@ -119,6 +137,8 @@ const StorePage = () => {
 					))}
 			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
+			{isOpenShopSplashImg && <ModalAddShopSplashImage setIsOpen={setIsOpenShopSplashImg} userId={userId}/>}
+			{isOpenAddShop && <ModalAddShop setIsOpen={setIsOpenAddShop} userId={userId}/>}
 		</div>
 	);
 };

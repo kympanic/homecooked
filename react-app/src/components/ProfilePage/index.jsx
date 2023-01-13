@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import UserInfo from "./UserInfo";
 import ShopOwnerInfo from "./ShopOwnerInfo";
 import UserReviews from "./UserReviews";
+import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile";
+import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 
 //note that this page is a public page!
 //the nav bar button that links to it should get which page it sends you to thru session
@@ -14,6 +17,8 @@ const ProfilePage = () => {
 	const sessionUserId = useSelector((state) => state.session.user.id);
 	const { userId } = useParams();
 	const user = useSelector((state) => state.users[userId]);
+	const [isOpenEditUserProf, setIsOpenEditUserProf] = useState(false);
+	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
 
 
 	return (
@@ -31,19 +36,17 @@ const ProfilePage = () => {
 					) : null}
 					{user.id === sessionUserId ? (
 						<div>
-							<button>Edit Public Profile</button>
-							<div>
-								{" "}
-								Note that this is the only means to edit profile
-								image (when have you ever put in a profile image
-								on sign up?)
-							</div>
-							<button>Change Password</button>
+							<button
+								onClick={() => setIsOpenEditUserProf(true)}
+							>
+								Edit Public Profile
+							</button>
+							{/* <button>Change Password</button>
 							<div>
 								{" "}
 								Note that this is the only way to change your
 								password.
-							</div>
+							</div> */}
 						</div>
 					) : null}
 					{user.shopName ? (
@@ -54,17 +57,30 @@ const ProfilePage = () => {
 						</div>
 					) : user.id === sessionUserId ? (
 						<div>
-							<button>Become a Vendor</button>
-							<div>
-								{" "}
-								Note that this and a nav bar button are the only
-								way to access this form.{" "}
-							</div>
+							<button
+								onClick={() => setIsOpenAddShop(true)}
+							>
+								Become a Vendor
+							</button>
 						</div>
 					) : null}
 					<div>
 						<UserReviews user={user} />
 					</div>
+					{isOpenEditUserProf && (
+						<ModalEditUserProfile 
+						setIsOpen={setIsOpenEditUserProf}
+						userId={userId}
+						/>
+					)}
+					{isOpenAddShop && (
+						<ModalAddShop 
+						setIsOpen={setIsOpenAddShop}
+						userId={userId}
+						/>
+					)
+
+					}
 				</div>
 			)}
 		</div>
