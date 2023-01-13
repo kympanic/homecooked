@@ -5,35 +5,41 @@ import { useState } from "react";
 import { getAllCartItems } from "../../../store/session";
 import { reset } from "../../../store/session";
 import { useHistory } from "react-router-dom";
-
-const ModalSubmitOrder = ({ setIsOpen }) => {
+import { createOrderThunk } from "../../../store/orders";
+const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector(getAllCartItems);
 	const userId = useSelector((state) => state.session.user.id);
 	const history = useHistory();
-	console.log(cartItems, "these are teh cart items");
+	const products = useSelector((state) => Object.values(state.products));
 	const [errors, setErrors] = useState([]);
+
+	console.log(cartItems, "these are teh cart items");
+	console.log(products, "these are all the products");
+	console.log(payment, "this is the payment");
+	const selectedProductIds = cartItems?.map((item) => {
+		return item.id;
+	});
+
+	console.log(selectedProductIds, "these are the product ids");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// const newOrder = {
-		// 	user_id: userId,
-		// 	product_id: product.id,
-		// 	body,
-		// 	rating,
-		// };
+		const newOrder = {
+			user_id: userId,
+			payment_id: payment.id,
+			products_with_order: products,
+		};
 
-		// // console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
-		// let data = await dispatch(createReviewThunk(newReview));
+		let data = dispatch(createOrderThunk(newOrder));
+		if (data) {
+			setErrors(errors);
+		}
 		setIsOpen(false);
-		dispatch(reset());
-		history.push("/");
-		alert("Thank you for your Order!");
-
-		// if (data) {
-		// 	setErrors(errors);
-		// }
+		// dispatch(reset());
+		// history.push("/");
+		// alert("Thank you for your Order!");
 	};
 	return (
 		<>

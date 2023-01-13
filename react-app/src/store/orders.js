@@ -20,13 +20,15 @@ export const getOrdersThunk = (id) => async (dispatch) => {
 export const createOrderThunk = (data) => async (dispatch) => {
 	const newOrder = JSON.stringify(data);
 
-	const res = await fetch("/api/payments", {
+	console.log(newOrder, "the thunk has received the data");
+	const res = await fetch("/api/users/orders", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: newOrder,
 	});
+	console.log("did the order get here?");
 
 	if (res.ok) {
 		const data = await res.json();

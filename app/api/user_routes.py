@@ -40,7 +40,7 @@ def get_orders_by_user(id):
     
 
 #POST NEW ORDER BY USER ID
-@user_routes.route('/<int:id>/orders',methods=['POST'])
+@user_routes.route('/orders',methods=['POST'])
 @login_required
 def add_order():
     form = OrderForm()
