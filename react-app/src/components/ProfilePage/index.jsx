@@ -76,7 +76,7 @@ const ProfilePage = () => {
 					{isOpenAddShop && (
 						<ModalAddShop 
 						setIsOpen={setIsOpenAddShop}
-						userId={userId}
+						userId={user}
 						/>
 					)
 

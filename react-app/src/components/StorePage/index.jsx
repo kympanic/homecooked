@@ -8,7 +8,8 @@ import ProductReviews from "./ProductReviews";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
 import ModalAddShopSplashImage from "../Modals/AddShopForms/ModalAddShopSplashImage";
-import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
+import ModalChangeShopName from "../Modals/AddShopForms/ModalChangeShopName";
+import ModalChangeShopCategory from "../Modals/AddShopForms/ModalChangeShopCategory";
 const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
@@ -47,7 +48,8 @@ const StorePage = () => {
 	//state for modal to create product show and not show
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
-	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
+	const [isOpenChangeName, setIsOpenChangeName] = useState(false);
+	const [isOpenChangeCat, setIsOpenChangeCat] = useState(false);
 
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
@@ -107,9 +109,15 @@ const StorePage = () => {
 									</button>
 									<button
 									className={styles.primaryBtn}
-									onClick={() => setIsOpenAddShop(true)}
+									onClick={() => setIsOpenChangeName(true)}
 									>
-										Edit your Store
+										Change Your Store's Name
+									</button>
+									<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpenChangeCat(true)}
+									>
+										Change Your Store's Cuisine
 									</button>
 								</div>	
 							)}
@@ -138,7 +146,18 @@ const StorePage = () => {
 			</div>
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
 			{isOpenShopSplashImg && <ModalAddShopSplashImage setIsOpen={setIsOpenShopSplashImg} userId={userId}/>}
-			{isOpenAddShop && <ModalAddShop setIsOpen={setIsOpenAddShop} userId={userId}/>}
+			{isOpenChangeName && (
+				<ModalChangeShopName
+					setIsOpen={setIsOpenChangeName}
+					userId={userId}
+				/>
+			)}
+			{isOpenChangeCat && (
+				<ModalChangeShopCategory
+					setIsOpen={setIsOpenChangeCat}
+					userId={userId}
+				/>
+			)}
 		</div>
 	);
 };
