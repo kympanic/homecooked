@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import ModalEditPayment from "../../Modals/EditPayment/ModalEditPayment";
 import ModalDeletePayment from "../../Modals/DeletePayment/ModalDeletePayment";
@@ -10,6 +10,8 @@ const OrderPayments = ({ id }) => {
 
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
+	const [isOpenSubmit, setIsOpenSubmit] = useState(false);
+
 	return (
 		<div>
 			{payment && (
@@ -46,6 +48,9 @@ const OrderPayments = ({ id }) => {
 								payment={payment}
 							/>
 						)}
+						<button onClick={() => setIsOpenSubmit(true)}>
+							Checkout!
+						</button>
 					</div>
 				</div>
 			)}

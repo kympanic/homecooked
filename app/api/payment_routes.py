@@ -13,9 +13,6 @@ payment_routes = Blueprint('payments', __name__)
 def get_paymentinfo_by_id(id):
     payments =Payment.query.filter_by(user_id=id).all()
    
-    Print(payments)
-    # if payments.user_id != current_user.id:
-    #     return {"error": "You are not authorized to view this payment information"}, 401
     
     res = {payment.id: payment.to_dict() for payment in payments}
  
