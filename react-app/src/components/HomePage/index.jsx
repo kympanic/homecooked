@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Modals/App.module.css";
+// import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ const zipCodeData = require("zipcode-city-distance");
 
 const HomePage = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
+	// const history = useHistory();
 	const sessionUserZipcode = useSelector(
 		(state) => state.session.user.zipcode
 	);

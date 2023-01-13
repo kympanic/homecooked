@@ -70,12 +70,14 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 							</div>
 							<div>
 								<label>Rating: </label>
-								<input
-									type="text"
-									name="rating"
-									onChange={updateRating}
-									value={rating}
-								/>
+								<select value={rating} onChange={updateRating}>
+									<option value="--">--</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
 							</div>
 						</form>
 					</div>
