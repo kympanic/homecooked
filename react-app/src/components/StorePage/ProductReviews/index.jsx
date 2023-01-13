@@ -10,6 +10,7 @@ const ProductReviews = ({ id }) => {
 	const product = useSelector((state) => state.products[id]);
 	const reviews = useSelector((state) => Object.values(state.reviews));
 	const sessionUserId = useSelector((state) => state.session.user.id);
+
 	const filteredReviews = reviews.filter((review) => {
 		return review.productId === id;
 	});
@@ -18,6 +19,7 @@ const ProductReviews = ({ id }) => {
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
 	// console.log(filteredReviews, "these are the filtered reviews");
+
 	return (
 		<div className="review-box-container">
 			<div>
