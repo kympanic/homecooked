@@ -9,15 +9,16 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
     const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
     const history = useHistory();
-	console.log(user)
 
     const [errors, setErrors] = useState([]);
     const [shopName, setShopName] = useState("");
     const [shopLogoImg, setShopLogoImg] = useState("");
     const [category, setCategory] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
 		e.preventDefault();
+		setErrors([]);
+
 		const newShopInfo = {
             id: user.id,
             email: user.email,
@@ -31,14 +32,18 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
             zipcode: user.zipcode
 
 		};
-        let data = dispatch(editUserThunk(newShopInfo));
-		if (data) {
-			setErrors(data);
+
+		let createdShop = await dispatch(editUserThunk(newShopInfo)).catch(async (res) => {
+			const data = await res.json()
+			if (data && data.errors) {
+				let foundErrors = Object.values(data.errors);
+				setErrors(foundErrors);
+			};
+		});
+		if (createdShop) {
+			history.push(`/store/${user.id}`);
 		}
 		setIsOpen(false);
-        if(data){
-            history.push(`/store/${user.id}`)
-        }
     };
 
     const updateShopName = (e) => {
