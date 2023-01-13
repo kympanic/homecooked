@@ -10,6 +10,7 @@ import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Search from "./components/Search";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
@@ -53,6 +54,9 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
+				<Route path="/searchtest" exact={true}>
+					<Search />
+				</Route>
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
@@ -62,6 +66,8 @@ function App() {
 				<ProtectedRoute path="/store/:userId/test">
 					<TestMenuPage />
 				</ProtectedRoute>
+
+
 				<Route path="/">
 					<PageNotFound />
 				</Route>

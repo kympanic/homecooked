@@ -4,8 +4,9 @@ import LogoutButton from "../auth/LogoutButton";
 import { useState, useEffect } from "react";
 import { useSelector} from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faShoppingCart, faSearch} from "@fortawesome/free-solid-svg-icons";
 import { getAllCartItems } from "../../store/session";
+import { getAllUsersThunk } from "../../store/users";
 
 const NavBar = () => {
 	const cartItems = useSelector(getAllCartItems)
@@ -19,6 +20,8 @@ const NavBar = () => {
 		});
 		setTotalItems(itemCount);
 	}, [cartItems, totalItems])
+
+	const stores = useSelector(getAllUsersThunk)
 	return (
 		<nav>
 			<ul>
@@ -27,6 +30,8 @@ const NavBar = () => {
 						Home
 					</NavLink>
 				</li>
+
+
 				<li>
 					<NavLink to="/login" exact={true} activeClassName="active">
 						Login
@@ -52,6 +57,7 @@ const NavBar = () => {
 						<div className="cartCounter">{totalItems}</div>
 					</NavLink>
 				</li>
+
 			</ul>
 		</nav>
 	);

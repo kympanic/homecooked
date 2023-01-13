@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css"
 const zipCodeData = require('zipcode-city-distance');
 
@@ -14,6 +14,10 @@ const zipCodeData = require('zipcode-city-distance');
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
+
+	// for search
+	const [query, setQuery] = useState("")
+
 
 	const sessionUserZipcode = useSelector((state)=> state.session.user.zipcode)
 	const allStoresArray = useSelector((state) => Object.values(state.users));
@@ -30,6 +34,11 @@ const HomePage = () => {
 		<>
 			{" "}
 			<hr></hr>
+
+					<div className="search-bar">
+						<input placeholder="Search For Food..." />
+						<FontAwesomeIcon icon={faSearch} className="search-icon" />
+					</div>
 			<div></div>
 			<div></div>
 			<div></div>
@@ -58,7 +67,15 @@ const HomePage = () => {
 								Zipcode: {store.zipcode}
 							</div>
 							<div className="secondary-text">
-								Distance:
+								Distance:{" "}
+								{zipCodeData
+									.zipCodeDistance(
+										sessionUserZipcode,
+										store.zipcode,
+										"M"
+									)
+									.toFixed(2)}{" "}
+								miles
 							</div>
 							<div>
 
