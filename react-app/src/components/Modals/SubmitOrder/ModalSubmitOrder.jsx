@@ -12,7 +12,6 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const userId = useSelector((state) => state.session.user.id);
 	const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
-	const [errors, setErrors] = useState([]);
 
 	console.log(cartItems, "these are teh cart items");
 	console.log(products, "these are all the products");
@@ -21,6 +20,10 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 		return item.id;
 	});
 
+	const selectedProductNames = products.map((product) => {
+		return product.name;
+	});
+	console.log(selectedProductNames, "These are the names");
 	console.log(selectedProductIds, "these are the product ids");
 
 	const handleSubmit = async (e) => {
@@ -29,17 +32,15 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 		const newOrder = {
 			user_id: userId,
 			payment_id: payment.id,
-			products_with_order: products,
+			products_with_order: selectedProductIds,
 		};
 
-		let data = dispatch(createOrderThunk(newOrder));
-		if (data) {
-			setErrors(errors);
-		}
+		dispatch(createOrderThunk(newOrder));
+
 		setIsOpen(false);
-		// dispatch(reset());
-		// history.push("/");
-		// alert("Thank you for your Order!");
+		dispatch(reset());
+		history.push("/");
+		alert("Thank you for your Order!");
 	};
 	return (
 		<>

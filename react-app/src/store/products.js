@@ -49,6 +49,14 @@ export const createProductThunk = (data) => async (dispatch) => {
 		dispatch(loadProducts(data));
 		return data;
 	}
+	//  else if (res.status < 500) {
+	// 	const data = await res.json();
+	// 	if (data.errors) {
+	// 		return data.errors;
+	// 	}
+	// } else {
+	// 	return ["An error occurred. Please try again."];
+	// }
 };
 
 export const editProductThunk = (data) => async (dispatch) => {
