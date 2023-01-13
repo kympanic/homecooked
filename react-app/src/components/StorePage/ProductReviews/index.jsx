@@ -18,6 +18,7 @@ const ProductReviews = ({ id }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
+	const [showReview, setShowReview] = useState(false);
 	// console.log(filteredReviews, "these are the filtered reviews");
 
 	return (
@@ -32,24 +33,32 @@ const ProductReviews = ({ id }) => {
 				<p>Avg Rating: {product.avgRating}</p>
 				{product.userId !== sessionUserId && (
 					<div>
-						<button
-							className={styles.primaryBtn}
-							onClick={() => setIsOpenAddReview(true)}
-						>
-							Add Review
-						</button>
-						{isOpenAddReview && (
-							<ModalAddReview
-								setIsOpen={setIsOpenAddReview}
-								product={product}
-							/>
-						)}
+						<div>
+							<button
+								className={styles.primaryBtn}
+								onClick={() => setIsOpenAddReview(true)}
+							>
+								Add Review
+							</button>
+							{isOpenAddReview && (
+								<ModalAddReview
+									setIsOpen={setIsOpenAddReview}
+									product={product}
+								/>
+							)}
+						</div>
 					</div>
 				)}
+				<div>
+					<button onClick={() => setShowReview(true)}>
+						See Reviews!
+					</button>
+				</div>
 			</div>
 			<div className="review-content-wrapper">
 				{filteredReviews &&
 					filteredReviews.length > 0 &&
+					showReview &&
 					filteredReviews.map((review) => (
 						<div key={review.id}>
 							<div className="review-container">
