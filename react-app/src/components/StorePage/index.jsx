@@ -29,16 +29,9 @@ const StorePage = () => {
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
 
-	// console.log(
-	// 	convertedReviews,
-	// 	"these are the converted reviews for the swiper"
-	// );
 	//Getting the average rating for the store
 	let sumOfAverageRatings = selectedProducts.reduce(function (tot, arr) {
-		// return the sum with previous value
 		return tot + parseFloat(arr.avgRating, 2);
-
-		// set initial value as 0
 	}, 0);
 	let storeAvg = (sumOfAverageRatings / selectedProducts.length).toFixed(2);
 
