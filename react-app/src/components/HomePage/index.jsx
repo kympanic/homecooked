@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
@@ -17,7 +17,7 @@ const HomePage = () => {
 	if (sessionUser) {
 		sessionUserZipcode = sessionUser.zipcode;
 	}
-	console.log(sessionUserZipcode);
+	console.log(sessionUserZipcode, "this should be fine if null");
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
