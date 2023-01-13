@@ -3,20 +3,23 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ModalEditReview from "../../Modals/EditReview/ModalEditReview";
 import ModalDeleteReview from "../../Modals/DeleteReview/ModalDeleteReview";
+import ModalAddReview from "../../Modals/AddReview/ModalAddReview";
 import "./productreview.css";
 import styles from "../../Modals/App.module.css";
 const ProductReviews = ({ id }) => {
 	const product = useSelector((state) => state.products[id]);
 	const reviews = useSelector((state) => Object.values(state.reviews));
 	const sessionUserId = useSelector((state) => state.session.user.id);
+
 	const filteredReviews = reviews.filter((review) => {
 		return review.productId === id;
 	});
 
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
-
+	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
 	// console.log(filteredReviews, "these are the filtered reviews");
+
 	return (
 		<div className="review-box-container">
 			<div>
@@ -27,6 +30,18 @@ const ProductReviews = ({ id }) => {
 				/>
 				<h3>{product.name}</h3>
 				<p>Avg Rating: {product.avgRating}</p>
+				<button
+					className={styles.primaryBtn}
+					onClick={() => setIsOpenAddReview(true)}
+				>
+					Add Review
+				</button>
+				{isOpenAddReview && (
+					<ModalAddReview
+						setIsOpen={setIsOpenAddReview}
+						product={product}
+					/>
+				)}
 			</div>
 			<div className="review-content-wrapper">
 				{filteredReviews &&

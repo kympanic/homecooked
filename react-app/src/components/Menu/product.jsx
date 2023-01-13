@@ -38,12 +38,17 @@ const Product = ({ id, vendor }) => {
 						<div>{product?.name}</div>
 					</div>
 					<div className="menu-products-content-body">
-						<span>${(Math.round(product?.price * 100) / 100).toFixed(2)}</span>
-						<div>{product?.avgRating}</div>
-						<div>{product?.category}</div>
+						<span>
+							$
+							{(Math.round(product?.price * 100) / 100).toFixed(
+								2
+							)}
+						</span>
+						<div>Average Rating: {product?.avgRating}</div>
+						<div>Category: {product?.category}</div>
 					</div>
 					<div className="menu-products-content-footer">
-						<div>{product?.description}</div>
+						<div>Description: {product?.description}</div>
 					</div>
 					{vendor?.id === sessionUserId ? (
 						<div>
