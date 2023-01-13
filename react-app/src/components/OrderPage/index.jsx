@@ -5,8 +5,8 @@ import { getPaymentThunk } from "../../store/payments";
 import { getAllCartItems } from "../../store/session";
 import ModalAddPayment from "../Modals/AddPayment/ModalAddPayment";
 import CartItem from "../CartPage/cartItem";
-import OrderPayments from "./OrderPayments";
 import styles from "../Modals/App.module.css";
+import OrderPayments from "./OrderPayments";
 import "./orderpage.css";
 
 const OrderPage = () => {
@@ -116,50 +116,16 @@ const OrderPage = () => {
 							</div>
 						) : (
 							<div>
-								<div>
-									{payments &&
-										payments.map((payment) => (
-											<div key={payment.id}>
-												<div className="payment-content">
-													<OrderPayments
-														id={payment.id}
-													/>
-												</div>
-												{/* <div className="order-payment-info">
-													<h3>{payment.provider}</h3>
-													<h4>
-														XXXX-XXXX-XXXX-
-														{payment.accountNumber}
-													</h4>
-													<h4>
-														{payment.expiration}
-													</h4>
-												</div>
-												<div>
-													<button
-														className={
-															styles.primaryBtn
-														}
-														onClick={() =>
-															setIsOpenPaymentEdit(
-																true
-															)
-														}
-													>
-														Edit
-													</button>
-													{isOpenPaymentEdit && (
-														<ModalEditPayment
-															setIsOpen={
-																setIsOpenPaymentEdit
-															}
-															payment={payment}
-														/>
-													)}
-												</div> */}
+								{payments &&
+									payments.map((payment) => (
+										<div key={payment.id}>
+											<div className="payment-content">
+												<OrderPayments
+													id={payment.id}
+												/>
 											</div>
-										))}
-								</div>
+										</div>
+									))}
 							</div>
 						)}
 					</div>
