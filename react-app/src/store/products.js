@@ -47,6 +47,7 @@ export const createProductThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadProducts(data));
+		return data;
 	}
 };
 
@@ -64,6 +65,7 @@ export const editProductThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadProducts(data));
+		return data;
 	}
 };
 
@@ -80,6 +82,7 @@ export const deleteProductThunk = (data) => async (dispatch) => {
 
 	if (res.ok) {
 		dispatch(deleteProduct(data.id));
+		return data;
 	}
 };
 

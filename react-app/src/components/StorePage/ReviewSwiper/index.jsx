@@ -1,6 +1,8 @@
-const ReviewSwiper = ({ reviews, products }) => {
-	console.log(reviews, "THIS HAS PASSED DOWN TO SWIPER REVIEWS");
-	console.log(products, "THIS HAS PASSED DOWN TO SWIPER PRODUCTS");
+const ReviewSwiper = ({ reviews }) => {
+	// console.log(
+	// 	reviews
+	// 	"THIS THIS GO THROUGH THESE ARE THE REVIEWS FOR THE SWIPER"
+	// );
 	return <div>This is the review swiper</div>;
 };
 

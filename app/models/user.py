@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from ..utils import Print
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(255))
     shop_logo_img = db.Column(db.String(255))
     shop_splash_img = db.Column(db.String(255))
+    category = db.Column(db.String(255))
     phone_number = db.Column(db.Integer, nullable=False, unique=True)
     zipcode = db.Column(db.String, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -38,6 +39,7 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+
         return {
             'id': self.id,
             'username': self.username,
@@ -48,6 +50,7 @@ class User(db.Model, UserMixin):
             'shopSplashImg': self.shop_splash_img,
             'phoneNumber': self.phone_number,
             'zipcode': self.zipcode,
+            'category': self.category,
             'products': [product.to_dict_basic() for product in self.products],
             'reviews':[review.to_dict_basic() for review in self.user_reviews],
             'orders': [order.to_dict_basic() for order in self.user_orders],
@@ -59,6 +62,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'shopName': self.shop_name,
+            'category': self.category,
             'phoneNumber': self.phone_number,
+            'profileImg': self.profile_img,
             'zipcode': self.zipcode
         }

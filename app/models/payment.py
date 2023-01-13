@@ -23,7 +23,7 @@ class Payment(db.Model):
         last_four_account_numbers = int(self.account_number[-4:])
 
         return {
-            # 'id': self.id,
+            'id': self.id,
             'userId': self.user_id,
             'provider': self.provider,
             'accountNumber': last_four_account_numbers,

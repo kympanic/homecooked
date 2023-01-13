@@ -11,6 +11,7 @@ export const getAllUsersThunk = () => async (dispatch) => {
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(loadUsers(payload));
+		return payload;
 	}
 };
 

@@ -8,13 +8,14 @@ import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
+import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
-
+import TestMenuPage from "./components/TestMenuPage";
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -39,7 +40,6 @@ function App() {
 	return (
 		<BrowserRouter>
 			<NavBar />
-
 			<Switch>
 				<Route path="/" exact={true}>
 					<HomePage />
@@ -56,8 +56,20 @@ function App() {
 				<Route path="/cart" exact={true}>
 					<CartPage />
 				</Route>
+				<ProtectedRoute path="/orders/:userId" exact={true}>
+					<OrderPage />
+				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/payments/:paymentId">
+					<TestPaymentPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/products/:productId/edit" exact={true}>
+					<TestEditProductPage />
+				</ProtectedRoute>
+				<ProtectedRoute path="/reviews/:reviewId/edit" exact={true}>
+					<TestEditReviewPage />
 				</ProtectedRoute>
 				<Route path="/">
 					<PageNotFound />

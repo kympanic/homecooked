@@ -3,7 +3,7 @@
 	margin-right: 14%;
 }
 
-img {
+#shop-splash-img {
 	max-width: 100%;
 	max-height: 100%;
 	display: block;
@@ -42,4 +42,21 @@ img {
 	margin-top: 10px;
 	border: 2px red solid;
 	height: 150px;
+}
+
+.store-menu-container {
+	display: inline-block;
+	max-height: 600px;
+	width: 100%;
+	border: 2px solid red;
+	overflow: auto;
+	margin-top: 150px;
+	margin-bottom: 200px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.store-reviews-title-divider {
+	border-top: 2px solid black;
+	padding-top: 100px;
 }

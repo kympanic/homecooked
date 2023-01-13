@@ -10,7 +10,9 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 	const [description, setDescription] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [price, setPrice] = useState("");
+	const [category, setCategory] = useState("");
 	const [errors, setErrors] = useState([]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedProduct = {
@@ -20,11 +22,11 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 			image_url: imageUrl,
 			price,
 			user_id: product.userId,
+			category,
 		};
 
 		//error handling
 		let data = dispatch(editProductThunk(editedProduct));
-
 		if (data) {
 			setErrors(data);
 		}
@@ -58,7 +60,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 									type="text"
 									name="name"
 									value={name}
-									placeholder={product.name}
+									placeholder={product?.name}
 									onChange={(e) => setName(e.target.value)}
 								/>
 							</div>
@@ -70,7 +72,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 									type="url"
 									name="imageUrl"
 									value={imageUrl}
-									placeholder={product.imageUrl}
+									placeholder={product?.imageURL}
 									onChange={(e) =>
 										setImageUrl(e.target.value)
 									}
@@ -100,6 +102,25 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 									onChange={(e) => setPrice(e.target.value)}
 								/>
 							</div>
+							<label>Category: </label>
+							<select
+								value={category}
+								onChange={(e) => setCategory(e.target.value)}
+							>
+								<option value="--">--</option>
+								<option value="American">American</option>
+								<option value="Asian">Asian</option>
+								<option value="Italian">Italian</option>
+								<option value="French">French</option>
+								<option value="Vegetarian">Vegetarian</option>
+								<option value="Vegan">Vegan</option>
+								<option value="Indian">Indian</option>
+								<option value="African">African</option>
+								<option value="Ethnic">Ethnic</option>
+								<option value="Dessert">Dessert</option>
+								<option value="Snacks">Snacks</option>
+								<option value="Other">Other</option>
+							</select>
 						</form>
 					</div>
 

@@ -110,12 +110,26 @@ const ModalAddProduct = ({ setIsOpen }) => {
 							</div>
 							<div>
 								<label>Category: </label>
-								<input
-									type="text"
-									name="category"
-									onChange={updateCategory}
+								<select
 									value={category}
-								/>
+									onChange={updateCategory}
+								>
+									<option value="--">--</option>
+									<option value="American">American</option>
+									<option value="Asian">Asian</option>
+									<option value="Italian">Italian</option>
+									<option value="French">French</option>
+									<option value="Vegetarian">
+										Vegetarian
+									</option>
+									<option value="Vegan">Vegan</option>
+									<option value="Indian">Indian</option>
+									<option value="African">African</option>
+									<option value="Ethnic">Ethnic</option>
+									<option value="Dessert">Dessert</option>
+									<option value="Snacks">Snacks</option>
+									<option value="Other">Other</option>
+								</select>
 							</div>
 						</form>
 					</div>

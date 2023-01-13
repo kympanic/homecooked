@@ -7,8 +7,6 @@ const SignUpForm = () => {
 	const [errors, setErrors] = useState([]);
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
-	const [shopName, setShopName] = useState("");
-	const [profileImg, setProfileImg] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [zipcode, setZipcode] = useState("");
 	const [password, setPassword] = useState("");
@@ -22,8 +20,6 @@ const SignUpForm = () => {
 			username,
 			email,
 			password,
-			shop_name: shopName,
-			profile_img: profileImg,
 			phone_number: phoneNumber,
 			zipcode,
 		};
@@ -34,8 +30,6 @@ const SignUpForm = () => {
 				// 	username,
 				// 	email,
 				// 	password,
-				// 	shopName,
-				// 	profileImg,
 				// 	phoneNumber,
 				// 	zipcode
 				// )
@@ -52,14 +46,6 @@ const SignUpForm = () => {
 
 	const updateEmail = (e) => {
 		setEmail(e.target.value);
-	};
-
-	const updateShopName = (e) => {
-		setShopName(e.target.value);
-	};
-
-	const updateProfileImg = (e) => {
-		setProfileImg(e.target.value);
 	};
 
 	const updatePhoneNumber = (e) => {
@@ -104,24 +90,6 @@ const SignUpForm = () => {
 					name="email"
 					onChange={updateEmail}
 					value={email}
-				></input>
-			</div>
-			<div>
-				<label>Shop Name</label>
-				<input
-					type="text"
-					name="shopName"
-					onChange={updateShopName}
-					value={shopName}
-				></input>
-			</div>
-			<div>
-				<label>Profile Image</label>
-				<input
-					type="txt"
-					name="profileImg"
-					onChange={updateProfileImg}
-					value={profileImg}
 				></input>
 			</div>
 			<div>
