@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useParams, useHistory, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import UserInfo from "./UserInfo";
 import ShopOwnerInfo from "./ShopOwnerInfo";
@@ -19,7 +18,18 @@ const ProfilePage = () => {
 	const user = useSelector((state) => state.users[userId]);
 	const [isOpenEditUserProf, setIsOpenEditUserProf] = useState(false);
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
+	let shopName;
+	if (user && userId) {
+		shopName = user.shopName;
+	}
+	
+	const history = useHistory();
 
+	useEffect(() => {
+		if(shopName){
+			history.push(`/store/${user.id}`)
+		}
+	}, [shopName]);
 
 	return (
 		<div>
@@ -76,7 +86,7 @@ const ProfilePage = () => {
 					{isOpenAddShop && (
 						<ModalAddShop 
 						setIsOpen={setIsOpenAddShop}
-						userId={user}
+						userId={userId}
 						/>
 					)
 

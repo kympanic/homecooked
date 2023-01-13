@@ -36,9 +36,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			setErrors(data);
 		}
 		setIsOpen(false);
-        if(data){
-            history.push(`/store/${user.id}`)
-        }
+    
     };
 
     const updateShopName = (e) => {
