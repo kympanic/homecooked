@@ -30,17 +30,21 @@ const ProductReviews = ({ id }) => {
 				/>
 				<h3>{product.name}</h3>
 				<p>Avg Rating: {product.avgRating}</p>
-				<button
-					className={styles.primaryBtn}
-					onClick={() => setIsOpenAddReview(true)}
-				>
-					Add Review
-				</button>
-				{isOpenAddReview && (
-					<ModalAddReview
-						setIsOpen={setIsOpenAddReview}
-						product={product}
-					/>
+				{product.userId !== sessionUserId && (
+					<div>
+						<button
+							className={styles.primaryBtn}
+							onClick={() => setIsOpenAddReview(true)}
+						>
+							Add Review
+						</button>
+						{isOpenAddReview && (
+							<ModalAddReview
+								setIsOpen={setIsOpenAddReview}
+								product={product}
+							/>
+						)}
+					</div>
 				)}
 			</div>
 			<div className="review-content-wrapper">
