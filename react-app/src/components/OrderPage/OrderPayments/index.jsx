@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import ModalEditPayment from "../../Modals/EditPayment/ModalEditPayment";
 import ModalDeletePayment from "../../Modals/DeletePayment/ModalDeletePayment";
+import ModalSubmitOrder from "../../Modals/SubmitOrder/ModalSubmitOrder";
 import styles from "../../Modals/App.module.css";
 
 const OrderPayments = ({ id }) => {
@@ -11,7 +12,6 @@ const OrderPayments = ({ id }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenSubmit, setIsOpenSubmit] = useState(false);
-
 	return (
 		<div>
 			{payment && (
@@ -22,6 +22,15 @@ const OrderPayments = ({ id }) => {
 							Account No: XXXX-XXXX-XXXX-{payment.accountNumber}
 						</h4>
 						<h4>Expiration:{payment.expiration}</h4>
+						<button onClick={() => setIsOpenSubmit(true)}>
+							Select this payment
+						</button>
+						{isOpenSubmit && (
+							<ModalSubmitOrder
+								setIsOpen={setIsOpenSubmit}
+								payment={payment}
+							/>
+						)}
 					</div>
 					<div>
 						<button
@@ -48,9 +57,6 @@ const OrderPayments = ({ id }) => {
 								payment={payment}
 							/>
 						)}
-						<button onClick={() => setIsOpenSubmit(true)}>
-							Checkout!
-						</button>
 					</div>
 				</div>
 			)}

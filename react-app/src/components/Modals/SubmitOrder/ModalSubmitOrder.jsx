@@ -2,21 +2,17 @@ import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { getAllCartItems } from "../../../store/session";
+import { reset } from "../../../store/session";
+import { useHistory } from "react-router-dom";
 
-const ModalSubmitReview = ({ setIsOpen, payment }) => {
+const ModalSubmitOrder = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
+	const cartItems = useSelector(getAllCartItems);
 	const userId = useSelector((state) => state.session.user.id);
-
+	const history = useHistory();
+	console.log(cartItems, "these are teh cart items");
 	const [errors, setErrors] = useState([]);
-	const [body, setBody] = useState("");
-	const [rating, setRating] = useState("");
-
-	const updateBody = (e) => {
-		setBody(e.target.value);
-	};
-	const updateRating = (e) => {
-		setRating(e.target.value);
-	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -30,7 +26,11 @@ const ModalSubmitReview = ({ setIsOpen, payment }) => {
 
 		// // console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
 		// let data = await dispatch(createReviewThunk(newReview));
-		// setIsOpen(false);
+		setIsOpen(false);
+		dispatch(reset());
+		history.push("/");
+		alert("Thank you for your Order!");
+
 		// if (data) {
 		// 	setErrors(errors);
 		// }
@@ -72,4 +72,4 @@ const ModalSubmitReview = ({ setIsOpen, payment }) => {
 	);
 };
 
-export default ModalSubmitReview;
+export default ModalSubmitOrder;

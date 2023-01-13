@@ -6,7 +6,6 @@ import ShopOwnerInfo from "./ShopOwnerInfo";
 import UserReviews from "./UserReviews";
 import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile";
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
-
 //note that this page is a public page!
 //the nav bar button that links to it should get which page it sends you to thru session
 //but!!!!!!!
@@ -22,12 +21,12 @@ const ProfilePage = () => {
 	if (user && userId) {
 		shopName = user.shopName;
 	}
-	
+
 	const history = useHistory();
 
 	useEffect(() => {
-		if(shopName){
-			history.push(`/store/${user.id}`)
+		if (shopName) {
+			history.push(`/store/${user.id}`);
 		}
 	}, [shopName]);
 
@@ -46,9 +45,7 @@ const ProfilePage = () => {
 					) : null}
 					{user.id === sessionUserId ? (
 						<div>
-							<button
-								onClick={() => setIsOpenEditUserProf(true)}
-							>
+							<button onClick={() => setIsOpenEditUserProf(true)}>
 								Edit Public Profile
 							</button>
 							{/* <button>Change Password</button>
@@ -67,9 +64,7 @@ const ProfilePage = () => {
 						</div>
 					) : user.id === sessionUserId ? (
 						<div>
-							<button
-								onClick={() => setIsOpenAddShop(true)}
-							>
+							<button onClick={() => setIsOpenAddShop(true)}>
 								Become a Vendor
 							</button>
 						</div>
@@ -78,19 +73,17 @@ const ProfilePage = () => {
 						<UserReviews user={user} />
 					</div>
 					{isOpenEditUserProf && (
-						<ModalEditUserProfile 
-						setIsOpen={setIsOpenEditUserProf}
-						userId={userId}
+						<ModalEditUserProfile
+							setIsOpen={setIsOpenEditUserProf}
+							userId={userId}
 						/>
 					)}
 					{isOpenAddShop && (
-						<ModalAddShop 
-						setIsOpen={setIsOpenAddShop}
-						userId={userId}
+						<ModalAddShop
+							setIsOpen={setIsOpenAddShop}
+							userId={userId}
 						/>
-					)
-
-					}
+					)}
 				</div>
 			)}
 		</div>
