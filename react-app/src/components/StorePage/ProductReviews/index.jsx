@@ -18,8 +18,6 @@ const ProductReviews = ({ id }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
-	const [showReview, setShowReview] = useState(false);
-	// console.log(filteredReviews, "these are the filtered reviews");
 
 	return (
 		<div className="review-box-container">
@@ -49,16 +47,10 @@ const ProductReviews = ({ id }) => {
 						</div>
 					</div>
 				)}
-				<div>
-					<button onClick={() => setShowReview(true)}>
-						See Reviews!
-					</button>
-				</div>
 			</div>
 			<div className="review-content-wrapper">
 				{filteredReviews &&
 					filteredReviews.length > 0 &&
-					showReview &&
 					filteredReviews.map((review) => (
 						<div key={review.id}>
 							<div className="review-container">

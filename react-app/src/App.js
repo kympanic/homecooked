@@ -10,6 +10,7 @@ import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
@@ -69,6 +70,7 @@ function App() {
 					<PageNotFound />
 				</Route>
 			</Switch>
+			<Footer />
 		</BrowserRouter>
 	);
 }

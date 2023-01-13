@@ -3,23 +3,17 @@
 	height: 50px;
 }
 
-.review-box-container {
-	max-height: 100%;
-	overflow: auto;
-	width: 100%;
-}
-
-/* .review-content-wrapper {
+.review-content-wrapper {
 	margin-bottom: 50px;
 	margin-top: 30px;
 	margin-left: 100px;
 	max-height: 300px;
 	border: 2px red solid;
 	display: inline-block;
-	height: 800px;
+	height: 600px;
 	width: 900px;
 	overflow: auto;
-} */
+}
 
 .review-container {
 	display: flex;

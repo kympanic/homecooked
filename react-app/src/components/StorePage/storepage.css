@@ -46,9 +46,9 @@
 
 .store-menu-container {
 	display: inline-block;
-	max-height: 600px;
+	height: 600px;
 	width: 100%;
-	border: 2px solid red;
+	border: 2px solid black;
 	overflow: auto;
 	margin-top: 150px;
 	margin-bottom: 200px;
@@ -59,4 +59,11 @@
 .store-reviews-title-divider {
 	border-top: 2px solid black;
 	padding-top: 100px;
+}
+
+.reviews-section {
+	max-height: 600px;
+	width: 100%;
+	border: 2px solid black;
+	overflow: auto;
 }

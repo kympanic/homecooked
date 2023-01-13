@@ -43,6 +43,7 @@ const StorePage = () => {
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
 	const [isOpenChangeName, setIsOpenChangeName] = useState(false);
 	const [isOpenChangeCat, setIsOpenChangeCat] = useState(false);
+	const [showReviews, setShowReviews] = useState(false);
 
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
@@ -95,24 +96,28 @@ const StorePage = () => {
 										Create Product
 									</button>
 									<button
-									className={styles.primaryBtn}
-									onClick={() => setIsOpenShopSplashImg(true)}
+										className={styles.primaryBtn}
+										onClick={() =>
+											setIsOpenShopSplashImg(true)
+										}
 									>
 										Add or Edit a Splash Image
 									</button>
 									<button
-									className={styles.primaryBtn}
-									onClick={() => setIsOpenChangeName(true)}
+										className={styles.primaryBtn}
+										onClick={() =>
+											setIsOpenChangeName(true)
+										}
 									>
 										Change Your Store's Name
 									</button>
 									<button
-									className={styles.primaryBtn}
-									onClick={() => setIsOpenChangeCat(true)}
+										className={styles.primaryBtn}
+										onClick={() => setIsOpenChangeCat(true)}
 									>
 										Change Your Store's Cuisine
 									</button>
-								</div>	
+								</div>
 							)}
 						</div>
 					)}
@@ -125,20 +130,37 @@ const StorePage = () => {
 				<Menu />
 			</div>
 			<div className="store-reviews-title-divider">
-				<h1>Reviews</h1>
+				<div>
+					<h1>Reviews</h1>
+				</div>
+				<div>
+					<button onClick={() => setShowReviews(true)}>
+						Show Reviews
+					</button>
+					<button onClick={() => setShowReviews(false)}>
+						Hide Reviews
+					</button>
+				</div>
 			</div>
-			<div className="reviews-section">
-				{selectedProducts &&
-					selectedProducts.map((product) => (
-						<div key={product.id} className="reviews-container">
-							<div className="reviews-content">
-								<ProductReviews id={product.id} />
+			{showReviews && (
+				<div className="reviews-section">
+					{selectedProducts &&
+						selectedProducts.map((product) => (
+							<div key={product.id} className="reviews-container">
+								<div className="reviews-content">
+									<ProductReviews id={product.id} />
+								</div>
 							</div>
-						</div>
-					))}
-			</div>
+						))}
+				</div>
+			)}
 			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
-			{isOpenShopSplashImg && <ModalAddShopSplashImage setIsOpen={setIsOpenShopSplashImg} userId={userId}/>}
+			{isOpenShopSplashImg && (
+				<ModalAddShopSplashImage
+					setIsOpen={setIsOpenShopSplashImg}
+					userId={userId}
+				/>
+			)}
 			{isOpenChangeName && (
 				<ModalChangeShopName
 					setIsOpen={setIsOpenChangeName}
