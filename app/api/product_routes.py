@@ -54,7 +54,7 @@ def edit_product(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(product)
-      
+
         db.session.commit()
 
     return {product.id: product.to_dict()}

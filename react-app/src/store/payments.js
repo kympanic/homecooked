@@ -57,22 +57,18 @@ export const editPaymentThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadPayment(data));
+		return data;
 	}
 };
 
 export const deletePaymentThunk = (data) => async (dispatch) => {
-	const body = JSON.stringify(data);
-
+	console.log(data.id, "THIS IS THE DATA ID BEING SENT BACK");
 	const res = await fetch(`/api/payments/${data.id}`, {
 		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body,
 	});
-
 	if (res.ok) {
 		dispatch(deletePayment(data.id));
+		return data;
 	}
 };
 

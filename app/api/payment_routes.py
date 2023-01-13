@@ -2,23 +2,23 @@ from flask import Blueprint, request
 from ..models import Payment, db
 from ..utils import Print
 from flask_login import current_user, login_required
-import datetime
 from app.forms import PaymentForm
 
 
 payment_routes = Blueprint('payments', __name__)
 
-#GET PAYMENT INFO BY PAYMENTID
+#GET ALL PAYMENTS INFO BY USERID
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
-    payment = Payment.query.get(id)
-
-    if payment.user_id != current_user.id:
-        return {"error": "You are not authorized to view this payment information"}, 401
+    payments =Payment.query.filter_by(user_id=id).all()
+   
+    Print(payments)
+    # if payments.user_id != current_user.id:
+    #     return {"error": "You are not authorized to view this payment information"}, 401
     
-    res = {payment.id: payment.to_dict()}
-    
+    res = {payment.id: payment.to_dict() for payment in payments}
+ 
     return res
 
 #POST PAYMENT
@@ -36,7 +36,8 @@ def create_paymentinfo():
         db.session.commit()
         return {payment.id: payment.to_dict()}
     return {'errors': form.errors}
-   
+
+#EDIT A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["PATCH", "PUT"])
 @login_required
 def edit_paymentinfo(id):
@@ -49,16 +50,17 @@ def edit_paymentinfo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(payment)
-      
         db.session.commit()
 
     return {payment.id: payment.to_dict()}
 
+#DELETE A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_paymentinfo(id):
     payment_info = Payment.query.get(id)
 
+    Print(payment_info)
     if payment_info.user_id != current_user.id:
         return {"error": "You are not authorized to delete this payment information"}, 401
     
