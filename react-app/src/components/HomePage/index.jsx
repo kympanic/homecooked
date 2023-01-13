@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom";
 import "./HomePage.css";
 const zipCodeData = require("zipcode-city-distance");
 
@@ -18,7 +17,7 @@ const HomePage = () => {
 		sessionUserZipcode = sessionUser.zipcode;
 	}
 	console.log(sessionUserZipcode);
-	console.log(sessionUserZipcode, "this should be fine if null")
+	console.log(sessionUserZipcode, "this should be fine if null");
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
