@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Modals/App.module.css";
+// import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -10,10 +10,10 @@ const zipCodeData = require("zipcode-city-distance");
 
 const HomePage = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
-	// const sessionUserZipcode = useSelector(
-	// 	(state) => state.session.user.zipcode
-	// );
+	// const history = useHistory();
+	const sessionUserZipcode = useSelector(
+		(state) => state.session.user.zipcode
+	);
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
@@ -56,7 +56,7 @@ const HomePage = () => {
 							<div className="secondary-text">
 								Zipcode: {store.zipcode}
 							</div>
-							{/* <div className="secondary-text">
+							<div className="secondary-text">
 								Distance:{" "}
 								{zipCodeData
 									.zipCodeDistance(
@@ -66,7 +66,7 @@ const HomePage = () => {
 									)
 									.toFixed(2)}{" "}
 								miles
-							</div> */}
+							</div>
 							<div>
 								<br></br>
 							</div>

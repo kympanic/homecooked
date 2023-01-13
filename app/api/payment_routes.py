@@ -2,7 +2,6 @@ from flask import Blueprint, request
 from ..models import Payment, db
 from ..utils import Print
 from flask_login import current_user, login_required
-import datetime
 from app.forms import PaymentForm
 
 
@@ -37,7 +36,8 @@ def create_paymentinfo():
         db.session.commit()
         return {payment.id: payment.to_dict()}
     return {'errors': form.errors}
-   
+
+#EDIT A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["PATCH", "PUT"])
 @login_required
 def edit_paymentinfo(id):
@@ -50,7 +50,7 @@ def edit_paymentinfo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(payment)
-      
+        Print("IS IT GETTING HEERE")
         db.session.commit()
 
     return {payment.id: payment.to_dict()}

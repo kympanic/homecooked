@@ -4,8 +4,8 @@ import { useHistory, useParams } from "react-router-dom";
 import { getPaymentThunk } from "../../store/payments";
 import { getAllCartItems } from "../../store/session";
 import ModalAddPayment from "../Modals/AddPayment/ModalAddPayment";
-import ModalEditPayment from "../Modals/EditPayment/ModalEditPayment";
 import CartItem from "../CartPage/cartItem";
+import OrderPayments from "./OrderPayments";
 import styles from "../Modals/App.module.css";
 import "./orderpage.css";
 
@@ -26,9 +26,9 @@ const OrderPage = () => {
 		history.push("/");
 	}
 
-	console.log(sessionUser, "THIS IS THE USER");
-	console.log(payments, "THIS IS THE PAYMENTS");
-	console.log(cartItems, "THESE ARE THE CART ITEMS");
+	// console.log(sessionUser, "THIS IS THE USER");
+	// console.log(payments, "THIS IS THE PAYMENTS");
+	// console.log(cartItems, "THESE ARE THE CART ITEMS");
 
 	useEffect(() => {
 		dispatch(getPaymentThunk(userId));
@@ -119,8 +119,13 @@ const OrderPage = () => {
 								<div>
 									{payments &&
 										payments.map((payment) => (
-											<div>
-												<div className="order-payment-info">
+											<div key={payment.id}>
+												<div className="payment-content">
+													<OrderPayments
+														id={payment.id}
+													/>
+												</div>
+												{/* <div className="order-payment-info">
 													<h3>{payment.provider}</h3>
 													<h4>
 														XXXX-XXXX-XXXX-
@@ -151,7 +156,7 @@ const OrderPage = () => {
 															payment={payment}
 														/>
 													)}
-												</div>
+												</div> */}
 											</div>
 										))}
 								</div>

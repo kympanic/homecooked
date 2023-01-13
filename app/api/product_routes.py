@@ -47,8 +47,6 @@ def  add_product():
 def edit_product(id):
     product = Product.query.get(id)
     form = ProductForm()
-
-    Print(form.data)
  
     if form.data["user_id"] != current_user.id:
         return {'error': "You are not authorized to edit this product"}, 401
@@ -56,7 +54,7 @@ def edit_product(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         form.populate_obj(product)
-        
+
         db.session.commit()
 
     return {product.id: product.to_dict()}

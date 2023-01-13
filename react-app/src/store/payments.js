@@ -57,6 +57,7 @@ export const editPaymentThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadPayment(data));
+		return data;
 	}
 };
 

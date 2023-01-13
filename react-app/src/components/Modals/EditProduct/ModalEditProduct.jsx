@@ -13,8 +13,6 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 	const [category, setCategory] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	console.log(product, "THIS IS BEING PASSED DOWN FROM THE MENU");
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedProduct = {

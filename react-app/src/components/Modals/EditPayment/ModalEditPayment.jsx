@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
-	const history = useHistory();
 
 	const [errors, setErrors] = useState([]);
 	const [provider, setProvider] = useState("");
@@ -27,18 +26,13 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 			expiration: month.toString() + year.toString(),
 		};
 
-		console.log(payment.id, "THIS IS THE PAYMENT ID");
 		//error handling
 		let data = dispatch(editPaymentThunk(editedPayment));
-
-		console.log(data.errors, "THIS IS THE ERRORS");
+		console.log("is it getting here");
 		if (data) {
 			setErrors(data);
-		} else {
-			setIsOpen(false);
 		}
-		const path = `/orders/${userId}`;
-		history.push(path);
+		setIsOpen(false);
 	};
 
 	const updateAccountNumber = (e) => {
@@ -71,11 +65,11 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form onSubmit={handleSubmit}>
-							{/* <div>
+							<div>
 								{errors.map((error, ind) => (
 									<div key={ind}>{error}</div>
 								))}
-							</div> */}
+							</div>
 							<div>
 								<label>Provider: </label>
 								<select
