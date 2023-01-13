@@ -10,7 +10,6 @@ import styles from "../Modals/App.module.css";
 import ModalAddShopSplashImage from "../Modals/AddShopForms/ModalAddShopSplashImage";
 import ModalChangeShopName from "../Modals/AddShopForms/ModalChangeShopName";
 import ModalChangeShopCategory from "../Modals/AddShopForms/ModalChangeShopCategory";
-const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
 	const { userId } = useParams();
@@ -50,130 +49,169 @@ const StorePage = () => {
 		history.push("/");
 	}
 
+	// const zipCodeData = require("zipcode-city-distance");
+	// let zipInfo = zipCodeData.getInfo("zipcode", vendor?.zipcode);
+	// const location = Object.keys(zipInfo?.data.places)[0];
+
 	return (
-		<div className="store-page">
-			<div className="header-container">
-				<div className="header-left">
-					<div className="splash-img-container">
-						<img
-							id="shop-splash-img"
-							src={vendor?.shopSplashImg}
-							alt="vendor-splash-img"
-						/>
-					</div>
-				</div>
-				<div className="header-right">
-					{vendor && (
-						<div>
-							<h1>{vendor.shopName}</h1>
-							{vendor.id !== sessionUserId ? (
+		<div>
+			{vendor && (
+				<div className="store-page">
+					<div className="header-container">
+						{vendor.shopSplashImg && (
+							<div className="splash-img-container">
+								<img
+									className="shop-splash-img"
+									src={vendor.shopSplashImg}
+									alt="vendor-splash-img"
+								/>
+							</div>
+						)}
+						<div className="store-info-container">
+							<div className="shop-logo-img-container">
+								<img
+									className="shop-logo-img"
+									src={vendor.shopLogoImg}
+									alt="vendor-shop-logo"
+								/>
+							</div>
+							<div className="shop-info-container">
 								<div>
-									<h3>
-										Distance:{" "}
-										{zipCodeData
-											.zipCodeDistance(
-												sessionUser.zipcode,
-												vendor.zipcode,
-												"M"
-											)
-											.toFixed(2)}{" "}
-										miles
-									</h3>
+									<h2>{vendor.shopName}</h2>
 								</div>
-							) : (
 								<div>
-									<h3>Zipcode: {vendor.zipcode}</h3>
-								</div>
-							)}
-							<h3>Average Reviews: {storeAvg}</h3>
-							<h3>Category: {vendor.category}</h3>
-							{vendor.id === sessionUserId && (
-								<div>
-									<button
-										className={styles.primaryBtn}
-										onClick={() => setIsOpen(true)}
-									>
-										Create Product
-									</button>
-									<button
-										className={styles.primaryBtn}
-										onClick={() =>
-											setIsOpenShopSplashImg(true)
-										}
-									>
-										Add or Edit a Splash Image
-									</button>
-									<button
-										className={styles.primaryBtn}
-										onClick={() =>
-											setIsOpenChangeName(true)
-										}
-									>
-										Change Your Store's Name
-									</button>
-									<button
-										className={styles.primaryBtn}
-										onClick={() => setIsOpenChangeCat(true)}
-									>
-										Change Your Store's Cuisine
-									</button>
-								</div>
-							)}
-						</div>
-					)}
-				</div>
-			</div>
-			<div className="sample-review-container">
-				<ReviewSwiper reviews={convertedReviews} />
-			</div>
-			<div className="store-menu-container">
-				<Menu />
-			</div>
-			<div className="store-reviews-title-divider">
-				<div>
-					<h1>Reviews</h1>
-				</div>
-				<div>
-					<button onClick={() => setShowReviews(true)}>
-						Show Reviews
-					</button>
-					<button onClick={() => setShowReviews(false)}>
-						Hide Reviews
-					</button>
-				</div>
-			</div>
-			{showReviews && (
-				<div className="reviews-section">
-					{selectedProducts &&
-						selectedProducts.map((product) => (
-							<div key={product.id} className="reviews-container">
-								<div className="reviews-content">
-									<ProductReviews id={product.id} />
+									<p>{vendor.zipcode}</p>
 								</div>
 							</div>
-						))}
+						</div>
+					</div>
 				</div>
 			)}
-			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
-			{isOpenShopSplashImg && (
-				<ModalAddShopSplashImage
-					setIsOpen={setIsOpenShopSplashImg}
-					userId={userId}
-				/>
-			)}
-			{isOpenChangeName && (
-				<ModalChangeShopName
-					setIsOpen={setIsOpenChangeName}
-					userId={userId}
-				/>
-			)}
-			{isOpenChangeCat && (
-				<ModalChangeShopCategory
-					setIsOpen={setIsOpenChangeCat}
-					userId={userId}
-				/>
-			)}
 		</div>
+		// <div className="store-page">
+		// 	<div className="header-container">
+		// 		<div className="store-splash-page-wrapper">
+
+		// 			<div className="splash-img-container">
+		// 				<img
+		// 					id="shop-splash-img"
+		// 					src={vendor?.shopSplashImg}
+		// 					alt="vendor-splash-img"
+		// 				/>
+		// 			</div>
+		// 		</div>
+		// 		<div className="header-right">
+		// 			{vendor && (
+		// 				<div>
+		// 					<h1>{vendor.shopName}</h1>
+		// 					{vendor.id !== sessionUserId ? (
+		// 						<div>
+		// 							<h3>
+		// 								Distance:{" "}
+		// 								{zipCodeData
+		// 									.zipCodeDistance(
+		// 										sessionUser.zipcode,
+		// 										vendor.zipcode,
+		// 										"M"
+		// 									)
+		// 									.toFixed(2)}{" "}
+		// 								miles
+		// 							</h3>
+		// 						</div>
+		// 					) : (
+		// 						<div>
+		// 							<h3>Zipcode: {vendor.zipcode}</h3>
+		// 						</div>
+		// 					)}
+		// 					<h3>Average Reviews: {storeAvg}</h3>
+		// 					<h3>Category: {vendor.category}</h3>
+		// 					{vendor.id === sessionUserId && (
+		// 						<div>
+		// 							<button
+		// 								className={styles.primaryBtn}
+		// 								onClick={() => setIsOpen(true)}
+		// 							>
+		// 								Create Product
+		// 							</button>
+		// 							<button
+		// 								className={styles.primaryBtn}
+		// 								onClick={() =>
+		// 									setIsOpenShopSplashImg(true)
+		// 								}
+		// 							>
+		// 								Add or Edit a Splash Image
+		// 							</button>
+		// 							<button
+		// 								className={styles.primaryBtn}
+		// 								onClick={() =>
+		// 									setIsOpenChangeName(true)
+		// 								}
+		// 							>
+		// 								Change Your Store's Name
+		// 							</button>
+		// 							<button
+		// 								className={styles.primaryBtn}
+		// 								onClick={() => setIsOpenChangeCat(true)}
+		// 							>
+		// 								Change Your Store's Cuisine
+		// 							</button>
+		// 						</div>
+		// 					)}
+		// 				</div>
+		// 			)}
+		// 		</div>
+		// 	</div>
+		// 	<div className="sample-review-container">
+		// 		<ReviewSwiper reviews={convertedReviews} />
+		// 	</div>
+		// 	<div className="store-menu-container">
+		// 		<Menu />
+		// 	</div>
+		// 	<div className="store-reviews-title-divider">
+		// 		<div>
+		// 			<h1>Reviews</h1>
+		// 		</div>
+		// 		<div>
+		// 			<button onClick={() => setShowReviews(true)}>
+		// 				Show Reviews
+		// 			</button>
+		// 			<button onClick={() => setShowReviews(false)}>
+		// 				Hide Reviews
+		// 			</button>
+		// 		</div>
+		// 	</div>
+		// 	{showReviews && (
+		// 		<div className="reviews-section">
+		// 			{selectedProducts &&
+		// 				selectedProducts.map((product) => (
+		// 					<div key={product.id} className="reviews-container">
+		// 						<div className="reviews-content">
+		// 							<ProductReviews id={product.id} />
+		// 						</div>
+		// 					</div>
+		// 				))}
+		// 		</div>
+		// 	)}
+		// 	{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
+		// 	{isOpenShopSplashImg && (
+		// 		<ModalAddShopSplashImage
+		// 			setIsOpen={setIsOpenShopSplashImg}
+		// 			userId={userId}
+		// 		/>
+		// 	)}
+		// 	{isOpenChangeName && (
+		// 		<ModalChangeShopName
+		// 			setIsOpen={setIsOpenChangeName}
+		// 			userId={userId}
+		// 		/>
+		// 	)}
+		// 	{isOpenChangeCat && (
+		// 		<ModalChangeShopCategory
+		// 			setIsOpen={setIsOpenChangeCat}
+		// 			userId={userId}
+		// 		/>
+		// 	)}
+		// </div>
 	);
 };
 export default StorePage;
