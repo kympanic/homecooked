@@ -8,7 +8,7 @@ from ..utils import Print
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
+@user_routes.route('')
 
 def users():
     """
