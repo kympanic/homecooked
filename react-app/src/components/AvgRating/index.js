@@ -1,3 +1,6 @@
+
+
+
 const UserAvgRating = ({ user, products }) => {
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(user.id);

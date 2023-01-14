@@ -3,7 +3,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
-// import {UserAvgRating} from "../AvgRating"
+// import {UserAvgRating} from "../ProfilePage/UserAvgRating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Search.css";
@@ -46,19 +46,14 @@ const Search = () => {
 						.filter((store) => {
 							if (query === "") {
 								return store;
-							}
-							else if (store.category == null){
-								return store
-							}
-							else if (
+							} else if (query && store.category === null ) {
+								return null;
+							} else if (
 								store.category
 									.toLowerCase()
 									.includes(query.toLowerCase())
 							) {
 								return store;
-								// {
-								// 	console.log(store.category, "category");
-								// }
 							}
 						})
 						.map((store) =>
@@ -79,7 +74,7 @@ const Search = () => {
 									</Link>
 									<div className="secondary-text">
 										Average Rating:
-										{/* <UserAvgRating store={user}/> */}
+										{/* <UserAvgRating user={user}/> */}
 										<FontAwesomeIcon
 											className="star"
 											icon={faStar}
