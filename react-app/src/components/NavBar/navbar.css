@@ -8,3 +8,44 @@
     margin: 0;
     padding-top: 3px;
 }
+
+.barLink a {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    font-family: sans-serif;
+    height: 101px;
+    width: 100px;
+    color: white;
+}
+
+.barLink {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+
+.cartCounter {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartIcon {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.barImg {
+    position: relative;
+    flex-direction: row;
+}
+
+.barWords {
+    position: relative;
+    flex-direction: row;
+}

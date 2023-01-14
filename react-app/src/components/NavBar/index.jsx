@@ -42,10 +42,11 @@ const NavBar = () => {
 			<li className="barLink">
 				<NavLink to="/" exact={true} activeClassName="active">
 					<img 
+						className="barImg"
 						src={logo}
 						alt="HomeCooked Logo"
 					/>
-					Home
+					<div className="barWords">Home</div>
 				</NavLink>
 			</li>
 			{sessionUser ? (
@@ -97,8 +98,11 @@ const NavBar = () => {
 			)}
 			<li className="barLink">
 				<NavLink to ="/cart" exact={true}>
-				<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-					Cart
+					<div className="cartIcon">
+						<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
+						Cart
+					</div>
+					
 					<div className="cartCounter">{totalItems}</div>
 				</NavLink>
 			</li>
