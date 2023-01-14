@@ -49,7 +49,7 @@ class Product(db.Model):
             'price': converted_price,
             'category': self.category,
             'user': self.user_products.to_dict_basic(),
-            'reviews': [review.to_dict_basic() for review in self.product_reviews],
+            'reviews': [review.to_dict() for review in self.product_reviews],
             'orders': [payment.to_dict_basic() for payment in self.product_orders]
         }
 
