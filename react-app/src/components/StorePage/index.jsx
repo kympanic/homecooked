@@ -48,20 +48,6 @@ const StorePage = () => {
 								sessionUserId={sessionUserId}
 								userId={userId}
 							/>
-							<div>
-								{convertedReviews.length > 0 ? (
-									<div>
-										<ReviewSwiper
-											reviews={convertedReviews}
-											vendor={vendor}
-										/>
-									</div>
-								) : (
-									<div id="shopinfo-zipcode-element">
-										<p>There are no reviews yet!</p>
-									</div>
-								)}
-							</div>
 						</div>
 					</div>
 					{vendor.products.length > 0 ? (
