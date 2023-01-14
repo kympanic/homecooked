@@ -33,7 +33,7 @@ def user(id):
 def add_order():
     form = OrderForm()
 
-    Print(form.data)
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -53,7 +53,6 @@ def edit_user(id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.is_submitted():
-        Print(form.data)
         form.populate_obj(user)
         db.session.commit()
 

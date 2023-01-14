@@ -13,7 +13,6 @@ payment_routes = Blueprint('payments', __name__)
 def get_paymentinfo_by_id(id):
     payments =Payment.query.filter_by(user_id=id).all()
    
-    Print(payments)
     # if payments.user_id != current_user.id:
     #     return {"error": "You are not authorized to view this payment information"}, 401
     
@@ -60,7 +59,6 @@ def edit_paymentinfo(id):
 def delete_paymentinfo(id):
     payment_info = Payment.query.get(id)
 
-    Print(payment_info)
     if payment_info.user_id != current_user.id:
         return {"error": "You are not authorized to delete this payment information"}, 401
     

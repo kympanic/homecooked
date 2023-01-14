@@ -42,12 +42,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 			expiration: month.toString() + year.toString(),
 		};
 
-		// console.log(provider, "THIS IS THE PROVIDER");
-		// console.log(accountNumber, "this is the account number");
-		// console.log(month + year, "This is the expiration ");
-
 		let data = dispatch(createPaymentThunk(newPayment));
-		console.log(data, "THIS IS THE DATA FROM CREATE PAYMENT");
 		if (data) {
 			setErrors(data);
 		} else {

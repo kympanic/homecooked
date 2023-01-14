@@ -18,7 +18,6 @@ const ProductReviews = ({ id }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
-	// console.log(filteredReviews, "these are the filtered reviews");
 
 	return (
 		<div className="review-box-container">

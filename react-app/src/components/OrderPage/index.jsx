@@ -25,10 +25,6 @@ const OrderPage = () => {
 		history.push("/");
 	}
 
-	// console.log(sessionUser, "THIS IS THE USER");
-	// console.log(payments, "THIS IS THE PAYMENTS");
-	// console.log(cartItems, "THESE ARE THE CART ITEMS");
-
 	useEffect(() => {
 		dispatch(getPaymentThunk(userId));
 	}, [dispatch, userId]);

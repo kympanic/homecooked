@@ -32,8 +32,6 @@ const CartPage = () => {
 		setTotalPrice(price);
 	}, [cartItems, totalItems, totalPrice, products]);
 
-	// console.log(cartItems);
-
 	const handleNoItems = (e) => {
 		e.preventDefault();
 		history.push("/");

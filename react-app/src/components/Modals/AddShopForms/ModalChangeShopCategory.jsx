@@ -7,7 +7,6 @@ import { editUserThunk } from "../../../store/users";
 const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-	console.log(user);
 
 	const [errors, setErrors] = useState([]);
 	const [category, setCategory] = useState("");
@@ -37,7 +36,6 @@ const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 		setCategory(e.target.value);
 	};
 
-	console.log("AHHHHHH");
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
