@@ -12,6 +12,7 @@ import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Search from "./components/Search";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
@@ -54,6 +55,9 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
+				<Route path="/searchtest" exact={true}>
+					<Search />
+				</Route>
 				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
 				</ProtectedRoute>
@@ -63,6 +67,14 @@ function App() {
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>
+<<<<<<< HEAD
+=======
+				<ProtectedRoute path="/store/:userId/test">
+					<TestMenuPage />
+				</ProtectedRoute>
+
+
+>>>>>>> 7001e66904a7d2a41727451830ccd83320636890
 				<Route path="/">
 					<PageNotFound />
 				</Route>
