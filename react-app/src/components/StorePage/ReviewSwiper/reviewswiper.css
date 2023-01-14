@@ -1,0 +1,37 @@
+.review-swiper-profileimg {
+	height: 80px;
+	width: 80px;
+	border-radius: 50px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.carousel-container {
+	background: #fdf6ef;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	height: 250px;
+	border-radius: 20px;
+}
+
+.carousel-item {
+	min-width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.carousel-container-notowner {
+	background: #fdf6ef;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	height: 250px;
+	border-radius: 20px;
+	width: 1000px;
+	margin-left: 45%;
+}

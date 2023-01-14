@@ -41,7 +41,6 @@ const StorePage = () => {
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
 	const [isOpenChangeName, setIsOpenChangeName] = useState(false);
 	const [isOpenChangeCat, setIsOpenChangeCat] = useState(false);
-	const [showReviews, setShowReviews] = useState(false);
 
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
@@ -83,25 +82,31 @@ const StorePage = () => {
 		<div>
 			{vendor && (
 				<div className="store-page">
-					<div className="header-container">
-						{vendor.shopSplashImg && (
+					<div className="header-wrapper">
+						{vendor.shopSplashImg ? (
 							<div className="splash-img-container">
 								<img
 									className="shop-splash-img"
 									src={vendor.shopSplashImg}
 									alt="vendor-splash-img"
 								/>
-								{sessionUserId === vendor.id && (
-									<button
-										className={styles.editSplashBtn}
-										onClick={() =>
-											setIsOpenShopSplashImg(true)
-										}
-									>
-										Add Edit Splash
-									</button>
-								)}
 							</div>
+						) : (
+							<div className="splash-img-container">
+								<img
+									className="shop-splash-img"
+									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/waffle-hearts-gc346a3f34_1920.jpg"
+									alt="vendor-splash-img"
+								/>
+							</div>
+						)}
+						{sessionUserId === vendor.id && (
+							<button
+								className={styles.editSplashBtn}
+								onClick={() => setIsOpenShopSplashImg(true)}
+							>
+								Add Edit Splash
+							</button>
 						)}
 						<div className="store-info-container">
 							<div className="shop-logo-img-container">
@@ -115,6 +120,15 @@ const StorePage = () => {
 								<div id="shopinfo-shopname-element">
 									<h1>{vendor.shopName}</h1>
 								</div>
+								{vendor.category ? (
+									<div id="shopinfo-cuisine-element">
+										<p>Cuisine: {vendor.category}</p>
+									</div>
+								) : (
+									<div id="shopinfo-cuisine-element">
+										<p>Add Cuisine Category</p>
+									</div>
+								)}
 								{storeAvg ? (
 									<div id="shopinfo-avg-element">
 										<p>Average Reviews: {storeAvg}</p>
@@ -137,6 +151,7 @@ const StorePage = () => {
 												.toFixed(2)}{" "}
 											miles
 										</p>
+										<p>Location: {location}</p>
 									</div>
 								) : (
 									<div id="shopinfo-zipcode-element">
@@ -166,7 +181,7 @@ const StorePage = () => {
 										{vendor.username}
 									</a>
 								</div>
-								<div>
+								<div id="userinfo-profile-email-element">
 									<p>email: {vendor.email}</p>
 								</div>
 								<div>
@@ -175,8 +190,101 @@ const StorePage = () => {
 							</div>
 						</div>
 					</div>
-					<div className="sample-review-container">
-						<ReviewSwiper reviews={convertedReviews} />
+					<div className="content-wrapper">
+						<div className="sample-review-container">
+							<div>
+								{vendor.id === sessionUserId && (
+									<div className="edit-store-container">
+										<h3> Customize Your Store!</h3>
+										<div>
+											<button
+												className={styles.primaryBtn}
+												onClick={() => setIsOpen(true)}
+											>
+												Create Product
+											</button>
+											<div>
+												<button
+													className={
+														styles.primaryBtn
+													}
+													onClick={() =>
+														setIsOpenChangeName(
+															true
+														)
+													}
+												>
+													Edit Name
+												</button>
+												<button
+													className={
+														styles.primaryBtn
+													}
+													onClick={() =>
+														setIsOpenChangeCat(true)
+													}
+												>
+													Edit Cuisine
+												</button>
+											</div>
+										</div>
+									</div>
+								)}
+							</div>
+							<div>
+								{convertedReviews.length > 0 ? (
+									<div>
+										<ReviewSwiper
+											reviews={convertedReviews}
+											vendor={vendor}
+										/>
+									</div>
+								) : (
+									<div id="shopinfo-zipcode-element">
+										<p>There are no reviews yet!</p>
+									</div>
+								)}
+							</div>
+						</div>
+					</div>
+					{vendor.products.length > 0 ? (
+						<div className="store-menu-wrapper">
+							<div id="storemenu-title-element">
+								<h1>Menu</h1>
+							</div>
+							<div className="storemenu-content-container">
+								<Menu />
+							</div>
+						</div>
+					) : (
+						<div>
+							<p>
+								This vendor has nothing for sale yet. Check back
+								later!
+							</p>
+						</div>
+					)}
+					<div>
+						{vendor.reviews.length > 0 && (
+							<div className="review-content-wrapper">
+								<div>
+									<h1>Reviews</h1>
+								</div>
+							</div>
+						)}
+						<div className="reviews-section">
+							{selectedProducts &&
+								selectedProducts.map((product) => (
+									<div
+										key={product.id}
+										className="reviews-container"
+									>
+										<div className="reviews-content">
+											<ProductReviews id={product.id} />
+										</div>
+									</div>
+								))}
+						</div>
 					</div>
 				</div>
 			)}
@@ -186,82 +294,21 @@ const StorePage = () => {
 					userId={userId}
 				/>
 			)}
+			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
+
+			{isOpenChangeName && (
+				<ModalChangeShopName
+					setIsOpen={setIsOpenChangeName}
+					userId={userId}
+				/>
+			)}
+			{isOpenChangeCat && (
+				<ModalChangeShopCategory
+					setIsOpen={setIsOpenChangeCat}
+					userId={userId}
+				/>
+			)}
 		</div>
-
-		// 					<h3>Average Reviews: {storeAvg}</h3>
-		// 					<h3>Category: {vendor.category}</h3>
-		// 					{vendor.id === sessionUserId && (
-		// 						<div>
-		// 							<button
-		// 								className={styles.primaryBtn}
-		// 								onClick={() => setIsOpen(true)}
-		// 							>
-		// 								Create Product
-		// 							</button>
-		// 							<button
-		// 								className={styles.primaryBtn}
-		// 								onClick={() =>
-		// 									setIsOpenChangeName(true)
-		// 								}
-		// 							>
-		// 								Change Your Store's Name
-		// 							</button>
-		// 							<button
-		// 								className={styles.primaryBtn}
-		// 								onClick={() => setIsOpenChangeCat(true)}
-		// 							>
-		// 								Change Your Store's Cuisine
-		// 							</button>
-		// 						</div>
-		// 					)}
-		// 				</div>
-		// 			)}
-		// 		</div>
-		// 	</div>
-
-		// 	<div className="store-menu-container">
-		// 		<Menu />
-		// 	</div>
-		// 	<div className="store-reviews-title-divider">
-		// 		<div>
-		// 			<h1>Reviews</h1>
-		// 		</div>
-		// 		<div>
-		// 			<button onClick={() => setShowReviews(true)}>
-		// 				Show Reviews
-		// 			</button>
-		// 			<button onClick={() => setShowReviews(false)}>
-		// 				Hide Reviews
-		// 			</button>
-		// 		</div>
-		// 	</div>
-		// 	{showReviews && (
-		// 		<div className="reviews-section">
-		// 			{selectedProducts &&
-		// 				selectedProducts.map((product) => (
-		// 					<div key={product.id} className="reviews-container">
-		// 						<div className="reviews-content">
-		// 							<ProductReviews id={product.id} />
-		// 						</div>
-		// 					</div>
-		// 				))}
-		// 		</div>
-		// 	)}
-		// 	{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
-
-		// 	{isOpenChangeName && (
-		// 		<ModalChangeShopName
-		// 			setIsOpen={setIsOpenChangeName}
-		// 			userId={userId}
-		// 		/>
-		// 	)}
-		// 	{isOpenChangeCat && (
-		// 		<ModalChangeShopCategory
-		// 			setIsOpen={setIsOpenChangeCat}
-		// 			userId={userId}
-		// 		/>
-		// 	)}
-		// </div>
 	);
 };
 export default StorePage;
