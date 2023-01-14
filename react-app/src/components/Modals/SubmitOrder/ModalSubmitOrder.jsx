@@ -13,25 +13,19 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
 
-<<<<<<< HEAD
 	console.log(cartItems, "these are teh cart items");
 	console.log(products, "these are all the products");
 	console.log(payment, "this is the payment");
-=======
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 	const selectedProductIds = cartItems?.map((item) => {
 		return item.id;
 	});
 
-<<<<<<< HEAD
 	// const selectedProductNames = products.map((product) => {
 	// 	return product.name;
 	// });
 	// console.log(selectedProductNames, "These are the names");
 	// console.log(selectedProductIds, "these are the product ids");
 
-=======
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 

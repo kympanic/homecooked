@@ -8,11 +8,8 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
 
-<<<<<<< HEAD
 	// const [errors, setErrors] = useState([]);
-=======
 	const [errors, setErrors] = useState([]);
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 	const [shopSplashImg, setShopSplashImg] = useState("");
 
 	const handleSubmit = (e) => {
@@ -30,15 +27,12 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 			zipcode: user.zipcode,
 		};
 		let data = dispatch(editUserThunk(newShopInfo));
-<<<<<<< HEAD
 		// if (data) {
 		// 	setErrors(data);
 		// }
-=======
 		if (data) {
 			setErrors(data);
 		}
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 		setIsOpen(false);
 	};
 
@@ -85,8 +79,6 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 									placeholder="Url for your shop splash"
 								/>
 							</div>
-<<<<<<< HEAD
-=======
 							<div>
 								<label htmlFor="shopSplashImg">
 									Shop Splash Image
@@ -98,7 +90,6 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 									onChange={updateShopSplashImg}
 								/>
 							</div>
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 						</form>
 					</div>
 

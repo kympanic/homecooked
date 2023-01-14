@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./reviewswiper.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -51,10 +50,6 @@ const ReviewSwiper = ({ reviews, vendor }) => {
 				))}
 		</div>
 	);
-=======
-const ReviewSwiper = ({ reviews }) => {
-	return <div>This is the review swiper</div>;
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 };
 
 export default ReviewSwiper;

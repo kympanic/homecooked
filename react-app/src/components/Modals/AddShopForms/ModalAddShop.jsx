@@ -34,15 +34,12 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			setErrors(data);
 		}
 		setIsOpen(false);
-<<<<<<< HEAD
     
     };
-=======
 		if (data) {
 			history.push(`/store/${user.id}`);
 		}
 	};
->>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 
 	const updateShopName = (e) => {
 		setShopName(e.target.value);
