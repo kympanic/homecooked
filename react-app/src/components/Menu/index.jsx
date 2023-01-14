@@ -17,10 +17,10 @@ const Menu = () => {
 
 	//probably need to pass the product id as a prop so get single product can be used
 	return (
-		<div className="menu">
+		<div className="menu-stores-container">
 			{products &&
 				products.map((el) => (
-					<div key={el.id} className="stores-container">
+					<div key={el.id} className="menu">
 						<Product id={el.id} vendor={vendor} />
 					</div>
 				))}

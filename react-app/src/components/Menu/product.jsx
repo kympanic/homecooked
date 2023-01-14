@@ -23,20 +23,14 @@ const Product = ({ id, vendor }) => {
 
 	return (
 		<div className="store-details">
-			<div id="menu-product-img-container">
-				<img
-					id="menu-product-img"
-					src={product?.imageURL}
-					alt={product?.name}
-				/>
-			</div>
+			<img
+				id="menu-product-img"
+				src={product?.imageURL}
+				alt={product?.name}
+			/>
+			<div>{product?.name}</div>
 			<div className="secondary-text">
-				<div>{product?.name}</div>
-			</div>
-			<div className="secondary-text">
-				<span>
-					${(Math.round(product?.price * 100) / 100).toFixed(2)}
-				</span>
+				${(Math.round(product?.price * 100) / 100).toFixed(2)}
 			</div>
 			<div className="secondary-text">
 				Average Rating: {product?.avgRating}
