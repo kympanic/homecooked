@@ -1,6 +1,8 @@
 const UserAvgRating = ({user, products}) => {
 
     const reviewAvg = products?.filter((product) => {
+         console.log(product.userId, "product exists?")
+         console.log(user, "user exists?")
       return product?.userId === parseInt(user.id);
       }).map(
         (el) => Number(el.avgRating)
@@ -19,7 +21,7 @@ const UserAvgRating = ({user, products}) => {
           return "Overwhelmingly Positive"
       }
     }
-      
+
     return (
         <span>{(Math.round(reviewAvg * 100) / 100).toFixed(2)}{' '}(From {user?.products?.length} Reviews),{' '}"{reviewCommenter()}"</span>
     )

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
+// import {Footer} from "../Footer"
 import "./HomePage.css";
 const zipCodeData = require("zipcode-city-distance");
 

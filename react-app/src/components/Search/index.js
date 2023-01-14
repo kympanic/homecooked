@@ -3,7 +3,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
-// import {UserAvgRating} from "../ProfilePage/UserAvgRating";
+import AvgRating from "../AvgRating/index"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Search.css";
@@ -13,14 +13,21 @@ const Search = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector((state) => state.session.user);
+	const products = useSelector((state) => Object.values(state.products));
 
 	// for search
 	const [query, setQuery] = useState("");
-	// for zipcode
+	// for zipcode - use only if there is a user logged in to populate distance, else hide distance
 	const sessionUserZipcode = useSelector(
 		(state) => state.session.user.zipcode
 	);
+
+	// let sessionUserZipcode;
+	// if (sessionUser) {
+	// 	sessionUserZipcode = sessionUser.zipcode;
+	// }
 	const allStoresArray = useSelector((state) => Object.values(state.users));
+
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
@@ -46,7 +53,7 @@ const Search = () => {
 						.filter((store) => {
 							if (query === "") {
 								return store;
-							} else if (query && store.category === null ) {
+							} else if (query && store.category === null) {
 								return null;
 							} else if (
 								store.category
@@ -57,7 +64,7 @@ const Search = () => {
 							}
 						})
 						.map((store) =>
-							store && store.id ? (
+							sessionUser && store && store.id && (store.products.length > 0) ? (
 								<div key={store?.id}>
 									<div className="store-details">
 										<img
@@ -72,9 +79,13 @@ const Search = () => {
 									>
 										{store.shopName}
 									</Link>
+
 									<div className="secondary-text">
 										Average Rating:
-										{/* <UserAvgRating user={user}/> */}
+										<AvgRating
+											user={store}
+											products={products}
+										/>
 										<FontAwesomeIcon
 											className="star"
 											icon={faStar}
