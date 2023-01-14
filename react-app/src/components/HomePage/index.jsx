@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import styles from "../Modals/App.module.css";
+import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
+import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
-// import {Footer} from "../Footer"
+import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
 const zipCodeData = require("zipcode-city-distance");
 
@@ -13,33 +13,60 @@ const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
-
 	const sessionUser = useSelector((state) => state.session.user);
 
-	let sessionUserZipcode;
-	if (sessionUser) {
-		sessionUserZipcode = sessionUser.zipcode;
-	}
+	// for search
+	const [query, setQuery] = useState("");
+	// for zipcode - use only if there is a user logged in to populate distance, else hide distance
+	const sessionUserZipcode = useSelector(
+		(state) => state.session.user.zipcode
+	);
 
+	// let sessionUserZipcode;
+	// if (sessionUser) {
+	// 	sessionUserZipcode = sessionUser.zipcode;
+	// }
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
-	// console.log(sessionUser, "test");
+
 	return (
 		<>
-			{sessionUser ? (
-				<div>
-					{" "}
-					<hr></hr>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div className="stores-container">
-						{allStoresArray.map((store) =>
-							store && store.id && store.shopName ? (
+			{" "}
+			<hr></hr>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div>
+				<input
+					className="search-bar"
+					placeholder="Search For Food..."
+					onChange={(e) => setQuery(e.target.value)}
+				/>
+				{/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
+				<div className="stores-container">
+					{allStoresArray
+						.filter((store) => {
+							if (query === "") {
+								return store;
+							} else if (query && store.category === null) {
+								return null;
+							} else if (
+								store.category
+									.toLowerCase()
+									.includes(query.toLowerCase())
+							) {
+								return store;
+							}
+						})
+						.map((store) =>
+							sessionUser &&
+							store &&
+							store.id &&
+							store.products.length > 0 ? (
 								<div key={store?.id}>
 									<div className="store-details">
 										<img
@@ -50,23 +77,30 @@ const HomePage = () => {
 									</div>
 									<Link
 										className="store-link"
-										to={`/store/${store.id}`}
+										to={`/users/${store.id}`}
 									>
 										{store.shopName}
 									</Link>
+
 									<div className="secondary-text">
-										Average Rating:
+
+										<AvgRating
+											user={store}
+											products={products}
+										/>
 										<FontAwesomeIcon
 											className="star"
 											icon={faStar}
 										/>
 									</div>
-
+									<div className="secondary-text">
+										Category: {store.category}
+									</div>
 									<div className="secondary-text">
 										Zipcode: {store.zipcode}
 									</div>
 									<div className="secondary-text">
-										Distance:{" "}
+										Distance:
 										{zipCodeData
 											.zipCodeDistance(
 												sessionUserZipcode,
@@ -84,16 +118,9 @@ const HomePage = () => {
 								<div></div>
 							)
 						)}
-					</div>
 				</div>
-			) : (
-				<div>
-					<p>
-						Welcome to HomeCooked! Please Sign Up or Log In to
-						continue!
-					</p>
-				</div>
-			)}
+			</div>
+
 		</>
 	);
 };
