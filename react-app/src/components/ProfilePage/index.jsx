@@ -24,11 +24,11 @@ const ProfilePage = () => {
 
 	const history = useHistory();
 
-	useEffect(() => {
-		if (shopName) {
-			history.push(`/store/${user.id}`);
-		}
-	}, [shopName]);
+	// useEffect(() => {
+	// 	if (shopName) {
+	// 		history.push(`/store/${user.id}`);
+	// 	}
+	// }, [shopName]);
 
 	return (
 		<div>
