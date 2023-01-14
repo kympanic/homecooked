@@ -61,10 +61,10 @@ function App() {
 				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/orders/:userId" exact={true}>
+				<ProtectedRoute exact path="/orders/:userId">
 					<OrderPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/store/:userId" exact={true}>
+				<ProtectedRoute exact path="/store/:userId">
 					<StorePage />
 				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId/test">
