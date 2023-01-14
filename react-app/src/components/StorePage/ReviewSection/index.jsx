@@ -21,7 +21,7 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 				{reviews &&
 					reviews.length > 0 &&
 					reviews.map((review) => (
-						<div className="store-reviews-section">
+						<div key={review.id} className="store-reviews-section">
 							<div
 								key={review.id}
 								className="reviews-profile-container"
