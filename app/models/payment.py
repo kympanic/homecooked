@@ -10,7 +10,7 @@ class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     provider = db.Column(db.String(255), nullable=False)
-    account_number = db.Column(db.String(10), nullable=False, unique=True)
+    account_number = db.Column(db.String(16), nullable=False, unique=True)
     expiration = db.Column(db.String(6), nullable=False)
     
     #relationships
