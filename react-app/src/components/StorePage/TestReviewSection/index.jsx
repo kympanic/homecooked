@@ -5,12 +5,11 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ModalEditReview from "../../Modals/EditReview/ModalEditReview";
 import ModalDeleteReview from "../../Modals/DeleteReview/ModalDeleteReview";
-const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
+const TestReviewSection = ({ vendor, reviews, sessionUserId }) => {
 	const history = useHistory();
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
-	console.log(reviews);
 	return (
 		<div className="store-review-container">
 			{vendor.reviews.length > 0 && (
@@ -95,4 +94,4 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 	);
 };
 
-export default ReviewSection;
+export default TestReviewSection;

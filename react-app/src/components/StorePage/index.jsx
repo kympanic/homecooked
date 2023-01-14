@@ -7,7 +7,8 @@ import ProductReviews from "./ProductReviews";
 import StoreEditContent from "./StoreEditContent";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
-import Product from "../Menu/product";
+// import Product from "../Menu/product";
+import TestReviewSection from "./TestReviewSection";
 const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
@@ -21,7 +22,7 @@ const StorePage = () => {
 		return product?.userId === parseInt(userId);
 	});
 
-	console.log(selectedProducts, "this is the selectedProducts");
+	console.log(selectedProducts, "THESE ARE THE SELECTED PRODUCTS");
 
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
@@ -92,7 +93,7 @@ const StorePage = () => {
 							alt="breakerimg"
 						/>
 					</div>
-					<div className="reviews-section">
+					{/* <div className="reviews-section">
 						{selectedProducts &&
 							selectedProducts.map((product) => {
 								<div
@@ -104,12 +105,12 @@ const StorePage = () => {
 									</div>
 								</div>;
 							})}
-					</div>
-					{/* <ReviewSection
+					</div> */}
+					<ReviewSection
 						vendor={vendor}
 						reviews={convertedReviews}
 						sessionUserId={sessionUserId}
-					/> */}
+					/>
 				</div>
 			)}
 		</div>

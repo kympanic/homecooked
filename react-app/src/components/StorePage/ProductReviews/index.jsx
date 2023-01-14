@@ -6,6 +6,7 @@ import ModalDeleteReview from "../../Modals/DeleteReview/ModalDeleteReview";
 import ModalAddReview from "../../Modals/AddReview/ModalAddReview";
 import "./productreview.css";
 import styles from "../../Modals/App.module.css";
+
 const ProductReviews = ({ id }) => {
 	const product = useSelector((state) => state.products[id]);
 	const reviews = useSelector((state) => Object.values(state.reviews));

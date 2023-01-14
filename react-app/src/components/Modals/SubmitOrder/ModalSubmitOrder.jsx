@@ -20,11 +20,11 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 		return item.id;
 	});
 
-	const selectedProductNames = products.map((product) => {
-		return product.name;
-	});
-	console.log(selectedProductNames, "These are the names");
-	console.log(selectedProductIds, "these are the product ids");
+	// const selectedProductNames = products.map((product) => {
+	// 	return product.name;
+	// });
+	// console.log(selectedProductNames, "These are the names");
+	// console.log(selectedProductIds, "these are the product ids");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
