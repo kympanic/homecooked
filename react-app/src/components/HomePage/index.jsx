@@ -42,7 +42,7 @@ const HomePage = () => {
 			<div></div>
 			<div></div>
 			<div></div>
-			
+
 				<input
 					className="search-bar"
 					placeholder="Search For Food..."
@@ -79,7 +79,7 @@ const HomePage = () => {
 									</div>
 									<Link
 										className="store-link"
-										to={`/users/${store.id}`}
+										to={`/store/${store.id}`}
 									>
 										{store.shopName}
 									</Link>
