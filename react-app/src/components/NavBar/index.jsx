@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch} from 'react-redux'
@@ -9,11 +9,13 @@ import { getAllCartItems } from "../../store/session";
 import { login } from "../../store/session";
 import logo from "./icon_logo_draft.png"
 import "./navbar.css"
+import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 
 const NavBar = () => {
 	const cartItems = useSelector(getAllCartItems)
 	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
 	
 	const demoUser = {
 		email: "demo@aa.io",
@@ -56,6 +58,19 @@ const NavBar = () => {
 							{sessionUser.username}
 						</NavLink>
 					</li>
+					{sessionUser.shopName ? (
+						<li className="barLink">
+							<Link to={`/store/${sessionUser.id}`}>
+								Click here to go to "{sessionUser?.shopName}"
+							</Link>
+						</li>
+					) : (
+						<li className="barLink">
+							<button onClick={() => setIsOpenAddShop(true)}>
+								Become a Vendor
+							</button>
+						</li>
+					)}
 				</>
 			) : (
 				<>
@@ -87,6 +102,12 @@ const NavBar = () => {
 					<div className="cartCounter">{totalItems}</div>
 				</NavLink>
 			</li>
+			{isOpenAddShop && (
+				<ModalAddShop
+					setIsOpen={setIsOpenAddShop}
+					userId={sessionUser.id}
+				/>
+			)}
 		</ul>
 	);
 };
