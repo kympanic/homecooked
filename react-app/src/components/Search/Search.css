@@ -21,8 +21,25 @@
         Helvetica Neue,
         sans-serif;
     border-radius: 10px;
-    /* background-size: contain; */
-    /* background-repeat: no-repeat; */
     background-size: cover;
 
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    width: 486px;
+    /* align-self: center; */
+    justify-self: center;
+    padding: 15px 18px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 2px solid #222222;
+    border-radius: 96px;
+
+}
+
+.search-icon {
+    
 }

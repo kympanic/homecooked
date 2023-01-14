@@ -67,15 +67,7 @@ const HomePage = () => {
 								Zipcode: {store.zipcode}
 							</div>
 							<div className="secondary-text">
-								Distance:{" "}
-								{zipCodeData
-									.zipCodeDistance(
-										sessionUserZipcode,
-										store.zipcode,
-										"M"
-									)
-									.toFixed(2)}{" "}
-								miles
+								Distance:
 							</div>
 							<div>
 
