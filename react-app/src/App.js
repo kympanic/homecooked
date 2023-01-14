@@ -8,7 +8,9 @@ import StorePage from "./components/StorePage";
 import HomePage from "./components/HomePage";
 import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
+import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Search from "./components/Search";
 import { authenticate } from "./store/session";
@@ -16,7 +18,6 @@ import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
 import TestMenuPage from "./components/TestMenuPage";
-
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -57,9 +58,12 @@ function App() {
 				<Route path="/searchtest" exact={true}>
 					<Search />
 				</Route>
-				<Route path="/cart" exact={true}>
+				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
-				</Route>
+				</ProtectedRoute>
+				<ProtectedRoute path="/orders/:userId" exact={true}>
+					<OrderPage />
+				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId" exact={true}>
 					<StorePage />
 				</ProtectedRoute>
@@ -72,6 +76,7 @@ function App() {
 					<PageNotFound />
 				</Route>
 			</Switch>
+			<Footer />
 		</BrowserRouter>
 	);
 }

@@ -3,11 +3,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createProductThunk } from "../../../store/products";
+import { useHistory } from "react-router-dom";
 
 const ModalAddProduct = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
-
+	const history = useHistory();
 	const [errors, setErrors] = useState([]);
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
@@ -45,10 +46,15 @@ const ModalAddProduct = ({ setIsOpen }) => {
 		};
 
 		let data = dispatch(createProductThunk(newProduct));
-		setIsOpen(false);
+		// setIsOpen(false);
 		if (data) {
 			setErrors(data);
 		}
+		// console.log(errors, "these are the errors");
+		// setTimeout(() => {
+		// 	setIsOpen(false);
+		// }, 4000);
+		window.location.reload(false);
 	};
 
 	return (
@@ -67,11 +73,13 @@ const ModalAddProduct = ({ setIsOpen }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form>
-							<div>
-								{errors.map((error, ind) => (
-									<div key={ind}>{error}</div>
-								))}
-							</div>
+							{/* {errors && (
+								<div>
+									{errors.map((error, ind) => (
+										<div key={ind}>{error}</div>
+									))}
+								</div>
+							)} */}
 							<div>
 								<label>Name: </label>
 								<input
@@ -110,12 +118,30 @@ const ModalAddProduct = ({ setIsOpen }) => {
 							</div>
 							<div>
 								<label>Category: </label>
-								<input
-									type="text"
-									name="category"
-									onChange={updateCategory}
+								<select
 									value={category}
-								/>
+									onChange={updateCategory}
+								>
+									<option value="--">--</option>
+									<option value="American">American</option>
+									<option value="Asian">Asian</option>
+									<option value="Italian">Italian</option>
+									<option value="French">French</option>
+									<option value="Mediterranean">
+										Snacks
+									</option>
+									<option value="Vegetarian">
+										Vegetarian
+									</option>
+									<option value="Vegan">Vegan</option>
+									<option value="Indian">Indian</option>
+									<option value="African">African</option>
+									<option value="Ethnic">Ethnic</option>
+									<option value="Fusion">Snacks</option>
+									<option value="Dessert">Dessert</option>
+									<option value="Snacks">Snacks</option>
+									<option value="Other">Other</option>
+								</select>
 							</div>
 						</form>
 					</div>

@@ -47,7 +47,16 @@ export const createProductThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadProducts(data));
+		return data;
 	}
+	//  else if (res.status < 500) {
+	// 	const data = await res.json();
+	// 	if (data.errors) {
+	// 		return data.errors;
+	// 	}
+	// } else {
+	// 	return ["An error occurred. Please try again."];
+	// }
 };
 
 export const editProductThunk = (data) => async (dispatch) => {
@@ -64,6 +73,7 @@ export const editProductThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadProducts(data));
+		return data;
 	}
 };
 
@@ -80,6 +90,7 @@ export const deleteProductThunk = (data) => async (dispatch) => {
 
 	if (res.ok) {
 		dispatch(deleteProduct(data.id));
+		return data;
 	}
 };
 

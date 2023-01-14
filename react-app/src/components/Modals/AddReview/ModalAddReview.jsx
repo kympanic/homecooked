@@ -8,7 +8,7 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
 
-	// const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState([]);
 	const [body, setBody] = useState("");
 	const [rating, setRating] = useState("");
 
@@ -29,14 +29,13 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 			rating,
 		};
 
-		console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
-		await dispatch(createReviewThunk(newReview));
+		// console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
+		let data = await dispatch(createReviewThunk(newReview));
 		setIsOpen(false);
-		// if (data) {
-		// 	const listoferrors = Object.values(data);
-		// 	console.log(listoferrors, "WOAH DATA");
-		// 	setErrors(listoferrors);
-		// }
+		if (data) {
+			setErrors(errors);
+		}
+		window.location.reload(false);
 	};
 	return (
 		<>
@@ -44,7 +43,9 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Food is in the Oven!</h5>
+						<h5 className={styles.heading}>
+							Add a Review for {product.name}!
+						</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -54,11 +55,11 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form>
-							{/* <div>
+							<div>
 								{errors.map((error, ind) => (
 									<div key={ind}>{error}</div>
 								))}
-							</div> */}
+							</div>
 							<div>
 								<label>Comment: </label>
 								<input
@@ -70,12 +71,18 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 							</div>
 							<div>
 								<label>Rating: </label>
-								<input
-									type="text"
-									name="rating"
-									onChange={updateRating}
-									value={rating}
-								/>
+								<select value={rating} onChange={updateRating}>
+									<option value="--">--</option>
+									<option value="1">1</option>
+									<option value="1.5">1.5</option>
+									<option value="2">2</option>
+									<option value="2.5">2.5</option>
+									<option value="3">3</option>
+									<option value="3.5">3.5</option>
+									<option value="4">4</option>
+									<option value="4.5">4.5</option>
+									<option value="5">5</option>
+								</select>
 							</div>
 						</form>
 					</div>

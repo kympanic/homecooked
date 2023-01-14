@@ -1,0 +1,57 @@
+.review-swiper-profileimg {
+	height: 120px;
+	width: 120px;
+	border-radius: 50px;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+.carousel-container {
+	background: #cdc0b0;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	height: 250px;
+	border-radius: 20px;
+	border: 3px solid #02385a;
+	width: auto;
+	z-index: 0;
+	align-items: center;
+}
+
+.carousel-item {
+	min-width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+
+	transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.carousel-container-notowner {
+	background: #cdc0b0;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	height: 250px;
+	border-radius: 20px;
+	width: 1000px;
+	margin-left: 35%;
+	border: 4px solid #02385a;
+}
+
+#carousel-item-wrapper {
+	border-left: 1px solid #02385a;
+	border-right: 1px solid #02385a;
+	padding-left: 40%;
+	padding-right: 40%;
+}
+
+#swiper-review-body {
+	margin-top: 10px;
+	height: 40px;
+	overflow: hidden;
+}

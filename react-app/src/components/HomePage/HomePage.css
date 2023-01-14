@@ -11,24 +11,14 @@
     border-radius: 10px;
 }
 
-.store-details{
-    display: flex;
-        height: 286px;
-        width: 302px;
-        font-family: Circular,
-            -apple-system,
-            BlinkMacSystemFont,
-            Roboto,
-            Helvetica Neue,
-            sans-serif;
-        border-radius: 10px;
-        /* background-size: contain; */
-        /* background-repeat: no-repeat; */
-        background-size: cover;
-
-}
-
-
-.img-size {
-
+.store-details {
+	display: flex;
+	height: 286px;
+	width: 302px;
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+		Helvetica Neue, sans-serif;
+	border-radius: 10px;
+	/* background-size: contain; */
+	/* background-repeat: no-repeat; */
+	background-size: cover;
 }

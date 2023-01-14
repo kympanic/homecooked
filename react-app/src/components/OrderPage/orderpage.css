@@ -1,0 +1,14 @@
+.order-page-wrapper {
+	display: flex;
+	width: 1000px;
+	border: 2px red solid;
+}
+
+.order-page-payments {
+	padding-left: 400px;
+}
+
+.order-payment-info {
+	border: 2px solid black;
+	text-align: center;
+}

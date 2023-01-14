@@ -8,8 +8,7 @@ from ..utils import Print
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
-
+@user_routes.route('')
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -27,8 +26,21 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+@user_routes.route('/<int:id>/orders')
+@login_required
+def get_orders_by_user(id):
+
+    orders =Order.query.filter_by(user_id=id).all()
+   
+    Print(orders)
+
+    res = {order.id: order.to_dict_basic() for order in orders}
+ 
+    return res
+    
+
 #POST NEW ORDER BY USER ID
-@user_routes.route('/<int:id>/orders',methods=['POST'])
+@user_routes.route('/orders',methods=['POST'])
 @login_required
 def add_order():
     form = OrderForm()
@@ -50,12 +62,10 @@ def add_order():
 def edit_user(id):
     user = User.query.get(id)
     form = UserForm()
-    
-    if form.data["user_id"] != current_user.id:
-        return {'error': "You are not authorized to edit this information"}, 401
 
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    if form.is_submitted():
+        Print(form.data)
         form.populate_obj(user)
         db.session.commit()
 
