@@ -1,7 +1,8 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from ..utils import Print
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -17,7 +18,7 @@ class User(db.Model, UserMixin):
     shop_logo_img = db.Column(db.String(255))
     shop_splash_img = db.Column(db.String(255))
     category = db.Column(db.String(255))
-    phone_number = db.Column(db.Integer, nullable=False, unique=True)
+    phone_number = db.Column(db.String(10), nullable=False, unique=True)
     zipcode = db.Column(db.String, nullable=False,)
     hashed_password = db.Column(db.String(255), nullable=False)
 

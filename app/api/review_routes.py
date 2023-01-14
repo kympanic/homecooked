@@ -20,7 +20,7 @@ def get_review_by_review_id(id):
     review = Review.query.get(id)
 
     res = {review.id: review.to_dict()}
-    Print(res)
+
     return res
 
 #EDIT REVIEW BASED ON REVIEWID

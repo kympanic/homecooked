@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from ..utils import Print
 
 class Payment(db.Model):
@@ -8,7 +8,7 @@ class Payment(db.Model):
         __table_args__ = {'schema': SCHEMA}
         
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     provider = db.Column(db.String(255), nullable=False)
     account_number = db.Column(db.String(16), nullable=False, unique=True)
     expiration = db.Column(db.String(6), nullable=False)

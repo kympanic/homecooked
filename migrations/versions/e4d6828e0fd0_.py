@@ -1,16 +1,28 @@
 """empty message
 
+<<<<<<<< HEAD:migrations/versions/e4d6828e0fd0_.py
 Revision ID: e4d6828e0fd0
 Revises: 
 Create Date: 2023-01-13 06:20:41.253762
+========
+Revision ID: a632cec510a4
+Revises: 
+Create Date: 2023-01-14 12:20:25.703171
+>>>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa:migrations/versions/a632cec510a4_.py
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
+<<<<<<<< HEAD:migrations/versions/e4d6828e0fd0_.py
 revision = 'e4d6828e0fd0'
+========
+revision = 'a632cec510a4'
+>>>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa:migrations/versions/a632cec510a4_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +39,7 @@ def upgrade():
     sa.Column('shop_logo_img', sa.String(length=255), nullable=True),
     sa.Column('shop_splash_img', sa.String(length=255), nullable=True),
     sa.Column('category', sa.String(length=255), nullable=True),
-    sa.Column('phone_number', sa.Integer(), nullable=False),
+    sa.Column('phone_number', sa.String(length=10), nullable=False),
     sa.Column('zipcode', sa.String(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -40,7 +52,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('provider', sa.String(length=255), nullable=False),
-    sa.Column('account_number', sa.String(length=16), nullable=False),
+    sa.Column('account_number', sa.String(length=10), nullable=False),
     sa.Column('expiration', sa.String(length=6), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
@@ -83,6 +95,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['products'], ['products.id'], ),
     sa.PrimaryKeyConstraint('products', 'orders')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE payments SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE product_orders SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

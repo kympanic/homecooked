@@ -39,7 +39,6 @@ def get_product_by_id(id):
 def  add_product():
     form = ProductForm()
 
-    Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         product = Product()

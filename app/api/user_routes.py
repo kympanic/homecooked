@@ -9,6 +9,10 @@ user_routes = Blueprint('users', __name__)
 
 
 @user_routes.route('')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -45,7 +49,7 @@ def get_orders_by_user(id):
 def add_order():
     form = OrderForm()
 
-    Print(form.data)
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -65,7 +69,6 @@ def edit_user(id):
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.is_submitted():
-        Print(form.data)
         form.populate_obj(user)
         db.session.commit()
 

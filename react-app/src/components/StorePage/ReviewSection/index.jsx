@@ -10,7 +10,11 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
+<<<<<<< HEAD
 	console.log(reviews);
+=======
+	consol.log(reviews);
+>>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 	return (
 		<div className="store-review-container">
 			{vendor.reviews.length > 0 && (

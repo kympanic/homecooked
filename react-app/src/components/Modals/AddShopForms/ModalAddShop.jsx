@@ -6,58 +6,65 @@ import { editUserThunk } from "../../../store/users";
 import { useHistory } from "react-router-dom";
 
 const ModalAddShop = ({ setIsOpen, userId }) => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-    const history = useHistory();
-	console.log(user)
+	const history = useHistory();
 
-    const [errors, setErrors] = useState([]);
-    const [shopName, setShopName] = useState("");
-    const [shopLogoImg, setShopLogoImg] = useState("");
-    const [category, setCategory] = useState("");
+	const [errors, setErrors] = useState([]);
+	const [shopName, setShopName] = useState("");
+	const [shopLogoImg, setShopLogoImg] = useState("");
+	const [category, setCategory] = useState("");
 
-    const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		const newShopInfo = {
-            id: user.id,
-            email: user.email,
-            username: user.username,
-            profile_img: user.profileImg,
-            phone_number: user.phoneNumber,
+			id: user.id,
+			email: user.email,
+			username: user.username,
+			profile_img: user.profileImg,
+			phone_number: user.phoneNumber,
 			shop_name: shopName,
-            shop_logo_img: shopLogoImg,
-            shop_splash_img: user.shopSplashImg,
-            category,
-            zipcode: user.zipcode
-
+			shop_logo_img: shopLogoImg,
+			shop_splash_img: user.shopSplashImg,
+			category,
+			zipcode: user.zipcode,
 		};
-        let data = dispatch(editUserThunk(newShopInfo));
+		let data = dispatch(editUserThunk(newShopInfo));
 		if (data) {
 			setErrors(data);
 		}
 		setIsOpen(false);
+<<<<<<< HEAD
     
     };
+=======
+		if (data) {
+			history.push(`/store/${user.id}`);
+		}
+	};
+>>>>>>> 9960e27b89291ecce7de068dc018a105ee0efcaa
 
-    const updateShopName = (e) => {
-        setShopName(e.target.value);
-    };
+	const updateShopName = (e) => {
+		setShopName(e.target.value);
+	};
 
-    const updateShopLogoImg = (e) => {
-        setShopLogoImg(e.target.value);
-    };
+	const updateShopLogoImg = (e) => {
+		setShopLogoImg(e.target.value);
+	};
 
-    const updateCategory = (e) => {
-        setCategory(e.target.value);
-    };
+	const updateCategory = (e) => {
+		setCategory(e.target.value);
+	};
 
-    return (
-        <>
-        <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
+	return (
+		<>
+			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Create or Edit Your Store!</h5>
+						<h5 className={styles.heading}>
+							Create or Edit Your Store!
+						</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -72,45 +79,49 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									<div key={ind}>{error}</div>
 								))}
 							</div>
-                            <div>
-                                <label htmlFor="shopName">Shop Name:</label>
-                                <input 
-                                    type="text"
-                                    name="shopName"
-                                    value={shopName}
-                                    onChange={updateShopName}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="shopLogoImg">Shop Logo:</label>
-                                <input 
-                                    type="text"
-                                    name="shopLogoImg"
-                                    value={shopLogoImg}
-                                    onChange={updateShopLogoImg}
-                                />
-                            </div>
-                            <div>
+							<div>
+								<label htmlFor="shopName">Shop Name:</label>
+								<input
+									type="text"
+									name="shopName"
+									value={shopName}
+									onChange={updateShopName}
+								/>
+							</div>
+							<div>
+								<label htmlFor="shopLogoImg">Shop Logo:</label>
+								<input
+									type="text"
+									name="shopLogoImg"
+									value={shopLogoImg}
+									onChange={updateShopLogoImg}
+								/>
+							</div>
+							<div>
 								<label>Category: </label>
 								<select
 									value={category}
 									onChange={updateCategory}
 								>
-								<option value="--">--</option>
-								<option value="American">American</option>
-								<option value="Asian">Asian</option>
-								<option value="Italian">Italian</option>
-								<option value="French">French</option>
-                                <option value="Mediterranean">Snacks</option>
-								<option value="Vegetarian">Vegetarian</option>
-								<option value="Vegan">Vegan</option>
-								<option value="Indian">Indian</option>
-								<option value="African">African</option>
-								<option value="Ethnic">Ethnic</option>
-                                <option value="Fusion">Snacks</option>
-								<option value="Dessert">Dessert</option>
-								<option value="Snacks">Snacks</option>
-								<option value="Other">Other</option>
+									<option value="--">--</option>
+									<option value="American">American</option>
+									<option value="Asian">Asian</option>
+									<option value="Italian">Italian</option>
+									<option value="French">French</option>
+									<option value="Mediterranean">
+										Snacks
+									</option>
+									<option value="Vegetarian">
+										Vegetarian
+									</option>
+									<option value="Vegan">Vegan</option>
+									<option value="Indian">Indian</option>
+									<option value="African">African</option>
+									<option value="Ethnic">Ethnic</option>
+									<option value="Fusion">Snacks</option>
+									<option value="Dessert">Dessert</option>
+									<option value="Snacks">Snacks</option>
+									<option value="Other">Other</option>
 								</select>
 							</div>
 						</form>
@@ -134,8 +145,8 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 					</div>
 				</div>
 			</div>
-        </>
-    );
+		</>
+	);
 };
 
 export default ModalAddShop;
