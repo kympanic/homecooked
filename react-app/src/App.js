@@ -52,9 +52,9 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
-				<Route path="/users/:userId" exact={true}>
+				<ProtectedRoute path="/users/:userId" exact={true}>
 					<ProfilePage />
-				</Route>
+				</ProtectedRoute>
 				<Route path="/searchtest" exact={true}>
 					<Search />
 				</Route>
@@ -70,8 +70,6 @@ function App() {
 				<ProtectedRoute path="/store/:userId/test">
 					<TestMenuPage />
 				</ProtectedRoute>
-
-
 				<Route path="/">
 					<PageNotFound />
 				</Route>
