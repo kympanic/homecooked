@@ -3,7 +3,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
-import AvgRating from "../AvgRating/index"
+import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Search.css";
@@ -12,8 +12,8 @@ const zipCodeData = require("zipcode-city-distance");
 const Search = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const sessionUser = useSelector((state) => state.session.user);
 	const products = useSelector((state) => Object.values(state.products));
+	const sessionUser = useSelector((state) => state.session.user);
 
 	// for search
 	const [query, setQuery] = useState("");
@@ -27,7 +27,6 @@ const Search = () => {
 	// 	sessionUserZipcode = sessionUser.zipcode;
 	// }
 	const allStoresArray = useSelector((state) => Object.values(state.users));
-
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
@@ -64,7 +63,10 @@ const Search = () => {
 							}
 						})
 						.map((store) =>
-							sessionUser && store && store.id && (store.products.length > 0) ? (
+							sessionUser &&
+							store &&
+							store.id &&
+							store.products.length > 0 ? (
 								<div key={store?.id}>
 									<div className="store-details">
 										<img
@@ -81,7 +83,7 @@ const Search = () => {
 									</Link>
 
 									<div className="secondary-text">
-										Average Rating:
+
 										<AvgRating
 											user={store}
 											products={products}
@@ -118,6 +120,7 @@ const Search = () => {
 						)}
 				</div>
 			</div>
+			
 		</>
 	);
 };

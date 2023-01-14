@@ -12,20 +12,21 @@ const zipCodeData = require("zipcode-city-distance");
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const products = useSelector((state) => Object.values(state.products));
+
 	const sessionUser = useSelector((state) => state.session.user);
+
 	let sessionUserZipcode;
 	if (sessionUser) {
 		sessionUserZipcode = sessionUser.zipcode;
 	}
-
-	console.log(sessionUserZipcode, "this should be fine if null");
 
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
-	console.log(sessionUser, "test");
+	// console.log(sessionUser, "test");
 	return (
 		<>
 			{sessionUser ? (
