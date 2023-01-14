@@ -51,7 +51,7 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 									<h3>{review.product.name}</h3>
 								</div>
 							</div>
-							<div>
+							{/* <div>
 								{sessionUserId === review.userId && review && (
 									<div>
 										<button
@@ -81,7 +81,7 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 										)}
 									</div>
 								)}
-							</div>
+							</div> */}
 						</div>
 					))}
 				{reviews.length === 0 && (

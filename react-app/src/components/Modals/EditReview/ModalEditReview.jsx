@@ -11,6 +11,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 	const [rating, setRating] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	console.log(review);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
