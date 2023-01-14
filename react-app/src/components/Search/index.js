@@ -22,12 +22,6 @@ const Search = () => {
 	);
 	const allStoresArray = useSelector((state) => Object.values(state.users));
 
-	let zipCodeDistance = zipCodeData.zipCodeDistance(
-		sessionUserZipcode,
-		"33014",
-		"M"
-	);
-
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
@@ -36,7 +30,6 @@ const Search = () => {
 		<>
 			{" "}
 			<hr></hr>
-
 			<div></div>
 			<div></div>
 			<div></div>
@@ -50,21 +43,24 @@ const Search = () => {
 				{/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
 				<div className="stores-container">
 					{allStoresArray
-						.filter((store) =>  {
+						.filter((store) => {
 							if (query === "") {
 								return store;
-							} else if (
+							}
+							else if (store.category == null){
+								return store
+							}
+							else if (
 								store.category
 									.toLowerCase()
 									.includes(query.toLowerCase())
 							) {
 								return store;
-								    // {
-									// 	console.log(store, "store");
-									// }
+								// {
+								// 	console.log(store.category, "category");
+								// }
 							}
 						})
-
 						.map((store) =>
 							store && store.id ? (
 								<div key={store?.id}>
