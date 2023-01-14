@@ -29,6 +29,7 @@ const StorePage = () => {
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
 	});
+
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
 		selectedReviews.push(selectedProducts[product].reviews);
