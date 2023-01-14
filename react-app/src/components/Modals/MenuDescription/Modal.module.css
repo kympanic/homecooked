@@ -21,10 +21,9 @@
 	height: 300px;
 	background: white;
 	color: white;
-	z-index: 10;
+	z-index: 5;
 	border-radius: 16px;
 	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-	position: relative;
 }
 
 .modalHeader {
@@ -114,8 +113,8 @@
 	padding: 11px 28px;
 	border-radius: 12px;
 	font-size: 0.8rem;
-	border: none;
-	color: #2c3e50;
+	border: 2px solid black;
+	color: #20456a;
 	background: #fcfcfc;
 	transition: all 0.25s ease;
 }

@@ -35,6 +35,7 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 		if (data) {
 			setErrors(errors);
 		}
+		window.location.reload(false);
 	};
 	return (
 		<>
@@ -42,7 +43,9 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Food is in the Oven!</h5>
+						<h5 className={styles.heading}>
+							Add a Review for {product.name}!
+						</h5>
 					</div>
 					<button
 						className={styles.closeBtn}

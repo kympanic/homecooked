@@ -1,25 +1,14 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
-import { useDispatch } from "react-redux";
-import { deleteReviewThunk } from "../../../store/reviews";
 
-const ModalDeleteReview = ({ setIsOpen, review }) => {
-	const dispatch = useDispatch();
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setIsOpen(false);
-		dispatch(deleteReviewThunk(review));
-		window.location.reload(false);
-	};
-
+const ModalMenuDescription = ({ setIsOpen, product }) => {
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Delete Confirmation</h5>
+						<h1 className={styles.heading}>{product.name}</h1>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -28,21 +17,17 @@ const ModalDeleteReview = ({ setIsOpen, review }) => {
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
 					<div className={styles.modalContent}>
-						Would you like to delete your comment?
+						<div>
+							<h2>{product.description}</h2>
+						</div>
 					</div>
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
 							<button
-								className={styles.submitBtn}
-								onClick={handleSubmit}
-							>
-								Yes
-							</button>
-							<button
 								className={styles.cancelBtn}
 								onClick={() => setIsOpen(false)}
 							>
-								Cancel
+								Close
 							</button>
 						</div>
 					</div>
@@ -52,4 +37,4 @@ const ModalDeleteReview = ({ setIsOpen, review }) => {
 	);
 };
 
-export default ModalDeleteReview;
+export default ModalMenuDescription;

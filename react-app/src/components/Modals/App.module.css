@@ -7,8 +7,9 @@
 	font-size: 0.8rem;
 	border: none;
 	color: white;
-	background: #185adb;
+	background: #02385a;
 	transition: all 0.25s ease;
+	position: relative;
 }
 
 .primaryBtn:hover {

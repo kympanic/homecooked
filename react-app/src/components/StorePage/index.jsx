@@ -81,9 +81,17 @@ const StorePage = () => {
 							</p>
 						</div>
 					)}
+					<div className="breakerimg-container">
+						<img
+							id="breaker-img"
+							src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/watercolor-gd41edecf1_1920.jpg"
+							alt="breakerimg"
+						/>
+					</div>
 					<ReviewSection
 						vendor={vendor}
-						selectedProducts={selectedProducts}
+						reviews={convertedReviews}
+						sessionUserId={sessionUserId}
 					/>
 				</div>
 			)}

@@ -4,10 +4,7 @@ import { useSelector } from "react-redux";
 
 const ReviewSwiper = ({ reviews, vendor }) => {
 	const sessionUser = useSelector((state) => state.session.user);
-	console.log(
-		reviews,
-		"THIS THIS GO THROUGH THESE ARE THE REVIEWS FOR THE SWIPER"
-	);
+
 	const [currentIndx, setCurrentIndx] = useState(0);
 	const carouselInfiniteScroll = () => {
 		if (currentIndx === reviews.length - 1) {
@@ -35,13 +32,14 @@ const ReviewSwiper = ({ reviews, vendor }) => {
 			{reviews &&
 				reviews.map((review) => (
 					<div
+						id="carousel-item-wrapper"
 						key={review.id}
 						className="carousel-item"
 						style={{
 							transform: `translate(-${currentIndx * 100}%)`,
 						}}
 					>
-						<p>{review.body}</p>
+						<p id="swiper-review-body">{review.body}</p>
 						<img
 							className="review-swiper-profileimg"
 							src={review.user.profileImg}
