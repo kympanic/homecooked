@@ -3,9 +3,11 @@ import { useSelector } from "react-redux";
 import Menu from "../Menu";
 import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
+import ProductReviews from "./ProductReviews";
 import StoreEditContent from "./StoreEditContent";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
+import Product from "../Menu/product";
 const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
@@ -19,10 +21,7 @@ const StorePage = () => {
 		return product?.userId === parseInt(userId);
 	});
 
-	console.log(vendor, "this is the vendor");
-	console.log(products, "this is the products");
-
-	console.log(selectedProducts);
+	console.log(selectedProducts, "this is the selectedProducts");
 
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
@@ -93,11 +92,15 @@ const StorePage = () => {
 							alt="breakerimg"
 						/>
 					</div>
-					<ReviewSection
+					{selectedProducts &&
+						selectedProducts.map((product) => {
+							<ProductReviews id={product.id} />;
+						})}
+					{/* <ReviewSection
 						vendor={vendor}
 						reviews={convertedReviews}
 						sessionUserId={sessionUserId}
-					/>
+					/> */}
 				</div>
 			)}
 		</div>
