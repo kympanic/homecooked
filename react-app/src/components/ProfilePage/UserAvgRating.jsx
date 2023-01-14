@@ -5,6 +5,14 @@ const UserAvgRating = ({user, products}) => {
       }).map(
         (el) => Number(el.avgRating)
         )?.reduce((a, b) => a + b) / user?.products?.length;
+    
+    let numberReviews = 0;
+    
+    products?.filter((product) => {
+        return product?.userId === parseInt(user.id);
+    }).forEach((el) => {
+        numberReviews += el.reviews.length
+    })
 
     const reviewCommenter = () => {
       if (reviewAvg < 2) {
@@ -21,7 +29,7 @@ const UserAvgRating = ({user, products}) => {
     }
       
     return (
-        <span>{(Math.round(reviewAvg * 100) / 100).toFixed(2)}{' '}(From {user?.products?.length} Reviews),{' '}"{reviewCommenter()}"</span>
+        <span>{(Math.round(reviewAvg * 100) / 100).toFixed(2)}{' '}(From {numberReviews} Reviews),{' '}"{reviewCommenter()}"</span>
     )
 }
 
