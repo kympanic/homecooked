@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 import ModalEditReview from "../../Modals/EditReview/ModalEditReview";
 import ModalDeleteReview from "../../Modals/DeleteReview/ModalDeleteReview";
 import ModalAddReview from "../../Modals/AddReview/ModalAddReview";
+import "./productreview.css";
 import styles from "../../Modals/App.module.css";
-
 const ProductReviews = ({ id }) => {
-	console.log(id, "this is this id :D");
 	const product = useSelector((state) => state.products[id]);
 	const reviews = useSelector((state) => Object.values(state.reviews));
 	const sessionUserId = useSelector((state) => state.session.user.id);
@@ -16,10 +15,10 @@ const ProductReviews = ({ id }) => {
 		return review.productId === id;
 	});
 
-	console.log(filteredReviews, "this is the filtered Reviews");
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenAddReview, setIsOpenAddReview] = useState(false);
+	// console.log(filteredReviews, "these are the filtered reviews");
 
 	return (
 		<div className="review-box-container">
@@ -31,23 +30,17 @@ const ProductReviews = ({ id }) => {
 				/>
 				<h3>{product.name}</h3>
 				<p>Avg Rating: {product.avgRating}</p>
-				{product.userId !== sessionUserId && (
-					<div>
-						<div>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenAddReview(true)}
-							>
-								Add Review
-							</button>
-							{isOpenAddReview && (
-								<ModalAddReview
-									setIsOpen={setIsOpenAddReview}
-									product={product}
-								/>
-							)}
-						</div>
-					</div>
+				<button
+					className={styles.primaryBtn}
+					onClick={() => setIsOpenAddReview(true)}
+				>
+					Add Review
+				</button>
+				{isOpenAddReview && (
+					<ModalAddReview
+						setIsOpen={setIsOpenAddReview}
+						product={product}
+					/>
 				)}
 			</div>
 			<div className="review-content-wrapper">

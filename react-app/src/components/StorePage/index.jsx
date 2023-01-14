@@ -92,10 +92,19 @@ const StorePage = () => {
 							alt="breakerimg"
 						/>
 					</div>
-					{selectedProducts &&
-						selectedProducts.map((product) => {
-							<ProductReviews id={product.id} />;
-						})}
+					<div className="reviews-section">
+						{selectedProducts &&
+							selectedProducts.map((product) => {
+								<div
+									key={product.id}
+									className="review-container"
+								>
+									<div className="reviews-content">
+										<ProductReviews id={product.id} />;
+									</div>
+								</div>;
+							})}
+					</div>
 					{/* <ReviewSection
 						vendor={vendor}
 						reviews={convertedReviews}
