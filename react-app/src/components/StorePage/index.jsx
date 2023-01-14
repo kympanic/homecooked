@@ -93,7 +93,7 @@ const StorePage = () => {
 							alt="breakerimg"
 						/>
 					</div>
-					{/* <div className="reviews-section">
+					<div className="reviews-section">
 						{selectedProducts &&
 							selectedProducts.map((product) => {
 								<div
@@ -105,7 +105,7 @@ const StorePage = () => {
 									</div>
 								</div>;
 							})}
-					</div> */}
+					</div>
 					<ReviewSection
 						vendor={vendor}
 						reviews={convertedReviews}
