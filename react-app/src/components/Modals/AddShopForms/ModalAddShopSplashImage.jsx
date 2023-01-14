@@ -68,7 +68,7 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 								</label>
 								<input
 									className="shopsplash-input"
-									type="text"
+									type="url"
 									name="shopSplashImg"
 									value={shopSplashImg}
 									onChange={updateShopSplashImg}

@@ -20,7 +20,7 @@ const Menu = () => {
 		<div className="menu">
 			{products &&
 				products.map((el) => (
-					<div key={el.id} className="productBox">
+					<div key={el.id} className="stores-container">
 						<Product id={el.id} vendor={vendor} />
 					</div>
 				))}

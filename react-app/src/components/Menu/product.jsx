@@ -22,68 +22,60 @@ const Product = ({ id, vendor }) => {
 	};
 
 	return (
-		<div className="menu-products-wrapper">
-			<div className="menu-products-container">
-				<div className="menu-products-left-container">
-					<div id="menu-product-img-container">
-						<img
-							id="menu-product-img"
-							src={product?.imageURL}
-							alt={product?.name}
-						/>
-					</div>
-				</div>
-				<div className="menu-products-right-container">
-					<div className="menu-products-content-header">
-						<div>{product?.name}</div>
-					</div>
-					<div className="menu-products-content-body">
-						<span>
-							$
-							{(Math.round(product?.price * 100) / 100).toFixed(
-								2
-							)}
-						</span>
-						<div>Average Rating: {product?.avgRating}</div>
-						<div>Category: {product?.category}</div>
-					</div>
-					<div className="menu-products-content-footer">
-						<div>Description: {product?.description}</div>
-					</div>
-					{vendor?.id === sessionUserId ? (
-						<div>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenEdit(true)}
-							>
-								Edit
-							</button>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenDelete(true)}
-							>
-								Delete
-							</button>
-						</div>
-					) : (
-						<div className="menu-products-content-buttons">
-							<button onClick={addToCart}>Add to Cart</button>
-						</div>
-					)}
-					{isOpenEdit && (
-						<ModalEditProduct
-							setIsOpen={setIsOpenEdit}
-							product={product}
-						/>
-					)}
-					{isOpenDelete && (
-						<ModalDeleteProduct
-							setIsOpen={setIsOpenDelete}
-							product={product}
-						/>
-					)}
-				</div>
+		<div className="store-details">
+			<div id="menu-product-img-container">
+				<img
+					id="menu-product-img"
+					src={product?.imageURL}
+					alt={product?.name}
+				/>
 			</div>
+			<div className="secondary-text">
+				<div>{product?.name}</div>
+			</div>
+			<div className="secondary-text">
+				<span>
+					${(Math.round(product?.price * 100) / 100).toFixed(2)}
+				</span>
+			</div>
+			<div className="secondary-text">
+				Average Rating: {product?.avgRating}
+			</div>
+			<div className="secondary-text">
+				<p>Category: {product?.category}</p>
+			</div>
+			<div className="secondary-text">
+				<p>Description: {product?.description}</p>
+			</div>
+			{/* {vendor?.id === sessionUserId ? (
+				<div>
+					<button
+						className={styles.primaryBtn}
+						onClick={() => setIsOpenEdit(true)}
+					>
+						Edit
+					</button>
+					<button
+						className={styles.primaryBtn}
+						onClick={() => setIsOpenDelete(true)}
+					>
+						Delete
+					</button>
+				</div>
+			) : (
+				<div className="menu-products-content-buttons">
+					<button onClick={addToCart}>Add to Cart</button>
+				</div>
+			)}
+			{isOpenEdit && (
+				<ModalEditProduct setIsOpen={setIsOpenEdit} product={product} />
+			)}
+			{isOpenDelete && (
+				<ModalDeleteProduct
+					setIsOpen={setIsOpenDelete}
+					product={product}
+				/>
+			)} */}
 		</div>
 	);
 };

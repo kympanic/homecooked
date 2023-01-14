@@ -54,9 +54,9 @@ function App() {
 				<Route path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</Route>
-				<Route path="/cart" exact={true}>
+				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
-				</Route>
+				</ProtectedRoute>
 				<ProtectedRoute path="/orders/:userId" exact={true}>
 					<OrderPage />
 				</ProtectedRoute>
