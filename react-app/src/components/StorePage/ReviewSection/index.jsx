@@ -68,20 +68,20 @@ const ReviewSection = ({ vendor, reviews, sessionUserId }) => {
 										>
 											Delete
 										</button>
-										{isOpenEdit && (
-											<ModalEditReview
-												setIsOpen={setIsOpenEdit}
-												review={review}
-											/>
-										)}
-										{isOpenDelete && (
-											<ModalDeleteReview
-												setIsOpen={setIsOpenDelete}
-											/>
-										)}
 									</div>
 								)}
 							</div>
+							{isOpenEdit && (
+								<ModalEditReview
+									setIsOpen={setIsOpenEdit}
+									review={review}
+								/>
+							)}
+							{isOpenDelete && (
+								<ModalDeleteReview
+									setIsOpen={setIsOpenDelete}
+								/>
+							)}
 						</div>
 					))}
 				{reviews.length === 0 && (

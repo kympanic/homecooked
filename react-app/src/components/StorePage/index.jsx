@@ -19,6 +19,11 @@ const StorePage = () => {
 		return product?.userId === parseInt(userId);
 	});
 
+	console.log(vendor, "this is the vendor");
+	console.log(products, "this is the products");
+
+	console.log(selectedProducts);
+
 	const selectedReviews = [];
 	for (const product in selectedProducts) {
 		selectedReviews.push(selectedProducts[product].reviews);
