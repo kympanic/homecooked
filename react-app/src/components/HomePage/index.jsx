@@ -7,6 +7,7 @@ import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
+import SplashPage from "../SplashPage";
 const zipCodeData = require("zipcode-city-distance");
 
 const HomePage = () => {
@@ -124,10 +125,7 @@ const HomePage = () => {
 			</div>
 			) : (
 				<div>
-					<p>
-						Welcome to HomeCooked! Please Sign Up or Log In to
-						continue!
-					</p>
+					<SplashPage />
 				</div>
 			)}
 
