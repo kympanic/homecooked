@@ -49,12 +49,12 @@ const ModalAddProduct = ({ setIsOpen }) => {
 		setIsOpen(false);
 		if (data) {
 			setErrors(data);
+			console.log(errors, "these are the errors");
 		}
-		console.log(errors, "these are the errors");
 		setTimeout(() => {
 			setIsOpen(false);
+			window.location.reload(false);
 		}, 4000);
-		window.location.reload(false);
 	};
 
 	return (
@@ -73,13 +73,13 @@ const ModalAddProduct = ({ setIsOpen }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form>
-							{/* {errors && (
+							{errors && (
 								<div>
 									{errors.map((error, ind) => (
 										<div key={ind}>{error}</div>
 									))}
 								</div>
-							)} */}
+							)}
 							<div>
 								<label>Name: </label>
 								<input
