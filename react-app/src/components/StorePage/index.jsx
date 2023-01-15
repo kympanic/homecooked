@@ -25,6 +25,7 @@ const StorePage = () => {
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
 
+	console.log(convertedReviews, "these are the converted reviews");
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
 		history.push("/");
@@ -48,6 +49,20 @@ const StorePage = () => {
 								sessionUserId={sessionUserId}
 								userId={userId}
 							/>
+							<div>
+								{convertedReviews.length > 0 ? (
+									<div>
+										<ReviewSwiper
+											reviews={convertedReviews}
+											vendor={vendor}
+										/>
+									</div>
+								) : (
+									<div id="shopinfo-zipcode-element">
+										<p>There are no reviews yet!</p>
+									</div>
+								)}
+							</div>
 						</div>
 					</div>
 					{vendor.products.length > 0 ? (
@@ -74,11 +89,23 @@ const StorePage = () => {
 							alt="breakerimg"
 						/>
 					</div>
-					<ReviewSection
+					<div>
+						{convertedReviews &&
+							convertedReviews.map((review) => (
+								<div id={review.id}>
+									<ReviewSection
+										vendor={vendor}
+										reviewId={review.id}
+										sessionUserId={sessionUserId}
+									/>
+								</div>
+							))}
+					</div>
+					{/* <ReviewSection
 						vendor={vendor}
 						reviews={convertedReviews}
 						sessionUserId={sessionUserId}
-					/>
+					/> */}
 				</div>
 			)}
 		</div>

@@ -101,15 +101,6 @@ const StoreHeader = ({ userId, storeAvg }) => {
 								<p>Location: {location}</p>
 							</div>
 						)}
-						<div className="shopinfo-follow-element">
-							<p>
-								Follow Shop{" "}
-								<FontAwesomeIcon
-									className="heart"
-									icon={faHeart}
-								/>{" "}
-							</p>
-						</div>
 					</div>
 					<div className="user-info-container">
 						<div id="userinfo-profile-img-element">
