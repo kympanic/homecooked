@@ -3,12 +3,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createProductThunk } from "../../../store/products";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ModalAddProduct = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
-	const history = useHistory();
+	// const history = useHistory();
 	const [errors, setErrors] = useState([]);
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");

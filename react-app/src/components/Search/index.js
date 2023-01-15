@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../Modals/App.module.css";
+// import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
 import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import "./Search.css";
 const zipCodeData = require("zipcode-city-distance");
 
 const Search = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
+	// const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
 	const sessionUser = useSelector((state) => state.session.user);
 
@@ -83,7 +83,6 @@ const Search = () => {
 									</Link>
 
 									<div className="secondary-text">
-
 										<AvgRating
 											user={store}
 											products={products}
@@ -120,7 +119,6 @@ const Search = () => {
 						)}
 				</div>
 			</div>
-			
 		</>
 	);
 };

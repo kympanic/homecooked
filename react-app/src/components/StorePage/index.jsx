@@ -6,7 +6,7 @@ import ReviewSection from "./ReviewSection";
 import StoreEditContent from "./StoreEditContent";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
-const zipCodeData = require("zipcode-city-distance");
+// const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
 	const { userId } = useParams();

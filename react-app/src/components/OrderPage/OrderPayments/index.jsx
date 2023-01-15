@@ -8,7 +8,7 @@ import styles from "../../Modals/App.module.css";
 
 const OrderPayments = ({ id }) => {
 	const payment = useSelector((state) => state.payments[id]);
-	const sessionUserId = useSelector((state) => state.session.user.id);
+	// const sessionUserId = useSelector((state) => state.session.user.id);
 	const cartItems = useSelector(getAllCartItems);
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);

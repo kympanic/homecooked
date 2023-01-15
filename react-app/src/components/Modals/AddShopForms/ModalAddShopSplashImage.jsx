@@ -8,7 +8,7 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
 
-	// const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState([]);
 	const [shopSplashImg, setShopSplashImg] = useState("");
 
 	const handleSubmit = (e) => {
@@ -26,9 +26,9 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 			zipcode: user.zipcode,
 		};
 		let data = dispatch(editUserThunk(newShopInfo));
-		// if (data) {
-		// 	setErrors(data);
-		// }
+		if (data) {
+			setErrors(data);
+		}
 		setIsOpen(false);
 	};
 
@@ -54,11 +54,11 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form onSubmit={handleSubmit}>
-							{/* <div>
+							<div>
 								{errors.map((error, ind) => (
 									<div key={ind}>{error}</div>
 								))}
-							</div> */}
+							</div>
 							<div>
 								<label
 									htmlFor="shopSplashImg"

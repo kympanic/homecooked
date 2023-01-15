@@ -1,10 +1,8 @@
 import "./reviewswiper.css";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const ReviewSwiper = ({ reviews }) => {
-	// const sessionUser = useSelector((state) => state.session.user);
 	const history = useHistory();
 	const [currentIndx, setCurrentIndx] = useState(0);
 	const carouselInfiniteScroll = () => {
