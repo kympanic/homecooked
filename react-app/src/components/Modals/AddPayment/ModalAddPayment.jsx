@@ -32,7 +32,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	};
 
 	//make sure to change the provider and account number and expiration into STRINGS!
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const newPayment = {
@@ -42,11 +42,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 			expiration: month.toString() + year.toString(),
 		};
 
-		// console.log(provider, "THIS IS THE PROVIDER");
-		// console.log(accountNumber, "this is the account number");
-		// console.log(month + year, "This is the expiration ");
-
-		let data = dispatch(createPaymentThunk(newPayment));
+		let data = await dispatch(createPaymentThunk(newPayment));
 		if (data) {
 			setErrors(data);
 		} else {
