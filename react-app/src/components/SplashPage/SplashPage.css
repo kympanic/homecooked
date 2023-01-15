@@ -1,0 +1,37 @@
+.primary-text{
+
+}
+
+.secondary-text{
+
+}
+
+
+.page-container{
+    display: flex;
+    /* background-size: center cover;
+    background-position: center top;
+    position: fixed; */
+    /* top: 0;
+    left: 0; */
+    /* width: 100%;
+    height: 100vh; */
+
+}
+
+
+#splash-img{
+    position: fixed;
+    top: 20;
+    left: 0;
+    width: 100%;
+    height: 80vh;
+}
+
+/* login-view {
+    background-image: url("../img/splash.png");
+    -webkit-background-size: cover;
+    -moz-background-size: center cover;
+    background-size: cover;
+    background-position: center top;
+} */

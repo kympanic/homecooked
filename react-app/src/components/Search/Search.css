@@ -28,8 +28,8 @@
 .search-bar {
     display: flex;
     flex-direction: row;
-    height: 20px;
-    width: 486px;
+    height: 48px;
+    width: 886px;
     /* align-self: center; */
     justify-self: center;
     padding: 15px 18px;
@@ -41,5 +41,5 @@
 }
 
 .search-icon {
-    
+
 }

@@ -103,7 +103,7 @@ const HomePage = () => {
 										Zipcode: {store.zipcode}
 									</div>
 									<div className="secondary-text">
-										Distance:
+										Distance: {""}
 										{zipCodeData
 											.zipCodeDistance(
 												sessionUserZipcode,
