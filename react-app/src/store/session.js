@@ -5,9 +5,9 @@ const REMOVE_USER = "session/REMOVE_USER";
 // const GET_CART = "session/GET_CART";
 const ADD_ITEM = "session/ADD_ITEM";
 const UPDATE_COUNT = "session/UPDATE_COUNT";
-const REMOVE_ITEM = "session/REMOVE_ITEM"
-const RESET_CART = "session/RESET_CART"
-const LOAD_CURRENT_ITEM = "session/LOAD_CURRENT_ITEM"
+const REMOVE_ITEM = "session/REMOVE_ITEM";
+const RESET_CART = "session/RESET_CART";
+const LOAD_CURRENT_ITEM = "session/LOAD_CURRENT_ITEM";
 
 //  User Actions
 const setUser = (user) => ({
@@ -28,11 +28,12 @@ export const addItem = (itemId) => {
 };
 
 export const updateCount = (itemId, count) => {
-	if (count < 1) return {
-		type: UPDATE_COUNT,
-		itemId,
-		count: 1
-	};
+	if (count < 1)
+		return {
+			type: UPDATE_COUNT,
+			itemId,
+			count: 1,
+		};
 	return {
 		type: UPDATE_COUNT,
 		itemId,
@@ -54,11 +55,11 @@ export const reset = () => {
 };
 
 export const loadCurrentItem = (item) => {
-    return {
-        type: LOAD_CURRENT_ITEM,
-        payload: item
-    }
-}
+	return {
+		type: LOAD_CURRENT_ITEM,
+		payload: item,
+	};
+};
 
 // SELECTORS
 export const getCartItemById = (id) => (state) => state.cart.items[id];
@@ -70,8 +71,6 @@ export const getAllCartItems = ({ cart }) => {
 		};
 	});
 };
-
-
 
 // THUNKS
 
@@ -155,7 +154,6 @@ export const signUp = (data) => async (dispatch) => {
 	}
 };
 
-
 // USER SESSION REDUCER
 
 export default function reducer(state = initialState, action) {
@@ -169,10 +167,8 @@ export default function reducer(state = initialState, action) {
 	}
 }
 
-
 // CART REDUCER
 const initialState2 = {
-
 	items: {},
 	order: [],
 };
@@ -210,5 +206,5 @@ export function cartReducer(state = initialState2, action) {
 			return initialState2;
 		default:
 			return state;
-    };
-};
+	}
+}

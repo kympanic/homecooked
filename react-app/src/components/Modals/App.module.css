@@ -9,7 +9,7 @@
 	color: white;
 	background: #02385a;
 	transition: all 0.25s ease;
-	position: relative;
+	z-index: 0;
 }
 
 .primaryBtn:hover {
@@ -29,13 +29,7 @@
 	top: 340px;
 	transition: all 0.25s ease;
 }
-/* .chat {
-	position: absolute;
-	right: 0px;
-	z-index: 9999;
-	width: xyz;
-	height: xyz;
-} */
+
 .editSplashBtn:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 20px -10px black;

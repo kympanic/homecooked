@@ -1,5 +1,5 @@
-import { useParams, useHistory, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import UserInfo from "./UserInfo";
 import ShopOwnerInfo from "./ShopOwnerInfo";
@@ -22,7 +22,7 @@ const ProfilePage = () => {
 		shopName = user.shopName;
 	}
 
-	const history = useHistory();
+	// const history = useHistory();
 
 	// useEffect(() => {
 	// 	if (shopName) {

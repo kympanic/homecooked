@@ -47,14 +47,13 @@ const ModalAddPayment = ({ setIsOpen }) => {
 		// console.log(month + year, "This is the expiration ");
 
 		let data = dispatch(createPaymentThunk(newPayment));
-		console.log(data, "THIS IS THE DATA FROM CREATE PAYMENT");
 		if (data) {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
+			const path = `/orders/${userId}`;
+			history.push(path);
 		}
-		const path = `/orders/${userId}`;
-		history.push(path);
 	};
 
 	const handleExistingPayment = (e) => {

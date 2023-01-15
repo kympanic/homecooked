@@ -1,6 +1,4 @@
 import "../storepage.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "../../Modals/App.module.css";
@@ -13,7 +11,6 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
-
 	let zipInfo = zipCodeData.getInfo("zipcode", vendor?.zipcode);
 	let location = Object.keys(zipInfo?.data.places)[0];
 
@@ -99,17 +96,11 @@ const StoreHeader = ({ userId, storeAvg }) => {
 						) : (
 							<div id="shopinfo-zipcode-element">
 								<p>Location: {location}</p>
+								<button className={styles.primaryBtn}>
+									Customize Your Store!
+								</button>
 							</div>
 						)}
-						<div className="shopinfo-follow-element">
-							<p>
-								Follow Shop{" "}
-								<FontAwesomeIcon
-									className="heart"
-									icon={faHeart}
-								/>{" "}
-							</p>
-						</div>
 					</div>
 					<div className="user-info-container">
 						<div id="userinfo-profile-img-element">

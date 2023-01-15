@@ -3,12 +3,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createProductThunk } from "../../../store/products";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ModalAddProduct = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
-	const history = useHistory();
+	// const history = useHistory();
 	const [errors, setErrors] = useState([]);
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
@@ -33,7 +33,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 	const updateCategory = (e) => {
 		setCategory(e.target.value);
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const newProduct = {
@@ -45,16 +45,13 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			category,
 		};
 
-		let data = dispatch(createProductThunk(newProduct));
-		// setIsOpen(false);
+		const data = await dispatch(createProductThunk(newProduct));
+
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
-		// console.log(errors, "these are the errors");
-		// setTimeout(() => {
-		// 	setIsOpen(false);
-		// }, 4000);
-		window.location.reload(false);
 	};
 
 	return (
@@ -73,13 +70,11 @@ const ModalAddProduct = ({ setIsOpen }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form>
-							{/* {errors && (
-								<div>
-									{errors.map((error, ind) => (
-										<div key={ind}>{error}</div>
-									))}
-								</div>
-							)} */}
+							<div>
+								{errors.map((error, ind) => (
+									<div key={ind}>{error}</div>
+								))}
+							</div>
 							<div>
 								<label>Name: </label>
 								<input
@@ -168,13 +163,3 @@ const ModalAddProduct = ({ setIsOpen }) => {
 };
 
 export default ModalAddProduct;
-
-//button usage
-
-/* <button
-className={styles.primaryBtn}
-onClick={() => setIsOpen(true)}
->
-Create Product
-</button>
-{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />} */

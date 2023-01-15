@@ -2,6 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	background-color: white;
+	z-index: 0;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 #shop-splash-img {
@@ -127,6 +130,7 @@
 .storemenu-content-container {
 	margin-left: 11%;
 	margin-right: 11%;
+	z-index: 0;
 }
 
 .breakerimg-container {

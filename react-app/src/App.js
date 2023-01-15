@@ -18,7 +18,7 @@ import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
 import TestMenuPage from "./components/TestMenuPage";
-import SplashPage from "./components/SplashPage";
+// import SplashPage from "./components/SplashPage";
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -46,7 +46,6 @@ function App() {
 			<Switch>
 				<Route path="/" exact={true}>
 					<HomePage />
-					
 				</Route>
 				<Route path="/login" exact={true}>
 					<LoginForm />
@@ -54,26 +53,24 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
-				<Route path="/users/:userId" exact={true}>
+				<ProtectedRoute path="/users/:userId" exact={true}>
 					<ProfilePage />
-				</Route>
+				</ProtectedRoute>
 				<Route path="/searchtest" exact={true}>
 					<Search />
 				</Route>
 				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/orders/:userId" exact={true}>
+				<ProtectedRoute exact path="/orders/:userId">
 					<OrderPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/store/:userId" exact={true}>
+				<ProtectedRoute exact path="/store/:userId">
 					<StorePage />
 				</ProtectedRoute>
 				<ProtectedRoute path="/store/:userId/test">
 					<TestMenuPage />
 				</ProtectedRoute>
-
-
 				<Route path="/">
 					<PageNotFound />
 				</Route>

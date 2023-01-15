@@ -3,7 +3,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { editPaymentThunk } from "../../../store/payments";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();

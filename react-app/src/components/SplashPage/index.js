@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import NavBar from "../NavBar/index";
 import "./SplashPage.css";
 import food from "./food.jpeg";
 import cook from "./cook.jpeg"

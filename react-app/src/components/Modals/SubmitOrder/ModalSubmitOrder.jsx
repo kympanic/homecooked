@@ -1,7 +1,7 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+// import { useState } from "react";
 import { getAllCartItems } from "../../../store/session";
 import { reset } from "../../../store/session";
 import { useHistory } from "react-router-dom";
@@ -13,9 +13,9 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
 
-	console.log(cartItems, "these are teh cart items");
-	console.log(products, "these are all the products");
-	console.log(payment, "this is the payment");
+	// console.log(cartItems, "these are teh cart items");
+	// console.log(products, "these are all the products");
+	// console.log(payment, "this is the payment");
 	const selectedProductIds = cartItems?.map((item) => {
 		return item.id;
 	});

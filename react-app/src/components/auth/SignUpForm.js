@@ -24,16 +24,7 @@ const SignUpForm = () => {
 			zipcode,
 		};
 		if (password === repeatPassword) {
-			const data = await dispatch(
-				signUp(newUser)
-				// signUp(
-				// 	username,
-				// 	email,
-				// 	password,
-				// 	phoneNumber,
-				// 	zipcode
-				// )
-			);
+			const data = await dispatch(signUp(newUser));
 			if (data) {
 				setErrors(data);
 			}
