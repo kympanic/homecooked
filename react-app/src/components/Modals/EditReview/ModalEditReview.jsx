@@ -27,7 +27,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 			setErrors(data);
 		}
 		setIsOpen(false);
-		window.location.reload(false);
+		return window.location.reload(false);
 	};
 
 	return (

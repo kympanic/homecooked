@@ -66,6 +66,7 @@ const ReviewSection = ({ vendor, reviewId, sessionUserId }) => {
 							{isOpenDelete && (
 								<ModalDeleteReview
 									setIsOpen={setIsOpenDelete}
+									review={review}
 								/>
 							)}
 						</div>

@@ -1,6 +1,4 @@
 import "../storepage.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "../../Modals/App.module.css";

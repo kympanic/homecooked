@@ -54,7 +54,6 @@ const StorePage = () => {
 									<div>
 										<ReviewSwiper
 											reviews={convertedReviews}
-											vendor={vendor}
 										/>
 									</div>
 								) : (
@@ -101,11 +100,6 @@ const StorePage = () => {
 								</div>
 							))}
 					</div>
-					{/* <ReviewSection
-						vendor={vendor}
-						reviews={convertedReviews}
-						sessionUserId={sessionUserId}
-					/> */}
 				</div>
 			)}
 		</div>
