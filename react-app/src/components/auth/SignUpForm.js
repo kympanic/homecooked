@@ -90,6 +90,12 @@ const SignUpForm = () => {
 					name="phoneNumber"
 					onChange={updatePhoneNumber}
 					value={phoneNumber}
+					maxLength={10}
+					onKeyPress={(event) => {
+						if (!/[0-9]/.test(event.key)) {
+							event.preventDefault();
+						}
+					}}
 				></input>
 			</div>
 			<div>
@@ -99,6 +105,12 @@ const SignUpForm = () => {
 					name="zipcode"
 					onChange={updateZipcode}
 					value={zipcode}
+					maxLength={5}
+					onKeyPress={(event) => {
+						if (!/[0-9]/.test(event.key)) {
+							event.preventDefault();
+						}
+					}}
 				></input>
 			</div>
 			<div>
