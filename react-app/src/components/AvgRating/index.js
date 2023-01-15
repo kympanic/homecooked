@@ -23,11 +23,7 @@ const AvgRating = ({ user, products }) => {
 		}
 	};
 
-	return (
-		<span>
-			{(Math.round(reviewAvg * 100) / 100).toFixed(2)}
-		</span>
-	);
+	return <span>{(Math.round(reviewAvg * 100) / 100).toFixed(2)}</span>;
 };
 
 export default AvgRating;

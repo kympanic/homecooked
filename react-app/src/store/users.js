@@ -5,10 +5,6 @@ const loadUsers = (payload) => ({
 	payload,
 });
 
-// functions
-
-
-
 //thunks
 export const getAllUsersThunk = () => async (dispatch) => {
 	const res = await fetch("/api/users");
@@ -26,6 +22,7 @@ export const getUserThunk = (userId) => async (dispatch) => {
 	if (res.ok) {
 		const payload = await res.json();
 		dispatch(loadUsers(payload));
+		return payload;
 	}
 };
 

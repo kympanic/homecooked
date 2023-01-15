@@ -28,7 +28,7 @@ const HomePage = () => {
 		sessionUserZipcode = sessionUser.zipcode;
 	}
 	const allStoresArray = useSelector((state) => Object.values(state.users));
-
+	
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
@@ -100,7 +100,7 @@ const HomePage = () => {
 										Category: {store.category}
 									</div>
 									<div className="secondary-text">
-										Zipcode: {store.zipcode}
+										Location: {store.zipcode}
 									</div>
 									<div className="secondary-text">
 										Distance: {""}

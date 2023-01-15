@@ -11,6 +11,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 	const [rating, setRating] = useState("");
 	const [errors, setErrors] = useState([]);
 
+	console.log(review);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -26,7 +27,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 			setErrors(data);
 		}
 		setIsOpen(false);
-		window.location.reload(false);
+		return window.location.reload(false);
 	};
 
 	return (

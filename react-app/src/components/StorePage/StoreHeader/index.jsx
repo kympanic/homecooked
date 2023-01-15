@@ -1,6 +1,4 @@
 import "../storepage.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "../../Modals/App.module.css";
@@ -101,15 +99,6 @@ const StoreHeader = ({ userId, storeAvg }) => {
 								<p>Location: {location}</p>
 							</div>
 						)}
-						<div className="shopinfo-follow-element">
-							<p>
-								Follow Shop{" "}
-								<FontAwesomeIcon
-									className="heart"
-									icon={faHeart}
-								/>{" "}
-							</p>
-						</div>
 					</div>
 					<div className="user-info-container">
 						<div id="userinfo-profile-img-element">

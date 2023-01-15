@@ -1,20 +1,12 @@
-.review-swiper-profileimg {
-	height: 120px;
-	width: 120px;
-	border-radius: 50px;
-	margin-bottom: 30px;
-	margin-top: 30px;
-}
-
 .carousel-container {
-	background: #cdc0b0;
+	background: #02385a;
 	display: flex;
 	flex-wrap: nowrap;
 	overflow: hidden;
-	height: 250px;
+	height: 350px;
 	border-radius: 20px;
 	border: 3px solid #02385a;
-	width: auto;
+	width: 500px;
 	z-index: 0;
 	align-items: center;
 }
@@ -38,20 +30,82 @@
 	overflow: hidden;
 	height: 250px;
 	border-radius: 20px;
-	width: 1000px;
+	width: 500px;
 	margin-left: 35%;
 	border: 4px solid #02385a;
 }
 
-#carousel-item-wrapper {
-	border-left: 1px solid #02385a;
-	border-right: 1px solid #02385a;
-	padding-left: 40%;
-	padding-right: 40%;
+#carousel-profile-img {
+	border-radius: 50px;
+	height: 90px;
+	width: 90px;
 }
 
-#swiper-review-body {
-	margin-top: 10px;
-	height: 40px;
+#carousel-product-img {
+	height: 70px;
+	width: 70px;
+	border-radius: 20px;
+	margin-right: 40px;
+}
+
+#content {
+	max-width: 600px;
+	margin: 25vh auto;
+}
+
+.review blockquote {
+	margin: 10px 10px 0;
+	background: white;
+	padding: 20px 60px;
+	position: relative;
+
+	border-radius: 8px;
+	font-style: italic;
+	font-size: 18px;
+	max-height: 130px;
 	overflow: hidden;
+	max-width: 400px;
+}
+.review blockquote:before,
+.review blockquote:after {
+	content: "\201C";
+	position: absolute;
+	font-size: 45px;
+	line-height: 1;
+	color: #757f9a;
+	font-style: normal;
+}
+
+.review blockquote:before {
+	top: 0;
+	left: 10px;
+}
+
+.review blockquote:after {
+	content: "\201D";
+	right: 10px;
+	bottom: -0.5em;
+}
+
+.review div {
+	width: 0;
+	height: 0;
+	border-left: 0 solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid white;
+	margin: 0 0 0 60px;
+}
+
+.review p {
+	margin: 8px 0 0 20px;
+	text-align: left;
+	color: #fff;
+}
+
+#carousel-review-username {
+	font-size: 19px;
+	text-align: center;
+	position: relative;
+	bottom: 80px;
+	right: 20px;
 }
