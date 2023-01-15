@@ -3,6 +3,8 @@
 	flex-direction: column;
 	background-color: white;
 	z-index: 0;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 #shop-splash-img {

@@ -46,14 +46,14 @@ const ModalAddProduct = ({ setIsOpen }) => {
 		};
 
 		let data = dispatch(createProductThunk(newProduct));
-		// setIsOpen(false);
+		setIsOpen(false);
 		if (data) {
 			setErrors(data);
 		}
-		// console.log(errors, "these are the errors");
-		// setTimeout(() => {
-		// 	setIsOpen(false);
-		// }, 4000);
+		console.log(errors, "these are the errors");
+		setTimeout(() => {
+			setIsOpen(false);
+		}, 4000);
 		window.location.reload(false);
 	};
 
