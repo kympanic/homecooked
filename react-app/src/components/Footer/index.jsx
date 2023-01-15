@@ -5,8 +5,10 @@ const Footer = () => {
 	return (
 		<div className="footer-page-container">
 			<a href='https://github.com/kympanic/homecooked'>
-        <h1 className="about">  © 2023 HomeCooked, Inc. | About </h1>
+
+        <h3 className="about">  About </h3>
         </a>
+		<span>© 2023, HomeCooked, Inc.</span>
 
         </div>
 	);

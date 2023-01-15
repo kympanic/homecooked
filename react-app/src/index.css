@@ -1,5 +1,5 @@
 /* TODO Add site wide styles */
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -11,4 +11,8 @@
 
 a {
 	color: black;
+} */
+*{
+	font-family: 'Asap',
+		sans-serif;
 }
