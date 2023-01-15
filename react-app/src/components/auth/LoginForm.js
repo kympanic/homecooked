@@ -16,7 +16,6 @@ const LoginForm = () => {
 		if (data) {
 			setErrors(data);
 		}
-		console.log(errors);
 	};
 
 	const updateEmail = (e) => {

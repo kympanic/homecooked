@@ -33,7 +33,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 	const updateCategory = (e) => {
 		setCategory(e.target.value);
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const newProduct = {
@@ -45,16 +45,13 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			category,
 		};
 
-		let data = dispatch(createProductThunk(newProduct));
-		setIsOpen(false);
+		const data = await dispatch(createProductThunk(newProduct));
+
 		if (data) {
 			setErrors(data);
-			console.log(errors, "these are the errors");
-		}
-		setTimeout(() => {
+		} else {
 			setIsOpen(false);
-			window.location.reload(false);
-		}, 4000);
+		}
 	};
 
 	return (
@@ -73,13 +70,11 @@ const ModalAddProduct = ({ setIsOpen }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<form>
-							{errors && (
-								<div>
-									{errors.map((error, ind) => (
-										<div key={ind}>{error}</div>
-									))}
-								</div>
-							)}
+							<div>
+								{errors.map((error, ind) => (
+									<div key={ind}>{error}</div>
+								))}
+							</div>
 							<div>
 								<label>Name: </label>
 								<input
@@ -168,13 +163,3 @@ const ModalAddProduct = ({ setIsOpen }) => {
 };
 
 export default ModalAddProduct;
-
-//button usage
-
-/* <button
-className={styles.primaryBtn}
-onClick={() => setIsOpen(true)}
->
-Create Product
-</button>
-{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />} */
