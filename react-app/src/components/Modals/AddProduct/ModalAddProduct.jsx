@@ -51,6 +51,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
+			return window.location.reload(false);
 		}
 	};
 

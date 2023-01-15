@@ -111,6 +111,11 @@ const ModalAddPayment = ({ setIsOpen }) => {
 							<div>
 								<label>Account Number: </label>
 								<input
+									onKeyPress={(event) => {
+										if (!/[0-9]/.test(event.key)) {
+											event.preventDefault();
+										}
+									}}
 									type="text"
 									name="accountNumber"
 									onChange={updateAccountNumber}

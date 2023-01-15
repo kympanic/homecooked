@@ -59,8 +59,9 @@ def edit_paymentinfo(id):
     if form.validate_on_submit():
         form.populate_obj(payment)
         db.session.commit()
-
-    return {payment.id: payment.to_dict()}
+        return {payment.id: payment.to_dict()}
+        
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #DELETE A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["DELETE"])

@@ -15,20 +15,19 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const [month, setMonth] = useState("");
 	const [year, setYear] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const editedPayment = {
 			id: payment.id,
 			user_id: userId,
-			provider,
+			provider: payment.provider,
 			account_number: accountNumber,
 			expiration: month.toString() + year.toString(),
 		};
 
 		//error handling
-		let data = dispatch(editPaymentThunk(editedPayment));
-		console.log("is it getting here");
+		let data = await dispatch(editPaymentThunk(editedPayment));
 		if (data) {
 			setErrors(data);
 		}
@@ -71,24 +70,13 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 								))}
 							</div>
 							<div>
-								<label>Provider: </label>
-								<select
-									value={provider}
-									onChange={updateProvider}
-								>
-									<option value="--">--</option>
-									<option value="Mastercard">
-										Mastercard
-									</option>
-									<option value="Visa">Visa</option>
-									<option value="American Express">
-										American Express
-									</option>
-								</select>
-							</div>
-							<div>
 								<label>Account Number: </label>
 								<input
+									onKeyPress={(event) => {
+										if (!/[0-9]/.test(event.key)) {
+											event.preventDefault();
+										}
+									}}
 									type="text"
 									name="accountNumber"
 									onChange={updateAccountNumber}

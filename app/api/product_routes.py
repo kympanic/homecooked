@@ -65,8 +65,9 @@ def edit_product(id):
         form.populate_obj(product)
 
         db.session.commit()
+        return {product.id: product.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    return {product.id: product.to_dict()}
 
 
 #DELETE A PRODUCT BASED ON PRODUCT REVIEW
