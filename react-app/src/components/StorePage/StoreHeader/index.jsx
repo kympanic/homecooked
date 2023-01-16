@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import styles from "../../Modals/App.module.css";
 import ModalAddShopSplashImage from "../../Modals/AddShopForms/ModalAddShopSplashImage";
+import SideBar from "../SideBar";
 const zipCodeData = require("zipcode-city-distance");
 
 const StoreHeader = ({ userId, storeAvg }) => {
@@ -11,6 +12,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
+	const [showNav, setShowNav] = useState(false);
 	let zipInfo = zipCodeData.getInfo("zipcode", vendor?.zipcode);
 	let location = Object.keys(zipInfo?.data.places)[0];
 
@@ -86,11 +88,13 @@ const StoreHeader = ({ userId, storeAvg }) => {
 								<p>Location: {location}</p>
 							</div>
 						) : (
-							<div id="shopinfo-zipcode-element">
-								<p>Location: {location}</p>
-								<button className={styles.primaryBtn}>
-									Customize Your Store!
-								</button>
+							<div>
+								<div>
+									<p>Zipcode: {vendor.zipcode}</p>
+								</div>
+								<div id="shopinfo-zipcode-element">
+									<SideBar userId={userId} />
+								</div>
 							</div>
 						)}
 					</div>

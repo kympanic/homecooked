@@ -35,7 +35,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			zipcode: user.zipcode,
 		};
 		let data = await dispatch(editUserThunk(newShopInfo));
-
 		if (data) {
 			setErrors(data);
 		} else {
@@ -84,6 +83,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
+									max={30}
 								/>
 							</div>
 							<div>
