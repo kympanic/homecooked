@@ -41,16 +41,11 @@ const StorePage = () => {
 		<div>
 			{vendor && (
 				<div className="store-page">
-					<StoreHeader userId={userId} storeAvg={storeAvg} />
-					<div className="content-wrapper">
-						<div className="sample-review-container">
-							<StoreEditContent
-								vendor={vendor}
-								sessionUserId={sessionUserId}
-								userId={userId}
-							/>
-						</div>
-					</div>
+					<StoreHeader
+						userId={userId}
+						storeAvg={storeAvg}
+						vendor={vendor}
+					/>
 					{vendor.products.length > 0 ? (
 						<div className="store-menu-wrapper">
 							<div id="storemenu-title-element">

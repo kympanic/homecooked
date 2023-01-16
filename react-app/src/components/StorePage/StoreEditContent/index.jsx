@@ -21,20 +21,19 @@ const StoreEditContent = ({ vendor, sessionUserId, userId }) => {
 						>
 							Create Product
 						</button>
-						<div>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenChangeName(true)}
-							>
-								Edit Name
-							</button>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenChangeCat(true)}
-							>
-								Edit Cuisine
-							</button>
-						</div>
+
+						<button
+							className={styles.primaryBtn}
+							onClick={() => setIsOpenChangeName(true)}
+						>
+							Edit Name
+						</button>
+						<button
+							className={styles.primaryBtn}
+							onClick={() => setIsOpenChangeCat(true)}
+						>
+							Edit Cuisine
+						</button>
 					</div>
 				</div>
 			)}
