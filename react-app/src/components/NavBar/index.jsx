@@ -16,12 +16,12 @@ const NavBar = () => {
 	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
-	
+
 	const demoUser = {
 		email: "demo@aa.io",
 		password: "password",
 	};
-	
+
 	const handleClick = (e) => {
 		e.preventDefault();
 		return dispatch(login(demoUser.email, demoUser.password));
@@ -41,7 +41,7 @@ const NavBar = () => {
 		<ul className="navbar">
 			<li className="barLink">
 				<NavLink to="/" exact={true} activeClassName="active">
-					<img 
+					<img
 						className="barImg"
 						src={logo}
 						alt="HomeCooked Logo"
@@ -94,16 +94,16 @@ const NavBar = () => {
 							Demo Login
 						</button>
 					</li>
-				</>	
+				</>
 			)}
 			<li className="barLink">
 				<NavLink to ="/cart" exact={true}>
 					<div className="cartIcon">
 						<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-						Cart
+						Cart {" "}
 					</div>
-					
-					<div className="cartCounter">{totalItems}</div>
+
+					<div className="cartCounter">{" "}{totalItems}</div>
 				</NavLink>
 			</li>
 			{isOpenAddShop && (
