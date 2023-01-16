@@ -1,37 +1,49 @@
-.primary-text{
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    line-height: 1.6;
+}
+
+#container {
+   height: 100vh;
+   /* width: 100%; */
+   background-image: url('./cook.jpeg');
+   background-size:cover;
+   background-position: center;
+   z-index: 99999;
+   display: flex;
+   flex-direction: column;
+   justify-content: top;
+   align-items: center;
+   padding: 200px 20px;
 
 }
 
-.secondary-text{
-
+#container h1{
+    font-size: 50px;
+    color: white;
 }
 
-
-.page-container{
-    display: flex;
-    /* background-size: center cover;
-    background-position: center top;
-    position: fixed; */
-    /* top: 0;
-    left: 0; */
-    /* width: 100%;
-    height: 100vh; */
-
+#container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: white;
 }
 
+#container .button{
+    width: 200px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #6F6534;
 
-#splash-img{
-    position: fixed;
-    top: 20;
-    left: 0;
-    width: 100%;
-    height: 80vh;
 }
-
-/* login-view {
-    background-image: url("../img/splash.png");
-    -webkit-background-size: cover;
-    -moz-background-size: center cover;
-    background-size: cover;
-    background-position: center top;
-} */

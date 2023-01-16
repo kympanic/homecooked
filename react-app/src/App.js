@@ -12,7 +12,6 @@ import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import Search from "./components/Search";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
@@ -57,9 +56,6 @@ function App() {
 				<ProtectedRoute path="/users/:userId" exact={true}>
 					<ProfilePage />
 				</ProtectedRoute>
-				<Route path="/searchtest" exact={true}>
-					<Search />
-				</Route>
 				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
 				</ProtectedRoute>

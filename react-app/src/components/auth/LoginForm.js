@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import "./forms.css"
 
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);
@@ -31,34 +32,39 @@ const LoginForm = () => {
 	}
 
 	return (
-		<form onSubmit={onLogin}>
-			<div>
-				{errors.map((error, ind) => (
-					<div key={ind}>{error}</div>
-				))}
-			</div>
-			<div>
-				<label htmlFor="email">Email</label>
-				<input
-					name="email"
-					type="text"
-					placeholder="Email"
-					value={email}
-					onChange={updateEmail}
-				/>
-			</div>
-			<div>
-				<label htmlFor="password">Password</label>
-				<input
-					name="password"
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={updatePassword}
-				/>
-				<button type="submit">Login</button>
-			</div>
-		</form>
+		<>
+		<h3>Please Provide Your Details Below</h3>
+			<form onSubmit={onLogin}>
+				<div>
+					{errors.map((error, ind) => (
+						<div key={ind}>{error}</div>
+					))}
+				</div>
+				<div>
+					<label htmlFor="email">Email</label>
+					<input
+						name="email"
+						type="text"
+						placeholder="Email"
+						value={email}
+						onChange={updateEmail}
+					/>
+				</div>
+				<div>
+					<label htmlFor="password">Password</label>
+					<input
+						name="password"
+						type="password"
+						placeholder="Password"
+						value={password}
+						onChange={updatePassword}
+					/>
+					<button className="button-form" type="submit">
+						Login
+					</button>
+				</div>
+			</form>
+		</>
 	);
 };
 
