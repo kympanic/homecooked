@@ -8,41 +8,21 @@ import { editUserThunk } from "../../../store/users";
 const ModalAddShop = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-<<<<<<< HEAD
-	const history = useHistory();
-=======
 	// const history = useHistory();
 	console.log(user);
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
 	const [shopLogoImg, setShopLogoImg] = useState("");
 	const [category, setCategory] = useState("");
 
-<<<<<<< HEAD
-	const handleSubmit = (e) => {
-		e.preventDefault();
-=======
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		const newShopInfo = {
 			id: user.id,
 			email: user.email,
 			username: user.username,
-<<<<<<< HEAD
-			profile_img: user.profileImg,
-			phone_number: user.phoneNumber,
-			shop_name: shopName,
-			shop_logo_img: shopLogoImg,
-			shop_splash_img: user.shopSplashImg,
-			category,
-			zipcode: user.zipcode,
-		};
-		let data = dispatch(editUserThunk(newShopInfo));
-=======
 			profile_img:
 				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg",
 			phone_number: user.phoneNumber,
@@ -55,20 +35,12 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			zipcode: user.zipcode,
 		};
 		let data = await dispatch(editUserThunk(newShopInfo));
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
 			return window.location.reload(false);
 		}
-<<<<<<< HEAD
-		setIsOpen(false);
-		if (data) {
-			history.push(`/store/${user.id}`);
-		}
-=======
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 	};
 
 	const updateShopName = (e) => {
@@ -89,13 +61,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-<<<<<<< HEAD
-						<h5 className={styles.heading}>
-							Create or Edit Your Store!
-						</h5>
-=======
 						<h5 className={styles.heading}>Create Your Store!</h5>
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -117,19 +83,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
-<<<<<<< HEAD
-								/>
-							</div>
-							<div>
-								<label htmlFor="shopLogoImg">Shop Logo:</label>
-								<input
-									type="text"
-									name="shopLogoImg"
-									value={shopLogoImg}
-									onChange={updateShopLogoImg}
-=======
 									max={30}
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 								/>
 							</div>
 							<div>
@@ -144,11 +98,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									<option value="Italian">Italian</option>
 									<option value="French">French</option>
 									<option value="Mediterranean">
-<<<<<<< HEAD
-										Snacks
-=======
 										Mediterranean
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 									</option>
 									<option value="Vegetarian">
 										Vegetarian
@@ -157,11 +107,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									<option value="Indian">Indian</option>
 									<option value="African">African</option>
 									<option value="Ethnic">Ethnic</option>
-<<<<<<< HEAD
-									<option value="Fusion">Snacks</option>
-=======
 									<option value="Fusion">Fusion</option>
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 									<option value="Dessert">Dessert</option>
 									<option value="Snacks">Snacks</option>
 									<option value="Other">Other</option>

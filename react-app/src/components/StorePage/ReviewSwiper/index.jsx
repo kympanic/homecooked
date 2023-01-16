@@ -3,9 +3,6 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const ReviewSwiper = ({ reviews }) => {
-<<<<<<< HEAD
-	return <div>This is the review swiper</div>;
-=======
 	const history = useHistory();
 	const [currentIndx, setCurrentIndx] = useState(0);
 	const carouselInfiniteScroll = () => {
@@ -62,7 +59,6 @@ const ReviewSwiper = ({ reviews }) => {
 				))}
 		</div>
 	);
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 };
 
 export default ReviewSwiper;

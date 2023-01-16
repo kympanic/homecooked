@@ -42,11 +42,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 			expiration: month.toString() + year.toString(),
 		};
 
-<<<<<<< HEAD
-		let data = dispatch(createPaymentThunk(newPayment));
-=======
 		let data = await dispatch(createPaymentThunk(newPayment));
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		} else {

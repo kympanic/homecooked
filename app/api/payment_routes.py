@@ -24,11 +24,6 @@ def validation_errors_to_error_messages(validation_errors):
 def get_paymentinfo_by_id(id):
     payments =Payment.query.filter_by(user_id=id).all()
    
-<<<<<<< HEAD
-    # if payments.user_id != current_user.id:
-    #     return {"error": "You are not authorized to view this payment information"}, 401
-=======
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
     
     res = {payment.id: payment.to_dict() for payment in payments}
  

@@ -27,11 +27,7 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 		};
 
 		//error handling
-<<<<<<< HEAD
-		let data = dispatch(editPaymentThunk(editedPayment));
-=======
 		let data = await dispatch(editPaymentThunk(editedPayment));
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		}

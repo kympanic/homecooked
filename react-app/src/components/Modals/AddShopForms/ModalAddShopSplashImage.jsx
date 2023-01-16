@@ -11,11 +11,7 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 	const [errors, setErrors] = useState([]);
 	const [shopSplashImg, setShopSplashImg] = useState("");
 
-<<<<<<< HEAD
-	const handleSubmit = (e) => {
-=======
 	const handleSubmit = async (e) => {
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		e.preventDefault();
 		const newShopInfo = {
 			id: user.id,
@@ -29,20 +25,12 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 			category: user.category,
 			zipcode: user.zipcode,
 		};
-<<<<<<< HEAD
-		let data = dispatch(editUserThunk(newShopInfo));
-=======
 		let data = await dispatch(editUserThunk(newShopInfo));
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
 		}
-<<<<<<< HEAD
-		setIsOpen(false);
-=======
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 	};
 
 	const updateShopSplashImg = (e) => {
@@ -73,16 +61,6 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 								))}
 							</div>
 							<div>
-<<<<<<< HEAD
-								<label htmlFor="shopSplashImg">
-									Shop Splash Image
-								</label>
-								<input
-									type="text"
-									name="shopSplashImg"
-									value={shopSplashImg}
-									onChange={updateShopSplashImg}
-=======
 								<label
 									htmlFor="shopSplashImg"
 									className="shopsplash-label"
@@ -96,7 +74,6 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 									value={shopSplashImg}
 									onChange={updateShopSplashImg}
 									placeholder="Url for your shop splash"
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 								/>
 							</div>
 						</form>

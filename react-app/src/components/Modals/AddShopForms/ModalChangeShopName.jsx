@@ -7,10 +7,7 @@ import { editUserThunk } from "../../../store/users";
 const ModalChangeShopName = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-<<<<<<< HEAD
-=======
 	console.log(user);
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
