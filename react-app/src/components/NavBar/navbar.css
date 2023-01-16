@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 2px;
-    padding: 5px 8px;
+    padding: 5px 10px;
     font-size: 10px;
     background-color: #cbe0f7;
     color: black;
@@ -74,6 +74,7 @@
 
 .barImg {
     position: relative;
+    left: -20%;
     flex-direction: row;
     margin-right: 15px;
     padding: 5px 15px;
@@ -85,11 +86,12 @@
 
 .barWords {
     position: relative;
+    left: -18%;
     flex-direction: row;
     margin-left: 10px;
 }
 
-button {
+.navButton {
     background: none;
     font-size: 20px;
     color: white;
@@ -97,5 +99,6 @@ button {
     margin-right: 16px;
     cursor: pointer;
     flex-grow: 1;
+    border: none;
 
 }

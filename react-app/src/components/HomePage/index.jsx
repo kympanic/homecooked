@@ -86,7 +86,7 @@ const HomePage = () => {
 										</Link>
 
 										<div className="secondary-text">
-											<AvgRating
+											AvgRating:<AvgRating
 												user={store}
 												products={products}
 											/>

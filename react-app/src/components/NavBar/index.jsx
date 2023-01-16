@@ -52,7 +52,7 @@ const NavBar = () => {
 			{sessionUser ? (
 				<>
 					<li className="barLink">
-						<LogoutButton />
+						<LogoutButton className="navButton" />
 					</li>
 					<li className="barLink">
 						<NavLink to={`/users/${sessionUser.id}`} exact={true}>
@@ -67,7 +67,7 @@ const NavBar = () => {
 						</li>
 					) : (
 						<li className="barLink">
-							<button onClick={() => setIsOpenAddShop(true)}>
+							<button className="navButton" onClick={() => setIsOpenAddShop(true)}>
 								Become a Vendor
 							</button>
 						</li>
@@ -90,7 +90,7 @@ const NavBar = () => {
 						</NavLink>
 					</li>
 					<li className="barLink">
-						<button onClick={handleClick}>
+						<button className="navButton" onClick={handleClick}>
 							Demo Login
 						</button>
 					</li>
