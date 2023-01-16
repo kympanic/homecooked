@@ -18,19 +18,24 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		const newShopInfo = {
 			id: user.id,
 			email: user.email,
 			username: user.username,
-			profile_img: user.profileImg,
+			profile_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg",
 			phone_number: user.phoneNumber,
 			shop_name: shopName,
-			shop_logo_img: shopLogoImg,
-			shop_splash_img: user.shopSplashImg,
+			shop_logo_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshoplogo.jpg",
+			shop_splash_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg",
 			category,
 			zipcode: user.zipcode,
 		};
 		let data = await dispatch(editUserThunk(newShopInfo));
+
 		if (data) {
 			setErrors(data);
 		} else {
@@ -79,15 +84,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
-								/>
-							</div>
-							<div>
-								<label htmlFor="shopLogoImg">Shop Logo:</label>
-								<input
-									type="text"
-									name="shopLogoImg"
-									value={shopLogoImg}
-									onChange={updateShopLogoImg}
 								/>
 							</div>
 							<div>

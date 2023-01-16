@@ -28,8 +28,6 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 		let data = await dispatch(editProductThunk(editedProduct));
 		if (data) {
 			setErrors(data);
-		} else {
-			setIsOpen(false);
 		}
 	};
 
@@ -112,13 +110,15 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 								<option value="Asian">Asian</option>
 								<option value="Italian">Italian</option>
 								<option value="French">French</option>
-								<option value="Mediterranean">Snacks</option>
+								<option value="Mediterranean">
+									Mediterranean
+								</option>
 								<option value="Vegetarian">Vegetarian</option>
 								<option value="Vegan">Vegan</option>
 								<option value="Indian">Indian</option>
 								<option value="African">African</option>
 								<option value="Ethnic">Ethnic</option>
-								<option value="Fusion">Snacks</option>
+								<option value="Fusion">Fusion</option>
 								<option value="Dessert">Dessert</option>
 								<option value="Snacks">Snacks</option>
 								<option value="Other">Other</option>

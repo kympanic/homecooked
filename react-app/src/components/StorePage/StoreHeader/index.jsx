@@ -23,19 +23,11 @@ const StoreHeader = ({ userId, storeAvg }) => {
 						userId={userId}
 					/>
 				)}
-				{vendor.shopSplashImg ? (
+				{vendor.shopSplashImg && (
 					<div className="splash-img-container">
 						<img
 							className="shop-splash-img"
 							src={vendor.shopSplashImg}
-							alt="vendor-splash-img"
-						/>
-					</div>
-				) : (
-					<div className="splash-img-container">
-						<img
-							className="shop-splash-img"
-							src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/waffle-hearts-gc346a3f34_1920.jpg"
 							alt="vendor-splash-img"
 						/>
 					</div>
@@ -45,7 +37,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 						className={styles.editSplashBtn}
 						onClick={() => setIsOpenShopSplashImg(true)}
 					>
-						Add Edit Splash
+						Edit Splash
 					</button>
 				)}
 				<div className="store-info-container">
