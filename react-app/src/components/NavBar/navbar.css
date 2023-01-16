@@ -26,7 +26,7 @@
     font-size: 20px;
     flex-grow: 1;
     color: white;
-    
+    text-decoration: none;
     
 }
 
@@ -39,6 +39,7 @@
     flex-grow: 1;
     height: 80px;
     width: 100px;
+    
 }
 
 .barLink:hover {
