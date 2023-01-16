@@ -1,0 +1,41 @@
+.reviewBox {
+    border-top: 2px solid #71250E;
+    padding: 15px;
+}
+
+.reviewTitle {
+    margin-bottom: 30px;
+}
+
+.singleReview {
+    background: #EB781B;
+    width: 100%;
+    padding: 20px;
+    color: #1f303a;
+    border-radius: 15px;
+}
+
+#review-img {
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+}
+
+.nameAndImgBox {
+    display: flex;
+}
+
+.reviewName {
+    align-self: center;
+    margin-left: 6%;
+}
+
+.ratingBox {
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.theRatingTM {
+    font-weight: bold;
+}

@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ModalEditReview from "../Modals/EditReview/ModalEditReview";
 import ModalDeleteReview from "../Modals/DeleteReview/ModalDeleteReview";
+import './productreview.css'
+import styles from "../Modals/App.module.css";
 
 const UserReview = ({ user, review }) => {
 	const product = useSelector((state) => state.products[review.productId]);
@@ -12,22 +14,29 @@ const UserReview = ({ user, review }) => {
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
     return (
-        <div>
-            
+        <div className="singleReview">
             <div>
-                <img 
-                    src={product.imageURL}
-                    alt={product.name}
-                />
-                <h3>{product.name}</h3>
-                <p>Rating: {review.rating}</p>
-                <p>{review.body}</p>
+                <div className="nameAndImgBox">
+                    <img 
+                        id="review-img"
+                        src={product.imageURL}
+                        alt={product.name}
+                    />
+                    <h1 className="reviewName">{product.name}</h1>
+                </div>
+                <div className="ratingBox">
+                    <p>Rating: <span className="theRatingTM">{review.rating}</span></p>
+                </div>
+                <div>
+                    <p>{review.body}</p>
+                </div>
                 <Link to={`/store/${product.userId}`}>Go to the store that sells this item</Link>
             </div>
             {sessionUserId === review.userId && (
                 <div>
                     <button
                         onClick={() => setIsOpenEdit(true)}
+                        className={styles.primaryBtn}
                     >
                         Edit Comment
                     </button>
@@ -39,6 +48,7 @@ const UserReview = ({ user, review }) => {
 					)}
                     <button
                         onClick={() => setIsOpenDelete(true)}
+                        className={styles.primaryBtn}
                     >
                         Delete Comment
                     </button>
