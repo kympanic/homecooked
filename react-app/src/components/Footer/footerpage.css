@@ -13,7 +13,7 @@
 .about{
 	display: flex;
 	justify-content: center;
-	padding-top: 20px;
+	/* padding-top: 20px; */
 	color:white;
 	text-decoration: none;
 
@@ -37,9 +37,10 @@
 .footerLink:active {
 	text-decoration: none;
 }
-.footerSpan {
+.bottom-text {
 	display: flex;
 	justify-content: center;
 	color: white;
+	padding-bottom: 10px;
 
 }
