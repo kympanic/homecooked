@@ -11,7 +11,7 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 	const [errors, setErrors] = useState([]);
 	const [shopSplashImg, setShopSplashImg] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const newShopInfo = {
 			id: user.id,
@@ -25,11 +25,12 @@ const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 			category: user.category,
 			zipcode: user.zipcode,
 		};
-		let data = dispatch(editUserThunk(newShopInfo));
+		let data = await dispatch(editUserThunk(newShopInfo));
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
-		setIsOpen(false);
 	};
 
 	const updateShopSplashImg = (e) => {

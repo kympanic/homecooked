@@ -44,7 +44,6 @@ export const editUserThunk = (data) => async (dispatch) => {
 		return null;
 	} else if (res.status < 500) {
 		const data = await res.json();
-		console.log("is it getting to this data");
 		if (data.errors) {
 			return data.errors;
 		}

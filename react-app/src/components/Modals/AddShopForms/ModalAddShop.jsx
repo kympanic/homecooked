@@ -35,7 +35,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			zipcode: user.zipcode,
 		};
 		let data = await dispatch(editUserThunk(newShopInfo));
-
 		if (data) {
 			setErrors(data);
 		} else {

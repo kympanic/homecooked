@@ -28,6 +28,8 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 		let data = await dispatch(editProductThunk(editedProduct));
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
 	};
 
