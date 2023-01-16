@@ -68,10 +68,12 @@
 
 .user-info-container {
 	position: absolute;
-	right: 140px;
 	justify-content: center;
 	text-align: center;
+
 	color: rgb(53, 53, 53);
+	top: 400px;
+	padding-right: 50px;
 }
 #storepage-profile-img {
 	height: 100px;
