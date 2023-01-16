@@ -4,9 +4,10 @@ import Menu from "../Menu";
 import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
 import StoreHeader from "./StoreHeader";
+import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import "./storepage.css";
 import styles from "../Modals/App.module.css";
-// const zipCodeData = require("zipcode-city-distance");
+import { useState } from "react";
 
 const StorePage = () => {
 	const { userId } = useParams();
@@ -14,6 +15,8 @@ const StorePage = () => {
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
+
+	const [showaddProduct, setShowAddProduct] = useState(false);
 
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
@@ -61,9 +64,17 @@ const StorePage = () => {
 								<h1>Congratulations On Your Grand Opening!</h1>
 							</div>
 							<div>
-								<button className={styles.addProductBtn}>
+								<button
+									onClick={() => setShowAddProduct(true)}
+									className={styles.addProductBtn}
+								>
 									Let's Cook!
 								</button>
+								{showaddProduct && (
+									<ModalAddProduct
+										setIsOpen={setShowAddProduct}
+									/>
+								)}
 							</div>
 							<div></div>
 							<div>
@@ -121,7 +132,9 @@ const StorePage = () => {
 					<div>
 						<div>
 							{vendor && vendor.reviews.length === 0 ? (
-								<></>
+								<h1 className="no-reviews-text">
+									No Reviews Yet!
+								</h1>
 							) : (
 								<h1 id="storepage-review-title">Reviews</h1>
 							)}
