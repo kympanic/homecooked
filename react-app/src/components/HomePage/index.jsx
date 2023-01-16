@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersThunk } from "../../store/users";
 import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
 import SplashPage from "../SplashPage";
@@ -41,15 +41,14 @@ const HomePage = () => {
 					{" "}
 					<hr></hr>
 					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
+					<div className="search">
 					<input
 						className="search-bar"
 						placeholder="Search For Food..."
 						onChange={(e) => setQuery(e.target.value)}
 					/>
-					{/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
+					<FontAwesomeIcon icon={faSearch} className="search-icon" />
+					</div>
 					<div className="stores-container">
 						{allStoresArray
 							.filter((store) => {
@@ -86,7 +85,7 @@ const HomePage = () => {
 										</Link>
 
 										<div className="secondary-text">
-											AvgRating:<AvgRating
+											<AvgRating
 												user={store}
 												products={products}
 											/>
