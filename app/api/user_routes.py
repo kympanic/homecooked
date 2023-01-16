@@ -76,7 +76,7 @@ def edit_user(id):
     Print("is this hitting?")
     Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.is_submitted():
+    if form.validate_on_submit():
         form.populate_obj(user)
         db.session.commit()
         return {user.id: user.to_dict()}
