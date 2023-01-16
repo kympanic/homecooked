@@ -7,7 +7,7 @@ const Footer = () => {
 			<a href="https://github.com/kympanic/homecooked">
 				<h3 className="about"> About </h3>
 			</a>
-			<span>© 2023, HomeCooked, Inc.</span>
+			<span className="bottom-text">© 2023, HomeCooked, Inc.</span>
 		</div>
 	);
 };
