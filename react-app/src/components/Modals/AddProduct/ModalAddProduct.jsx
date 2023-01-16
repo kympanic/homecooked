@@ -58,7 +58,10 @@ const ModalAddProduct = ({ setIsOpen }) => {
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
-			<div className={styles.centered}>
+			<div
+				className={styles.centered}
+				style={{ overlay: { zIndex: 100 } }}
+			>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
 						<h5 className={styles.heading}>Food is in the Oven!</h5>
