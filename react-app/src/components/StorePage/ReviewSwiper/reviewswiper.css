@@ -19,7 +19,7 @@
 	overflow: hidden;
 	align-items: center;
 	justify-content: center;
-
+	z-index: 0;
 	transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
@@ -51,6 +51,10 @@
 #content {
 	max-width: 600px;
 	margin: 25vh auto;
+}
+
+.review {
+	z-index: 0;
 }
 
 .review blockquote {

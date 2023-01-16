@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Menu from "../Menu";
 import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
-import StoreEditContent from "./StoreEditContent";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
 // const zipCodeData = require("zipcode-city-distance");
@@ -25,7 +24,6 @@ const StorePage = () => {
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
 
-	console.log(convertedReviews, "these are the converted reviews");
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
 		history.push("/");
@@ -49,7 +47,7 @@ const StorePage = () => {
 					{vendor.products.length > 0 ? (
 						<div className="store-menu-wrapper">
 							<div id="storemenu-title-element">
-								<h1>Menu</h1>
+								<h1>MENU</h1>
 							</div>
 							<div className="storemenu-content-container">
 								<Menu />
@@ -63,36 +61,60 @@ const StorePage = () => {
 							</p>
 						</div>
 					)}
-					<div>
-						{convertedReviews.length > 0 ? (
-							<div>
-								<ReviewSwiper reviews={convertedReviews} />
-							</div>
-						) : (
-							<div id="shopinfo-zipcode-element">
-								<p>There are no reviews yet!</p>
-							</div>
-						)}
-					</div>
-					<div className="breakerimg-container">
-						<img
-							id="breaker-img"
-							src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/watercolor-gd41edecf1_1920.jpg"
-							alt="breakerimg"
-						/>
-					</div>
-
-					<div>
-						{convertedReviews &&
-							convertedReviews.map((review) => (
-								<div id={review.id}>
-									<ReviewSection
-										vendor={vendor}
-										reviewId={review.id}
-										sessionUserId={sessionUserId}
+					<div className="after-menu-container">
+						<div className="review-carousel-container">
+							{convertedReviews.length > 0 ? (
+								<div className="review-swiper-component">
+									<ReviewSwiper reviews={convertedReviews} />
+								</div>
+							) : (
+								<div id="shopinfo-zipcode-element">
+									<p>There are no reviews yet!</p>
+								</div>
+							)}
+							<div className="storepage-middle-right-container">
+								<h2 id="storepage-middle-title">
+									Never Go Hungry Again
+								</h2>
+								<p id="homepage-middle-p">
+									Homecooked is available on Web, iOS, and
+									Android
+								</p>
+								<div id="homepage-middle-icons">
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+										alt="google-icon"
+									/>
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+										alt="apple-icon"
 									/>
 								</div>
-							))}
+							</div>
+						</div>
+					</div>
+					<div>
+						<div>
+							<h1 id="storepage-review-title">Reviews</h1>
+						</div>
+						<div id="storepage-review-container">
+							{convertedReviews &&
+								convertedReviews.map((review) => (
+									<div id={review.id}>
+										<ReviewSection
+											vendor={vendor}
+											reviewId={review.id}
+											sessionUserId={sessionUserId}
+										/>
+									</div>
+								))}
+						</div>
 					</div>
 				</div>
 			)}

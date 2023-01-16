@@ -4,6 +4,8 @@ import { useState } from "react";
 import styles from "../../Modals/App.module.css";
 import ModalAddShopSplashImage from "../../Modals/AddShopForms/ModalAddShopSplashImage";
 import SideBar from "../SideBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 const zipCodeData = require("zipcode-city-distance");
 
 const StoreHeader = ({ userId, storeAvg }) => {
@@ -112,9 +114,17 @@ const StoreHeader = ({ userId, storeAvg }) => {
 							</a>
 						</div>
 						<div id="userinfo-profile-email-element">
-							<p>email: {vendor.email}</p>
+							<FontAwesomeIcon
+								className="header-email-icon"
+								icon={faEnvelope}
+							/>
+							<p>{vendor.email}</p>
 						</div>
-						<div>
+						<div id="userinfo-profile-phone-element">
+							<FontAwesomeIcon
+								className="header-email-icon"
+								icon={faPhone}
+							/>
 							<p>{vendor.phoneNumber}</p>
 						</div>
 					</div>

@@ -6,6 +6,8 @@ import ShopOwnerInfo from "./ShopOwnerInfo";
 import UserReviews from "./UserReviews";
 import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile";
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
+import "./storepage.css";
+
 //note that this page is a public page!
 //the nav bar button that links to it should get which page it sends you to thru session
 //but!!!!!!!

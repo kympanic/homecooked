@@ -32,18 +32,18 @@
 .shop-logo-img {
 	width: 100px;
 	height: 100px;
-	margin: 70px;
+	margin: 60px;
 }
 
 .header-wrapper {
 	display: inline-block;
 	width: 100%;
-	height: 580px;
+	height: 550px;
 	background-color: #cdc0b0;
 }
 
 .content-wrapper {
-	margin-top: 200px;
+	margin-top: 50px;
 }
 
 #shopinfo-cuisine-element {
@@ -68,7 +68,7 @@
 
 .user-info-container {
 	position: absolute;
-	right: 140px;
+	right: 100px;
 	justify-content: center;
 	text-align: center;
 	color: rgb(53, 53, 53);
@@ -85,15 +85,7 @@
 	margin-bottom: 10px;
 }
 #userinfo-profile-email-element {
-	display: flex;
 	margin-bottom: 10px;
-}
-#userinfo-profile-phone-element {
-	display: flex;
-}
-.header-email-icon {
-	margin-top: 5px;
-	padding-right: 5px;
 }
 
 .sample-review-container {
@@ -114,85 +106,29 @@
 }
 
 .store-menu-wrapper {
-	margin-top: 100px;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
+	margin-top: 200px;
 }
 
 #storemenu-title-element {
 	text-align: center;
 	margin-bottom: 50px;
 	color: #292421;
-	border: 2px solid #365365;
-	height: 100px;
-	padding-top: 50px;
-	width: 150px;
-	margin-left: 45%;
-	font-weight: bolder;
-	border-radius: 100px;
-	color: white;
-	background-color: #365365;
+}
+.storemenu-content-container {
+	margin-left: 11%;
+	margin-right: 11%;
+	z-index: 0;
 }
 
-#shopinfo-shopname-element {
-	padding-top: 50px;
-}
-.storepage-middle-right-container {
-	padding-top: 50px;
-	border: 2px solid #eb781b;
+.breakerimg-container {
+	margin-top: 100px;
+	width: auto;
 	text-align: center;
-	padding-left: 70px;
-	padding-right: 70px;
-	margin-left: 100px;
-	border-radius: 20px;
-	background-color: #eb781b;
-}
-#homepage-middle-title {
-	padding-bottom: 70px;
-	font-size: 50px;
-	color: #1f303a;
-}
-#homepage-middle-p {
-	padding-top: 50px;
-	padding-bottom: 50px;
-	font-weight: bolder;
-	color: #1f303a;
+	object-fit: contain;
 }
 
-#homepage-middle-icons img {
-	height: 50px;
-	padding: 5px;
-}
-#homepage-middle-icons img:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 10px 10px -10px darkorange;
-}
-
-.review-carousel-container {
-	display: flex;
-	justify-content: center;
-}
-
-.after-menu-container {
-	margin-top: 120px;
-	border-bottom: 4px solid #292421;
-	padding-bottom: 120px;
-}
-
-#storepage-review-title {
-	padding-top: 50px;
-}
-
-#storepage-review-container {
-	border-bottom: solid 4px #292421;
-	max-height: 700px;
-	overflow: scroll;
-	padding-bottom: 100px;
-	margin-bottom: 200px;
-	background-color: #eb781b;
-}
-
-#userinfo-profile-name-element a {
-	color: black;
+#breaker-img {
+	width: 100%;
+	height: 400px;
+	object-fit: fill;
 }
