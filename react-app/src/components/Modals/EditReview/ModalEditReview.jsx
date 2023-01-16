@@ -5,13 +5,12 @@ import { editReviewThunk } from "../../../store/reviews";
 import { useState } from "react";
 
 const ModalEditReview = ({ setIsOpen, review }) => {
-	console.log(review, "This is the review");
+
 	const dispatch = useDispatch();
 	const [body, setBody] = useState("");
 	const [rating, setRating] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	console.log(review);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 

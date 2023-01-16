@@ -5,13 +5,14 @@
 
 .reviewTitle {
     margin-bottom: 30px;
+    
 }
 
 .singleReview {
     background: #EB781B;
     width: 100%;
     padding: 20px;
-    color: #1f303a;
+    color: black;
     border-radius: 15px;
 }
 
@@ -27,15 +28,46 @@
 
 .reviewName {
     align-self: center;
-    margin-left: 6%;
+    margin-left: 5%;
+    font-weight: bolder;
 }
 
 .ratingBox {
     margin-left: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .theRatingTM {
     font-weight: bold;
+    color: black;
+
 }
+
+.reviewText {
+    background: #e4b086;
+    position: relative;
+    width: 50%;
+    height: 20%;
+    padding: 0px 5px 5px 5px;
+    border-radius: 5px;
+    color: black;
+}
+
+.storeLink {
+    text-decoration: underline;
+    color: rgb(37, 35, 35);
+}
+
+.storeLink:hover {
+    color: #e4b086;
+}
+
+.linkAndButtonBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+

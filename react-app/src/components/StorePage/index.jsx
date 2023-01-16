@@ -25,7 +25,6 @@ const StorePage = () => {
 	}
 	const convertedReviews = [].concat.apply([], selectedReviews);
 
-	console.log(convertedReviews, "these are the converted reviews");
 	//checking if the shop exists. if not, will redirect to a page that says shop does not exist, go back to home
 	if (vendor?.shopName === null) {
 		history.push("/");
