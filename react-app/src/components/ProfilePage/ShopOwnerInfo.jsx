@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import UserAvgRating from "./UserAvgRating";
+import './userprofileinfo.css'
 const zipCodeData = require("zipcode-city-distance");
 
 const ShopOwnerInfo = ({user}) => {
@@ -11,9 +12,9 @@ const ShopOwnerInfo = ({user}) => {
   
 
     return (
-        <div>
+        <div className="shopownerInfoBox">
             <div>
-                <p>{location}</p>
+                <p>Located in: {location}</p>
             </div>
             <div>Owner of {user?.shopName}</div>
             {user.products.length > 0 ? (
