@@ -1,8 +1,8 @@
 .menu-page-background {
+	width: max;
 	background: #71250e;
 	border-top: #365365 4px solid;
 	border-bottom: #365365 4px solid;
-
 	z-index: 0;
 }
 
@@ -40,7 +40,7 @@
 	cursor: pointer;
 	border-radius: 2px;
 	background-color: white;
-	border: #292421 3px solid;
+
 	z-index: 0;
 }
 
@@ -63,10 +63,12 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 250px;
+	height: 200px;
 	position: relative;
-	width: 100%;
-	border-bottom: 2px solid #02385a;
+	width: 200px;
+	/* border-bottom: 2px solid #02385a; */
+	border-radius: 50%;
+	margin-left: 50px;
 }
 
 .add-to-cart-btn {
@@ -90,4 +92,8 @@
 	background-color: #ee5c42;
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
+}
+
+.menu-add-review-btn-box {
+	margin-top: 20px;
 }
