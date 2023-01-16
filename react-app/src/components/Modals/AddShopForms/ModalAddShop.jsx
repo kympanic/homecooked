@@ -9,7 +9,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
 	// const history = useHistory();
-	console.log(user);
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
