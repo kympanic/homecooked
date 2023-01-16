@@ -1,7 +1,7 @@
 .menu-page-background {
-	background: #8b795e;
-	border-top: #02385a 4px solid;
-	border-bottom: #02385a 4px solid;
+	background: #71250e;
+	border-top: #365365 4px solid;
+	border-bottom: #365365 4px solid;
 
 	z-index: 0;
 }
@@ -14,7 +14,7 @@
 	/* background-color: transparent; */
 	margin-left: 8%;
 	margin-right: 8%;
-	height: 600px;
+	max-height: 800px;
 	position: relative;
 	z-index: 0;
 	overflow: auto;
@@ -28,6 +28,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	z-index: 0;
 }
 
 .menu-card {
