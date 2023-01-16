@@ -58,12 +58,19 @@ const StorePage = () => {
 					) : (
 						<div className="noproducts-store-menu-wrapper">
 							<div>
-								<h1>Create a Product And Start Cooking!</h1>
+								<h1>Congratulations On Your Grand Opening!</h1>
 							</div>
 							<div>
 								<button className={styles.addProductBtn}>
 									Let's Cook!
 								</button>
+							</div>
+							<div></div>
+							<div>
+								<img
+									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/Luigi_Risotto.png"
+									alt="chef-image"
+								/>
 							</div>
 						</div>
 					)}
