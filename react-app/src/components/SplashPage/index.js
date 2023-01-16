@@ -10,8 +10,8 @@ const SplashPage = () => {
 		<>
 			<body>
 				<header id="container">
-					<h1>Rumble in Your Tummy?</h1>
-					<h2>
+					<h1 className="splashText">Rumble in Your Tummy?</h1>
+					<h2 className="splashText">
 						Try some homecooked and made-to-order food just for you!{" "}
 					</h2>
 					<a href="/sign-up" class="button">
