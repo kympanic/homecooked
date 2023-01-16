@@ -1,10 +1,19 @@
 .reviewBox {
     border-top: 2px solid #71250E;
+    border-left: 2px solid #71250E;
+    border-right: 2px solid #71250E;
+    background: radial-gradient(#6F6534, #71250E);
     padding: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .reviewTitle {
-    margin-bottom: 30px;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+				  1px 1px 0 #000,
+				 1px -1px 0 #000,
+				-1px -1px 0 #000;
     
 }
 
@@ -14,12 +23,14 @@
     padding: 20px;
     color: black;
     border-radius: 15px;
+    border: 1px solid black;
 }
 
 #review-img {
     border-radius: 50px;
     height: 100px;
     width: 100px;
+    border: 5px solid rgb(77, 15, 15);
 }
 
 .nameAndImgBox {
@@ -30,6 +41,10 @@
     align-self: center;
     margin-left: 5%;
     font-weight: bolder;
+    text-shadow: -1px 1px 0 #FFF,
+				  1px 1px 0 #FFF,
+				 1px -1px 0 #FFF,
+				-1px -1px 0 #FFF;
 }
 
 .ratingBox {
@@ -47,13 +62,15 @@
 }
 
 .reviewText {
-    background: #e4b086;
+    background: #e5cbb5;
     position: relative;
     width: 50%;
     height: 20%;
-    padding: 0px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
     border-radius: 5px;
+    top: -8px;
     color: black;
+
 }
 
 .storeLink {
@@ -62,7 +79,7 @@
 }
 
 .storeLink:hover {
-    color: #e4b086;
+    color: #cdc5be;
 }
 
 .linkAndButtonBox {
