@@ -5,6 +5,7 @@ import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
+import styles from "../Modals/App.module.css";
 // const zipCodeData = require("zipcode-city-distance");
 
 const StorePage = () => {
@@ -35,6 +36,7 @@ const StorePage = () => {
 	let stringAvg = (sumOfAverageRatings / selectedProducts?.length).toFixed(2);
 	let storeAvg = parseFloat(stringAvg);
 
+	console.log(vendor, "this is the vendor");
 	return (
 		<div>
 			{vendor && (
@@ -54,54 +56,68 @@ const StorePage = () => {
 							</div>
 						</div>
 					) : (
-						<div>
-							<p>
-								This vendor has nothing for sale yet. Check back
-								later!
-							</p>
+						<div className="noproducts-store-menu-wrapper">
+							<div>
+								<h1>Create a Product And Start Cooking!</h1>
+							</div>
+							<div>
+								<button className={styles.addProductBtn}>
+									Let's Cook!
+								</button>
+							</div>
 						</div>
 					)}
 					<div className="after-menu-container">
 						<div className="review-carousel-container">
 							{convertedReviews.length > 0 ? (
-								<div className="review-swiper-component">
-									<ReviewSwiper reviews={convertedReviews} />
+								<div>
+									<div className="review-swiper-component">
+										<ReviewSwiper
+											reviews={convertedReviews}
+										/>
+									</div>
+									<div className="storepage-middle-right-container">
+										<h2 id="storepage-middle-title">
+											Never Go Hungry Again
+										</h2>
+										<p id="homepage-middle-p">
+											Homecooked is available on Web, iOS,
+											and Android
+										</p>
+										<div id="homepage-middle-icons">
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+												alt="google-icon"
+											/>
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+												alt="apple-icon"
+											/>
+										</div>
+									</div>
 								</div>
 							) : (
-								<div id="shopinfo-zipcode-element">
-									<p>There are no reviews yet!</p>
-								</div>
+								<></>
 							)}
-							<div className="storepage-middle-right-container">
-								<h2 id="storepage-middle-title">
-									Never Go Hungry Again
-								</h2>
-								<p id="homepage-middle-p">
-									Homecooked is available on Web, iOS, and
-									Android
-								</p>
-								<div id="homepage-middle-icons">
-									<img
-										onClick={() =>
-											history.push("/ourgroupisthebest")
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
-										alt="google-icon"
-									/>
-									<img
-										onClick={() =>
-											history.push("/ourgroupisthebest")
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
-										alt="apple-icon"
-									/>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div>
 						<div>
-							<h1 id="storepage-review-title">Reviews</h1>
+							{vendor && vendor.reviews.length === 0 ? (
+								<></>
+							) : (
+								<h1 id="storepage-review-title">Reviews</h1>
+							)}
 						</div>
 						<div id="storepage-review-container">
 							{convertedReviews &&
