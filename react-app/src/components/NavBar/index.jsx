@@ -62,7 +62,7 @@ const NavBar = () => {
 					{sessionUser.shopName ? (
 						<li className="barLink">
 							<Link to={`/store/${sessionUser.id}`}>
-								Click here to go to "{sessionUser?.shopName}"
+								{sessionUser?.shopName}
 							</Link>
 						</li>
 					) : (
