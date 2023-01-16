@@ -28,6 +28,8 @@
 	right: 300px;
 	top: 340px;
 	transition: all 0.25s ease;
+	color: #02385a;
+	background-color: white;
 }
 
 .editSplashBtn:hover {
