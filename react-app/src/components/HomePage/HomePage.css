@@ -25,7 +25,8 @@
     display: flex;
     flex-direction: row;
     height: 15px;
-    width: 650px;
+    width: 100%;
+    /* width: 650px; */
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 30px;
@@ -61,7 +62,8 @@
     align-items: center;
     padding: 20px 20px;
     height: 48px;
-    width: 886px;
+    width: 95%;
+    /* width: 886px; */
 }
 
 .search-icon{
