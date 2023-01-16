@@ -29,6 +29,7 @@ export const getUserThunk = (userId) => async (dispatch) => {
 export const editUserThunk = (data) => async (dispatch) => {
 	const editedUser = JSON.stringify(data);
 
+	console.log("did it hit the store", editedUser);
 	const res = await fetch(`/api/users/${data.id}`, {
 		method: "PUT",
 		headers: {
@@ -40,6 +41,15 @@ export const editUserThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadUsers(data));
+		return null;
+	} else if (res.status < 500) {
+		const data = await res.json();
+		console.log("is it getting to this data");
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
 	}
 };
 

@@ -31,11 +31,12 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 
 		// console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
 		let data = await dispatch(createReviewThunk(newReview));
-		setIsOpen(false);
 		if (data) {
-			setErrors(errors);
+			setErrors(data);
+		} else {
+			setIsOpen(false);
+			return window.location.reload(false);
 		}
-		window.location.reload(false);
 	};
 	return (
 		<>

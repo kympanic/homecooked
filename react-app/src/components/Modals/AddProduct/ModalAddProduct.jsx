@@ -51,6 +51,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
+			return window.location.reload(false);
 		}
 	};
 
@@ -123,7 +124,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 									<option value="Italian">Italian</option>
 									<option value="French">French</option>
 									<option value="Mediterranean">
-										Snacks
+										Mediterranean
 									</option>
 									<option value="Vegetarian">
 										Vegetarian
@@ -132,7 +133,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 									<option value="Indian">Indian</option>
 									<option value="African">African</option>
 									<option value="Ethnic">Ethnic</option>
-									<option value="Fusion">Snacks</option>
+									<option value="Fusion">Fusion</option>
 									<option value="Dessert">Dessert</option>
 									<option value="Snacks">Snacks</option>
 									<option value="Other">Other</option>

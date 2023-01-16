@@ -16,25 +16,32 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 	const [shopLogoImg, setShopLogoImg] = useState("");
 	const [category, setCategory] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		const newShopInfo = {
 			id: user.id,
 			email: user.email,
 			username: user.username,
-			profile_img: user.profileImg,
+			profile_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg",
 			phone_number: user.phoneNumber,
 			shop_name: shopName,
-			shop_logo_img: shopLogoImg,
-			shop_splash_img: user.shopSplashImg,
+			shop_logo_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshoplogo.jpg",
+			shop_splash_img:
+				"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg",
 			category,
 			zipcode: user.zipcode,
 		};
-		let data = dispatch(editUserThunk(newShopInfo));
+		let data = await dispatch(editUserThunk(newShopInfo));
+
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
+			return window.location.reload(false);
 		}
-		setIsOpen(false);
 	};
 
 	const updateShopName = (e) => {
@@ -55,9 +62,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>
-							Create or Edit Your Store!
-						</h5>
+						<h5 className={styles.heading}>Create Your Store!</h5>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -82,15 +87,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 								/>
 							</div>
 							<div>
-								<label htmlFor="shopLogoImg">Shop Logo:</label>
-								<input
-									type="text"
-									name="shopLogoImg"
-									value={shopLogoImg}
-									onChange={updateShopLogoImg}
-								/>
-							</div>
-							<div>
 								<label>Category: </label>
 								<select
 									value={category}
@@ -102,7 +98,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									<option value="Italian">Italian</option>
 									<option value="French">French</option>
 									<option value="Mediterranean">
-										Snacks
+										Mediterranean
 									</option>
 									<option value="Vegetarian">
 										Vegetarian
@@ -111,7 +107,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									<option value="Indian">Indian</option>
 									<option value="African">African</option>
 									<option value="Ethnic">Ethnic</option>
-									<option value="Fusion">Snacks</option>
+									<option value="Fusion">Fusion</option>
 									<option value="Dessert">Dessert</option>
 									<option value="Snacks">Snacks</option>
 									<option value="Other">Other</option>
