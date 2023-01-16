@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Menu from "../Menu";
 import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
-import StoreEditContent from "./StoreEditContent";
 import StoreHeader from "./StoreHeader";
 import "./storepage.css";
 // const zipCodeData = require("zipcode-city-distance");
