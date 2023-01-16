@@ -35,7 +35,7 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 			products_with_order: selectedProductIds,
 		};
 
-		dispatch(createOrderThunk(newOrder));
+		const data = await dispatch(createOrderThunk(newOrder));
 
 		setIsOpen(false);
 		dispatch(reset());

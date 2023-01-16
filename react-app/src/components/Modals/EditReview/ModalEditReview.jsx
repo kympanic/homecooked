@@ -12,7 +12,7 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 	const [errors, setErrors] = useState([]);
 
 	console.log(review);
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const editedReview = {
@@ -22,12 +22,12 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 			user_id: review.userId,
 			product_id: review.productId,
 		};
-		let data = dispatch(editReviewThunk(editedReview));
+		let data = await dispatch(editReviewThunk(editedReview));
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
-		setIsOpen(false);
-		return window.location.reload(false);
 	};
 
 	return (

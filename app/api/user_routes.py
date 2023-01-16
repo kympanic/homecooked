@@ -7,6 +7,16 @@ from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 @user_routes.route('')
 def users():
@@ -45,7 +55,7 @@ def get_orders_by_user(id):
 def add_order():
     form = OrderForm()
 
-    Print(form.data)
+    Print("is this hitting??????")
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -63,10 +73,11 @@ def edit_user(id):
     user = User.query.get(id)
     form = UserForm()
 
+    Print("is this hitting?")
+    Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.is_submitted():
-        Print(form.data)
         form.populate_obj(user)
         db.session.commit()
-
-    return {user.id: user.to_dict()}
+        return {user.id: user.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
