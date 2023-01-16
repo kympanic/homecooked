@@ -19,25 +19,25 @@
 
 }
 
-a:link {
+.footerLink:link {
 	text-decoration: none;
 }
 
 
-a:visited {
+.footerLink:visited {
 	text-decoration: none;
 }
 
 
-a:hover {
+.footerLink:hover {
 	text-decoration: none;
 }
 
 
-a:active {
+.footerLink:active {
 	text-decoration: none;
 }
-span {
+.footerSpan {
 	display: flex;
 	justify-content: center;
 	color: white;
