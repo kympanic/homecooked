@@ -100,7 +100,7 @@ const NavBar = () => {
 				<NavLink to ="/cart" exact={true}>
 					<div className="cartIcon">
 						<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-						Cart {" "}
+						{" "}
 					</div>
 
 					<div className="cartCounter">{" "}{totalItems}</div>
