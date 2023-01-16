@@ -3,6 +3,8 @@ import { addItem, getCartItemById, updateCount } from "../../store/session";
 import { useState } from "react";
 import ModalDeleteProduct from "../Modals/DeleteProduct/ModalDeleteProduct";
 import ModalEditProduct from "../Modals/EditProduct/ModalEditProduct";
+import ModalMenuDescription from "../Modals/MenuDescription/ModalMenuDescription";
+import ModalAddReview from "../Modals/AddReview/ModalAddReview";
 import "./menuproducts.css";
 import styles from "../Modals/App.module.css";
 
@@ -15,42 +17,44 @@ const Product = ({ id, vendor }) => {
 
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
-
+	const [isOpenDescription, setIsOpenDescription] = useState(false);
+	const [isOpenReview, setIsOpenReview] = useState(false);
 	const addToCart = () => {
 		if (cartItem) return dispatch(updateCount(prodId, cartItem.count + 1));
 		dispatch(addItem(prodId));
 	};
 
 	return (
-		<div className="menu-products-wrapper">
-			<div className="menu-products-container">
-				<div className="menu-products-left-container">
-					<div id="menu-product-img-container">
-						<img
-							id="menu-product-img"
-							src={product?.imageURL}
-							alt={product?.name}
-						/>
-					</div>
-				</div>
-				<div className="menu-products-right-container">
-					<div className="menu-products-content-header">
-						<div>{product?.name}</div>
-					</div>
-					<div className="menu-products-content-body">
-						<span>
-							$
-							{(Math.round(product?.price * 100) / 100).toFixed(
-								2
-							)}
-						</span>
-						<div>Average Rating: {product?.avgRating}</div>
-						<div>Category: {product?.category}</div>
-					</div>
-					<div className="menu-products-content-footer">
-						<div>Description: {product?.description}</div>
-					</div>
-					{vendor?.id === sessionUserId ? (
+		<div>
+			{product && vendor && sessionUserId && (
+				<>
+					{vendor.id !== sessionUserId && (
+						<div>
+							<button
+								className={styles.primaryBtn}
+								onClick={() => setIsOpenReview(true)}
+							>
+								Add Review
+							</button>
+						</div>
+					)}
+					<div
+						onClick={() => setIsOpenDescription(true)}
+						className="menu-img-wrapper"
+						style={{
+							backgroundImage: "url(" + product.imageURL + ")",
+						}}
+					></div>
+
+					<p>{product?.name}</p>
+
+					<p>
+						${(Math.round(product?.price * 100) / 100).toFixed(2)}
+					</p>
+
+					<p>Average Rating: {product?.avgRating}</p>
+
+					{vendor.id === sessionUserId ? (
 						<div>
 							<button
 								className={styles.primaryBtn}
@@ -67,7 +71,12 @@ const Product = ({ id, vendor }) => {
 						</div>
 					) : (
 						<div className="menu-products-content-buttons">
-							<button onClick={addToCart}>Add to Cart</button>
+							<button
+								className="add-to-cart-btn"
+								onClick={addToCart}
+							>
+								Add to Cart
+							</button>
 						</div>
 					)}
 					{isOpenEdit && (
@@ -82,8 +91,20 @@ const Product = ({ id, vendor }) => {
 							product={product}
 						/>
 					)}
-				</div>
-			</div>
+					{isOpenDescription && (
+						<ModalMenuDescription
+							setIsOpen={setIsOpenDescription}
+							product={product}
+						/>
+					)}
+					{isOpenReview && (
+						<ModalAddReview
+							setIsOpen={setIsOpenReview}
+							product={product}
+						/>
+					)}
+				</>
+			)}
 		</div>
 	);
 };

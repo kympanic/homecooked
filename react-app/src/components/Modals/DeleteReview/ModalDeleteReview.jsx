@@ -10,6 +10,7 @@ const ModalDeleteReview = ({ setIsOpen, review }) => {
 		e.preventDefault();
 		setIsOpen(false);
 		dispatch(deleteReviewThunk(review));
+		window.location.reload(false);
 	};
 
 	return (
@@ -27,7 +28,7 @@ const ModalDeleteReview = ({ setIsOpen, review }) => {
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
 					<div className={styles.modalContent}>
-						Are you sure you want to delete the item?
+						Would you like to delete your comment?
 					</div>
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
@@ -35,7 +36,7 @@ const ModalDeleteReview = ({ setIsOpen, review }) => {
 								className={styles.submitBtn}
 								onClick={handleSubmit}
 							>
-								Submit
+								Yes
 							</button>
 							<button
 								className={styles.cancelBtn}

@@ -1,7 +1,11 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+// import { useState } from "react";
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 import { getAllCartItems } from "../../../store/session";
 import { reset } from "../../../store/session";
 import { useHistory } from "react-router-dom";
@@ -13,10 +17,25 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const history = useHistory();
 	const products = useSelector((state) => Object.values(state.products));
 
+<<<<<<< HEAD
+=======
+	// console.log(cartItems, "these are teh cart items");
+	// console.log(products, "these are all the products");
+	// console.log(payment, "this is the payment");
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 	const selectedProductIds = cartItems?.map((item) => {
 		return item.id;
 	});
 
+<<<<<<< HEAD
+=======
+	const selectedProductNames = products.map((product) => {
+		return product.name;
+	});
+	console.log(selectedProductNames, "These are the names");
+	console.log(selectedProductIds, "these are the product ids");
+
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -26,7 +45,11 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 			products_with_order: selectedProductIds,
 		};
 
+<<<<<<< HEAD
 		dispatch(createOrderThunk(newOrder));
+=======
+		const data = await dispatch(createOrderThunk(newOrder));
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 		setIsOpen(false);
 		dispatch(reset());

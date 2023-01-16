@@ -1,4 +1,4 @@
-.darkBG {
+/* .darkBG {
 	background-color: rgba(0, 0, 0, 0.2);
 	width: 100vw;
 	height: 100vh;
@@ -7,7 +7,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	position: absolute;
-}
+} */
 
 .centered {
 	position: fixed;
@@ -17,8 +17,8 @@
 }
 
 .modal {
-	width: 500px;
-	height: 300px;
+	width: 600px;
+	height: 550px;
 	background: white;
 	color: white;
 	z-index: 10;

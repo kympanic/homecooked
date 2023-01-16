@@ -17,13 +17,17 @@ const Menu = () => {
 
 	//probably need to pass the product id as a prop so get single product can be used
 	return (
-		<div className="menu">
-			{products &&
-				products.map((el) => (
-					<div key={el.id} className="productBox">
-						<Product id={el.id} vendor={vendor} />
-					</div>
-				))}
+		<div className="menu-page-background">
+			<div className="menu-list-full-container">
+				<div>
+					{products &&
+						products.map((el) => (
+							<li key={el.id} className="menu-card">
+								<Product id={el.id} vendor={vendor} />
+							</li>
+						))}
+				</div>
+			</div>
 		</div>
 	);
 };

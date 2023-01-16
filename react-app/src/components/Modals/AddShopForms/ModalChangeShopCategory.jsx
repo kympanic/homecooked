@@ -7,6 +7,10 @@ import { editUserThunk } from "../../../store/users";
 const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
+<<<<<<< HEAD
+=======
+	console.log(user);
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 	const [errors, setErrors] = useState([]);
 	const [category, setCategory] = useState("");
@@ -71,7 +75,11 @@ const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 									<option value="Italian">Italian</option>
 									<option value="French">French</option>
 									<option value="Mediterranean">
+<<<<<<< HEAD
 										Snacks
+=======
+										Mediterranean
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 									</option>
 									<option value="Vegetarian">
 										Vegetarian
@@ -80,7 +88,11 @@ const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 									<option value="Indian">Indian</option>
 									<option value="African">African</option>
 									<option value="Ethnic">Ethnic</option>
+<<<<<<< HEAD
 									<option value="Fusion">Snacks</option>
+=======
+									<option value="Fusion">Fusion</option>
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 									<option value="Dessert">Dessert</option>
 									<option value="Snacks">Snacks</option>
 									<option value="Other">Other</option>

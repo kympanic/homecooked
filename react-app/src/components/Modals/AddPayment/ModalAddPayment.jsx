@@ -32,7 +32,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	};
 
 	//make sure to change the provider and account number and expiration into STRINGS!
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const newPayment = {
@@ -42,14 +42,18 @@ const ModalAddPayment = ({ setIsOpen }) => {
 			expiration: month.toString() + year.toString(),
 		};
 
+<<<<<<< HEAD
 		let data = dispatch(createPaymentThunk(newPayment));
+=======
+		let data = await dispatch(createPaymentThunk(newPayment));
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
+			const path = `/orders/${userId}`;
+			history.push(path);
 		}
-		const path = `/orders/${userId}`;
-		history.push(path);
 	};
 
 	const handleExistingPayment = (e) => {
@@ -111,6 +115,11 @@ const ModalAddPayment = ({ setIsOpen }) => {
 							<div>
 								<label>Account Number: </label>
 								<input
+									onKeyPress={(event) => {
+										if (!/[0-9]/.test(event.key)) {
+											event.preventDefault();
+										}
+									}}
 									type="text"
 									name="accountNumber"
 									onChange={updateAccountNumber}

@@ -3,11 +3,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createProductThunk } from "../../../store/products";
+// import { useHistory } from "react-router-dom";
 
 const ModalAddProduct = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
-
+	// const history = useHistory();
 	const [errors, setErrors] = useState([]);
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
@@ -32,7 +33,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 	const updateCategory = (e) => {
 		setCategory(e.target.value);
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const newProduct = {
@@ -44,17 +45,23 @@ const ModalAddProduct = ({ setIsOpen }) => {
 			category,
 		};
 
-		let data = dispatch(createProductThunk(newProduct));
-		setIsOpen(false);
+		const data = await dispatch(createProductThunk(newProduct));
+
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
+			return window.location.reload(false);
 		}
 	};
 
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
-			<div className={styles.centered}>
+			<div
+				className={styles.centered}
+				style={{ overlay: { zIndex: 100 } }}
+			>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
 						<h5 className={styles.heading}>Food is in the Oven!</h5>
@@ -114,21 +121,25 @@ const ModalAddProduct = ({ setIsOpen }) => {
 									value={category}
 									onChange={updateCategory}
 								>
-								<option value="--">--</option>
-								<option value="American">American</option>
-								<option value="Asian">Asian</option>
-								<option value="Italian">Italian</option>
-								<option value="French">French</option>
-                                <option value="Mediterranean">Snacks</option>
-								<option value="Vegetarian">Vegetarian</option>
-								<option value="Vegan">Vegan</option>
-								<option value="Indian">Indian</option>
-								<option value="African">African</option>
-								<option value="Ethnic">Ethnic</option>
-                                <option value="Fusion">Snacks</option>
-								<option value="Dessert">Dessert</option>
-								<option value="Snacks">Snacks</option>
-								<option value="Other">Other</option>
+									<option value="--">--</option>
+									<option value="American">American</option>
+									<option value="Asian">Asian</option>
+									<option value="Italian">Italian</option>
+									<option value="French">French</option>
+									<option value="Mediterranean">
+										Mediterranean
+									</option>
+									<option value="Vegetarian">
+										Vegetarian
+									</option>
+									<option value="Vegan">Vegan</option>
+									<option value="Indian">Indian</option>
+									<option value="African">African</option>
+									<option value="Ethnic">Ethnic</option>
+									<option value="Fusion">Fusion</option>
+									<option value="Dessert">Dessert</option>
+									<option value="Snacks">Snacks</option>
+									<option value="Other">Other</option>
 								</select>
 							</div>
 						</form>
@@ -156,13 +167,3 @@ const ModalAddProduct = ({ setIsOpen }) => {
 };
 
 export default ModalAddProduct;
-
-//button usage
-
-/* <button
-className={styles.primaryBtn}
-onClick={() => setIsOpen(true)}
->
-Create Product
-</button>
-{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />} */

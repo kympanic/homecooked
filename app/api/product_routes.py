@@ -6,6 +6,16 @@ from app.forms import ProductForm, ReviewForm
 
 product_routes = Blueprint('products', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 #GET ALL PRODUCTS
 @product_routes.route('')
 def get_all_products():
@@ -37,7 +47,7 @@ def  add_product():
         db.session.add(product)
         db.session.commit()
         return {product.id: product.to_dict()}
-    return {'errors': form.errors}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     
 
 #EDIT A PRODUCT BASED ON ID
@@ -55,8 +65,9 @@ def edit_product(id):
         form.populate_obj(product)
 
         db.session.commit()
+        return {product.id: product.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    return {product.id: product.to_dict()}
 
 
 #DELETE A PRODUCT BASED ON PRODUCT REVIEW
@@ -87,4 +98,4 @@ def create_review(id):
         db.session.add(review)
         db.session.commit()
         return {review.id: review.to_dict()}
-    return {'errors': form.errors}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

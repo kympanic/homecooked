@@ -1,13 +1,14 @@
-.stores-container {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-content: space-between;
-	column-gap: 18px;
-	line-height: 20px;
-	margin: 16px 0px 40px 0px;
-	padding: 0 80px 0 80px;
+.stores-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: space-between;
+    column-gap: 18px;
+    line-height: 20px;
+    margin: 16px 0px 40px 0px;
+    padding: 0 80px 0 80px;
+    border-radius: 10px;
 }
 
 .store-details {
@@ -20,4 +21,19 @@
 	/* background-size: contain; */
 	/* background-repeat: no-repeat; */
 	background-size: cover;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+    width: 886px;
+    /* align-self: center; */
+    justify-self: center;
+    padding: 15px 18px;
+    margin-left: 200px;
+    margin-right: 200px;
+    border: 2px solid #222222;
+    border-radius: 96px;
+
 }

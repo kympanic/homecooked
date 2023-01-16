@@ -1,0 +1,45 @@
+.footer-page-container {
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	padding: 0px 0px 0px 0px;
+	position: fixed;
+	background-color:#365365;
+	width: 100%;
+	/* display: flex; */
+
+}
+
+.about{
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+	color:white;
+	text-decoration: none;
+
+}
+
+.footerLink:link {
+	text-decoration: none;
+}
+
+
+.footerLink:visited {
+	text-decoration: none;
+}
+
+
+.footerLink:hover {
+	text-decoration: none;
+}
+
+
+.footerLink:active {
+	text-decoration: none;
+}
+.footerSpan {
+	display: flex;
+	justify-content: center;
+	color: white;
+
+}

@@ -3,7 +3,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { editPaymentThunk } from "../../../store/payments";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();
@@ -15,19 +15,23 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const [month, setMonth] = useState("");
 	const [year, setYear] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const editedPayment = {
 			id: payment.id,
 			user_id: userId,
-			provider,
+			provider: payment.provider,
 			account_number: accountNumber,
 			expiration: month.toString() + year.toString(),
 		};
 
 		//error handling
+<<<<<<< HEAD
 		let data = dispatch(editPaymentThunk(editedPayment));
+=======
+		let data = await dispatch(editPaymentThunk(editedPayment));
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 		if (data) {
 			setErrors(data);
 		}
@@ -70,24 +74,13 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 								))}
 							</div>
 							<div>
-								<label>Provider: </label>
-								<select
-									value={provider}
-									onChange={updateProvider}
-								>
-									<option value="--">--</option>
-									<option value="Mastercard">
-										Mastercard
-									</option>
-									<option value="Visa">Visa</option>
-									<option value="American Express">
-										American Express
-									</option>
-								</select>
-							</div>
-							<div>
 								<label>Account Number: </label>
 								<input
+									onKeyPress={(event) => {
+										if (!/[0-9]/.test(event.key)) {
+											event.preventDefault();
+										}
+									}}
 									type="text"
 									name="accountNumber"
 									onChange={updateAccountNumber}

@@ -8,6 +8,7 @@ import CartItem from "../CartPage/cartItem";
 import styles from "../Modals/App.module.css";
 import OrderPayments from "./OrderPayments";
 import "./orderpage.css";
+import { getOrdersThunk } from "../../store/orders";
 
 const OrderPage = () => {
 	const { userId } = useParams();
@@ -27,6 +28,7 @@ const OrderPage = () => {
 
 	useEffect(() => {
 		dispatch(getPaymentThunk(userId));
+		dispatch(getOrdersThunk(userId));
 	}, [dispatch, userId]);
 
 	useEffect(() => {
@@ -117,6 +119,7 @@ const OrderPage = () => {
 											<div className="payment-content">
 												<OrderPayments
 													id={payment.id}
+													cartItems={cartItems}
 												/>
 											</div>
 										</div>

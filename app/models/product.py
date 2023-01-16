@@ -10,8 +10,13 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+<<<<<<< HEAD
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(40), nullable=False, unique=True)
+=======
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    name = db.Column(db.String(30), nullable=False, unique=True)
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
     price = db.Column(db.String(40), nullable=False)
@@ -49,7 +54,7 @@ class Product(db.Model):
             'price': converted_price,
             'category': self.category,
             'user': self.user_products.to_dict_basic(),
-            'reviews': [review.to_dict_basic() for review in self.product_reviews],
+            'reviews': [review.to_dict() for review in self.product_reviews],
             'orders': [payment.to_dict_basic() for payment in self.product_orders]
         }
 

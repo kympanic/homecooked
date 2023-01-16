@@ -7,11 +7,51 @@
 	font-size: 0.8rem;
 	border: none;
 	color: white;
-	background: #185adb;
+	background: #02385a;
 	transition: all 0.25s ease;
+	z-index: 0;
 }
 
 .primaryBtn:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 20px -10px rgba(24, 90, 219, 0.6);
+}
+
+.editSplashBtn {
+	margin: 20px 10px;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 13px 25px;
+	border-radius: 20px;
+	border: none;
+	position: absolute;
+	right: 300px;
+	top: 340px;
+	transition: all 0.25s ease;
+	color: #02385a;
+	background-color: white;
+}
+
+.editSplashBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
+}
+
+.customizeStoreBtn {
+	margin: 20px 10px;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 20px 40px;
+	border-radius: 15px;
+	font-size: 1rem;
+	border: none;
+	color: white;
+	background: #02385a;
+	transition: all 0.25s ease;
+	z-index: 0;
+}
+
+.customizeStoreBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
 }

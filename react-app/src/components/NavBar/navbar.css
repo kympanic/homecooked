@@ -1,0 +1,106 @@
+.navbar {
+    height: 84px;
+    list-style: none;
+    display: flex;
+    background: linear-gradient(#3d5d71, #8899ad);
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.barLink a {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+    margin-right: 16px;
+    font-family: sans-serif;
+    font-size: 20px;
+    flex-grow: 1;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.barLink {
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 80px;
+    width: 100px;
+    
+}
+
+.barLink:hover {
+    background: linear-gradient(#8899ad, #1b2a33);
+    cursor: pointer;
+    border-top: 1px solid #bcd0e6;
+    border-left: 1px solid #a2b3c5;
+    border-right: 2px solid #89a0bb;
+    border-bottom: 3px solid #5c7a9c;
+    text-decoration: underline white;
+}
+
+
+.cartCounter {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2px;
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #cbe0f7;
+    color: black;
+    border: 1px solid white;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.cartIcon {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.barImg {
+    position: relative;
+    left: -20%;
+    flex-direction: row;
+    margin-right: 15px;
+    padding: 5px 15px;
+    height: 80px;
+    width: auto;
+    background: radial-gradient(white, #6b8eb5);
+    border-radius: 55px;
+}
+
+.barWords {
+    position: relative;
+    left: -18%;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.navButton {
+    background: none;
+    font-size: 20px;
+    color: white;
+    margin-left: 16px;
+    margin-right: 16px;
+    cursor: pointer;
+    flex-grow: 1;
+    border: none;
+
+}

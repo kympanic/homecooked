@@ -30,13 +30,20 @@ export const getSingleProduct = (id) => async (dispatch) => {
 		const payload = await res.json();
 		dispatch(loadProducts(payload));
 		return payload;
+	} else if (res.status < 500) {
+		const data = await res.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
 	}
 };
 
 export const createProductThunk = (data) => async (dispatch) => {
 	const newProduct = JSON.stringify(data);
 
-	const res = await fetch("/api/products", {
+	const response = await fetch("/api/products", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -44,10 +51,18 @@ export const createProductThunk = (data) => async (dispatch) => {
 		body: newProduct,
 	});
 
-	if (res.ok) {
-		const data = await res.json();
+	if (response.ok) {
+		const data = await response.json();
 		dispatch(loadProducts(data));
-		return data;
+		return null;
+	} else if (response.status < 500) {
+		const data = await response.json();
+		if (data.errors) {
+			console.log(data.errors, "these are the errors");
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
 	}
 };
 
@@ -65,7 +80,14 @@ export const editProductThunk = (data) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(loadProducts(data));
-		return data;
+		return null;
+	} else if (res.status < 500) {
+		const data = await res.json();
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
 	}
 };
 

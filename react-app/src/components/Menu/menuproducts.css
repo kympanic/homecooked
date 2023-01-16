@@ -1,21 +1,93 @@
-/* .menu-products-wrapper {
-	display: flex;
-} */
+.menu-page-background {
+	background: #71250e;
+	border-top: #365365 4px solid;
+	border-bottom: #365365 4px solid;
 
-.menu-products-container {
-	display: flex;
-	height: 200px;
-	border: black solid 2px;
-	margin-top: 5px;
+	z-index: 0;
 }
 
-#menu-product-img-container {
-	height: 200px;
-	width: 200px;
-	object-fit: cover;
+.menu-list-full-container {
+	background-color: white;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* background-color: transparent; */
+	margin-left: 8%;
+	margin-right: 8%;
+	max-height: 800px;
+	position: relative;
+	z-index: 0;
+	overflow: auto;
 }
-#menu-product-img {
-	height: 100%;
+
+.menu-list-full-container > div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 40px auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 0;
+}
+
+.menu-card {
+	width: 300px;
+	height: 450px;
+	margin: 10px 10px 14px 10px;
+	list-style: none;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 2px;
+	background-color: white;
+	border: #292421 3px solid;
+	z-index: 0;
+}
+
+.menu-card:hover {
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.menu-card p {
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 15px;
+	color: #292421;
+	font-weight: bold;
+	background-color: white;
+}
+
+.menu-img-wrapper {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 250px;
+	position: relative;
 	width: 100%;
-	display: block;
+	border-bottom: 2px solid #02385a;
+}
+
+.add-to-cart-btn {
+	margin-top: 10px;
+	padding: 10px 25px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: #ee5c42;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+.add-to-cart-btn:hover {
+	background-color: #ee5c42;
+}
+
+.add-to-cart-btn:active {
+	background-color: #ee5c42;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
 }

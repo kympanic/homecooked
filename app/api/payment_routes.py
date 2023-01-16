@@ -7,14 +7,28 @@ from app.forms import PaymentForm
 
 payment_routes = Blueprint('payments', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+
 #GET ALL PAYMENTS INFO BY USERID
 @payment_routes.route('/<int:id>')
 @login_required
 def get_paymentinfo_by_id(id):
     payments =Payment.query.filter_by(user_id=id).all()
    
+<<<<<<< HEAD
     # if payments.user_id != current_user.id:
     #     return {"error": "You are not authorized to view this payment information"}, 401
+=======
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
     
     res = {payment.id: payment.to_dict() for payment in payments}
  
@@ -34,7 +48,7 @@ def create_paymentinfo():
         db.session.add(payment)
         db.session.commit()
         return {payment.id: payment.to_dict()}
-    return {'errors': form.errors}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #EDIT A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["PATCH", "PUT"])
@@ -50,8 +64,9 @@ def edit_paymentinfo(id):
     if form.validate_on_submit():
         form.populate_obj(payment)
         db.session.commit()
-
-    return {payment.id: payment.to_dict()}
+        return {payment.id: payment.to_dict()}
+        
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #DELETE A PAYMENT BASED ON ID
 @payment_routes.route('/<int:id>', methods=["DELETE"])

@@ -1,14 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useState, useEffect } from "react";
-import { useSelector} from 'react-redux'
+import { useSelector, useDispatch} from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { getAllCartItems } from "../../store/session";
+import { login } from "../../store/session";
+import logo from "./icon_logo_draft.png"
+import "./navbar.css"
+import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 
 const NavBar = () => {
 	const cartItems = useSelector(getAllCartItems)
+	const sessionUser = useSelector((state) => state.session.user);
+	const dispatch = useDispatch();
+	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
+
+	const demoUser = {
+		email: "demo@aa.io",
+		password: "password",
+	};
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		return dispatch(login(demoUser.email, demoUser.password));
+	};
 
 	const [ totalItems, setTotalItems ] = useState(0);
 
@@ -19,41 +36,83 @@ const NavBar = () => {
 		});
 		setTotalItems(itemCount);
 	}, [cartItems, totalItems])
-	return (
-		<nav>
-			<ul>
-				<li>
-					<NavLink to="/" exact={true} activeClassName="active">
-						Home
-					</NavLink>
-				</li>
-				<li>
-					<NavLink to="/login" exact={true} activeClassName="active">
-						Login
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						to="/sign-up"
-						exact={true}
-						activeClassName="active"
-					>
-						Sign Up
-					</NavLink>
-				</li>
 
-				<li>
-					<LogoutButton />
-				</li>
-				<li>
-					<NavLink to ="/cart" exact={true}>
-					<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-						Cart
-						<div className="cartCounter">{totalItems}</div>
-					</NavLink>
-				</li>
-			</ul>
-		</nav>
+	return (
+		<ul className="navbar">
+			<li className="barLink">
+				<NavLink to="/" exact={true} activeClassName="active">
+					<img
+						className="barImg"
+						src={logo}
+						alt="HomeCooked Logo"
+					/>
+					<div className="barWords">Home</div>
+				</NavLink>
+			</li>
+			{sessionUser ? (
+				<>
+					<li className="barLink">
+						<LogoutButton className="navButton" />
+					</li>
+					<li className="barLink">
+						<NavLink to={`/users/${sessionUser.id}`} exact={true}>
+							{sessionUser.username}'s Profile
+						</NavLink>
+					</li>
+					{sessionUser.shopName ? (
+						<li className="barLink">
+							<Link to={`/store/${sessionUser.id}`}>
+								{sessionUser?.shopName}
+							</Link>
+						</li>
+					) : (
+						<li className="barLink">
+							<button className="navButton" onClick={() => setIsOpenAddShop(true)}>
+								Become a Vendor
+							</button>
+						</li>
+					)}
+				</>
+			) : (
+				<>
+					<li className="barLink">
+						<NavLink to="/login" exact={true} activeClassName="active">
+							Login
+						</NavLink>
+					</li>
+					<li className="barLink">
+						<NavLink
+							to="/sign-up"
+							exact={true}
+							activeClassName="active"
+						>
+							Sign Up
+						</NavLink>
+					</li>
+					<li className="barLink">
+						<button className="navButton" onClick={handleClick}>
+							Demo Login
+						</button>
+					</li>
+				</>
+			)}
+			<li className="barLink">
+				<NavLink to ="/cart" exact={true}>
+					<div className="cartIcon">
+						<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
+						Cart {" "}
+					</div>
+
+					<div className="cartCounter">{" "}{totalItems}</div>
+				</NavLink>
+			</li>
+			{isOpenAddShop && (
+				<ModalAddShop
+					setIsOpen={setIsOpenAddShop}
+					userId={sessionUser.id}
+				/>
+			)}
+		</ul>
 	);
 };
 

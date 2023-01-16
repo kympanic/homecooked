@@ -13,7 +13,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 	const [category, setCategory] = useState("");
 	const [errors, setErrors] = useState([]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const editedProduct = {
 			id: product.id,
@@ -25,12 +25,12 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 			category,
 		};
 
-		//error handling
-		let data = dispatch(editProductThunk(editedProduct));
+		let data = await dispatch(editProductThunk(editedProduct));
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
-		setIsOpen(false);
 	};
 
 	return (
@@ -112,13 +112,15 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 								<option value="Asian">Asian</option>
 								<option value="Italian">Italian</option>
 								<option value="French">French</option>
-                                <option value="Mediterranean">Snacks</option>
+								<option value="Mediterranean">
+									Mediterranean
+								</option>
 								<option value="Vegetarian">Vegetarian</option>
 								<option value="Vegan">Vegan</option>
 								<option value="Indian">Indian</option>
 								<option value="African">African</option>
 								<option value="Ethnic">Ethnic</option>
-                                <option value="Fusion">Snacks</option>
+								<option value="Fusion">Fusion</option>
 								<option value="Dessert">Dessert</option>
 								<option value="Snacks">Snacks</option>
 								<option value="Other">Other</option>

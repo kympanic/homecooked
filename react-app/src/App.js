@@ -10,11 +10,13 @@ import CartPage from "./components/CartPage";
 import ProfilePage from "./components/ProfilePage";
 import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
+import Footer from "./components/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
+import TestMenuPage from "./components/TestMenuPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -50,22 +52,23 @@ function App() {
 				<Route path="/sign-up" exact={true}>
 					<SignUpForm />
 				</Route>
-				<Route path="/users/:userId" exact={true}>
+				<ProtectedRoute path="/users/:userId" exact={true}>
 					<ProfilePage />
-				</Route>
-				<Route path="/cart" exact={true}>
+				</ProtectedRoute>
+				<ProtectedRoute path="/cart" exact={true}>
 					<CartPage />
-				</Route>
-				<ProtectedRoute path="/orders/:userId" exact={true}>
+				</ProtectedRoute>
+				<ProtectedRoute exact path="/orders/:userId">
 					<OrderPage />
 				</ProtectedRoute>
-				<ProtectedRoute path="/store/:userId" exact={true}>
+				<ProtectedRoute exact path="/store/:userId">
 					<StorePage />
 				</ProtectedRoute>
 				<Route path="/">
 					<PageNotFound />
 				</Route>
 			</Switch>
+			<Footer />
 		</BrowserRouter>
 	);
 }

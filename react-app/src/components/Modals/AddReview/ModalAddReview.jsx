@@ -30,9 +30,11 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 		};
 
 		let data = await dispatch(createReviewThunk(newReview));
-		setIsOpen(false);
 		if (data) {
-			setErrors(errors);
+			setErrors(data);
+		} else {
+			setIsOpen(false);
+			return window.location.reload(false);
 		}
 	};
 	return (
@@ -41,7 +43,9 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Food is in the Oven!</h5>
+						<h5 className={styles.heading}>
+							Add a Review for {product.name}!
+						</h5>
 					</div>
 					<button
 						className={styles.closeBtn}

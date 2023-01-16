@@ -2,14 +2,17 @@ import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { deleteProductThunk } from "../../../store/products";
-
+// import { useHistory } from "react-router-dom";
 const ModalDeleteProduct = ({ setIsOpen, product }) => {
 	const dispatch = useDispatch();
+	// const history = useHistory();
 
+	console.log(product, "this is the product being deleted");
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setIsOpen(false);
 		dispatch(deleteProductThunk(product));
+		window.location.reload(false);
 	};
 
 	return (

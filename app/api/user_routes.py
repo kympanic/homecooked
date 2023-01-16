@@ -7,9 +7,22 @@ from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+<<<<<<< HEAD
+@user_routes.route('')
+=======
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 @user_routes.route('')
-
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -27,13 +40,30 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+@user_routes.route('/<int:id>/orders')
+@login_required
+def get_orders_by_user(id):
+
+    orders =Order.query.filter_by(user_id=id).all()
+   
+    Print(orders)
+
+    res = {order.id: order.to_dict_basic() for order in orders}
+ 
+    return res
+    
+
 #POST NEW ORDER BY USER ID
-@user_routes.route('/<int:id>/orders',methods=['POST'])
+@user_routes.route('/orders',methods=['POST'])
 @login_required
 def add_order():
     form = OrderForm()
 
+<<<<<<< HEAD
 
+=======
+    Print("is this hitting??????")
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -51,9 +81,15 @@ def edit_user(id):
     user = User.query.get(id)
     form = UserForm()
 
+    Print("is this hitting?")
+    Print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
+<<<<<<< HEAD
     if form.is_submitted():
+=======
+    if form.validate_on_submit():
+>>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
         form.populate_obj(user)
         db.session.commit()
-
-    return {user.id: user.to_dict()}
+        return {user.id: user.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
