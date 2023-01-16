@@ -50,7 +50,7 @@ const StorePage = () => {
 						vendor={vendor}
 					/>
 					{vendor.products.length > 0 ? (
-						<div className="store-menu-wrapper">
+						<div id="store-menu-wrapper">
 							<div id="storemenu-title-element">
 								<h1>MENU</h1>
 							</div>
@@ -86,9 +86,9 @@ const StorePage = () => {
 						</div>
 					)}
 					<div className="after-menu-container">
-						<div className="review-carousel-container">
+						<div className="after-menu-wrapper">
 							{convertedReviews.length > 0 ? (
-								<div>
+								<div className="review-carousel-container">
 									<div className="review-swiper-component">
 										<ReviewSwiper
 											reviews={convertedReviews}
