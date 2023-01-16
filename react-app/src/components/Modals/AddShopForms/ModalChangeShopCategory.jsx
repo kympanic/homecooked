@@ -44,7 +44,7 @@ const ModalChangeShopCategory = ({ setIsOpen, userId }) => {
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
 						<h5 className={styles.heading}>
-							Enter a new name for your store!
+							Edit Your Shop Cuisine
 						</h5>
 					</div>
 					<button

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getPaymentThunk } from "../../store/payments";
 import { getAllCartItems } from "../../store/session";
-import ModalAddPayment from "../Modals/AddPayment/ModalAddPayment";
+import ModalAddPaymentNone from "../Modals/AddPaymentNone/ModalAddPaymentNone";
 import CartItem from "../CartPage/cartItem";
+
 import styles from "../Modals/App.module.css";
 import OrderPayments from "./OrderPayments";
 import "./orderpage.css";
@@ -106,7 +107,7 @@ const OrderPage = () => {
 									Add Payment Info
 								</button>
 								{isOpenPaymentAdd && (
-									<ModalAddPayment
+									<ModalAddPaymentNone
 										setIsOpen={setIsOpenPaymentAdd}
 									/>
 								)}
