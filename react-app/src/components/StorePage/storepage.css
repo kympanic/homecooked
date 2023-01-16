@@ -85,7 +85,15 @@
 	margin-bottom: 10px;
 }
 #userinfo-profile-email-element {
+	display: flex;
 	margin-bottom: 10px;
+}
+#userinfo-profile-phone-element {
+	display: flex;
+}
+.header-email-icon {
+	margin-top: 5px;
+	padding-right: 5px;
 }
 
 .sample-review-container {
@@ -183,4 +191,8 @@
 	padding-bottom: 100px;
 	margin-bottom: 200px;
 	background-color: #eb781b;
+}
+
+#userinfo-profile-name-element a {
+	color: black;
 }
