@@ -7,7 +7,7 @@ import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 import styles from "../Modals/App.module.css";
 import "./storepage.css";
-import './userprofileinfo.css'
+import "./userprofileinfo.css";
 
 //note that this page is a public page!
 //the nav bar button that links to it should get which page it sends you to thru session
@@ -35,37 +35,44 @@ const ProfilePage = () => {
 									<ShopOwnerInfo user={user} />
 								</div>
 							) : null} */}
-						{user.id === sessionUserId ? (
-							<div className="editProfileBox">
-								<button 
-									onClick={() => setIsOpenEditUserProf(true)}
-									className={styles.primaryBtn}
-								>
-									Edit Public Profile
-								</button>
-								{/* <button>Change Password</button>
+							{user.id === sessionUserId ? (
+								<div className="editProfileBox">
+									<button
+										onClick={() =>
+											setIsOpenEditUserProf(true)
+										}
+										className={styles.primaryBtn}
+									>
+										Edit Public Profile
+									</button>
+									{/* <button>Change Password</button>
 								<div>
 									{" "}
 									Note that this is the only way to change your
 									password.
 								</div> */}
-							</div>
-						) : null}
-						</div>	
+								</div>
+							) : null}
+						</div>
 						{user.shopName ? (
-							<div className="storeLinkBox">
+							<div
+								style={{ zIndex: "0" }}
+								className="storeLinkBox"
+							>
 								<Link to={`/store/${userId}`}>
-									<img 
+									<img
 										className="storeLinkImg"
 										src={user.shopSplashImg}
 										alt="Shop Splash Image"
 									/>
-									<p className="storeLinkText">Click here to go to "{user?.shopName}"</p>
+									<p className="storeLinkText">
+										Click here to go to "{user?.shopName}"
+									</p>
 								</Link>
 							</div>
 						) : user.id === sessionUserId ? (
 							<div className="storeLinkBox">
-								<button 
+								<button
 									onClick={() => setIsOpenAddShop(true)}
 									className="addStoreButton"
 								>
