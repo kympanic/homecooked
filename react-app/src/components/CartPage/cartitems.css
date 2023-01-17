@@ -231,3 +231,18 @@ input::-webkit-inner-spin-button {
 	font-weight: bold;
 	box-shadow: 2px 2px 2px gray;
 }
+
+.cartpage-middle-right-container {
+	position: relative;
+	width: 80%;
+	height: 30%;
+	padding-top: 50px;
+	border: 2px solid #eb781b;
+	text-align: center;
+	padding-left: 70px;
+	padding-right: 70px;
+	border-radius: 20px;
+	left: -9%;
+	background-color: #eb781b;
+	box-shadow: 2px 2px 2px black;
+}

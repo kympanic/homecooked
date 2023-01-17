@@ -82,6 +82,35 @@ const CartPage = () => {
 						>
 							Checkout!
 						</button>
+						<div className="cartpage-middle-right-container">
+										<h2 id="storepage-middle-title">
+											Never Go Hungry Again
+										</h2>
+										<p id="homepage-middle-p">
+											Homecooked is available on Web, iOS,
+											and Android
+										</p>
+										<div id="homepage-middle-icons">
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+												alt="google-icon"
+											/>
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+												alt="apple-icon"
+											/>
+										</div>
+									</div>
 					</div>
 				)}
 				{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}

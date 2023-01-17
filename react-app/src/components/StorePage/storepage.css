@@ -183,10 +183,12 @@
 #homepage-middle-icons img {
 	height: 50px;
 	padding: 5px;
+	transition: all 0.25s ease;
 }
 #homepage-middle-icons img:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 10px -10px darkorange;
+	cursor: pointer;
 }
 
 .review-carousel-container {
@@ -223,4 +225,8 @@
 
 .after-menu-wrapper {
 	margin-left: 18%;
+}
+
+.menuTitle {
+	color: white;
 }
