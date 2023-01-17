@@ -2,7 +2,7 @@ import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { editUserThunk } from "../../../store/users";
+import { editNewUserThunk } from "../../../store/users";
 
 const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
@@ -21,17 +21,13 @@ const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 			id: user.id,
 			username,
 			email,
-			shop_name: user.shopName,
 			phone_number: phoneNumber,
-			shop_logo_img: user.shopLogoImg,
-			shop_splash_img: user.shopSplashImg,
 			profile_img: profileImg,
-			category: user.category,
 			zipcode,
 		};
 
 		//error handling
-		let data = await dispatch(editUserThunk(editedUserProf));
+		let data = await dispatch(editNewUserThunk(editedUserProf));
 		if (data) {
 			setErrors(data);
 		} else {
@@ -110,6 +106,12 @@ const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 									value={phoneNumber}
 									placeholder={user?.phoneNumber}
 									onChange={updatePhoneNumber}
+									maxLength={10}
+									onKeyPress={(event) => {
+										if (!/[0-9]/.test(event.key)) {
+											event.preventDefault();
+										}
+									}}
 								/>
 							</div>
 							<div>
@@ -132,6 +134,7 @@ const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 									value={zipcode}
 									placeholder={user?.zipcode}
 									onChange={updateZipcode}
+									minLength={5}
 								/>
 							</div>
 						</form>
