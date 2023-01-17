@@ -17,8 +17,8 @@
 }
 
 .modal {
-	width: 600px;
-	height: 400px;
+	width: 500px;
+	height: 500px;
 	background: white;
 	color: white;
 	z-index: 9999;
@@ -127,4 +127,25 @@
 
 .error-item {
 	color: red;
+}
+
+.existingPaymentBtn {
+	cursor: pointer;
+	font-weight: 500;
+	padding: 13px 25px;
+	border-radius: 15px;
+	font-size: 0.8rem;
+	border: none;
+	color: white;
+	background: #02385a;
+	transition: all 0.25s ease;
+	z-index: 0;
+	margin-bottom: 20px;
+}
+
+.existingPaymentBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
+	background-color: white;
+	color: #02385a;
 }

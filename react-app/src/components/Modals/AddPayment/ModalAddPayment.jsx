@@ -79,7 +79,7 @@ const ModalAddPayment = ({ setIsOpen }) => {
 						<div>
 							<h6>Already saved your payment?</h6>
 							<button
-								className={styles.cancelBtn}
+								className={styles.existingPaymentBtn}
 								onClick={handleExistingPayment}
 							>
 								Use Existing Payment!
