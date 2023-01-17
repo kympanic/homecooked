@@ -1,12 +1,13 @@
 const AvgRating = ({ user, products }) => {
+	console.log(user, "this is the user")
+	console.log(products)
+
 	let reviewAvg;
 	if (products) {
 		reviewAvg =
 			products
 				?.filter((product) => {
-					// console.log(product.userId, "product exists?");
-					// console.log(user, "user exists?");
-					return product?.userId === parseInt(user.id);
+					return ((product?.userId === parseInt(user.id)));
 				})
 				.map((el) => Number(el.avgRating))
 				?.reduce((a, b) => a + b) / user?.products?.length;
