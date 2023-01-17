@@ -66,7 +66,7 @@ const ModalChangeShopName = ({ setIsOpen, userId }) => {
 									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
-									maxLength={30}
+									maxLength={20}
 								/>
 							</div>
 						</form>

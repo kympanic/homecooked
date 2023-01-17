@@ -21,6 +21,9 @@ def check_price(form,field):
     contains_letters=price_lowercase.islower()
     if(contains_letters):
         raise ValidationError('Provide a valid price')
+    if price.count(".") > 1:
+        raise ValidationError('Provide a valid price')
+
 
 class ProductForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired(), ])

@@ -113,6 +113,7 @@ const ModalAddProduct = ({ setIsOpen }) => {
 									name="price"
 									onChange={updatePrice}
 									value={price}
+									maxLength={12}
 								/>
 							</div>
 							<div>

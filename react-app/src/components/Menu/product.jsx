@@ -7,6 +7,8 @@ import ModalMenuDescription from "../Modals/MenuDescription/ModalMenuDescription
 import ModalAddReview from "../Modals/AddReview/ModalAddReview";
 import "./menuproducts.css";
 import styles from "../Modals/App.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Product = ({ id, vendor }) => {
 	const dispatch = useDispatch();
@@ -73,14 +75,20 @@ const Product = ({ id, vendor }) => {
 						/>
 					</div>
 					<div className="menu-info-wrapper">
-						<p>{product?.name}</p>
+						<h3>{product?.name}</h3>
 						<p>
 							$
 							{(Math.round(product?.price * 100) / 100).toFixed(
 								2
 							)}
 						</p>
-						<p>Average Rating: {product?.avgRating}</p>
+						<p>
+							Average Rating: {product?.avgRating}{" "}
+							<FontAwesomeIcon
+								className="header-star-icon"
+								icon={faStar}
+							/>
+						</p>
 					</div>
 					{isOpenEdit && (
 						<ModalEditProduct

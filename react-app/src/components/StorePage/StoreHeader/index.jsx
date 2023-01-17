@@ -5,7 +5,7 @@ import styles from "../../Modals/App.module.css";
 import ModalAddShopSplashImage from "../../Modals/AddShopForms/ModalAddShopSplashImage";
 import SideBar from "../SideBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone, faStar } from "@fortawesome/free-solid-svg-icons";
 const zipCodeData = require("zipcode-city-distance");
 
 const StoreHeader = ({ userId, storeAvg }) => {
@@ -96,7 +96,13 @@ const StoreHeader = ({ userId, storeAvg }) => {
 							)}
 							{storeAvg ? (
 								<div id="shopinfo-avg-element">
-									<p>Average Reviews: {storeAvg}</p>
+									<p>
+										Average Reviews: {storeAvg}{" "}
+										<FontAwesomeIcon
+											className="header-star-icon"
+											icon={faStar}
+										/>
+									</p>
 								</div>
 							) : (
 								<div id="shopinfo-avg-element">
