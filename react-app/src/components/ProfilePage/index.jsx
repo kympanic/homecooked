@@ -2,11 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import UserInfo from "./UserInfo";
-import ShopOwnerInfo from "./ShopOwnerInfo";
 import UserReviews from "./UserReviews";
 import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile";
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
+import styles from "../Modals/App.module.css";
 import "./storepage.css";
+import './userprofileinfo.css'
 
 //note that this page is a public page!
 //the nav bar button that links to it should get which page it sends you to thru session
@@ -19,58 +20,60 @@ const ProfilePage = () => {
 	const user = useSelector((state) => state.users[userId]);
 	const [isOpenEditUserProf, setIsOpenEditUserProf] = useState(false);
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
-	let shopName;
-	if (user && userId) {
-		shopName = user.shopName;
-	}
-
-	// const history = useHistory();
-
-	// useEffect(() => {
-	// 	if (shopName) {
-	// 		history.push(`/store/${user.id}`);
-	// 	}
-	// }, [shopName]);
 
 	return (
 		<div>
 			{user && userId && (
 				<div>
-					<h1>Profile Page</h1>
-					<div>
-						<UserInfo user={user} />
+					<div className="userInfoAndStoreLinkBox">
+						<div className="userInfo">
+							<div className="basicUserBox">
+								<UserInfo user={user} />
+							</div>
+							{/* {user.shopName ? (
+								<div className="shopownerInfo">
+									<ShopOwnerInfo user={user} />
+								</div>
+							) : null} */}
+						{user.id === sessionUserId ? (
+							<div className="editProfileBox">
+								<button 
+									onClick={() => setIsOpenEditUserProf(true)}
+									className={styles.primaryBtn}
+								>
+									Edit Public Profile
+								</button>
+								{/* <button>Change Password</button>
+								<div>
+									{" "}
+									Note that this is the only way to change your
+									password.
+								</div> */}
+							</div>
+						) : null}
+						</div>	
+						{user.shopName ? (
+							<div className="storeLinkBox">
+								<Link to={`/store/${userId}`}>
+									<img 
+										className="storeLinkImg"
+										src={user.shopSplashImg}
+										alt="Shop Splash Image"
+									/>
+									<p className="storeLinkText">Click here to go to "{user?.shopName}"</p>
+								</Link>
+							</div>
+						) : user.id === sessionUserId ? (
+							<div className="storeLinkBox">
+								<button 
+									onClick={() => setIsOpenAddShop(true)}
+									className={styles.primaryBtn}
+								>
+									Become a Vendor
+								</button>
+							</div>
+						) : null}
 					</div>
-					{user.shopName ? (
-						<div>
-							<ShopOwnerInfo user={user} />
-						</div>
-					) : null}
-					{user.id === sessionUserId ? (
-						<div>
-							<button onClick={() => setIsOpenEditUserProf(true)}>
-								Edit Public Profile
-							</button>
-							{/* <button>Change Password</button>
-							<div>
-								{" "}
-								Note that this is the only way to change your
-								password.
-							</div> */}
-						</div>
-					) : null}
-					{user.shopName ? (
-						<div>
-							<Link to={`/store/${userId}`}>
-								Click here to go to "{user?.shopName}"
-							</Link>
-						</div>
-					) : user.id === sessionUserId ? (
-						<div>
-							<button onClick={() => setIsOpenAddShop(true)}>
-								Become a Vendor
-							</button>
-						</div>
-					) : null}
 					<div>
 						<UserReviews user={user} />
 					</div>

@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { editUserThunk } from "../../../store/users";
 
-const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
+const ModalEditProfileImg = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-	console.log(user);
 
 	const [errors, setErrors] = useState([]);
-	const [shopLogo, setShopLogo] = useState("");
+	const [profileImg, setProfileImg] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -18,10 +17,10 @@ const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
 			id: user.id,
 			email: user.email,
 			username: user.username,
-			profile_img: user.profileImg,
+			profile_img: profileImg,
 			phone_number: user.phoneNumber,
 			shop_name: user.shopName,
-			shop_logo_img: shopLogo,
+			shop_logo_img: user.shopLogoImg,
 			shop_splash_img: user.shopSplashImg,
 			category: user.category,
 			zipcode: user.zipcode,
@@ -35,8 +34,8 @@ const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
 		}
 	};
 
-	const updateShopLogo = (e) => {
-		setShopLogo(e.target.value);
+	const updateProfileImg = (e) => {
+		setProfileImg(e.target.value);
 	};
 
 	return (
@@ -46,7 +45,7 @@ const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
 						<h5 className={styles.heading}>
-							Change Your Shop Logo!
+							Update your Profile Image
 						</h5>
 					</div>
 					<button
@@ -63,12 +62,14 @@ const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
 								))}
 							</div>
 							<div>
-								<label htmlFor="shopLog">Shop Logo Url</label>
+								<label htmlFor="profileImg">
+									Profile Image Url
+								</label>
 								<input
 									type="text"
 									name="shopSplashImg"
-									value={shopLogo}
-									onChange={updateShopLogo}
+									value={profileImg}
+									onChange={updateProfileImg}
 								/>
 							</div>
 						</form>
@@ -96,4 +97,4 @@ const ModalChangeShopLogo = ({ setIsOpen, userId }) => {
 	);
 };
 
-export default ModalChangeShopLogo;
+export default ModalEditProfileImg;

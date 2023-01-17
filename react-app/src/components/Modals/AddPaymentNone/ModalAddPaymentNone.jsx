@@ -5,7 +5,7 @@ import { useState } from "react";
 import { createPaymentThunk } from "../../../store/payments";
 import { useHistory } from "react-router-dom";
 
-const ModalAddPayment = ({ setIsOpen }) => {
+const ModalAddPaymentNone = ({ setIsOpen }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
 	const history = useHistory();
@@ -76,16 +76,6 @@ const ModalAddPayment = ({ setIsOpen }) => {
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
 					<div className={styles.modalContent}>
-						<div>
-							<h6>Already saved your payment?</h6>
-							<button
-								className={styles.cancelBtn}
-								onClick={handleExistingPayment}
-							>
-								Use Existing Payment!
-							</button>
-						</div>
-						{""}
 						<form>
 							<div className="errors-section">
 								{errors.map((error, ind) => (
@@ -185,4 +175,4 @@ const ModalAddPayment = ({ setIsOpen }) => {
 	);
 };
 
-export default ModalAddPayment;
+export default ModalAddPaymentNone;

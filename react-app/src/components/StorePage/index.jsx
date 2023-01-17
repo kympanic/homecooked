@@ -4,8 +4,10 @@ import Menu from "../Menu";
 import ReviewSwiper from "./ReviewSwiper";
 import ReviewSection from "./ReviewSection";
 import StoreHeader from "./StoreHeader";
+import ModalAddProduct from "../Modals/AddProduct/ModalAddProduct";
 import "./storepage.css";
-// const zipCodeData = require("zipcode-city-distance");
+import styles from "../Modals/App.module.css";
+import { useState } from "react";
 
 const StorePage = () => {
 	const { userId } = useParams();
@@ -13,6 +15,8 @@ const StorePage = () => {
 	const vendor = useSelector((state) => state?.users[userId]);
 	const products = useSelector((state) => Object.values(state?.products));
 	const sessionUserId = useSelector((state) => state?.session.user.id);
+
+	const [showaddProduct, setShowAddProduct] = useState(false);
 
 	const selectedProducts = products?.filter((product) => {
 		return product?.userId === parseInt(userId);
@@ -35,6 +39,7 @@ const StorePage = () => {
 	let stringAvg = (sumOfAverageRatings / selectedProducts?.length).toFixed(2);
 	let storeAvg = parseFloat(stringAvg);
 
+	console.log(vendor, "this is the vendor");
 	return (
 		<div>
 			{vendor && (
@@ -45,7 +50,7 @@ const StorePage = () => {
 						vendor={vendor}
 					/>
 					{vendor.products.length > 0 ? (
-						<div className="store-menu-wrapper">
+						<div id="store-menu-wrapper">
 							<div id="storemenu-title-element">
 								<h1>MENU</h1>
 							</div>
@@ -54,54 +59,85 @@ const StorePage = () => {
 							</div>
 						</div>
 					) : (
-						<div>
-							<p>
-								This vendor has nothing for sale yet. Check back
-								later!
-							</p>
+						<div className="noproducts-store-menu-wrapper">
+							<div>
+								<h1>Congratulations On Your Grand Opening!</h1>
+							</div>
+							<div>
+								<button
+									onClick={() => setShowAddProduct(true)}
+									className={styles.addProductBtn}
+								>
+									Let's Cook!
+								</button>
+								{showaddProduct && (
+									<ModalAddProduct
+										setIsOpen={setShowAddProduct}
+									/>
+								)}
+							</div>
+							<div></div>
+							<div>
+								<img
+									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/Luigi_Risotto.png"
+									alt="chef-image"
+								/>
+							</div>
 						</div>
 					)}
 					<div className="after-menu-container">
-						<div className="review-carousel-container">
+						<div className="after-menu-wrapper">
 							{convertedReviews.length > 0 ? (
-								<div className="review-swiper-component">
-									<ReviewSwiper reviews={convertedReviews} />
+								<div className="review-carousel-container">
+									<div className="review-swiper-component">
+										<ReviewSwiper
+											reviews={convertedReviews}
+										/>
+									</div>
+									<div className="storepage-middle-right-container">
+										<h2 id="storepage-middle-title">
+											Never Go Hungry Again
+										</h2>
+										<p id="homepage-middle-p">
+											Homecooked is available on Web, iOS,
+											and Android
+										</p>
+										<div id="homepage-middle-icons">
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+												alt="google-icon"
+											/>
+											<img
+												onClick={() =>
+													history.push(
+														"/ourgroupisthebest"
+													)
+												}
+												src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+												alt="apple-icon"
+											/>
+										</div>
+									</div>
 								</div>
 							) : (
-								<div id="shopinfo-zipcode-element">
-									<p>There are no reviews yet!</p>
-								</div>
+								<></>
 							)}
-							<div className="storepage-middle-right-container">
-								<h2 id="storepage-middle-title">
-									Never Go Hungry Again
-								</h2>
-								<p id="homepage-middle-p">
-									Homecooked is available on Web, iOS, and
-									Android
-								</p>
-								<div id="homepage-middle-icons">
-									<img
-										onClick={() =>
-											history.push("/ourgroupisthebest")
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
-										alt="google-icon"
-									/>
-									<img
-										onClick={() =>
-											history.push("/ourgroupisthebest")
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
-										alt="apple-icon"
-									/>
-								</div>
-							</div>
 						</div>
 					</div>
 					<div>
 						<div>
-							<h1 id="storepage-review-title">Reviews</h1>
+							{vendor && vendor.reviews.length === 0 ? (
+								<h1 className="no-reviews-text">
+									No Reviews Yet!
+								</h1>
+							) : (
+								<h1 id="storepage-review-title">Reviews</h1>
+							)}
 						</div>
 						<div id="storepage-review-container">
 							{convertedReviews &&

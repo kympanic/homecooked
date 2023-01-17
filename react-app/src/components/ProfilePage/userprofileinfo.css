@@ -1,0 +1,115 @@
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    background: rgb(242, 170, 76);
+    box-shadow: 5px 5px 5px black;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.userInfoBox {
+    display: flex;
+    margin-bottom: 3%;
+}
+
+.userProfileImgBox {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 10px solid rgb(174, 74, 57);
+    box-shadow: 5px 5px 5px black;
+}
+
+.userProfileImg {
+    width: auto;
+    height: 100%;
+}
+
+.usernameDisplay {
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+
+.usernameBox {
+    padding-left: 15%;
+}
+
+.editProfileBox {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 4%;
+}
+
+.userInfoAndStoreLinkBox {
+    display: flex;
+    margin-bottom: 1%;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+
+.storeLinkBox {
+    margin-left: 3%;
+    width: 60%;
+    aspect-ratio: 4/1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: 5px 5px 5px black;
+    transition: all 0.25s ease;
+}
+
+.storeLinkImg {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    position: relative;
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.storeLinkText {
+    position:relative;
+    top: 45%;
+    left: 20%;
+    font-size: 45px;
+    z-index: 2;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    transition: all 0.25s ease;
+}
+
+.storeLinkBox a {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    text-decoration: none;
+}
+
+.storeLinkBox:hover {
+    transform: translateY(-10px);
+}
+
+.storeLinkText:hover {
+    color: rgb(79, 33, 0);
+    text-shadow: -1px 1px 0 #FFF,
+    1px 1px 0 #FFF,
+    1px -1px 0 #FFF,
+    -1px -1px 0 #FFF;
+    transition: all 0.25s ease;
+}

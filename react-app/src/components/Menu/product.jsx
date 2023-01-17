@@ -29,7 +29,7 @@ const Product = ({ id, vendor }) => {
 			{product && vendor && sessionUserId && (
 				<>
 					{vendor.id !== sessionUserId && (
-						<div>
+						<div className="menu-add-review-btn-box">
 							<button
 								className={styles.primaryBtn}
 								onClick={() => setIsOpenReview(true)}
