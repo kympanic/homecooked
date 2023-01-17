@@ -86,6 +86,7 @@ We wanted to create a ecommerce site that was similar to Etsy. Creating a workin
 - Dark Mode Toggle
 - Showing users their previous orders
 - Searching stores by distance from the user
+- Fix interaction between payments and products
 - Tune up CSS
 
 
