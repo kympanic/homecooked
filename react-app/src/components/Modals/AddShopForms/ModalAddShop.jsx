@@ -38,6 +38,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 		} else {
 			setIsOpen(false);
 			history.push(`/store/${user.id}`);
+			return window.location.reload(false);
 		}
 	};
 
