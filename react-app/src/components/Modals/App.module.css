@@ -74,3 +74,11 @@
 	transform: translateY(-5px);
 	box-shadow: 0 10px 20px -10px black;
 }
+
+.titleText{
+	margin-left: 10px
+}
+
+.secondaryText {
+	margin-left: 10px
+}

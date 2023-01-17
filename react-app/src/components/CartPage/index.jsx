@@ -41,12 +41,12 @@ const CartPage = () => {
 
 	return (
 		<div>
-			<h1>Cart Page</h1>
+			<h1 className={styles.titleText}>Your Cart</h1>
 			<div>
 				<div>
 					{cartItems.length === 0 && (
 						<div>
-							<h2>There are no cart items yet!</h2>
+							<h2 className={styles.secondaryText}>There are no cart items yet!</h2>
 						</div>
 					)}
 					{cartItems &&
@@ -60,7 +60,7 @@ const CartPage = () => {
 			<div>
 				{cartItems.length === 0 ? (
 					<div>
-						<button onClick={handleNoItems}>
+						<button className={styles.primaryBtn} onClick={handleNoItems}>
 							Go buy something!
 						</button>
 					</div>
