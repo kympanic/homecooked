@@ -42,12 +42,15 @@ const HomePage = () => {
 					<hr></hr>
 					<div></div>
 					<div className="search">
-					<input
-						className="search-bar"
-						placeholder="Search For Food..."
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-					<FontAwesomeIcon icon={faSearch} className="search-icon" />
+						<input
+							className="search-bar"
+							placeholder="Search For Food..."
+							onChange={(e) => setQuery(e.target.value)}
+						/>
+						<FontAwesomeIcon
+							icon={faSearch}
+							className="search-icon"
+						/>
 					</div>
 					<div className="stores-container">
 						{allStoresArray
@@ -100,7 +103,7 @@ const HomePage = () => {
 										<div className="secondary-text">
 											Location: {store.zipcode}
 										</div>
-										<div className="secondary-text">
+										{/* <div className="secondary-text">
 											Distance: {""}
 											{zipCodeData
 												.zipCodeDistance(
@@ -110,7 +113,7 @@ const HomePage = () => {
 												)
 												.toFixed(2)}{" "}
 											miles
-										</div>
+										</div> */}
 										<div>
 											<br></br>
 										</div>

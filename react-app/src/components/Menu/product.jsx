@@ -25,7 +25,7 @@ const Product = ({ id, vendor }) => {
 	};
 
 	return (
-		<div>
+		<div className="product-card-container">
 			{product && vendor && sessionUserId && (
 				<>
 					{vendor.id !== sessionUserId && (
