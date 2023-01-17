@@ -27,10 +27,20 @@ const Product = ({ id, vendor }) => {
 	const placeHolderImg =
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/default-food-image.jpeg";
 
+	const onImageError = (e) => {
+		e.target.src = placeHolderImg;
+	};
+
 	return (
 		<div className="product-card-container">
 			{product && vendor && sessionUserId && (
 				<>
+					{isOpenReview && (
+						<ModalAddReview
+							setIsOpen={setIsOpenReview}
+							product={product}
+						/>
+					)}
 					{vendor.id !== sessionUserId && (
 						<div className="menu-add-review-btn-box">
 							<button
@@ -41,12 +51,15 @@ const Product = ({ id, vendor }) => {
 							</button>
 						</div>
 					)}
+					{isOpenDescription && (
+						<ModalMenuDescription
+							setIsOpen={setIsOpenDescription}
+							product={product}
+						/>
+					)}
 					<div
 						onClick={() => setIsOpenDescription(true)}
 						className="menu-img-wrapper"
-						// style={{
-						// 	backgroundImage: "url(" + product.imageURL + ")",
-						// }}
 					>
 						<img
 							id="menu-product-img"
@@ -56,19 +69,33 @@ const Product = ({ id, vendor }) => {
 									: placeHolderImg
 							}
 							alt={product.name}
+							onError={onImageError}
 						/>
 					</div>
-
-					<p>{product?.name}</p>
-
-					<p>
-						${(Math.round(product?.price * 100) / 100).toFixed(2)}
-					</p>
-
-					<p>Average Rating: {product?.avgRating}</p>
-
+					<div className="menu-info-wrapper">
+						<p>{product?.name}</p>
+						<p>
+							$
+							{(Math.round(product?.price * 100) / 100).toFixed(
+								2
+							)}
+						</p>
+						<p>Average Rating: {product?.avgRating}</p>
+					</div>
+					{isOpenEdit && (
+						<ModalEditProduct
+							setIsOpen={setIsOpenEdit}
+							product={product}
+						/>
+					)}
+					{isOpenDelete && (
+						<ModalDeleteProduct
+							setIsOpen={setIsOpenDelete}
+							product={product}
+						/>
+					)}
 					{vendor.id === sessionUserId ? (
-						<div>
+						<div className="menu-button-container">
 							<button
 								className={styles.primaryBtn}
 								onClick={() => setIsOpenEdit(true)}
@@ -91,30 +118,6 @@ const Product = ({ id, vendor }) => {
 								Add to Cart
 							</button>
 						</div>
-					)}
-					{isOpenEdit && (
-						<ModalEditProduct
-							setIsOpen={setIsOpenEdit}
-							product={product}
-						/>
-					)}
-					{isOpenDelete && (
-						<ModalDeleteProduct
-							setIsOpen={setIsOpenDelete}
-							product={product}
-						/>
-					)}
-					{isOpenDescription && (
-						<ModalMenuDescription
-							setIsOpen={setIsOpenDescription}
-							product={product}
-						/>
-					)}
-					{isOpenReview && (
-						<ModalAddReview
-							setIsOpen={setIsOpenReview}
-							product={product}
-						/>
 					)}
 				</>
 			)}

@@ -6,7 +6,6 @@ import UserReviews from "./UserReviews";
 import ModalEditUserProfile from "../Modals/EditUserProfile/ModalEditUserProfile";
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 import styles from "../Modals/App.module.css";
-import "./storepage.css";
 import "./userprofileinfo.css";
 
 //note that this page is a public page!

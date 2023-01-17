@@ -21,12 +21,12 @@ from app.models import User
 #     if user:
 #         raise ValidationError('Email address is already in use.')
 
-def shopname_exists(form, field):
-    # Checking if user exists
-    shopname = field.data
-    user = User.query.filter(User.shop_name == shopname).first()
-    if user:
-        raise ValidationError('Shop name is already in use.')
+# def shopname_exists(form, field):
+#     # Checking if user exists
+#     shopname = field.data
+#     user = User.query.filter(User.shop_name == shopname).first()
+#     if user:
+#         raise ValidationError('Shop name is already in use.')
 
 # def phonenumber_exists(form,field):
 #     phonenumber = field.data
@@ -48,7 +48,7 @@ def validate_image(form,field):
 class UserForm(FlaskForm):
     username=StringField('username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired()])
-    shop_name=StringField('shop_name', validators=[DataRequired(),InputRequired(),shopname_exists])
+    shop_name=StringField('shop_name', validators=[DataRequired(),InputRequired()])
     profile_img=StringField('profile_img')
     phone_number=StringField('phone_number', validators=[DataRequired()])
     shop_logo_img=StringField('shop_logo_img', validators=[validate_image])
