@@ -97,3 +97,7 @@
 .menu-add-review-btn-box {
 	margin-top: 20px;
 }
+
+.product-card-container {
+	z-index: -1;
+}

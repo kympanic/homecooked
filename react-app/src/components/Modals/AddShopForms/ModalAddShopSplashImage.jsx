@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { editUserThunk } from "../../../store/users";
 import "./splashimgform.css";
+
 const ModalAddShopSplashImage = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
