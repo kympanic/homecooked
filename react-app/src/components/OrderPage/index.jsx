@@ -53,49 +53,48 @@ const OrderPage = () => {
 
 	return (
 		<div className="order-page-main-container">
-			<h1>THIS IS THE ORDER PAGE</h1>
-			<div className="order-page-wrapper">
+			<h1 className="cartPageTitle">Checkout</h1>
+			<div className="cartPage">
 				<div className="order-page-products">
 					<div>
-						<div>
+						<div className="cart">
 							{cartItems.length === 0 && (
-								<div>
-									<h2>There are no cart items yet!</h2>
+								<div className="emptyCart">
+									<h2 className="emptyCartText">There are no cart items yet!</h2>
 								</div>
 							)}
 							{cartItems &&
 								cartItems.map((el) => (
-									<div key={el.id} className="cartItemBox">
+									<div key={el.id}>
 										<CartItem id={el.id} qty={el.count} />
 									</div>
 								))}
 						</div>
 					</div>
-					<div>
-						{cartItems.length === 0 ? (
-							<div>
-								<button onClick={handleNoItems}>
-									Go buy something!
-								</button>
-							</div>
-						) : (
-							<div>
-								<span>Total Items: {totalItems}</span>
-								<span>
-									Total Price: $
-									{(
-										Math.round(totalPrice * 100) / 100
-									).toFixed(2)}
-								</span>
-							</div>
-						)}
-					</div>
+
 				</div>
 				<div className="order-page-payments">
 					<div>
-						<h1>Payment Methods</h1>
+						<h1 className="paymentMethodsTitle">Payment Methods</h1>
 					</div>
-
+					<div>
+						{cartItems.length === 0 ? (
+							<div className="emptyCheckout">
+								<button 
+							onClick={handleNoItems}
+							className={styles.primaryBtn}
+						>
+							Go buy something!
+						</button>
+							</div>
+						) : (
+							<div className="checkoutBar">
+								<span className="totalItemBox">Total Items: <span className="totalItems">{totalItems}</span></span>
+								<span className="totalPriceBox">Total Price: <span className="totalPrice">${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
+						</span>
+							</div>
+						)}
+					</div>
 					<div>
 						{payments.length === 0 ? (
 							<div>
