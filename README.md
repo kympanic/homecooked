@@ -39,26 +39,53 @@ The search bar can filter any store by the category of food they sell.
 
 Vendor Page
 
-- A Vendor can create/edit/delete any products from their menus. Also there are options in the side menu to update shop logo, shop splash image, shop name, cuisine, and profile image. Only if the logged in user is the owner of the page can you see the store customization side menu. 
-- A user can see all reviews that are relevant to each store and products. If the user is the owner of the review, they will have the option to edit or delete their reviews.
-- If the logged in user is not the owner of the store, they have the option to add a review or add the item to a cart for later purchase.
+- A Vendor can create/edit/delete any products from their menus. Also there are options in the side menu to update shop logo, shop splash image, shop name, cuisine, and profile image. Only if the logged in user is the owner of the page can you see the store customization side menu
+- A user can see all reviews that are relevant to each store and products. If the user is the owner of the review, they will have the option to edit or delete their reviews
+- If the logged in user is not the owner of the store, they have the option to add a review or add the item to a cart for later purchase
 
 ![Screen Shot 2023-01-17 at 11 13 38 AM](https://user-images.githubusercontent.com/98551224/212990949-dc675567-9440-462f-91a5-7e4b8b79b220.png)
 
 Profile Page
 
-- User is able to edit their public profile here. If the user does not have a store, they will have the option to become a vendor.
-- User is able to edit or delete any reviews on the foods they have reviewed.
+- User is able to edit their public profile here. If the user does not have a store, they will have the option to become a vendor
+- User is able to edit or delete any reviews on the foods they have reviewed
 
 ![Screen Shot 2023-01-17 at 11 26 41 AM](https://user-images.githubusercontent.com/98551224/212993694-6b4bb6b6-4c6c-4aec-923f-266beef5bbae.png)
 
 Cart Page
 
-- Page shows the items that were added to the cart with the total items and price. 
-- User has the option to edit their cart and remove items. 
+- Page shows the items that were added to the cart with the total items and price
+- User has the option to edit their cart and remove items
 - User can checkout and add payment or use existing payment
 
 ![Screen Shot 2023-01-17 at 11 30 01 AM](https://user-images.githubusercontent.com/98551224/212994294-ce4f27da-67b6-4020-923e-47a9674b1411.png)
 
-Code Snippets:
-The cart was a communal effort to create -- we 
+Checkout Page
+- User has the options to add or remove items
+- Can edit or delete their existing payments
+- When the user selects a payment, a confirmation will show to submit order
+- When the order is submitted, an order is created with the payment id, cart is emptied, and the user is directed back to the home page
+
+![Screen Shot 2023-01-17 at 11 34 32 AM](https://user-images.githubusercontent.com/98551224/212994984-8639def8-f29d-4a3a-9744-c10ad5400d30.png)
+
+## Sample Code
+
+Dealing with error validations, custom validators from wtforms and sending them correctly to the frontend proved to be a difficult task. We had to adjust the error messages to properly be formatted to an array so forms can map through and show each error message correctly.
+
+<img width="727" alt="Screen Shot 2023-01-17 at 11 40 25 AM" src="https://user-images.githubusercontent.com/98551224/212996076-7aed69d6-528c-486a-85bb-0bd1d5a28897.png">
+<img width="827" alt="Screen Shot 2023-01-17 at 11 41 31 AM" src="https://user-images.githubusercontent.com/98551224/212996289-76a0163d-3424-4afb-8102-9e7d97e71dbb.png">
+
+The cart was a communal effort to create -add here.
+
+## Our Journey
+
+We wanted to create a ecommerce site that was similar to Etsy. Creating a working database in Flask-SQLAlchemy, cart feature, search bar, user feature, full CRUD on products,reviews and payments proved to be an arduous task to finish in two weeks. We were able to implement most of what we wanted, but would like to add extra features to the app.
+
+## Future Features to Implement
+
+- Dark Mode Toggle
+- Showing users their previous orders
+- Searching stores by distance from the user
+- Tune up CSS
+
+
