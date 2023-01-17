@@ -5,7 +5,6 @@ import { editReviewThunk } from "../../../store/reviews";
 import { useState } from "react";
 
 const ModalEditReview = ({ setIsOpen, review }) => {
-
 	const dispatch = useDispatch();
 	const [body, setBody] = useState("");
 	const [rating, setRating] = useState("");
@@ -40,10 +39,10 @@ const ModalEditReview = ({ setIsOpen, review }) => {
 					<div className={styles.centered}>
 						<div className={styles.modal}>
 							<div className={styles.modalHeader}>
-								<h5 className={styles.heading}>
+								<p className={styles.heading}>
 									Had second thoughts? Edit your review for{" "}
 									{review.product.name}
-								</h5>
+								</p>
 							</div>
 							<button
 								className={styles.closeBtn}

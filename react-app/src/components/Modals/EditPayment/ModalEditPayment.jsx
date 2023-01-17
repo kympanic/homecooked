@@ -3,14 +3,12 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { editPaymentThunk } from "../../../store/payments";
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
 
 const ModalEditPayment = ({ setIsOpen, payment }) => {
 	const dispatch = useDispatch();
 	const userId = useSelector((state) => state.session.user.id);
 
 	const [errors, setErrors] = useState([]);
-	const [provider, setProvider] = useState("");
 	const [accountNumber, setAccountNumber] = useState("");
 	const [month, setMonth] = useState("");
 	const [year, setYear] = useState("");
@@ -36,9 +34,6 @@ const ModalEditPayment = ({ setIsOpen, payment }) => {
 
 	const updateAccountNumber = (e) => {
 		setAccountNumber(e.target.value);
-	};
-	const updateProvider = (e) => {
-		setProvider(e.target.value);
 	};
 
 	const updateMonth = (e) => {
