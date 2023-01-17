@@ -1,3 +1,7 @@
+# Homecooked
+
+By [Daniel Yoo(https://github.com/kympanic)], [Alex Hiller(https://github.com/Dudemaster47)], [Megha Sahgal(https://github.com/meghasahgal)]
+
 
 Introduction: A full stack application that purports to replicate the Etsy website, with a focus on two main features: Products and Reviews, and several partial CRUD features including Search, Orders, and Cart.
 
