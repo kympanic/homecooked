@@ -10,6 +10,7 @@
     margin: 16px 0px 40px 0px;
     padding: 0 80px 0 80px;
     border-radius: 30px;
+    row-gap: 30px;
 }
 
 .store-details {
@@ -22,7 +23,7 @@
 	background-size: cover;
     /* padding-top: 20px; */
     padding-bottom: 10px;
-    
+
 }
 
   .search-bar {
@@ -80,15 +81,17 @@
     margin-left: -40px;
     margin-top: 10px;
     font-size: 20px;
+    color: #6F6534;
 }
 
 .storeBox {
-    box-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px #6F6534;
     border-radius: 10px;
     transition: all 0.25s ease;
+    padding-bottom: 10px;
 }
 
 .storeBox:hover {
     transform: translateY(-10px);
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px #6F6534;
 }

@@ -96,14 +96,14 @@ const HomePage = () => {
 												icon={faStar}
 												/>
 										</div>
-												
+
 										<div className="secondary-text">
 											Category: {store.category}
 										</div>
 										<div className="secondary-text">
 											Location: {store.zipcode}
 										</div>
-										{/* <div className="secondary-text">
+										<div className="secondary-text">
 											Distance: {""}
 											{zipCodeData
 												.zipCodeDistance(
@@ -113,9 +113,10 @@ const HomePage = () => {
 												)
 												.toFixed(2)}{" "}
 											miles
-										</div> */}
+										</div>
 										<div>
-											<br></br>
+											{/* <br></br> */}
+
 										</div>
 										</Link>
 									</div>

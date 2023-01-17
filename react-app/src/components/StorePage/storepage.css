@@ -143,7 +143,7 @@
 #storemenu-title-element {
 	text-align: center;
 	margin-bottom: 50px;
-	color: #292421;
+	color: white;
 	border: 2px solid #365365;
 	height: 100px;
 	padding-top: 50px;
@@ -151,9 +151,9 @@
 	margin-left: 45%;
 	font-weight: bolder;
 	border-radius: 100px;
-	color: white;
 	background-color: #365365;
 }
+
 
 #shopinfo-shopname-element {
 	padding-top: 50px;
