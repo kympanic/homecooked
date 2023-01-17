@@ -27,6 +27,11 @@
 	position: relative;
 }
 
+.modal:hover {
+	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 1);
+	transform: translate(-4px, 4px);
+}
+
 .modalHeader {
 	height: 50px;
 	background: white;
