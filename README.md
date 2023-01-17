@@ -32,15 +32,18 @@ A full stack application that purports to the theme of the Etsy website, with a 
 
 ![Screen Shot 2023-01-17 at 11 00 30 AM](https://user-images.githubusercontent.com/98551224/212987885-5951b00f-e8a2-4014-bdc8-78a0c56df239.png)
 
-When logging into the site, the user is greeted to the homepage where they can see all the vendors that are selling meals. They can go to their profile page and edit their profile. Also the user has the option to become a vendor and start selling food.
+After signing up, the user is greeted to the homepage where they can see all the vendors that are selling meals. The vendors show the average reviews for all their products based on reviews and the location and distance from the user. They can go to their profile page and edit their profile. Also the user has the option to become a vendor and start selling food. 
+The search bar can filter any store by the category of food they sell.
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/1787106/212826919-fa8c6570-6a65-45b9-ad1f-06c2ba2087dd.png">
+<img width="1596" alt="Screen Shot 2023-01-17 at 11 07 20 AM" src="https://user-images.githubusercontent.com/98551224/212989131-71d69152-23b6-4903-843e-29d9a3c5d877.png">
 
+Vendor Page
 
+![Screen Shot 2023-01-17 at 11 13 38 AM](https://user-images.githubusercontent.com/98551224/212990949-dc675567-9440-462f-91a5-7e4b8b79b220.png)
 
+A Vendor can create/edit/delete any products from their menus. A user can see all reviews that are relevant to each store and products.
 
-
-
+![Screen Shot 2023-01-17 at 11 00 30 AM](https://user-images.githubusercontent.com/98551224/212987885-5951b00f-e8a2-4014-bdc8-78a0c56df239.png)
 
 
 
