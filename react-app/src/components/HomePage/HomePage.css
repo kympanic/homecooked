@@ -22,6 +22,7 @@
 	background-size: cover;
     /* padding-top: 20px; */
     padding-bottom: 10px;
+    
 }
 
   .search-bar {
@@ -46,6 +47,8 @@
     font-size: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
+    text-decoration: none;
+    color: black;
 }
 
 .secondary-text{
@@ -77,4 +80,15 @@
     margin-left: -40px;
     margin-top: 10px;
     font-size: 20px;
+}
+
+.storeBox {
+    box-shadow: 3px 3px 3px black;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+.storeBox:hover {
+    transform: translateY(-10px);
+    box-shadow: 5px 5px 5px black;
 }

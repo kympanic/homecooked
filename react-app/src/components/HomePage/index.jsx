@@ -69,7 +69,11 @@ const HomePage = () => {
 								store &&
 								store.id &&
 								store.products.length > 0 ? (
-									<div key={store?.id}>
+									<div key={store?.id} className="storeBox">
+											<Link
+												className="store-link"
+												to={`/store/${store.id}`}
+											>
 										<div className="store-details">
 											<img
 												id="shop-splash-img"
@@ -77,23 +81,19 @@ const HomePage = () => {
 												alt="vendor-splash-img"
 											/>
 										</div>
-										<Link
-											className="store-link"
-											to={`/store/${store.id}`}
-										>
 											{store.shopName}
-										</Link>
 
 										<div className="secondary-text">
 											<AvgRating
 												user={store}
 												products={products}
-											/>
+												/>
 											<FontAwesomeIcon
 												className="star"
 												icon={faStar}
-											/>
+												/>
 										</div>
+												
 										<div className="secondary-text">
 											Category: {store.category}
 										</div>
@@ -114,6 +114,7 @@ const HomePage = () => {
 										<div>
 											<br></br>
 										</div>
+										</Link>
 									</div>
 								) : (
 										null
