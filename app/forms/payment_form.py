@@ -11,6 +11,9 @@ def expiration_check(form,field):
     expiration=field.data
     if len(expiration) < 4:
         raise ValidationError('Provide valid expiration date')
+    if expiration.count("-") > 1:
+        raise ValidationError('Provide valid expiration date')
+
 
 class PaymentForm(FlaskForm):
     user_id=IntegerField('user_id', validators=[DataRequired()])
