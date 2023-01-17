@@ -56,64 +56,66 @@ const StoreHeader = ({ userId, storeAvg }) => {
 					</button>
 				)}
 				<div className="store-info-container">
-					<div className="shop-logo-img-container">
-						<img
-							className="shop-logo-img"
-							src={
-								vendor.shopLogoImg
-									? vendor.shopLogoImg
-									: shopLogoPlaceholderImg
-							}
-							alt="vendor-shop-logo"
-						/>
-					</div>
 					<div className="shop-info-container">
-						<div id="shopinfo-shopname-element">
-							<h1>{vendor.shopName}</h1>
+						<div className="shop-logo-img-container">
+							<img
+								className="shop-logo-img"
+								src={
+									vendor.shopLogoImg
+										? vendor.shopLogoImg
+										: shopLogoPlaceholderImg
+								}
+								alt="vendor-shop-logo"
+							/>
 						</div>
-						{vendor.category ? (
-							<div id="shopinfo-cuisine-element">
-								<p>Cuisine: {vendor.category}</p>
+						<div className="shopInfoBox">
+							<div id="shopinfo-shopname-element">
+								<h1>{vendor.shopName}</h1>
 							</div>
-						) : (
-							<div id="shopinfo-cuisine-element">
-								<p>Add Cuisine Category</p>
-							</div>
-						)}
-						{storeAvg ? (
-							<div id="shopinfo-avg-element">
-								<p>Average Reviews: {storeAvg}</p>
-							</div>
-						) : (
-							<div id="shopinfo-avg-element">
-								<p>No reviews yet!</p>
-							</div>
-						)}
-						{vendor.id !== sessionUserId ? (
-							<div id="shopinfo-zipcode-element">
-								<p>
-									Distance:{" "}
-									{zipCodeData
-										.zipCodeDistance(
-											sessionUser.zipcode,
-											vendor.zipcode,
-											"M"
-										)
-										.toFixed(2)}{" "}
-									miles
-								</p>
-								<p>Location: {location}</p>
-							</div>
-						) : (
-							<div>
-								<div>
-									<p>Zipcode: {vendor.zipcode}</p>
+							{vendor.category ? (
+								<div id="shopinfo-cuisine-element">
+									<p>Cuisine: {vendor.category}</p>
 								</div>
+							) : (
+								<div id="shopinfo-cuisine-element">
+									<p>Add Cuisine Category</p>
+								</div>
+							)}
+							{storeAvg ? (
+								<div id="shopinfo-avg-element">
+									<p>Average Reviews: {storeAvg}</p>
+								</div>
+							) : (
+								<div id="shopinfo-avg-element">
+									<p>No reviews yet!</p>
+								</div>
+							)}
+							{vendor.id !== sessionUserId ? (
 								<div id="shopinfo-zipcode-element">
-									<SideBar userId={userId} />
+									<p>
+										Distance:{" "}
+										{zipCodeData
+											.zipCodeDistance(
+												sessionUser.zipcode,
+												vendor.zipcode,
+												"M"
+											)
+											.toFixed(2)}{" "}
+										miles
+									</p>
+									<p>Location: {location}</p>
 								</div>
-							</div>
-						)}
+							) : (
+								<div>
+									<div>
+										<p>Zipcode: {vendor.zipcode}</p>
+									</div>
+									<div id="shopinfo-zipcode-element">
+										<SideBar userId={userId} />
+									</div>
+								</div>
+							)}
+						</div>
 					</div>
 					<div className="user-info-container">
 						<div id="userinfo-profile-img-element">
