@@ -35,6 +35,12 @@ const Product = ({ id, vendor }) => {
 		<div className="product-card-container">
 			{product && vendor && sessionUserId && (
 				<>
+					{isOpenReview && (
+						<ModalAddReview
+							setIsOpen={setIsOpenReview}
+							product={product}
+						/>
+					)}
 					{vendor.id !== sessionUserId && (
 						<div className="menu-add-review-btn-box">
 							<button
@@ -44,6 +50,12 @@ const Product = ({ id, vendor }) => {
 								Add Review
 							</button>
 						</div>
+					)}
+					{isOpenDescription && (
+						<ModalMenuDescription
+							setIsOpen={setIsOpenDescription}
+							product={product}
+						/>
 					)}
 					<div
 						onClick={() => setIsOpenDescription(true)}
@@ -60,15 +72,28 @@ const Product = ({ id, vendor }) => {
 							onError={onImageError}
 						/>
 					</div>
-
-					<p>{product?.name}</p>
-
-					<p>
-						${(Math.round(product?.price * 100) / 100).toFixed(2)}
-					</p>
-
-					<p>Average Rating: {product?.avgRating}</p>
-
+					<div className="menu-info-wrapper">
+						<p>{product?.name}</p>
+						<p>
+							$
+							{(Math.round(product?.price * 100) / 100).toFixed(
+								2
+							)}
+						</p>
+						<p>Average Rating: {product?.avgRating}</p>
+					</div>
+					{isOpenEdit && (
+						<ModalEditProduct
+							setIsOpen={setIsOpenEdit}
+							product={product}
+						/>
+					)}
+					{isOpenDelete && (
+						<ModalDeleteProduct
+							setIsOpen={setIsOpenDelete}
+							product={product}
+						/>
+					)}
 					{vendor.id === sessionUserId ? (
 						<div className="menu-button-container">
 							<button
@@ -93,30 +118,6 @@ const Product = ({ id, vendor }) => {
 								Add to Cart
 							</button>
 						</div>
-					)}
-					{isOpenEdit && (
-						<ModalEditProduct
-							setIsOpen={setIsOpenEdit}
-							product={product}
-						/>
-					)}
-					{isOpenDelete && (
-						<ModalDeleteProduct
-							setIsOpen={setIsOpenDelete}
-							product={product}
-						/>
-					)}
-					{isOpenDescription && (
-						<ModalMenuDescription
-							setIsOpen={setIsOpenDescription}
-							product={product}
-						/>
-					)}
-					{isOpenReview && (
-						<ModalAddReview
-							setIsOpen={setIsOpenReview}
-							product={product}
-						/>
 					)}
 				</>
 			)}

@@ -19,14 +19,12 @@ const Menu = () => {
 	return (
 		<div className="menu-page-background">
 			<div className="menu-list-full-container">
-				<div>
-					{products &&
-						products.map((el) => (
-							<li key={el.id} className="menu-card">
-								<Product id={el.id} vendor={vendor} />
-							</li>
-						))}
-				</div>
+				{products &&
+					products.map((el) => (
+						<li key={el.id} className="menu-card">
+							<Product id={el.id} vendor={vendor} />
+						</li>
+					))}
 			</div>
 		</div>
 	);

@@ -31,6 +31,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const onShopLogoError = (e) => {
 		e.target.src = shopLogoPlaceholderImg;
 	};
+
 	const onProfileImgError = (e) => {
 		e.target.src = profilePlaceholderImg;
 	};
