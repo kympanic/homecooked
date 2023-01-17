@@ -52,7 +52,7 @@ const StorePage = () => {
 					{vendor.products.length > 0 ? (
 						<div id="store-menu-wrapper">
 							<div id="storemenu-title-element">
-								<h1>MENU</h1>
+								<h1 className="menuTitle">MENU</h1>
 							</div>
 							<div className="storemenu-content-container">
 								<Menu />

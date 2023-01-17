@@ -1,5 +1,4 @@
 import UserReview from "./UserReview";
-import "./storepage.css";
 import './userreview.css'
 import './profilereviews.css'
 

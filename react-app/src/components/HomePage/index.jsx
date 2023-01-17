@@ -34,6 +34,12 @@ const HomePage = () => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
 
+	const placeHolderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg";
+
+	const onImageError = (e) => {
+		e.target.src = placeHolderImg;
+	};
 	return (
 		<>
 			{sessionUser ? (
@@ -67,63 +73,65 @@ const HomePage = () => {
 									return store;
 								}
 							})
-							.map((store) =>
-								sessionUser &&
-								store &&
-								store.id &&
-								store.products.length > 0 ? (
-									<div key={store?.id} className="storeBox">
+							.map(
+								(store) =>
+									sessionUser &&
+									store &&
+									store.id &&
+									store.products.length > 0 ? (
+										<div
+											key={store?.id}
+											className="storeBox"
+										>
 											<Link
 												className="store-link"
 												to={`/store/${store.id}`}
 											>
-										<div className="store-details">
-											<img
-												id="shop-splash-img"
-												src={store?.shopSplashImg}
-												alt="vendor-splash-img"
-											/>
-										</div>
-											{store.shopName}
+												<div className="store-details">
+													<img
+														id="shop-splash-img"
+														src={
+															store?.shopSplashImg
+														}
+														alt="vendor-splash-img"
+														onError={onImageError}
+													/>
+												</div>
+												{store.shopName}
 
-										<div className="secondary-text">
-											<AvgRating
-												user={store}
-												products={products}
-												/>
-											<FontAwesomeIcon
-												className="star"
-												icon={faStar}
-												/>
-										</div>
+												<div className="secondary-text">
+													<AvgRating
+														user={store}
+														products={products}
+													/>
+													<FontAwesomeIcon
+														className="star"
+														icon={faStar}
+													/>
+												</div>
 
-										<div className="secondary-text">
-											Category: {store.category}
+												<div className="secondary-text">
+													Category: {store.category}
+												</div>
+												<div className="secondary-text">
+													Location: {store.zipcode}
+												</div>
+												<div className="secondary-text">
+													Distance: {""}
+													{zipCodeData
+														.zipCodeDistance(
+															sessionUserZipcode,
+															store.zipcode,
+															"M"
+														)
+														.toFixed(2)}{" "}
+													miles
+												</div>
+												<div>{/* <br></br> */}</div>
+											</Link>
 										</div>
-										<div className="secondary-text">
-											Location: {store.zipcode}
-										</div>
-										<div className="secondary-text">
-											Distance: {""}
-											{zipCodeData
-												.zipCodeDistance(
-													sessionUserZipcode,
-													store.zipcode,
-													"M"
-												)
-												.toFixed(2)}{" "}
-											miles
-										</div>
-										<div>
-											{/* <br></br> */}
-
-										</div>
-										</Link>
-									</div>
-								) : (
-										null
-									// <div></div>
-								)
+									) : null
+								// <div></div>
 							)}
 					</div>
 				</div>

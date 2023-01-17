@@ -21,6 +21,8 @@
 }
 
 .shop-splash-img {
+	position: relative;
+	top: 15px;
 	width: 100%;
 	height: 310px;
 	object-fit: fill;
@@ -28,11 +30,24 @@
 
 .store-info-container {
 	display: flex;
+	justify-content: space-between;
 }
+
+.shop-info-container {
+	display: flex;
+}
+
+.shopInfoBox {
+	display: flex;
+	flex-direction: column;
+}
+
 .shop-logo-img {
-	width: 100px;
-	height: 100px;
-	margin: 70px;
+	width: 200px;
+	height: 200px;
+	margin: 30px 35px 50px 40px;
+	border-radius: 150px;
+	box-shadow: 5px 5px 5px black;
 }
 
 .header-wrapper {
@@ -67,10 +82,8 @@
 }
 
 .user-info-container {
-	position: absolute;
 	justify-content: center;
 	text-align: center;
-
 	color: rgb(53, 53, 53);
 	top: 400px;
 	padding-right: 50px;
@@ -187,6 +200,7 @@
 #homepage-middle-icons img:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 10px -10px darkorange;
+	cursor: pointer;
 }
 
 .review-carousel-container {

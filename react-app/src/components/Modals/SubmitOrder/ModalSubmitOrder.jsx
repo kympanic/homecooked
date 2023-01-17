@@ -1,7 +1,6 @@
 import styles from "./Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-// import { useState } from "react";
 import { getAllCartItems } from "../../../store/session";
 import { reset } from "../../../store/session";
 import { useHistory } from "react-router-dom";
@@ -43,7 +42,7 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h5 className={styles.heading}>Food is in the Oven!</h5>
+						<h2 className={styles.heading}>You're Almost There!</h2>
 					</div>
 					<button
 						className={styles.closeBtn}
@@ -51,7 +50,15 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 					>
 						<RiCloseLine style={{ marginBottom: "-3px" }} />
 					</button>
-					<div className={styles.modalContent}></div>
+					<div className={styles.modalContent}>
+						<div>
+							<img
+								className="submit-order-img"
+								src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/simpsons-eating-i15601.jpeg"
+								alt="homereating"
+							/>
+						</div>
+					</div>
 					<div className={styles.modalActions}>
 						<div className={styles.actionsContainer}>
 							<button
@@ -59,12 +66,6 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 								onClick={handleSubmit}
 							>
 								Submit Your Order!
-							</button>
-							<button
-								className={styles.cancelBtn}
-								onClick={() => setIsOpen(false)}
-							>
-								Cancel
 							</button>
 						</div>
 					</div>
