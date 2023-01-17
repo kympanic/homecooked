@@ -67,7 +67,7 @@ const ProfilePage = () => {
 							<div className="storeLinkBox">
 								<button 
 									onClick={() => setIsOpenAddShop(true)}
-									className={styles.primaryBtn}
+									className="addStoreButton"
 								>
 									Become a Vendor
 								</button>

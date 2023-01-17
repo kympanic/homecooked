@@ -32,6 +32,18 @@
     height: 100%;
 }
 
+.userProfileImg:before {
+    content:' ';
+    display: block;
+    position: relative;
+    top:0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-image: url(no-image.png);
+    background-size: 200px 200px;
+}
+
 .usernameDisplay {
     color: white;
     text-shadow: -1px 1px 0 #000,
@@ -115,4 +127,30 @@
     1px -1px 0 #FFF,
     -1px -1px 0 #FFF;
     transition: all 0.25s ease;
+}
+
+.addStoreButton {
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: white;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    font-size: 60px;
+    background: linear-gradient(#6F6534, #365365);
+    transition: all 0.5s ease;
+}
+
+.addStoreButton:hover {
+    color: #FFF;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    font-weight: bold;
+    font-size: 100px;
+    transition: all 0.5s ease;
+    cursor: pointer;
 }
