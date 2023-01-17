@@ -1,148 +1,92 @@
-# Flask React Project
+# Homecooked
 
-This is the starter for the Flask React project.
+By [Daniel Yoo](https://github.com/kympanic), [Alex Hiller](https://github.com/Dudemaster47), [Megha Sahgal](https://github.com/meghasahgal)
 
-## Getting started
-1. Clone this repository (only this branch)
+Hungry? Tired? Want a meal created with care? [Homecooked](https://home-cooked.onrender.com/) is waiting for you!
 
-2. Install dependencies
+Some days we're just too tired to cook. Homecooked is for the individual who wants a warm meal without foregoing on the quality. Homecooked is a one stop shop for finding local vendors that will cook up your next delicious meal. 
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+## Index
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+- [API Documentation](https://github.com/kympanic/homecooked/wiki/API-Routes)
+- [Database Schema](https://github.com/kympanic/homecooked/wiki/Database-Schema)
+- [Frontend Routes](https://github.com/kympanic/homecooked/wiki/Frontend-Routes)
+- [MVP Feature List](https://github.com/kympanic/homecooked/wiki/MVP-List)
+- [User Stories](https://github.com/kympanic/homecooked/wiki/User-Stories)
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+## Technologies Used
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
-
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+- Javascript
+- React/Redux
+- Python
+- CSS
+- Flask/SQLAlchemy
+- [FontAwesome](https://fontawesome.com/icons?d=gallery&m=free)
+- [zipcode-city-distance](https://github.com/buddyeorl/zipcode-city-distance-pkg)
+- [Redux Persist](https://www.npmjs.com/package/redux-persist)
 
 
-## Deployment through Render.com
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+## Overview
+A full stack application that purports to the theme of the Etsy website, with a focus on two main features: Products and Reviews, and several partial CRUD features including Search, Orders, and Cart. When the user first accesses the site, they are brought to a splash page, greeting the user and prompting them to sign up. Attempting to access any page on the site without login/signup will redirect them to login.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+![Screen Shot 2023-01-17 at 11 00 30 AM](https://user-images.githubusercontent.com/98551224/212987885-5951b00f-e8a2-4014-bdc8-78a0c56df239.png)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+After signing up, the user is greeted to the homepage where they can see all the vendors that are selling meals. The vendors show the average reviews for all their products based on reviews and the location and distance from the user. They can go to their profile page and edit their profile. Also the user has the option to become a vendor and start selling food. 
+The search bar can filter any store by the category of food they sell.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+<img width="1596" alt="Screen Shot 2023-01-17 at 11 07 20 AM" src="https://user-images.githubusercontent.com/98551224/212989131-71d69152-23b6-4903-843e-29d9a3c5d877.png">
 
-### Part A: Configure the Start and Build Commands
+Vendor Page
 
-Start by giving your application a name.
+- A Vendor can create/edit/delete any products from their menus. Also there are options in the side menu to update shop logo, shop splash image, shop name, cuisine, and profile image. Only if the logged in user is the owner of the page can you see the store customization side menu
+- A user can see all reviews that are relevant to each store and products. If the user is the owner of the review, they will have the option to edit or delete their reviews
+- If the logged in user is not the owner of the store, they have the option to add a review or add the item to a cart for later purchase
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+![Screen Shot 2023-01-17 at 11 13 38 AM](https://user-images.githubusercontent.com/98551224/212990949-dc675567-9440-462f-91a5-7e4b8b79b220.png)
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+Profile Page
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+- User is able to edit their public profile here. If the user does not have a store, they will have the option to become a vendor
+- User is able to edit or delete any reviews on the foods they have reviewed
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+![Screen Shot 2023-01-17 at 11 26 41 AM](https://user-images.githubusercontent.com/98551224/212993694-6b4bb6b6-4c6c-4aec-923f-266beef5bbae.png)
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+Cart Page
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+- Page shows the items that were added to the cart with the total items and price
+- User has the option to edit their cart and remove items
+- User can checkout and add payment or use existing payment
 
-Now, add your start command in the Start field:
+![Screen Shot 2023-01-17 at 11 30 01 AM](https://user-images.githubusercontent.com/98551224/212994294-ce4f27da-67b6-4020-923e-47a9674b1411.png)
 
-```shell
-# start script
-gunicorn app:app
-```
+Checkout Page
+- User has the options to add or remove items
+- Can edit or delete their existing payments
+- When the user selects a payment, a confirmation will show to submit order
+- When the order is submitted, an order is created with the payment id, cart is emptied, and the user is directed back to the home page
 
-_If you are using websockets, use the following start command instead for increased performance:_
+![Screen Shot 2023-01-17 at 11 34 32 AM](https://user-images.githubusercontent.com/98551224/212994984-8639def8-f29d-4a3a-9744-c10ad5400d30.png)
 
-`gunicorn --worker-class eventlet -w 1 app:app`
+## Sample Code
 
-### Part B: Add the Environment Variables
+Dealing with error validations, custom validators from wtforms and sending them correctly to the frontend proved to be a difficult task. We had to adjust the error messages to properly be formatted to an array so forms can map through and show each error message correctly.
 
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
+<img width="727" alt="Screen Shot 2023-01-17 at 11 40 25 AM" src="https://user-images.githubusercontent.com/98551224/212996076-7aed69d6-528c-486a-85bb-0bd1d5a28897.png">
+<img width="827" alt="Screen Shot 2023-01-17 at 11 41 31 AM" src="https://user-images.githubusercontent.com/98551224/212996289-76a0163d-3424-4afb-8102-9e7d97e71dbb.png">
 
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
+The cart was a communal effort to create -add here.
 
-Add the following keys and values in the Render GUI form:
+## Our Journey
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
+We wanted to create a ecommerce site that was similar to Etsy. Creating a working database in Flask-SQLAlchemy, cart feature, search bar, user feature, full CRUD on products,reviews and payments proved to be an arduous task to finish in two weeks. We were able to implement most of what we wanted, but would like to add extra features to the app.
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+## Future Features to Implement
 
-Add the following keys and values:
+- Dark Mode Toggle
+- Showing users their previous orders
+- Searching stores by distance from the user
+- Fix interaction between payments and products
+- Tune up CSS
 
-- DATABASE_URL (copy value from Internal Database URL field)
 
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
