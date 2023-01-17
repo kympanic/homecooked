@@ -5,60 +5,61 @@ import { useState } from "react";
 import { editUserThunk } from "../../../store/users";
 
 const ModalEditUserProfile = ({ setIsOpen, userId }) => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
 
 	const [errors, setErrors] = useState([]);
-    const [username, setUsername] = useState("");
+	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
-    const [profileImg, setProfileImg] = useState("")
+	const [profileImg, setProfileImg] = useState("");
 	const [zipcode, setZipcode] = useState("");
 
-    const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const editedUserProf = {
-            id: user.id,
+			id: user.id,
 			username,
 			email,
-            shop_name: user.shopName,
+			shop_name: user.shopName,
 			phone_number: phoneNumber,
-            shop_logo_img: user.shopLogoImg,
-            shop_splash_img: user.shopSplashImg,
+			shop_logo_img: user.shopLogoImg,
+			shop_splash_img: user.shopSplashImg,
 			profile_img: profileImg,
-            category: user.category,
+			category: user.category,
 			zipcode,
 		};
 
-        //error handling
-		let data = dispatch(editUserThunk(editedUserProf));
+		//error handling
+		let data = await dispatch(editUserThunk(editedUserProf));
 		if (data) {
 			setErrors(data);
+		} else {
+			setIsOpen(false);
 		}
-		setIsOpen(false);
-    };
+	};
 
-    const updateUsername = (e) => {
-        setUsername(e.target.value);
-    };
+	const updateUsername = (e) => {
+		setUsername(e.target.value);
+	};
 
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
-    };
+	const updateEmail = (e) => {
+		setEmail(e.target.value);
+	};
 
-    const updatePhoneNumber = (e) => {
-        setPhoneNumber(e.target.value);
-    };
+	const updatePhoneNumber = (e) => {
+		setPhoneNumber(e.target.value);
+	};
 
-    const updateProfileImg = (e) => {
-        setProfileImg(e.target.value);
-    };
+	const updateProfileImg = (e) => {
+		setProfileImg(e.target.value);
+	};
 
-    const updateZipcode = (e) => {
-        setZipcode(e.target.value);
-    };
+	const updateZipcode = (e) => {
+		setZipcode(e.target.value);
+	};
 
-    return (
+	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />
 			<div className={styles.centered}>
@@ -79,56 +80,60 @@ const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 									<div key={ind}>{error}</div>
 								))}
 							</div>
-                            <div>
-                            <label htmlFor="username">Username:</label>
-                            <input
-                                type="text"
-                                name="username"
-                                value={username}
-                                placeholder={user?.username}
-                                onChange={updateUsername}
-                            />
-                            </div>
-                            <div>
-                                <label htmlFor="email">Email:</label>
-                                <input 
-                                    type="text"
-                                    name="email"
-                                    value={email}
-                                    placeholder={user?.email}
-                                    onChange={updateEmail}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="phoneNumber">Phone Number:</label>
-                                <input 
-                                    type="text"
-                                    name="phoneNumber"
-                                    value={phoneNumber}
-                                    placeholder={user?.phoneNumber}
-                                    onChange={updatePhoneNumber}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="profileImg">Your Profile Image:</label>
-                                <input 
-                                    type="url"
-                                    name="profileImg"
-                                    value={profileImg}
-                                    placeholder={user?.profileImg}
-                                    onChange={updateProfileImg}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="zipcode">Zipcode:</label>
-                                <input 
-                                    type="text"
-                                    name="zipcode"
-                                    value={zipcode}
-                                    placeholder={user?.zipcode}
-                                    onChange={updateZipcode}
-                                />
-                            </div>
+							<div>
+								<label htmlFor="username">Username:</label>
+								<input
+									type="text"
+									name="username"
+									value={username}
+									placeholder={user?.username}
+									onChange={updateUsername}
+								/>
+							</div>
+							<div>
+								<label htmlFor="email">Email:</label>
+								<input
+									type="text"
+									name="email"
+									value={email}
+									placeholder={user?.email}
+									onChange={updateEmail}
+								/>
+							</div>
+							<div>
+								<label htmlFor="phoneNumber">
+									Phone Number:
+								</label>
+								<input
+									type="text"
+									name="phoneNumber"
+									value={phoneNumber}
+									placeholder={user?.phoneNumber}
+									onChange={updatePhoneNumber}
+								/>
+							</div>
+							<div>
+								<label htmlFor="profileImg">
+									Your Profile Image:
+								</label>
+								<input
+									type="url"
+									name="profileImg"
+									value={profileImg}
+									placeholder={user?.profileImg}
+									onChange={updateProfileImg}
+								/>
+							</div>
+							<div>
+								<label htmlFor="zipcode">Zipcode:</label>
+								<input
+									type="text"
+									name="zipcode"
+									value={zipcode}
+									placeholder={user?.zipcode}
+									onChange={updateZipcode}
+								/>
+							</div>
 						</form>
 					</div>
 
