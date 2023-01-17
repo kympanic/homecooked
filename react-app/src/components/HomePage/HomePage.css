@@ -1,39 +1,95 @@
-.stores-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: space-between;
-    column-gap: 18px;
-    line-height: 20px;
-    margin: 16px 0px 40px 0px;
-    padding: 0 80px 0 80px;
-    border-radius: 10px;
+.stores-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-content: space-between;
+	column-gap: 35px;
+	line-height: 20px;
+	margin: 16px 0px 40px 0px;
+	padding: 0 80px 0 80px;
+	border-radius: 30px;
+	row-gap: 30px;
+	margin-bottom: 5%;
 }
 
 .store-details {
 	display: flex;
+	/* height: 100%;
+    width: 100%; */
 	height: 286px;
-	width: 302px;
-	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-		Helvetica Neue, sans-serif;
+	width: 400px;
 	border-radius: 10px;
-	/* background-size: contain; */
-	/* background-repeat: no-repeat; */
 	background-size: cover;
+	/* padding-top: 20px; */
+	padding-bottom: 10px;
 }
 
 .search-bar {
-    display: flex;
-    flex-direction: row;
-    height: 48px;
-    width: 886px;
-    /* align-self: center; */
-    justify-self: center;
-    padding: 15px 18px;
-    margin-left: 200px;
-    margin-right: 200px;
-    border: 2px solid #222222;
-    border-radius: 96px;
+	display: flex;
+	flex-direction: row;
+	height: 15px;
+	width: 65%;
+	/* width: 650px; */
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	padding: 20px 20px;
 
+	border: 2px solid #71250e;
+	border-radius: 96px;
+	font-size: 18px;
+}
+
+.store-link {
+	font-size: 18px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.secondary-text {
+	padding-top: 3px;
+	font-size: 16px;
+}
+
+#shop-splash-img {
+	border-radius: 10px;
+	height: 100%;
+	width: 100%;
+}
+
+.search {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	padding: 20px 20px;
+	height: 48px;
+	width: 95%;
+	/* width: 886px; */
+}
+
+.search-icon {
+	display: flex;
+	flex-direction: row;
+	margin-left: -40px;
+	margin-top: 10px;
+	font-size: 20px;
+	color: #6f6534;
+}
+
+.storeBox {
+	box-shadow: 3px 3px 3px #6f6534;
+	border-radius: 10px;
+	transition: all 0.25s ease;
+	padding-bottom: 10px;
+}
+
+.storeBox:hover {
+	transform: translateY(-10px);
+	box-shadow: 5px 5px 5px #6f6534;
 }

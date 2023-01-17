@@ -1,3 +1,101 @@
 .cart-product-img {
-	width: 200px;
+	width: 100%;
+	height: 100%;
+}
+
+.itemImgBox {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 10px solid rgb(174, 74, 57);
+    box-shadow: 5px 5px 5px black;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+
+.quantityBobble {
+	-moz-appearance: textfield;
+	width: 6%;
+	border: 1px solid rgb(197, 197, 197);
+	box-shadow: 1px 1px 1px gray;
+	margin-left: 1%;
+}
+
+.quantityBobble:hover {
+	background-color: rgb(189, 189, 189);
+	color: black;
+	border: 1px solid rgb(189, 189, 189);
+}
+
+.quantityButtons {
+	display: flex;
+	align-items: center;
+}
+
+.cart-item-button {
+	width: 3%;
+	height: 1%;
+	border: 1px solid rgb(197, 197, 197);
+	box-shadow: 1px 1px 1px gray;
+	padding-bottom: 2px;
+	padding-right: 1px;
+}
+
+.cart-item-button:hover {
+	cursor: pointer;
+	background-color: rgb(189, 189, 189);
+	color: black;
+	border: 1px solid rgb(189, 189, 189);
+	font-weight: bold;
+}
+
+.cart-item-button:active {
+	cursor: pointer;
+	background-color: gray;
+	color: white;
+	border: 1px solid gray;
+	font-weight: bolder;
+	box-shadow: none;
+}
+
+.cartItemBox {
+	border: 2px solid tomato;
+	width: 33%;
+}
+
+.vendorInfo {
+	display: flex;
+	align-items: center;
+}
+
+.vendorImgBox {
+	width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 5px solid rgb(60, 60, 60);
+    box-shadow: 5px 5px 5px black;
+}
+
+.cartVendorImg {
+	width: auto;
+	height: 100%;
+}
+
+.vendorNameBox {
+    font-size: 30px; 
+	font-weight: bold;
+	margin-left: 5%;
 }

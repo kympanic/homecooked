@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Product, Order, Review,Payment, db
 from flask_login import current_user
-from app.forms import OrderForm, UserForm
+from app.forms import OrderForm, UserForm,ProfileForm
 from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
@@ -81,14 +81,30 @@ def edit_user(id):
     user = User.query.get(id)
     form = UserForm()
 
-    Print("is this hitting?")
-    Print(form.data)
+
     form['csrf_token'].data = request.cookies['csrf_token']
 <<<<<<< HEAD
     if form.is_submitted():
 =======
     if form.validate_on_submit():
 >>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
+        form.populate_obj(user)
+        db.session.commit()
+        return {user.id: user.to_dict()}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+#EDIT PROFILE BASED ON USER ID
+@user_routes.route('/profile/<int:id>', methods=['PUT','PATCH'])
+@login_required
+def edit_profile(id):
+    user= User.query.get(id)
+    form = ProfileForm()
+
+    Print("is this hitting?")
+    Print(form.data)
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
         form.populate_obj(user)
         db.session.commit()
         return {user.id: user.to_dict()}

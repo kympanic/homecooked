@@ -13,7 +13,7 @@
 .about{
 	display: flex;
 	justify-content: center;
-	padding-top: 20px;
+	/* padding-top: 20px; */
 	color:white;
 	text-decoration: none;
 
@@ -21,25 +21,42 @@
 
 .footerLink:link {
 	text-decoration: none;
+	color: white;
 }
 
 
 .footerLink:visited {
 	text-decoration: none;
+	color: white;
 }
 
 
 .footerLink:hover {
 	text-decoration: none;
+	color: white
 }
 
 
 .footerLink:active {
 	text-decoration: none;
 }
-.footerSpan {
+.bottom-text {
 	display: flex;
 	justify-content: center;
 	color: white;
+	/* padding-bottom: 10px; */
 
+}
+.contributors{
+			color: white;
+			display: flex;
+			justify-content: center;
+			flex-wrap: nowrap;
+			flex-direction: row;
+			align-content: stretch;
+			align-items: center;
+		}
+h3 {
+	margin-top: 10px;
+	margin-bottom: 0;
 }

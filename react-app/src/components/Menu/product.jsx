@@ -24,12 +24,15 @@ const Product = ({ id, vendor }) => {
 		dispatch(addItem(prodId));
 	};
 
+	const placeHolderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/default-food-image.jpeg";
+
 	return (
-		<div>
+		<div className="product-card-container">
 			{product && vendor && sessionUserId && (
 				<>
 					{vendor.id !== sessionUserId && (
-						<div>
+						<div className="menu-add-review-btn-box">
 							<button
 								className={styles.primaryBtn}
 								onClick={() => setIsOpenReview(true)}
@@ -41,10 +44,20 @@ const Product = ({ id, vendor }) => {
 					<div
 						onClick={() => setIsOpenDescription(true)}
 						className="menu-img-wrapper"
-						style={{
-							backgroundImage: "url(" + product.imageURL + ")",
-						}}
-					></div>
+						// style={{
+						// 	backgroundImage: "url(" + product.imageURL + ")",
+						// }}
+					>
+						<img
+							id="menu-product-img"
+							src={
+								product.imageURL
+									? product.imageURL
+									: placeHolderImg
+							}
+							alt={product.name}
+						/>
+					</div>
 
 					<p>{product?.name}</p>
 

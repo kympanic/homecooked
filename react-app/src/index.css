@@ -12,7 +12,14 @@
 a {
 	color: black;
 } */
-*{
-	font-family: 'Asap',
-		sans-serif;
+* {
+	font-family: "Asap", sans-serif;
+}
+/* 
+body {
+	background: rgb(211, 191, 162);
+} */
+
+ul {
+	list-style-type: none;
 }

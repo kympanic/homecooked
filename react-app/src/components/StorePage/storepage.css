@@ -68,10 +68,12 @@
 
 .user-info-container {
 	position: absolute;
-	right: 140px;
 	justify-content: center;
 	text-align: center;
+
 	color: rgb(53, 53, 53);
+	top: 400px;
+	padding-right: 50px;
 }
 #storepage-profile-img {
 	height: 100px;
@@ -114,16 +116,34 @@
 }
 
 .store-menu-wrapper {
-	margin-top: 100px;
 	align-items: center;
 	text-align: center;
 	justify-content: center;
 }
 
+#store-menu-wrapper {
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+.noproducts-store-menu-wrapper {
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+
+	height: 450px;
+	width: 900px;
+	margin-left: 20%;
+}
+
 #storemenu-title-element {
 	text-align: center;
 	margin-bottom: 50px;
-	color: #292421;
+	color: white;
 	border: 2px solid #365365;
 	height: 100px;
 	padding-top: 50px;
@@ -131,9 +151,9 @@
 	margin-left: 45%;
 	font-weight: bolder;
 	border-radius: 100px;
-	color: white;
 	background-color: #365365;
 }
+
 
 #shopinfo-shopname-element {
 	padding-top: 50px;
@@ -170,14 +190,15 @@
 }
 
 .review-carousel-container {
-	display: flex;
 	justify-content: center;
+	display: flex;
 }
 
 .after-menu-container {
-	margin-top: 120px;
+	margin-top: 75px;
 	border-bottom: 4px solid #292421;
-	padding-bottom: 120px;
+	padding-bottom: 75px;
+	display: flex;
 }
 
 #storepage-review-title {
@@ -190,9 +211,16 @@
 	overflow: scroll;
 	padding-bottom: 100px;
 	margin-bottom: 200px;
-	background-color: #eb781b;
+	background-color: white;
 }
 
 #userinfo-profile-name-element a {
 	color: black;
+}
+.no-reviews-text {
+	text-align: center;
+}
+
+.after-menu-wrapper {
+	margin-left: 18%;
 }

@@ -2,17 +2,17 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { getAllCartItems } from "../../store/session";
 import { login } from "../../store/session";
-import logo from "./icon_logo_draft.png"
-import "./navbar.css"
+import logo from "./icon_logo_draft.png";
+import "./navbar.css";
 import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 
 const NavBar = () => {
-	const cartItems = useSelector(getAllCartItems)
+	const cartItems = useSelector(getAllCartItems);
 	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
@@ -27,25 +27,21 @@ const NavBar = () => {
 		return dispatch(login(demoUser.email, demoUser.password));
 	};
 
-	const [ totalItems, setTotalItems ] = useState(0);
+	const [totalItems, setTotalItems] = useState(0);
 
 	useEffect(() => {
 		let itemCount = 0;
-		cartItems.forEach(item => {
-			itemCount += item.count
+		cartItems.forEach((item) => {
+			itemCount += item.count;
 		});
 		setTotalItems(itemCount);
-	}, [cartItems, totalItems])
+	}, [cartItems, totalItems]);
 
 	return (
 		<ul className="navbar">
 			<li className="barLink">
 				<NavLink to="/" exact={true} activeClassName="active">
-					<img
-						className="barImg"
-						src={logo}
-						alt="HomeCooked Logo"
-					/>
+					<img className="barImg" src={logo} alt="HomeCooked Logo" />
 					<div className="barWords">Home</div>
 				</NavLink>
 			</li>
@@ -67,7 +63,10 @@ const NavBar = () => {
 						</li>
 					) : (
 						<li className="barLink">
-							<button className="navButton" onClick={() => setIsOpenAddShop(true)}>
+							<button
+								className="navButton"
+								onClick={() => setIsOpenAddShop(true)}
+							>
 								Become a Vendor
 							</button>
 						</li>
@@ -76,7 +75,11 @@ const NavBar = () => {
 			) : (
 				<>
 					<li className="barLink">
-						<NavLink to="/login" exact={true} activeClassName="active">
+						<NavLink
+							to="/login"
+							exact={true}
+							activeClassName="active"
+						>
 							Login
 						</NavLink>
 					</li>
@@ -97,13 +100,15 @@ const NavBar = () => {
 				</>
 			)}
 			<li className="barLink">
-				<NavLink to ="/cart" exact={true}>
+				<NavLink to="/cart" exact={true}>
 					<div className="cartIcon">
-						<FontAwesomeIcon className="shopping" icon={faShoppingCart} />
-						Cart {" "}
+						<FontAwesomeIcon
+							className="shopping"
+							icon={faShoppingCart}
+						/>{" "}
 					</div>
 
-					<div className="cartCounter">{" "}{totalItems}</div>
+					<div className="cartCounter"> {totalItems}</div>
 				</NavLink>
 			</li>
 			{isOpenAddShop && (

@@ -7,7 +7,20 @@ const Footer = () => {
 			<a className="footerLink" href="https://github.com/kympanic/homecooked">
 				<h3 className="about"> About </h3>
 			</a>
-			<span className="footerSpan">© 2023, HomeCooked, Inc.</span>
+			<div className="contributors"><p>Project Contributors: {" "}</p>
+			<p>{" "}</p>
+			<a className="footerLink" href="https://github.com/kympanic">
+				<p >{"|"}Dan {"|"}</p>
+			</a>
+			<a className="footerLink" href="https://github.com/Dudemaster47">
+				<p> {" "} Alex {"|"}</p>
+			</a>
+			<a className="footerLink" href="https://github.com/meghasahgal">
+				<p> Megha  </p>
+			</a>
+			</div>
+
+			<span className="bottom-text">© 2023, HomeCooked, Inc.</span>
 		</div>
 	);
 };

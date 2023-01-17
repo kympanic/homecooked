@@ -18,6 +18,13 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	let zipInfo = zipCodeData.getInfo("zipcode", vendor?.zipcode);
 	let location = Object.keys(zipInfo?.data.places)[0];
 
+	const profilePlaceholderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg";
+	const shopLogoPlaceholderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshoplogo.jpg";
+	const shopSplashPlaceholderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg";
+
 	return (
 		<>
 			<div className="header-wrapper">
@@ -31,7 +38,11 @@ const StoreHeader = ({ userId, storeAvg }) => {
 					<div className="splash-img-container">
 						<img
 							className="shop-splash-img"
-							src={vendor.shopSplashImg}
+							src={
+								vendor.shopSplashImg
+									? vendor.shopSplashImg
+									: shopSplashPlaceholderImg
+							}
 							alt="vendor-splash-img"
 						/>
 					</div>
@@ -48,7 +59,11 @@ const StoreHeader = ({ userId, storeAvg }) => {
 					<div className="shop-logo-img-container">
 						<img
 							className="shop-logo-img"
-							src={vendor.shopLogoImg}
+							src={
+								vendor.shopLogoImg
+									? vendor.shopLogoImg
+									: shopLogoPlaceholderImg
+							}
 							alt="vendor-shop-logo"
 						/>
 					</div>
@@ -104,7 +119,11 @@ const StoreHeader = ({ userId, storeAvg }) => {
 						<div id="userinfo-profile-img-element">
 							<img
 								id="storepage-profile-img"
-								src={vendor.profileImg}
+								src={
+									vendor.profileImg
+										? vendor.profileImg
+										: profilePlaceholderImg
+								}
 								alt={vendor.username}
 							/>
 						</div>

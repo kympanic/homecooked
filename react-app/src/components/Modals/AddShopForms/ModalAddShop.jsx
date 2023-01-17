@@ -3,17 +3,15 @@ import { RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { editUserThunk } from "../../../store/users";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ModalAddShop = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-	// const history = useHistory();
-	console.log(user);
+	const history = useHistory();
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
-	const [shopLogoImg, setShopLogoImg] = useState("");
 	const [category, setCategory] = useState("");
 
 	const handleSubmit = async (e) => {
@@ -39,16 +37,13 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 			setErrors(data);
 		} else {
 			setIsOpen(false);
+			history.push(`/store/${user.id}`);
 			return window.location.reload(false);
 		}
 	};
 
 	const updateShopName = (e) => {
 		setShopName(e.target.value);
-	};
-
-	const updateShopLogoImg = (e) => {
-		setShopLogoImg(e.target.value);
 	};
 
 	const updateCategory = (e) => {

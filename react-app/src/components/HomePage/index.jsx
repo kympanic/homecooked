@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersThunk } from "../../store/users";
 import AvgRating from "../AvgRating/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./HomePage.css";
 import SplashPage from "../SplashPage";
@@ -41,15 +41,17 @@ const HomePage = () => {
 					{" "}
 					<hr></hr>
 					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<input
-						className="search-bar"
-						placeholder="Search For Food..."
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-					{/* <FontAwesomeIcon icon={faSearch} className="search-icon" /> */}
+					<div className="search">
+						<input
+							className="search-bar"
+							placeholder="Search For Food..."
+							onChange={(e) => setQuery(e.target.value)}
+						/>
+						<FontAwesomeIcon
+							icon={faSearch}
+							className="search-icon"
+						/>
+					</div>
 					<div className="stores-container">
 						{allStoresArray
 							.filter((store) => {
@@ -70,7 +72,11 @@ const HomePage = () => {
 								store &&
 								store.id &&
 								store.products.length > 0 ? (
-									<div key={store?.id}>
+									<div key={store?.id} className="storeBox">
+											<Link
+												className="store-link"
+												to={`/store/${store.id}`}
+											>
 										<div className="store-details">
 											<img
 												id="shop-splash-img"
@@ -78,24 +84,19 @@ const HomePage = () => {
 												alt="vendor-splash-img"
 											/>
 										</div>
-										<Link
-											className="store-link"
-											to={`/store/${store.id}`}
-										>
 											{store.shopName}
-										</Link>
 
 										<div className="secondary-text">
-											AvgRating:
 											<AvgRating
 												user={store}
 												products={products}
-											/>
+												/>
 											<FontAwesomeIcon
 												className="star"
 												icon={faStar}
-											/>
+												/>
 										</div>
+
 										<div className="secondary-text">
 											Category: {store.category}
 										</div>
@@ -114,11 +115,14 @@ const HomePage = () => {
 											miles
 										</div>
 										<div>
-											<br></br>
+											{/* <br></br> */}
+
 										</div>
+										</Link>
 									</div>
 								) : (
-									<div></div>
+										null
+									// <div></div>
 								)
 							)}
 					</div>

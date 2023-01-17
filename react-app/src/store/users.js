@@ -29,7 +29,6 @@ export const getUserThunk = (userId) => async (dispatch) => {
 export const editUserThunk = (data) => async (dispatch) => {
 	const editedUser = JSON.stringify(data);
 
-	console.log("did it hit the store", editedUser);
 	const res = await fetch(`/api/users/${data.id}`, {
 		method: "PUT",
 		headers: {
@@ -44,6 +43,34 @@ export const editUserThunk = (data) => async (dispatch) => {
 		return null;
 	} else if (res.status < 500) {
 		const data = await res.json();
+		console.log(data, "is this hitting the errors in teh front end?");
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+		return ["An error occurred. Please try again."];
+	}
+};
+
+export const editNewUserThunk = (data) => async (dispatch) => {
+	const editedUser = JSON.stringify(data);
+
+	console.log("did it hit the store", editedUser);
+	const res = await fetch(`/api/users/profile/${data.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: editedUser,
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		dispatch(loadUsers(data));
+		return null;
+	} else if (res.status < 500) {
+		const data = await res.json();
+		console.log(data, "is this hitting the errors in teh front end?");
 		if (data.errors) {
 			return data.errors;
 		}

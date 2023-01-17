@@ -6,6 +6,7 @@ import { getAllCartItems } from "../../store/session";
 import ModalAddPayment from "../Modals/AddPayment/ModalAddPayment";
 import { useHistory } from "react-router-dom";
 import styles from "../Modals/App.module.css";
+import "./cartitems.css";
 
 const CartPage = () => {
 	const cartItems = useSelector(getAllCartItems);
@@ -39,17 +40,17 @@ const CartPage = () => {
 
 	return (
 		<div>
-			<h1>Cart Page</h1>
+			<h1 className={styles.titleText}>Your Cart</h1>
 			<div>
 				<div>
 					{cartItems.length === 0 && (
 						<div>
-							<h2>There are no cart items yet!</h2>
+							<h2 className={styles.secondaryText}>There are no cart items yet!</h2>
 						</div>
 					)}
 					{cartItems &&
 						cartItems.map((el) => (
-							<div key={el.id} className="cartItemBox">
+							<div key={el.id}>
 								<CartItem id={el.id} qty={el.count} />
 							</div>
 						))}
@@ -58,7 +59,10 @@ const CartPage = () => {
 			<div>
 				{cartItems.length === 0 ? (
 					<div>
-						<button onClick={handleNoItems}>
+						<button className={styles.primaryBtn} 
+							onClick={handleNoItems}
+							className={styles.primaryBtn}
+						>
 							Go buy something!
 						</button>
 					</div>
