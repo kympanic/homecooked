@@ -39,6 +39,31 @@ const SideBar = ({ userId }) => {
 
 	return (
 		<div className={isExpanded ? "Sidebar" : "Sidebar collapsed"}>
+			{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
+			{isOpenChangeName && (
+				<ModalChangeShopName
+					setIsOpen={setIsOpenChangeName}
+					userId={userId}
+				/>
+			)}
+			{isOpenChangeCat && (
+				<ModalChangeShopCategory
+					setIsOpen={setIsOpenChangeCat}
+					userId={userId}
+				/>
+			)}
+			{isOpenEditLogo && (
+				<ModalChangeShopLogo
+					setIsOpen={setIsOpenEditLogo}
+					userId={userId}
+				/>
+			)}
+			{isOpenEditProfile && (
+				<ModalEditProfileImg
+					setIsOpen={setIsOpenEditProfile}
+					userId={userId}
+				/>
+			)}
 			<div className="sidebar-header">
 				<FontAwesomeIcon
 					className="sidebar-icon-header"
@@ -99,34 +124,7 @@ const SideBar = ({ userId }) => {
 						Create Product
 					</span>
 				</div>
-
 				<div />
-
-				{isOpen && <ModalAddProduct setIsOpen={setIsOpen} />}
-				{isOpenChangeName && (
-					<ModalChangeShopName
-						setIsOpen={setIsOpenChangeName}
-						userId={userId}
-					/>
-				)}
-				{isOpenChangeCat && (
-					<ModalChangeShopCategory
-						setIsOpen={setIsOpenChangeCat}
-						userId={userId}
-					/>
-				)}
-				{isOpenEditLogo && (
-					<ModalChangeShopLogo
-						setIsOpen={setIsOpenEditLogo}
-						userId={userId}
-					/>
-				)}
-				{isOpenEditProfile && (
-					<ModalEditProfileImg
-						setIsOpen={setIsOpenEditProfile}
-						userId={userId}
-					/>
-				)}
 			</div>
 		</div>
 	);
