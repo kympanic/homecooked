@@ -18,6 +18,7 @@
 	width: auto;
 	text-align: center;
 	object-fit: contain;
+	z-index: 0;
 }
 
 .shop-splash-img {
@@ -166,7 +167,6 @@
 	border-radius: 100px;
 	background-color: #365365;
 }
-
 
 #shopinfo-shopname-element {
 	padding-top: 50px;

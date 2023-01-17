@@ -78,7 +78,7 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
-									max={30}
+									maxLength={20}
 								/>
 							</div>
 							<div>
