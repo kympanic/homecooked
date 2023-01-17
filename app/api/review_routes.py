@@ -1,6 +1,5 @@
 from flask import Blueprint, request, redirect
 from ..models import Review, User, db
-from ..utils import Print
 from flask_login import current_user, login_required
 from app.forms import ReviewForm
 
@@ -32,7 +31,7 @@ def get_review_by_review_id(id):
     review = Review.query.get(id)
 
     res = {review.id: review.to_dict()}
-    Print(res)
+
     return res
 
 #EDIT REVIEW BASED ON REVIEWID

@@ -7,7 +7,6 @@ const ModalDeleteProduct = ({ setIsOpen, product }) => {
 	const dispatch = useDispatch();
 	// const history = useHistory();
 
-	console.log(product, "this is the product being deleted");
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setIsOpen(false);

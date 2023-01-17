@@ -1,16 +1,18 @@
 """empty message
 
-Revision ID: e3625a56208a
+Revision ID: a632cec510a4
 Revises: 
-Create Date: 2023-01-16 15:06:13.553118
+Create Date: 2023-01-14 12:20:25.703171
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'e3625a56208a'
+revision = 'a632cec510a4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +29,7 @@ def upgrade():
     sa.Column('shop_logo_img', sa.String(length=255), nullable=True),
     sa.Column('shop_splash_img', sa.String(length=255), nullable=True),
     sa.Column('category', sa.String(length=255), nullable=True),
-    sa.Column('phone_number', sa.Integer(), nullable=False),
+    sa.Column('phone_number', sa.String(length=10), nullable=False),
     sa.Column('zipcode', sa.String(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -40,7 +42,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('provider', sa.String(length=255), nullable=False),
-    sa.Column('account_number', sa.String(length=16), nullable=False),
+    sa.Column('account_number', sa.String(length=10), nullable=False),
     sa.Column('expiration', sa.String(length=6), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
@@ -49,7 +51,7 @@ def upgrade():
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=30), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('price', sa.String(length=40), nullable=False),
@@ -83,6 +85,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['products'], ['products.id'], ),
     sa.PrimaryKeyConstraint('products', 'orders')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE payments SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE product_orders SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

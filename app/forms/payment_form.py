@@ -1,8 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, DateField
 from wtforms.validators import DataRequired, ValidationError, Length
-from ..utils import Print
-## ADD CUSTOM ERROR VALIDATORS HERE
 
 def provider_check(form,field):
     provider=field.data

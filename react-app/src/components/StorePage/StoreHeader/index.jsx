@@ -39,12 +39,6 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	return (
 		<>
 			<div className="header-wrapper">
-				{isOpenShopSplashImg && (
-					<ModalAddShopSplashImage
-						setIsOpen={setIsOpenShopSplashImg}
-						userId={userId}
-					/>
-				)}
 				{vendor.shopSplashImg && (
 					<div className="splash-img-container">
 						<img
@@ -57,6 +51,12 @@ const StoreHeader = ({ userId, storeAvg }) => {
 							alt="vendor-splash-img"
 							onError={onSplashError}
 						/>
+						{isOpenShopSplashImg && (
+							<ModalAddShopSplashImage
+								setIsOpen={setIsOpenShopSplashImg}
+								userId={userId}
+							/>
+						)}
 					</div>
 				)}
 				{sessionUserId === vendor.id && (
