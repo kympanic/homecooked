@@ -62,7 +62,7 @@ const CartPage = () => {
 			<div className="checkout">
 				{cartItems.length === 0 ? (
 					<div>
-						<button className={styles.primaryBtn} 
+						<button 
 							onClick={handleNoItems}
 							className={styles.primaryBtn}
 						>
