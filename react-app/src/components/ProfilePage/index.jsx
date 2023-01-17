@@ -62,7 +62,7 @@ const ProfilePage = () => {
 									<img
 										className="storeLinkImg"
 										src={user.shopSplashImg}
-										alt="Shop Splash Image"
+										alt="ShopSplash"
 									/>
 									<p className="storeLinkText">
 										Click here to go to "{user?.shopName}"

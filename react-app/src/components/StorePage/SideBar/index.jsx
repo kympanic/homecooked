@@ -1,5 +1,4 @@
 import "./sidebar.css";
-import styles from "../../Modals/App.module.css";
 import ModalChangeShopName from "../../Modals/AddShopForms/ModalChangeShopName";
 import ModalChangeShopCategory from "../../Modals/AddShopForms/ModalChangeShopCategory";
 import ModalAddProduct from "../../Modals/AddProduct/ModalAddProduct";

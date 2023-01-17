@@ -16,7 +16,6 @@ import { authenticate } from "./store/session";
 import { getAllUsersThunk } from "./store/users";
 import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
-import TestMenuPage from "./components/TestMenuPage";
 
 function App() {
 	const [loaded, setLoaded] = useState(false);

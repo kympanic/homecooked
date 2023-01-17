@@ -14,7 +14,6 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const sessionUserId = useSelector((state) => state?.session.user.id);
 
 	const [isOpenShopSplashImg, setIsOpenShopSplashImg] = useState(false);
-	const [showNav, setShowNav] = useState(false);
 	let zipInfo = zipCodeData.getInfo("zipcode", vendor?.zipcode);
 	let location = Object.keys(zipInfo?.data.places)[0];
 

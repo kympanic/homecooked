@@ -52,13 +52,6 @@ const ModalAddPaymentNone = ({ setIsOpen }) => {
 		}
 	};
 
-	const handleExistingPayment = (e) => {
-		e.preventDefault();
-
-		const path = `/orders/${userId}`;
-		history.push(path);
-	};
-
 	return (
 		<>
 			<div className={styles.darkBG} onClick={() => setIsOpen(false)} />

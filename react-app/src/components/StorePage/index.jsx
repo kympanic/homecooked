@@ -80,7 +80,7 @@ const StorePage = () => {
 							<div>
 								<img
 									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/Luigi_Risotto.png"
-									alt="chef-image"
+									alt="chef"
 								/>
 							</div>
 						</div>

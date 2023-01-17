@@ -10,14 +10,9 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 	const cartItems = useSelector(getAllCartItems);
 	const userId = useSelector((state) => state.session.user.id);
 	const history = useHistory();
-	const products = useSelector((state) => Object.values(state.products));
 
 	const selectedProductIds = cartItems?.map((item) => {
 		return item.id;
-	});
-
-	const selectedProductNames = products.map((product) => {
-		return product.name;
 	});
 
 	const handleSubmit = async (e) => {
@@ -29,7 +24,7 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 			products_with_order: selectedProductIds,
 		};
 
-		const data = await dispatch(createOrderThunk(newOrder));
+		await dispatch(createOrderThunk(newOrder));
 
 		setIsOpen(false);
 		dispatch(reset());
