@@ -4,6 +4,7 @@
 	border-top: #365365 4px solid;
 	border-bottom: #365365 4px solid;
 	z-index: 0;
+	position: relative;
 }
 
 .menu-list-full-container {
@@ -69,6 +70,7 @@
 	/* border-bottom: 2px solid #02385a; */
 	border-radius: 50%;
 	margin-left: 50px;
+	z-index: 0;
 }
 
 #menu-product-img {
@@ -102,8 +104,16 @@
 
 .menu-add-review-btn-box {
 	margin-top: 20px;
+	z-index: 0;
+	position: relative;
 }
 
 .product-card-container {
-	z-index: -1;
+	z-index: 0;
+	position: relative;
+}
+
+.menu-button-container {
+	z-index: 0;
+	position: relative;
 }

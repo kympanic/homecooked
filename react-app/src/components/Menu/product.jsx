@@ -48,9 +48,6 @@ const Product = ({ id, vendor }) => {
 					<div
 						onClick={() => setIsOpenDescription(true)}
 						className="menu-img-wrapper"
-						// style={{
-						// 	backgroundImage: "url(" + product.imageURL + ")",
-						// }}
 					>
 						<img
 							id="menu-product-img"
@@ -73,7 +70,7 @@ const Product = ({ id, vendor }) => {
 					<p>Average Rating: {product?.avgRating}</p>
 
 					{vendor.id === sessionUserId ? (
-						<div>
+						<div className="menu-button-container">
 							<button
 								className={styles.primaryBtn}
 								onClick={() => setIsOpenEdit(true)}
