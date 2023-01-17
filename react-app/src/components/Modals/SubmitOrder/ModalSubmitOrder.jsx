@@ -44,7 +44,7 @@ const ModalSubmitOrder = ({ setIsOpen, payment }) => {
 			<div className={styles.centered}>
 				<div className={styles.modal}>
 					<div className={styles.modalHeader}>
-						<h2 className={styles.heading}>You're Almost There!</h2>
+						<h3 className={styles.heading}>You're Almost There!</h3>
 					</div>
 					<button
 						className={styles.closeBtn}
