@@ -44,9 +44,6 @@ const Product = ({ id, vendor }) => {
 					<div
 						onClick={() => setIsOpenDescription(true)}
 						className="menu-img-wrapper"
-						// style={{
-						// 	backgroundImage: "url(" + product.imageURL + ")",
-						// }}
 					>
 						<img
 							id="menu-product-img"
