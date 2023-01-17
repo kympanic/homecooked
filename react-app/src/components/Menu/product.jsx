@@ -27,6 +27,10 @@ const Product = ({ id, vendor }) => {
 	const placeHolderImg =
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/default-food-image.jpeg";
 
+	const onImageError = (e) => {
+		e.target.src = placeHolderImg;
+	};
+
 	return (
 		<div className="product-card-container">
 			{product && vendor && sessionUserId && (
@@ -56,6 +60,7 @@ const Product = ({ id, vendor }) => {
 									: placeHolderImg
 							}
 							alt={product.name}
+							onError={onImageError}
 						/>
 					</div>
 

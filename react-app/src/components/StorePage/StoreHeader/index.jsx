@@ -25,6 +25,16 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const shopSplashPlaceholderImg =
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg";
 
+	const onSplashError = (e) => {
+		e.target.src = shopSplashPlaceholderImg;
+	};
+	const onShopLogoError = (e) => {
+		e.target.src = shopLogoPlaceholderImg;
+	};
+	const onProfileImgError = (e) => {
+		e.target.src = profilePlaceholderImg;
+	};
+
 	return (
 		<>
 			<div className="header-wrapper">
@@ -44,6 +54,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 									: shopSplashPlaceholderImg
 							}
 							alt="vendor-splash-img"
+							onError={onSplashError}
 						/>
 					</div>
 				)}
@@ -66,6 +77,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 										: shopLogoPlaceholderImg
 								}
 								alt="vendor-shop-logo"
+								onError={onShopLogoError}
 							/>
 						</div>
 						<div className="shopInfoBox">
@@ -127,6 +139,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 										: profilePlaceholderImg
 								}
 								alt={vendor.username}
+								onError={onProfileImgError}
 							/>
 						</div>
 						<div id="userinfo-profile-name-element">
