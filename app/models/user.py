@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from ..utils import Print
 
 
 class User(db.Model, UserMixin):

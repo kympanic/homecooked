@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from ..utils import Print
 
 class Payment(db.Model):
     __tablename__ = 'payments'

@@ -58,7 +58,6 @@ export const createProductThunk = (data) => async (dispatch) => {
 	} else if (response.status < 500) {
 		const data = await response.json();
 		if (data.errors) {
-			console.log(data.errors, "these are the errors");
 			return data.errors;
 		}
 	} else {

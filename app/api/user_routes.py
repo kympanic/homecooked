@@ -3,7 +3,6 @@ from flask_login import login_required
 from app.models import User, Product, Order, Review,Payment, db
 from flask_login import current_user
 from app.forms import OrderForm, UserForm,ProfileForm
-from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
 
@@ -17,10 +16,6 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-<<<<<<< HEAD
-@user_routes.route('')
-=======
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
 
 @user_routes.route('')
 def users():
@@ -46,7 +41,6 @@ def get_orders_by_user(id):
 
     orders =Order.query.filter_by(user_id=id).all()
    
-    Print(orders)
 
     res = {order.id: order.to_dict_basic() for order in orders}
  
@@ -59,11 +53,7 @@ def get_orders_by_user(id):
 def add_order():
     form = OrderForm()
 
-<<<<<<< HEAD
-
-=======
-    Print("is this hitting??????")
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
+  
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -83,11 +73,7 @@ def edit_user(id):
 
 
     form['csrf_token'].data = request.cookies['csrf_token']
-<<<<<<< HEAD
-    if form.is_submitted():
-=======
     if form.validate_on_submit():
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
         form.populate_obj(user)
         db.session.commit()
         return {user.id: user.to_dict()}
@@ -100,8 +86,6 @@ def edit_profile(id):
     user= User.query.get(id)
     form = ProfileForm()
 
-    Print("is this hitting?")
-    Print(form.data)
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

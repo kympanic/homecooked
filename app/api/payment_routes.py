@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from ..models import Payment, db
-from ..utils import Print
 from flask_login import current_user, login_required
 from app.forms import PaymentForm
 

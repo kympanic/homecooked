@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .product_orders import product_orders
-from ..utils import Print
-
+t
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -10,13 +9,8 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-<<<<<<< HEAD
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    name = db.Column(db.String(40), nullable=False, unique=True)
-=======
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False, unique=True)
->>>>>>> 8ec113c20d3806aacc10b717db39fe9a2af108b9
     description = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(255))
     price = db.Column(db.String(40), nullable=False)
