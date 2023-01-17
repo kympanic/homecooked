@@ -200,6 +200,7 @@
 #homepage-middle-icons img:hover {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 10px -10px darkorange;
+	cursor: pointer;
 }
 
 .review-carousel-container {
