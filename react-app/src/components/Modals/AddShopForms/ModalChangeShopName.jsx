@@ -7,7 +7,6 @@ import { editUserThunk } from "../../../store/users";
 const ModalChangeShopName = ({ setIsOpen, userId }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.users[userId]);
-	console.log(user);
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
@@ -64,9 +63,10 @@ const ModalChangeShopName = ({ setIsOpen, userId }) => {
 								<label htmlFor="shopName">Shop Name</label>
 								<input
 									type="text"
-									name="shopSplashImg"
+									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
+									maxLength={20}
 								/>
 							</div>
 						</form>

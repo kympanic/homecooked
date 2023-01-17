@@ -21,10 +21,14 @@
 	height: 500px;
 	background: white;
 	color: white;
-	z-index: 99;
+	position: relative;
+	z-index: 9999;
 	border-radius: 16px;
-	border: 2px solid black;
 	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+.modal:hover {
+	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 1);
+	transform: translate(-4px, 4px);
 }
 
 .modalHeader {

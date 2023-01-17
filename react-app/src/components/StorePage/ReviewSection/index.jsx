@@ -14,6 +14,20 @@ const ReviewSection = ({ reviewId, sessionUserId }) => {
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 
+	const profilePlaceholder =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg";
+
+	const productPlaceholder =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/default-food-image.jpeg";
+
+	const onProfileError = (e) => {
+		e.target.src = profilePlaceholder;
+	};
+
+	const onProductError = (e) => {
+		e.target.src = productPlaceholder;
+	};
+
 	return (
 		review &&
 		sessionUserId && (
@@ -27,6 +41,7 @@ const ReviewSection = ({ reviewId, sessionUserId }) => {
 							className="store-review-profile-img"
 							src={review.user.profileImg}
 							alt={review.user.username}
+							onError={onProfileError}
 						/>
 						<p>{review.user.username}</p>
 						<p>
@@ -75,6 +90,7 @@ const ReviewSection = ({ reviewId, sessionUserId }) => {
 							id="store-product-review-img"
 							src={review.product.imageURL}
 							alt={review.product.name}
+							onError={onProductError}
 						/>
 						<p>{review.product.name}</p>
 					</div>

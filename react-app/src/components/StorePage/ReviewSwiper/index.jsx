@@ -5,6 +5,13 @@ import { useHistory } from "react-router-dom";
 const ReviewSwiper = ({ reviews }) => {
 	const history = useHistory();
 	const [currentIndx, setCurrentIndx] = useState(0);
+
+	const profilePlaceholderImg =
+		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultprofileIMG.jpg";
+	const onProfileImgError = (e) => {
+		e.target.src = profilePlaceholderImg;
+	};
+
 	const carouselInfiniteScroll = () => {
 		if (currentIndx === reviews.length - 1) {
 			return setCurrentIndx(0);
@@ -47,6 +54,7 @@ const ReviewSwiper = ({ reviews }) => {
 										id="carousel-profile-img"
 										src={review.user.profileImg}
 										alt={review.user.username}
+										onError={onProfileImgError}
 									/>{" "}
 									<p>Score: {review.rating}</p>
 									<p id="carousel-review-username">

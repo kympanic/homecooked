@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from ..models import Payment, db
-from ..utils import Print
 from flask_login import current_user, login_required
 from app.forms import PaymentForm
 
@@ -69,7 +68,6 @@ def edit_paymentinfo(id):
 def delete_paymentinfo(id):
     payment_info = Payment.query.get(id)
 
-    Print(payment_info)
     if payment_info.user_id != current_user.id:
         return {"error": "You are not authorized to delete this payment information"}, 401
     

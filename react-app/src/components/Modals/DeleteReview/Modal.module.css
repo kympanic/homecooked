@@ -23,7 +23,7 @@
 	color: white;
 	z-index: 10;
 	border-radius: 16px;
-	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+	box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 1);
 }
 
 .modalHeader {

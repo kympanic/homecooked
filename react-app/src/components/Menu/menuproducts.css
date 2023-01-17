@@ -3,7 +3,6 @@
 	background: #71250e;
 	border-top: #365365 4px solid;
 	border-bottom: #365365 4px solid;
-	z-index: 0;
 }
 
 .menu-list-full-container {
@@ -15,9 +14,15 @@
 	margin-left: 8%;
 	margin-right: 8%;
 	max-height: 800px;
-	position: relative;
-	z-index: 0;
 	overflow: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 40px auto;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: 0;
 }
 
 .menu-list-full-container > div {
@@ -40,8 +45,6 @@
 	cursor: pointer;
 	border-radius: 2px;
 	background-color: white;
-
-	z-index: 0;
 }
 
 .menu-card:hover {
@@ -64,7 +67,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 200px;
-	position: relative;
+
 	width: 200px;
 	/* border-bottom: 2px solid #02385a; */
 	border-radius: 50%;
@@ -102,8 +105,4 @@
 
 .menu-add-review-btn-box {
 	margin-top: 20px;
-}
-
-.product-card-container {
-	z-index: -1;
 }

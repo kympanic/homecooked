@@ -5,7 +5,6 @@ from app.models import User
 
 ## ADD CUSTOM ERROR VALIDATORS HERE
 
-
 def username_exists(form, field):
     # Checking if username is already in use
     username = field.data

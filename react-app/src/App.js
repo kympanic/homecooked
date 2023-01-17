@@ -18,7 +18,6 @@ import { getAllProductsThunk } from "./store/products";
 import { getAllReviewsThunk } from "./store/reviews";
 import TestMenuPage from "./components/TestMenuPage";
 
-
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -64,9 +63,6 @@ function App() {
 				</ProtectedRoute>
 				<ProtectedRoute exact path="/store/:userId">
 					<StorePage />
-				</ProtectedRoute>
-				<ProtectedRoute path="/store/:userId/test">
-					<TestMenuPage />
 				</ProtectedRoute>
 				<Route path="/">
 					<PageNotFound />

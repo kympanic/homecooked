@@ -5,7 +5,7 @@ import styles from "../../Modals/App.module.css";
 import ModalAddShopSplashImage from "../../Modals/AddShopForms/ModalAddShopSplashImage";
 import SideBar from "../SideBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone, faStar } from "@fortawesome/free-solid-svg-icons";
 const zipCodeData = require("zipcode-city-distance");
 
 const StoreHeader = ({ userId, storeAvg }) => {
@@ -25,15 +25,20 @@ const StoreHeader = ({ userId, storeAvg }) => {
 	const shopSplashPlaceholderImg =
 		"https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/defaultshopsplash.jpg";
 
+	const onSplashError = (e) => {
+		e.target.src = shopSplashPlaceholderImg;
+	};
+	const onShopLogoError = (e) => {
+		e.target.src = shopLogoPlaceholderImg;
+	};
+
+	const onProfileImgError = (e) => {
+		e.target.src = profilePlaceholderImg;
+	};
+
 	return (
 		<>
 			<div className="header-wrapper">
-				{isOpenShopSplashImg && (
-					<ModalAddShopSplashImage
-						setIsOpen={setIsOpenShopSplashImg}
-						userId={userId}
-					/>
-				)}
 				{vendor.shopSplashImg && (
 					<div className="splash-img-container">
 						<img
@@ -44,7 +49,14 @@ const StoreHeader = ({ userId, storeAvg }) => {
 									: shopSplashPlaceholderImg
 							}
 							alt="vendor-splash-img"
+							onError={onSplashError}
 						/>
+						{isOpenShopSplashImg && (
+							<ModalAddShopSplashImage
+								setIsOpen={setIsOpenShopSplashImg}
+								userId={userId}
+							/>
+						)}
 					</div>
 				)}
 				{sessionUserId === vendor.id && (
@@ -66,6 +78,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 										: shopLogoPlaceholderImg
 								}
 								alt="vendor-shop-logo"
+								onError={onShopLogoError}
 							/>
 						</div>
 						<div className="shopInfoBox">
@@ -83,7 +96,13 @@ const StoreHeader = ({ userId, storeAvg }) => {
 							)}
 							{storeAvg ? (
 								<div id="shopinfo-avg-element">
-									<p>Average Reviews: {storeAvg}</p>
+									<p>
+										Average Reviews: {storeAvg}{" "}
+										<FontAwesomeIcon
+											className="header-star-icon"
+											icon={faStar}
+										/>
+									</p>
 								</div>
 							) : (
 								<div id="shopinfo-avg-element">
@@ -127,6 +146,7 @@ const StoreHeader = ({ userId, storeAvg }) => {
 										: profilePlaceholderImg
 								}
 								alt={vendor.username}
+								onError={onProfileImgError}
 							/>
 						</div>
 						<div id="userinfo-profile-name-element">

@@ -18,7 +18,7 @@ const ModalMenuDescription = ({ setIsOpen, product }) => {
 					</button>
 					<div className={styles.modalContent}>
 						<div>
-							<h2>{product.description}</h2>
+							<h3>{product.description}</h3>
 						</div>
 					</div>
 					<div className={styles.modalActions}>

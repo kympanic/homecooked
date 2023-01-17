@@ -84,6 +84,7 @@ const ModalEditUserProfile = ({ setIsOpen, userId }) => {
 									value={username}
 									placeholder={user?.username}
 									onChange={updateUsername}
+									maxLength={17}
 								/>
 							</div>
 							<div>

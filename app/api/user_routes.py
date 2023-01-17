@@ -3,7 +3,6 @@ from flask_login import login_required
 from app.models import User, Product, Order, Review,Payment, db
 from flask_login import current_user
 from app.forms import OrderForm, UserForm,ProfileForm
-from ..utils import Print
 
 user_routes = Blueprint('users', __name__)
 
@@ -42,7 +41,6 @@ def get_orders_by_user(id):
 
     orders =Order.query.filter_by(user_id=id).all()
    
-    Print(orders)
 
     res = {order.id: order.to_dict_basic() for order in orders}
  
@@ -55,7 +53,7 @@ def get_orders_by_user(id):
 def add_order():
     form = OrderForm()
 
-    Print("is this hitting??????")
+  
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         order = Order()
@@ -88,8 +86,6 @@ def edit_profile(id):
     user= User.query.get(id)
     form = ProfileForm()
 
-    Print("is this hitting?")
-    Print(form.data)
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

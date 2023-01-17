@@ -98,6 +98,7 @@ const ModalEditProduct = ({ setIsOpen, product }) => {
 									type="text"
 									name="price"
 									value={price}
+									maxLength={12}
 									placeholder={product?.price}
 									onChange={(e) => setPrice(e.target.value)}
 								/>

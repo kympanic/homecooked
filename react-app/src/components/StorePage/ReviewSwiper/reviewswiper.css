@@ -7,7 +7,7 @@
 	border-radius: 20px;
 	border: 3px solid #02385a;
 	width: 500px;
-	z-index: 0;
+
 	align-items: center;
 }
 
@@ -19,7 +19,6 @@
 	overflow: hidden;
 	align-items: center;
 	justify-content: center;
-	z-index: 0;
 	transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
@@ -39,6 +38,8 @@
 	border-radius: 50px;
 	height: 90px;
 	width: 90px;
+	position: relative;
+	z-index: 1;
 }
 
 #carousel-product-img {
@@ -51,33 +52,20 @@
 #content {
 	max-width: 600px;
 	margin: 25vh auto;
-	z-index: -1;
-}
-
-.review {
-	z-index: -1;
+	position: relative;
+	z-index: 0;
 }
 
 .review blockquote {
 	margin: 10px 10px 0;
 	background: white;
 	padding: 20px 60px;
-	/* position: relative; */
 	border-radius: 8px;
 	font-style: italic;
 	font-size: 18px;
 	max-height: 130px;
 	overflow: hidden;
 	max-width: 400px;
-}
-.review blockquote:before,
-.review blockquote:after {
-	content: "\201C";
-	position: absolute;
-	font-size: 45px;
-	line-height: 1;
-	color: #757f9a;
-	font-style: normal;
 }
 
 .review blockquote:before {
@@ -87,7 +75,7 @@
 
 .review blockquote:after {
 	content: "\201D";
-	right: 10px;
+	right: 20px;
 	bottom: -0.5em;
 }
 
@@ -112,4 +100,6 @@
 	position: relative;
 	bottom: 80px;
 	right: 20px;
+	position: relative;
+	z-index: 1;
 }
