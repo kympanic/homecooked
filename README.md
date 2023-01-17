@@ -37,15 +37,31 @@ The search bar can filter any store by the category of food they sell.
 
 <img width="1596" alt="Screen Shot 2023-01-17 at 11 07 20 AM" src="https://user-images.githubusercontent.com/98551224/212989131-71d69152-23b6-4903-843e-29d9a3c5d877.png">
 
-Vendor Page
+### Vendor Page
+
+- A Vendor can create/edit/delete any products from their menus. Also there are options in the side menu to update shop logo, shop splash image, shop name, cuisine, and profile image. Only if the logged in user is the owner of the page can you see the store customization side menu. 
+- A user can see all reviews that are relevant to each store and products. If the user is the owner of the review, they will have the option to edit or delete their reviews.
+- If the logged in user is not the owner of the store, they have the option to add a review or add the item to a cart for later purchase.
 
 ![Screen Shot 2023-01-17 at 11 13 38 AM](https://user-images.githubusercontent.com/98551224/212990949-dc675567-9440-462f-91a5-7e4b8b79b220.png)
 
-A Vendor can create/edit/delete any products from their menus. A user can see all reviews that are relevant to each store and products.
 
-![Screen Shot 2023-01-17 at 11 00 30 AM](https://user-images.githubusercontent.com/98551224/212987885-5951b00f-e8a2-4014-bdc8-78a0c56df239.png)
+Profile Page
 
+### Profile Page
 
+- User is able to edit their public profile here. If the user does not have a store, they will have the option to become a vendor.
+- User is able to edit or delete any reviews on the foods they have reviewed.
+
+![Screen Shot 2023-01-17 at 11 26 41 AM](https://user-images.githubusercontent.com/98551224/212993694-6b4bb6b6-4c6c-4aec-923f-266beef5bbae.png)
+
+### Cart Page
+
+- Page shows the items that were added to the cart with the total items and price. 
+- User has the option to edit their cart and remove items. 
+- User can checkout and add payment or use existing payment
+
+![Screen Shot 2023-01-17 at 11 30 01 AM](https://user-images.githubusercontent.com/98551224/212994294-ce4f27da-67b6-4020-923e-47a9674b1411.png)
 
 Code Snippets:
 The cart was a communal effort to create -- we 
