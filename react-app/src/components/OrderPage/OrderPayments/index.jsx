@@ -19,41 +19,66 @@ const OrderPayments = ({ id }) => {
 			{payment && (
 				<div className="paymentCard">
 					<div className="cardInfo">
-						<h3 className="cardText">Provider:<span className="cardInfoText">{payment.provider}</span></h3>
+						<h3 className="cardText">
+							Provider:
+							<span className="cardInfoText">
+								{payment.provider}
+							</span>
+						</h3>
 						<h4 className="cardText">
-							Account No:<span className="cardInfoText">XXXX-XXXX-XXXX-{payment.accountNumber}</span>
+							Account No:
+							<span className="cardInfoText">
+								XXXX-XXXX-XXXX-{payment.accountNumber}
+							</span>
 						</h4>
-						<h4 className="cardText">Expiration:<span className="cardInfoText">{payment.expiration}</span></h4>
-						<div className="paymentButtons">
-							{cartItems.length > 0 && (
-								<div>
-									<button 
-										onClick={() => setIsOpenSubmit(true)}
-										className={styles.primaryBtn}
-									>
-										Select this payment method
-									</button>
-									{isOpenSubmit && (
-										<ModalSubmitOrder
-											setIsOpen={setIsOpenSubmit}
-											payment={payment}
-										/>
-									)}
-								</div>
-							)}
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenEdit(true)}
-							>
-								Edit
-							</button>
-							<button
-								className={styles.primaryBtn}
-								onClick={() => setIsOpenDelete(true)}
-							>
-								Delete
-							</button>
-						</div>
+						<h4 className="cardText">
+							Expiration:
+							<span className="cardInfoText">
+								{payment.expiration}
+							</span>
+						</h4>
+						{payment.orders.length > 0 ? (
+							<div className="paymentButtons">
+								<button
+									className={styles.editPaymentBtn}
+									onClick={() => setIsOpenEdit(true)}
+								>
+									Edit
+								</button>
+							</div>
+						) : (
+							<div className="paymentButtons">
+								<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpenEdit(true)}
+								>
+									Edit
+								</button>
+								<button
+									className={styles.primaryBtn}
+									onClick={() => setIsOpenDelete(true)}
+								>
+									Delete
+								</button>
+							</div>
+						)}
+
+						{cartItems.length > 0 && (
+							<div>
+								<button
+									onClick={() => setIsOpenSubmit(true)}
+									className={styles.submitOrderBtn}
+								>
+									Select this payment method
+								</button>
+								{isOpenSubmit && (
+									<ModalSubmitOrder
+										setIsOpen={setIsOpenSubmit}
+										payment={payment}
+									/>
+								)}
+							</div>
+						)}
 					</div>
 					<div>
 						{isOpenEdit && (

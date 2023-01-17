@@ -75,10 +75,76 @@
 	box-shadow: 0 10px 20px -10px black;
 }
 
-.titleText{
-	margin-left: 10px
+.titleText {
+	margin-left: 10px;
 }
 
 .secondaryText {
-	margin-left: 10px
+	margin-left: 10px;
+}
+
+.submitOrderBtn {
+	margin: 20px 10px;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 20px 30px;
+	border-radius: 15px;
+	font-size: 0.8rem;
+	border: none;
+	color: white;
+	background: #cc5221;
+	transition: all 0.25s ease;
+	z-index: 0;
+	margin-left: 60px;
+	border: #02385a solid 2px;
+}
+
+.submitOrderBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
+}
+.buySomethingBtn {
+	margin: 20px 10px;
+	cursor: pointer;
+	font-weight: 500;
+	padding: 50px 100px;
+	border-radius: 15px;
+	font-size: 1.5rem;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 25%;
+	border: none;
+	color: white;
+	background: red;
+	transition: all 0.25s ease;
+	z-index: 0;
+}
+
+.buySomethingBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
+	background-color: white;
+	color: red;
+}
+
+.editPaymentBtn {
+	cursor: pointer;
+	font-weight: 500;
+	padding: 13px 25px;
+	border-radius: 15px;
+	font-size: 0.8rem;
+	border: none;
+	color: white;
+	background: #02385a;
+	transition: all 0.25s ease;
+	z-index: 0;
+	margin-left: 130px;
+	margin-top: 20px;
+}
+
+.editPaymentBtn:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px -10px black;
+	background-color: white;
+	color: #02385a;
 }

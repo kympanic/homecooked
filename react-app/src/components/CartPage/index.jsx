@@ -39,112 +39,113 @@ const CartPage = () => {
 	};
 
 	return (
-	<div>
-		<h1 className="cartPageTitle">Your Cart</h1>
-		<div className="cartPage">
-			<div>
-				<div className="cart">
-					{cartItems.length === 0 && (
-						<div className="emptyCart">
-							<h2 className="emptyCartText">There are no cart items yet!</h2>
+		<div>
+			<h1 className="cartPageTitle">Your Cart</h1>
+			<div className="cartPage">
+				<div>
+					<div className="cart">
+						{cartItems.length === 0 && (
+							<div className="emptyCart">
+								<h2 className="emptyCartText">
+									There are no cart items yet!
+								</h2>
+								<button
+									onClick={handleNoItems}
+									className={styles.buySomethingBtn}
+								>
+									Go buy something!
+								</button>
+							</div>
+						)}
+						{cartItems &&
+							cartItems.map((el) => (
+								<div key={el.id}>
+									<CartItem id={el.id} qty={el.count} />
+								</div>
+							))}
+					</div>
+				</div>
+				<div className="checkout">
+					{cartItems.length === 0 ? (
+						<div className="emptyCheckout">
+							<div className="cartpage-middle-right-container">
+								<h2 id="storepage-middle-title">
+									Never Go Hungry Again
+								</h2>
+								<p id="homepage-middle-p">
+									Homecooked is available on Web, iOS, and
+									Android
+								</p>
+								<div id="homepage-middle-icons">
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+										alt="google-icon"
+									/>
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+										alt="apple-icon"
+									/>
+								</div>
+							</div>
+						</div>
+					) : (
+						<div className="checkoutBar">
+							<span className="totalItemBox">
+								Total Items:{" "}
+								<span className="totalItems">{totalItems}</span>
+							</span>
+							<span className="totalPriceBox">
+								Total Price:{" "}
+								<span className="totalPrice">
+									$
+									{(
+										Math.round(totalPrice * 100) / 100
+									).toFixed(2)}
+								</span>
+							</span>
+							<button
+								className={styles.primaryBtn}
+								onClick={() => setIsOpen(true)}
+							>
+								Checkout!
+							</button>
+							<div className="cartpage-middle-right-container">
+								<h2 id="storepage-middle-title">
+									Never Go Hungry Again
+								</h2>
+								<p id="homepage-middle-p">
+									Homecooked is available on Web, iOS, and
+									Android
+								</p>
+								<div id="homepage-middle-icons">
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
+										alt="google-icon"
+									/>
+									<img
+										onClick={() =>
+											history.push("/ourgroupisthebest")
+										}
+										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
+										alt="apple-icon"
+									/>
+								</div>
+							</div>
 						</div>
 					)}
-					{cartItems &&
-						cartItems.map((el) => (
-							<div key={el.id}>
-								<CartItem id={el.id} qty={el.count} />
-							</div>
-						)
-					)}
+					{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}
 				</div>
 			</div>
-			<div className="checkout">
-				{cartItems.length === 0 ? (
-					<div className="emptyCheckout">
-						<button 
-							onClick={handleNoItems}
-							className={styles.primaryBtn}
-						>
-							Go buy something!
-						</button>
-						<div className="cartpage-middle-right-container">
-								<h2 id="storepage-middle-title">
-									Never Go Hungry Again
-								</h2>
-								<p id="homepage-middle-p">
-									Homecooked is available on Web, iOS,
-									and Android
-								</p>
-								<div id="homepage-middle-icons">
-									<img
-										onClick={() =>
-											history.push(
-												"/ourgroupisthebest"
-											)
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
-										alt="google-icon"
-									/>
-									<img
-										onClick={() =>
-											history.push(
-												"/ourgroupisthebest"
-											)
-										}
-									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
-									alt="apple-icon"
-								/>
-							</div>
-						</div>
-					</div>
-				) : (
-					<div className="checkoutBar">
-						<span className="totalItemBox">Total Items: <span className="totalItems">{totalItems}</span></span>
-						<span className="totalPriceBox">
-							Total Price: <span className="totalPrice">
-								${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
-						</span>
-						<button
-							className={styles.primaryBtn}
-							onClick={() => setIsOpen(true)}
-						>
-							Checkout!
-						</button>
-						<div className="cartpage-middle-right-container">
-								<h2 id="storepage-middle-title">
-									Never Go Hungry Again
-								</h2>
-								<p id="homepage-middle-p">
-									Homecooked is available on Web, iOS,
-									and Android
-								</p>
-								<div id="homepage-middle-icons">
-									<img
-										onClick={() =>
-											history.push(
-												"/ourgroupisthebest"
-											)
-										}
-										src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/googleimgfixed.png"
-										alt="google-icon"
-									/>
-									<img
-										onClick={() =>
-											history.push(
-												"/ourgroupisthebest"
-											)
-										}
-									src="https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/images/appleiconfixed.png"
-									alt="apple-icon"
-								/>
-							</div>
-						</div>
-					</div>
-				)}
-				{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}
-			</div>
 		</div>
-	</div>	
 	);
 };
 

@@ -5,11 +5,12 @@ import { getPaymentThunk } from "../../store/payments";
 import { getAllCartItems } from "../../store/session";
 import ModalAddPaymentNone from "../Modals/AddPaymentNone/ModalAddPaymentNone";
 import CartItem from "../CartPage/cartItem";
-
 import styles from "../Modals/App.module.css";
 import OrderPayments from "./OrderPayments";
 import "./orderpage.css";
 import { getOrdersThunk } from "../../store/orders";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const OrderPage = () => {
 	const { userId } = useParams();
@@ -60,18 +61,40 @@ const OrderPage = () => {
 						<div className="cart">
 							{cartItems.length === 0 && (
 								<div className="emptyCart">
-									<h2 className="emptyCartText">There are no cart items yet!</h2>
+									<h2 className="emptyCartText">
+										There are no cart items yet!
+									</h2>
+									<button
+										onClick={handleNoItems}
+										className={styles.buySomethingBtn}
+									>
+										Go buy something!
+									</button>
 								</div>
 							)}
 							{cartItems &&
 								cartItems.map((el) => (
-									<div key={el.id}>
-										<CartItem id={el.id} qty={el.count} />
+									<div>
+										<div key={el.id}>
+											<CartItem
+												id={el.id}
+												qty={el.count}
+											/>
+										</div>
+										<div id="select-payment-box">
+											<h1 classname="select-payment-text">
+												Looks Good? Select a Payment and
+												Eat!
+											</h1>
+											<FontAwesomeIcon
+												className="arrow-right"
+												icon={faArrowRight}
+											/>
+										</div>
 									</div>
 								))}
 						</div>
 					</div>
-
 				</div>
 				<div className="order-page-payments">
 					<div>
@@ -79,19 +102,32 @@ const OrderPage = () => {
 					</div>
 					<div>
 						{cartItems.length === 0 ? (
-							<div className="emptyCheckout">
-								<button 
-							onClick={handleNoItems}
-							className={styles.primaryBtn}
-						>
-							Go buy something!
-						</button>
-							</div>
+							<></>
 						) : (
+							// <div className="emptyCheckout">
+							// 	<button
+							// 		onClick={handleNoItems}
+							// 		className={styles.primaryBtn}
+							// 	>
+							// 		Go buy something!
+							// 	</button>
+							// </div>
 							<div className="checkoutBar">
-								<span className="totalItemBox">Total Items: <span className="totalItems">{totalItems}</span></span>
-								<span className="totalPriceBox">Total Price: <span className="totalPrice">${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
-						</span>
+								<span className="totalItemBox">
+									Total Items:{" "}
+									<span className="totalItems">
+										{totalItems}
+									</span>
+								</span>
+								<span className="totalPriceBox">
+									Total Price:{" "}
+									<span className="totalPrice">
+										$
+										{(
+											Math.round(totalPrice * 100) / 100
+										).toFixed(2)}
+									</span>
+								</span>
 							</div>
 						)}
 					</div>

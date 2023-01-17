@@ -39,12 +39,9 @@
 	padding: 2%;
 	border-radius: 20px;
 	color: white;
-	text-shadow: -1px 1px 0 #000,
-    1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000;
+	text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
+		-1px -1px 0 #000;
 	box-shadow: 2px 2px 2px rgb(56, 2, 2);
-
 }
 
 .cardText {
@@ -66,4 +63,26 @@
 
 .paymentButtons button {
 	margin-top: -3%;
+}
+
+#select-payment-box {
+	margin-top: 100px;
+	padding: 20px;
+	text-align: center;
+	margin-left: 8%;
+	margin-right: 8%;
+	border-radius: 20px;
+}
+.select-payment-text {
+	margin-top: 20px;
+	border: 2px solid black;
+}
+
+.arrow-right {
+	height: 100px;
+}
+
+.cartPageTitle {
+	text-align: center;
+	margin-bottom: 30px;
 }
