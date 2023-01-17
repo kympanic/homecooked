@@ -41,10 +41,11 @@ const CartPage = () => {
 	};
 
 	return (
-		<div>
-			<h1>Cart Page</h1>
+	<div>
+		<h1>Cart Page</h1>
+		<div className="cartPage">
 			<div>
-				<div>
+				<div className="cart">
 					{cartItems.length === 0 && (
 						<div>
 							<h2>There are no cart items yet!</h2>
@@ -58,7 +59,7 @@ const CartPage = () => {
 						))}
 				</div>
 			</div>
-			<div>
+			<div className="checkout">
 				{cartItems.length === 0 ? (
 					<div>
 						<button 
@@ -86,6 +87,7 @@ const CartPage = () => {
 				{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}
 			</div>
 		</div>
+	</div>	
 	);
 };
 

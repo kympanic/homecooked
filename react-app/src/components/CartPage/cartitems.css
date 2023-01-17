@@ -1,3 +1,14 @@
+.cart {
+	width: 100%;
+	height: 71vh;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: 1%;
+	overflow: auto;
+	background: rgb(243, 234, 223);
+	border-radius: 20px;
+}
+
 .cart-product-img {
 	width: 100%;
 	height: 100%;
@@ -13,7 +24,7 @@
     justify-content: center;
     overflow: hidden;
     border: 10px solid rgb(174, 74, 57);
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px gray;
 }
 
 input::-webkit-outer-spin-button,
@@ -23,10 +34,10 @@ input::-webkit-inner-spin-button {
 
 .quantityBobble {
 	-moz-appearance: textfield;
-	width: 6%;
+	width: 60%;
 	border: 1px solid rgb(197, 197, 197);
 	box-shadow: 1px 1px 1px gray;
-	margin-left: 1%;
+	margin-left: 5%;
 }
 
 .quantityBobble:hover {
@@ -38,11 +49,12 @@ input::-webkit-inner-spin-button {
 .quantityButtons {
 	display: flex;
 	align-items: center;
+	align-self: flex-start;
 }
 
 .cart-item-button {
-	width: 3%;
-	height: 1%;
+	width: 10%;
+	height: 60%;
 	border: 1px solid rgb(197, 197, 197);
 	box-shadow: 1px 1px 1px gray;
 	padding-bottom: 2px;
@@ -54,7 +66,6 @@ input::-webkit-inner-spin-button {
 	background-color: rgb(189, 189, 189);
 	color: black;
 	border: 1px solid rgb(189, 189, 189);
-	font-weight: bold;
 }
 
 .cart-item-button:active {
@@ -62,18 +73,35 @@ input::-webkit-inner-spin-button {
 	background-color: gray;
 	color: white;
 	border: 1px solid gray;
-	font-weight: bolder;
 	box-shadow: none;
 }
 
 .cartItemBox {
-	border: 2px solid tomato;
-	width: 33%;
+	width: 98%;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px black;
+	margin-bottom: 2%;
+	background: rgb(229, 209, 206);
+	padding-bottom: 2%;
 }
 
 .vendorInfo {
 	display: flex;
 	align-items: center;
+	padding-left: 1%;
+	padding-top: 1%;
+	padding-bottom: 1.5%;
+	text-decoration: none;
+	color: black;
+	border-radius: 20px 20px 0 0;
+	background: rgb(231, 187, 180);
+	border-bottom: 3px solid black;
+}
+
+.vendorInfo:hover {
+	background: rgb(221, 158, 149);
+	color: tomato;
+	
 }
 
 .vendorImgBox {
@@ -86,7 +114,7 @@ input::-webkit-inner-spin-button {
     justify-content: center;
     overflow: hidden;
     border: 5px solid rgb(60, 60, 60);
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px rgb(72, 71, 71);
 }
 
 .cartVendorImg {
@@ -96,6 +124,57 @@ input::-webkit-inner-spin-button {
 
 .vendorNameBox {
     font-size: 30px; 
-	font-weight: bold;
+	font-weight: bolder;
 	margin-left: 5%;
+	padding: 10px;
+	border-radius: 10px;
+	background: white;
+	box-shadow: 2px 2px 2px rgb(72, 71, 71);
+	text-decoration: none;
+}
+.itemInfo {
+	display: flex;
+	flex-wrap: nowrap;
+	padding: 1%;
+	justify-content: space-between;
+}
+
+.nameAndPriceBox {
+	display: flex;
+	flex-direction: column;
+	padding-left: 5%;
+	padding-right: 2%;
+	margin-top: 2%;
+}
+
+.qtyAndDescBox {
+	display: flex;
+	flex-direction: column;
+	width: 33%;
+	margin-top: 2%;
+}
+
+.itemDesc {
+	background: #f1e3d7;
+	padding: 5px;
+	border-radius: 10px;
+	margin-top: 5%;
+	box-shadow: 2px 2px 2px gray;
+}
+
+.itemName {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 5%;
+
+}
+
+.cartPage {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.checkout {
+	margin-left: 10%;
 }
