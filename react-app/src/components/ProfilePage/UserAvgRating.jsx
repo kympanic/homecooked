@@ -1,7 +1,7 @@
 const UserAvgRating = ({user, products}) => {
 
     const reviewAvg = products?.filter((product) => {
-      return (product?.userId === parseInt(user.id) && product.reviews.length > 0);
+      return (product?.userId === parseInt(user.id));
       }).map(
         (el) => Number(el.avgRating)
         )?.reduce((a, b) => a + b) / user?.products?.length;
@@ -9,7 +9,7 @@ const UserAvgRating = ({user, products}) => {
     let numberReviews = 0;
     
     products?.filter((product) => {
-        return (product?.userId === parseInt(user.id) && product.reviews.length > 0);
+        return (product?.userId === parseInt(user.id));
     }).forEach((el) => {
         numberReviews += el.reviews.length
     })
