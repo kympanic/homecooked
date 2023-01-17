@@ -2,6 +2,12 @@
 
 By [Daniel Yoo](https://github.com/kympanic), [Alex Hiller](https://github.com/Dudemaster47), [Megha Sahgal](https://github.com/meghasahgal)
 
+Hungry? Tired? Want a meal created with care? [Homecooked](https://home-cooked.onrender.com/) is waiting for you!
+
+##Index
+
+
+Some days we're just too tired to cook. Homecooked is for the individual who wants a warm meal without foregoing on the quality. Homecooked is a one stop shop for delicious food delivered right to your door!
 
 Introduction: A full stack application that purports to replicate the Etsy website, with a focus on two main features: Products and Reviews, and several partial CRUD features including Search, Orders, and Cart.
 
