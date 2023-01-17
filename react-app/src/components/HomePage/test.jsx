@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import styles from "../Modals/App.module.css";
 import { getAllUsersThunk } from "../../store/users";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faSearch } from "@fortawesome/free-solid-svg-icons";
 // import {Footer} from "../Footer"
 import "./HomePage.css";
 const zipCodeData = require("zipcode-city-distance");
@@ -26,7 +26,6 @@ const HomePage = () => {
 	useEffect(() => {
 		dispatch(getAllUsersThunk());
 	}, [dispatch]);
-	// console.log(sessionUser, "test");
 	return (
 		<>
 			{sessionUser ? (

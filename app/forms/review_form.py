@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, InputRequired
-from ..utils import Print
 
 ## ADD CUSTOM ERROR VALIDATORS HERE
 

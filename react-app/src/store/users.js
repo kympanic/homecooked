@@ -5,7 +5,6 @@ const loadUsers = (payload) => ({
 	payload,
 });
 
-//thunks
 export const getAllUsersThunk = () => async (dispatch) => {
 	const res = await fetch("/api/users");
 
@@ -43,7 +42,6 @@ export const editUserThunk = (data) => async (dispatch) => {
 		return null;
 	} else if (res.status < 500) {
 		const data = await res.json();
-		console.log(data, "is this hitting the errors in teh front end?");
 		if (data.errors) {
 			return data.errors;
 		}
@@ -55,7 +53,6 @@ export const editUserThunk = (data) => async (dispatch) => {
 export const editNewUserThunk = (data) => async (dispatch) => {
 	const editedUser = JSON.stringify(data);
 
-	console.log("did it hit the store", editedUser);
 	const res = await fetch(`/api/users/profile/${data.id}`, {
 		method: "PUT",
 		headers: {
@@ -70,7 +67,6 @@ export const editNewUserThunk = (data) => async (dispatch) => {
 		return null;
 	} else if (res.status < 500) {
 		const data = await res.json();
-		console.log(data, "is this hitting the errors in teh front end?");
 		if (data.errors) {
 			return data.errors;
 		}

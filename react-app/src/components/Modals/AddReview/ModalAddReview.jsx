@@ -29,7 +29,6 @@ const ModalAddReview = ({ setIsOpen, product }) => {
 			rating,
 		};
 
-		// console.log(newReview, "THIS IS WHAT IS BEING SENT TO THE STORE ");
 		let data = await dispatch(createReviewThunk(newReview));
 		if (data) {
 			setErrors(data);

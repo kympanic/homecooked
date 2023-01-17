@@ -18,6 +18,7 @@
 	width: auto;
 	text-align: center;
 	object-fit: contain;
+	z-index: 0;
 }
 
 .shop-splash-img {

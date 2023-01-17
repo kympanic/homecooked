@@ -1,6 +1,5 @@
 from flask import Blueprint, request, redirect
 from ..models import Product, db, Review
-from ..utils import Print
 from flask_login import login_required, current_user
 from app.forms import ProductForm, ReviewForm
 
