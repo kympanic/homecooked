@@ -9,14 +9,14 @@ import "../orderpage.css";
 
 const OrderPayments = ({ id }) => {
 	const payment = useSelector((state) => state.payments[id]);
-	// const sessionUserId = useSelector((state) => state.session.user.id);
+	const sessionUserId = useSelector((state) => state.session.user.id);
 	const cartItems = useSelector(getAllCartItems);
 	const [isOpenEdit, setIsOpenEdit] = useState(false);
 	const [isOpenDelete, setIsOpenDelete] = useState(false);
 	const [isOpenSubmit, setIsOpenSubmit] = useState(false);
 	return (
 		<div>
-			{payment && (
+			{payment && sessionUserId === payment.userId && (
 				<div className="paymentCard">
 					<div className="cardInfo">
 						<h3 className="cardText">

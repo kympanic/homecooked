@@ -21,6 +21,10 @@ const OrderPage = () => {
 	const sessionUser = useSelector((state) => state?.session.user);
 	const cartItems = useSelector(getAllCartItems);
 
+	const selectedPayments = payments?.filter((payment) => {
+		return payment.userId === sessionUser?.id;
+	});
+
 	const [totalItems, setTotalItems] = useState(0);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [isOpenPaymentAdd, setIsOpenPaymentAdd] = useState(false);
@@ -104,14 +108,6 @@ const OrderPage = () => {
 						{cartItems.length === 0 ? (
 							<></>
 						) : (
-							// <div className="emptyCheckout">
-							// 	<button
-							// 		onClick={handleNoItems}
-							// 		className={styles.primaryBtn}
-							// 	>
-							// 		Go buy something!
-							// 	</button>
-							// </div>
 							<div className="checkoutBar">
 								<span className="totalItemBox">
 									Total Items:{" "}
@@ -132,8 +128,8 @@ const OrderPage = () => {
 						)}
 					</div>
 					<div>
-						{payments.length === 0 ? (
-							<div>
+						{selectedPayments.length === 0 ? (
+							<div className="no-payment-saved-wrapper">
 								<h1>No Payment Saved!</h1>
 								<button
 									className={styles.primaryBtn}
