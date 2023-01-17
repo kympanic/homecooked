@@ -1,5 +1,6 @@
 import './userprofileinfo.css'
 import ShopOwnerInfo from './ShopOwnerInfo';
+import brokenImg from './no-image.png'
 
 const UserInfo = ({user}) => {
     return (
@@ -8,7 +9,7 @@ const UserInfo = ({user}) => {
                 <img
                 className="userProfileImg" 
                 src={user?.profileImg}
-                alt="Whoops! It looks like your link is broken."
+                alt=' '
                 />
             </div>
             <div className="usernameBox">
