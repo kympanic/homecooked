@@ -1,14 +1,69 @@
 .order-page-wrapper {
 	display: flex;
-	width: 1000px;
+	width: 100vw;
 	border: 2px red solid;
 }
 
 .order-page-payments {
-	padding-left: 400px;
+	margin-left: 10%;
+	margin-right: 5%;
+	background: linear-gradient(rgb(238, 218, 218), rgb(75, 6, 6));
+	width: 20%;
+	height: 71.5vh;
+	padding-left: 10%;
+	padding-right: 10%;
+	margin-bottom: 0.5%;
+	border-radius: 20px;
+	margin-top: 0.3%;
+	box-shadow: 2px 2px 2px gray;
+	overflow: auto;
 }
 
 .order-payment-info {
 	border: 2px solid black;
 	text-align: center;
+}
+
+.paymentCard {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background: rgb(249, 198, 198);
+	padding: 5%;
+	border-radius: 20px;
+	box-shadow: 2px 2px 2px rgb(56, 2, 2);
+}
+
+.paymentMethodsTitle {
+	margin-top: 5%;
+	background: rgb(255, 124, 146);
+	padding: 2%;
+	border-radius: 20px;
+	color: white;
+	text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+	box-shadow: 2px 2px 2px rgb(56, 2, 2);
+
+}
+
+.cardText {
+	background: white;
+	border-radius: 20px;
+	padding: 10px;
+	margin-top: 5px;
+	box-shadow: 1px 1px black;
+}
+
+.cardInfoText {
+	font-weight: normal;
+	margin-left: 2%;
+}
+
+.paymentButtons {
+	margin-top: 6%;
+}
+
+.paymentButtons button {
+	margin-top: -3%;
 }
