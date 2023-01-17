@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, ValidationError, URL
 from app.models import Product
-## ADD CUSTOM ERROR VALIDATORS HERE
+
 
 
 def name_length_check(form, field):

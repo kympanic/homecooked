@@ -63,9 +63,10 @@ const ModalChangeShopName = ({ setIsOpen, userId }) => {
 								<label htmlFor="shopName">Shop Name</label>
 								<input
 									type="text"
-									name="shopSplashImg"
+									name="shopName"
 									value={shopName}
 									onChange={updateShopName}
+									maxLength={30}
 								/>
 							</div>
 						</form>
