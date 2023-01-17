@@ -32,9 +32,10 @@ A full stack application that purports to the theme of the Etsy website, with a 
 
 ![Screen Shot 2023-01-17 at 11 00 30 AM](https://user-images.githubusercontent.com/98551224/212987885-5951b00f-e8a2-4014-bdc8-78a0c56df239.png)
 
+When logging into the site, the user is greeted to the homepage where they can see all the vendors that are selling meals. They can go to their profile page and edit their profile. Also the user has the option to become a vendor and start selling food.
 
-Home Page:
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/1787106/212826919-fa8c6570-6a65-45b9-ad1f-06c2ba2087dd.png">
+
 
 
 
