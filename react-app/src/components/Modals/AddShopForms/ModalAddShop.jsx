@@ -12,7 +12,6 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 
 	const [errors, setErrors] = useState([]);
 	const [shopName, setShopName] = useState("");
-	const [shopLogoImg, setShopLogoImg] = useState("");
 	const [category, setCategory] = useState("");
 
 	const handleSubmit = async (e) => {
@@ -39,15 +38,12 @@ const ModalAddShop = ({ setIsOpen, userId }) => {
 		} else {
 			setIsOpen(false);
 			history.push(`/store/${user.id}`);
+			return window.location.reload(false);
 		}
 	};
 
 	const updateShopName = (e) => {
 		setShopName(e.target.value);
-	};
-
-	const updateShopLogoImg = (e) => {
-		setShopLogoImg(e.target.value);
 	};
 
 	const updateCategory = (e) => {

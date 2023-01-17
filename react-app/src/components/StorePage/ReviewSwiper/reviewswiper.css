@@ -51,18 +51,18 @@
 #content {
 	max-width: 600px;
 	margin: 25vh auto;
+	z-index: -1;
 }
 
 .review {
-	z-index: 0;
+	z-index: -1;
 }
 
 .review blockquote {
 	margin: 10px 10px 0;
 	background: white;
 	padding: 20px 60px;
-	position: relative;
-
+	/* position: relative; */
 	border-radius: 8px;
 	font-style: italic;
 	font-size: 18px;
