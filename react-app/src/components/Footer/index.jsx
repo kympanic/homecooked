@@ -12,7 +12,7 @@ const Footer = () => {
 			<a className="footerLink" href="https://github.com/kympanic">
 				<p >{"|"}Dan {"|"}</p>
 			</a>
-			<a className="footerLink" href="https://github.com/Dudemaster">
+			<a className="footerLink" href="https://github.com/Dudemaster47">
 				<p> {" "} Alex {"|"}</p>
 			</a>
 			<a className="footerLink" href="https://github.com/meghasahgal">
