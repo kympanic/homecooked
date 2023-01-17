@@ -20,18 +20,6 @@ const ProfilePage = () => {
 	const user = useSelector((state) => state.users[userId]);
 	const [isOpenEditUserProf, setIsOpenEditUserProf] = useState(false);
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
-	let shopName;
-	if (user && userId) {
-		shopName = user.shopName;
-	}
-
-	// const history = useHistory();
-
-	// useEffect(() => {
-	// 	if (shopName) {
-	// 		history.push(`/store/${user.id}`);
-	// 	}
-	// }, [shopName]);
 
 	return (
 		<div>
@@ -67,7 +55,12 @@ const ProfilePage = () => {
 						{user.shopName ? (
 							<div className="storeLinkBox">
 								<Link to={`/store/${userId}`}>
-									Click here to go to "{user?.shopName}"
+									<img 
+										className="storeLinkImg"
+										src={user.shopSplashImg}
+										alt="Shop Splash Image"
+									/>
+									<p className="storeLinkText">Click here to go to "{user?.shopName}"</p>
 								</Link>
 							</div>
 						) : user.id === sessionUserId ? (
