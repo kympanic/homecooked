@@ -42,7 +42,7 @@ const CartPage = () => {
 
 	return (
 	<div>
-		<h1>Cart Page</h1>
+		<h1 className="cartPageTitle">Your Cart</h1>
 		<div className="cartPage">
 			<div>
 				<div className="cart">
@@ -70,11 +70,11 @@ const CartPage = () => {
 						</button>
 					</div>
 				) : (
-					<div>
-						<span>Total Items: {totalItems}</span>
-						<span>
-							Total Price: $
-							{(Math.round(totalPrice * 100) / 100).toFixed(2)}
+					<div className="checkoutBar">
+						<span className="totalItemBox">Total Items: <span className="totalItems">{totalItems}</span></span>
+						<span className="totalPriceBox">
+							Total Price: <span className="totalPrice">
+								${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
 						</span>
 						<button
 							className={styles.primaryBtn}
