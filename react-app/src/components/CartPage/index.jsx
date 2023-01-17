@@ -41,10 +41,11 @@ const CartPage = () => {
 	};
 
 	return (
-		<div>
-			<h1 className={styles.titleText}>Your Cart</h1>
+	<div>
+		<h1 className="cartPageTitle">Your Cart</h1>
+		<div className="cartPage">
 			<div>
-				<div>
+				<div className="cart">
 					{cartItems.length === 0 && (
 						<div>
 							<h2 className={styles.secondaryText}>There are no cart items yet!</h2>
@@ -58,7 +59,7 @@ const CartPage = () => {
 						))}
 				</div>
 			</div>
-			<div>
+			<div className="checkout">
 				{cartItems.length === 0 ? (
 					<div>
 						<button className={styles.primaryBtn} 
@@ -69,11 +70,11 @@ const CartPage = () => {
 						</button>
 					</div>
 				) : (
-					<div>
-						<span>Total Items: {totalItems}</span>
-						<span>
-							Total Price: $
-							{(Math.round(totalPrice * 100) / 100).toFixed(2)}
+					<div className="checkoutBar">
+						<span className="totalItemBox">Total Items: <span className="totalItems">{totalItems}</span></span>
+						<span className="totalPriceBox">
+							Total Price: <span className="totalPrice">
+								${(Math.round(totalPrice * 100) / 100).toFixed(2)}</span>
 						</span>
 						<button
 							className={styles.primaryBtn}
@@ -86,6 +87,7 @@ const CartPage = () => {
 				{isOpen && <ModalAddPayment setIsOpen={setIsOpen} />}
 			</div>
 		</div>
+	</div>	
 	);
 };
 

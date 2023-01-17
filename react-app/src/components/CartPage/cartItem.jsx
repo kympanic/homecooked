@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { updateCount, removeItem } from "../../store/session";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./cartitems.css";
 import styles from "../Modals/App.module.css";
+
 
 const CartItem = ({ id, qty }) => {
 	const [count, setCount] = useState(qty);
@@ -16,7 +18,7 @@ const CartItem = ({ id, qty }) => {
 
 	return (
 		<div className="cartItemBox">
-			<div className="vendorInfo">
+			<Link className="vendorInfo" to={`/store/${user.id}`}>
 				<div className="vendorImgBox">
 					<img 
 						className="cartVendorImg"
@@ -27,56 +29,65 @@ const CartItem = ({ id, qty }) => {
 				<div className="vendorNameBox">
 					{user?.shopName}
 				</div>
+			</Link>
+			<div className="itemInfo">
+
+				<div className="itemImgBox">
+					<img
+						className="cart-product-img"
+						src={product?.imageURL}
+						alt={product?.name}
+					/>
+				</div>
+				<div className="nameAndPriceBox">
+					<div className="itemName">{product?.name}</div>
+					<div>
+						<span className="itemPrice">${(Math.round(product?.price * 100) / 100).toFixed(2)}</span>
+					</div>
+					<div>
+						<button 
+							onClick={() => dispatch(removeItem(prodId))}
+							className={styles.primaryBtn}
+						>
+							Remove item
+						</button>
+					</div>
+				</div>
+				<div className="qtyAndDescBox">
+
+					<div className="quantityButtons">
+						<label htmlFor="qty">Qty.</label>
+						<input
+							onChange={(e) => {
+								setCount(e.target.value);
+							}}
+							onBlur={() =>
+								dispatch(updateCount(product.id, Number(count)))
+							}
+							min="1"
+							type="number"
+							id="qty"
+							name="qty"
+							value={count}
+							className="quantityBobble"
+						/>
+						<button
+							className="cart-item-button"
+							onClick={() => dispatch(updateCount(product.id, qty + 1))}
+						>
+							+
+						</button>
+						<button
+							className="cart-item-button"
+							onClick={() => dispatch(updateCount(product.id, qty - 1))}
+						>
+							-
+						</button>
+					</div>
+					<div className="itemDesc">{product?.description}</div>
+				</div>
 			</div>
-			<div className="itemImgBox">
-				<img
-					className="cart-product-img"
-					src={product?.imageURL}
-					alt={product?.name}
-				/>
-			</div>
-			<div>{product?.name}</div>
-			<div>
-				<span>${(Math.round(product?.price * 100) / 100).toFixed(2)}</span>
-			</div>
-			<div>{product?.description}</div>
-			<div className="quantityButtons">
-				<label htmlFor="qty">Qty.</label>
-				<input
-					onChange={(e) => {
-						setCount(e.target.value);
-					}}
-					onBlur={() =>
-						dispatch(updateCount(product.id, Number(count)))
-					}
-					min="1"
-					type="number"
-					id="qty"
-					name="qty"
-					value={count}
-					className="quantityBobble"
-				/>
-				<button
-					className="cart-item-button"
-					onClick={() => dispatch(updateCount(product.id, qty + 1))}
-				>
-					+
-				</button>
-				<button
-					className="cart-item-button"
-					onClick={() => dispatch(updateCount(product.id, qty - 1))}
-				>
-					-
-				</button>
-			</div>
-			<div>
-				<button 
-					onClick={() => dispatch(removeItem(prodId))}
-					className={styles.primaryBtn}
-				>
-					Remove item
-				</button>
-			</div>
+			
 		</div>
 	);
 };
