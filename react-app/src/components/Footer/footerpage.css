@@ -3,7 +3,7 @@
 	width: 100%;
 	height: 100px;
 	padding: 0px 0px 0px 0px;
-	position: sticky;
+	position: fixed;
 	background-color:#365365;
 	width: 100%;
 	/* display: flex; */
