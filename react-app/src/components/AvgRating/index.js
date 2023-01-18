@@ -1,7 +1,4 @@
 const AvgRating = ({ user, products }) => {
-	console.log(user, "this is the user");
-	console.log(products);
-
 	let reviewAvg;
 	if (products) {
 		reviewAvg =
