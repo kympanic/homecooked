@@ -93,3 +93,7 @@
 	transform: translateY(-10px);
 	box-shadow: 5px 5px 5px #6f6534;
 }
+
+.homepage-container-box {
+	border: 2px solid red;
+}
