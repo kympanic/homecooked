@@ -39,7 +39,6 @@ const StorePage = () => {
 	let stringAvg = (sumOfAverageRatings / selectedProducts?.length).toFixed(2);
 	let storeAvg = parseFloat(stringAvg);
 
-	console.log(vendor, "this is the vendor");
 	return (
 		<div>
 			{vendor && (
