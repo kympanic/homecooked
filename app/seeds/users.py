@@ -14,7 +14,6 @@ def seed_users():
         username='homersimpson', email='homersimpson@aa.io', shop_name='Doh! Donuts', profile_img='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/profile+pictures/Simpsons_SO28_Gallery_11-fb0b632.jpeg', shop_logo_img = 'https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/252637901_436135504594462_5886281448989624379_n.jpeg', shop_splash_img = 'https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/shop+pictures/135742229_247761436765204_8875221857717925711_n.jpeg', phone_number = "2159976297",zipcode="92557", password='password', category="Dessert")
     ricksanchez = User(
         username='ricksanchez', email='ricksanchez@aa.io', profile_img='https://soundcloud-clone-kpop-seeders.s3.us-west-2.amazonaws.com/imagesforhomecooked/profile+pictures/ricksanchez.webp', phone_number="5085994721", zipcode='92507', password='password')
-    
     db.session.add_all([demo,wednesdayaddams,homersimpson,ricksanchez])
     db.session.commit()
 
