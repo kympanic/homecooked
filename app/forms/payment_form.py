@@ -9,7 +9,7 @@ def provider_check(form,field):
     
 def expiration_check(form,field):
     expiration=field.data
-    if len(expiration) < 4:
+    if len(expiration) < 6:
         raise ValidationError('Provide valid expiration date')
     if expiration.count("-") > 1:
         raise ValidationError('Provide valid expiration date')
