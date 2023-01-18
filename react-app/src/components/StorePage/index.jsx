@@ -131,7 +131,7 @@ const StorePage = () => {
 					</div>
 					<div>
 						<div>
-							{vendor && vendor.reviews.length === 0 ? (
+							{vendor && convertedReviews.length === 0 ? (
 								<h1 className="no-reviews-text">
 									No Reviews Yet!
 								</h1>
