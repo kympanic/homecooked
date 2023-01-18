@@ -105,5 +105,6 @@ We wanted to create a ecommerce site that was similar to Etsy. Creating a workin
 - Searching stores by distance from the user
 - Fix interaction between payments and products
 - Tune up CSS
+- Fix Reviews and Search Component
 
 
