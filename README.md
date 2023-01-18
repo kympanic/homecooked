@@ -75,7 +75,24 @@ Dealing with error validations, custom validators from wtforms and sending them 
 <img width="727" alt="Screen Shot 2023-01-17 at 11 40 25 AM" src="https://user-images.githubusercontent.com/98551224/212996076-7aed69d6-528c-486a-85bb-0bd1d5a28897.png">
 <img width="827" alt="Screen Shot 2023-01-17 at 11 41 31 AM" src="https://user-images.githubusercontent.com/98551224/212996289-76a0163d-3424-4afb-8102-9e7d97e71dbb.png">
 
-The cart was a communal effort to create -add here.
+
+
+
+
+Code Snippets:
+
+The cart was a communal effort to create -- we all worked together and built it over two days of research and working together to figure out how to implement it successfully.
+<img width="1440" alt="image" src="https://dudemastersongbucket.s3.amazonaws.com/cart_code_snippet.PNG">
+
+This culminated with having to spend hours trying to figure out a problem that was ultimately due to not passing an id value to the state when the update count action was taken- funny how a small thing like that could both be so hard to figure out and cause such a huge problem.
+
+
+Also, this little bit of the profile page is Alex's favorite contribution:
+<img width="1440" alt="image" src="https://dudemastersongbucket.s3.amazonaws.com/profile_code_snippet.PNG">
+
+He thinks it's an incredibly funny use of empty space.
+
+
 
 ## Our Journey
 
