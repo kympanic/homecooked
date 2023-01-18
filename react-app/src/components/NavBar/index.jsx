@@ -14,11 +14,12 @@ import ModalAddShop from "../Modals/AddShopForms/ModalAddShop";
 const NavBar = () => {
 	const cartItems = useSelector(getAllCartItems);
 	const sessionUser = useSelector((state) => state.session.user);
+	const demoUser1 = useSelector((state) => state.users[1])
 	const dispatch = useDispatch();
 	const [isOpenAddShop, setIsOpenAddShop] = useState(false);
 
 	const demoUser = {
-		email: "demo@aa.io",
+		email: demoUser1?.email,
 		password: "password",
 	};
 
